@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
@@ -54,7 +55,7 @@ export interface SelectRebuiltProps
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
 
-  readonly inputRef?: FormFieldProps["inputRef"];
+  readonly inputRef?: Ref<HTMLSelectElement>;
 
   /**
    * @deprecated Use `onKeyDown` or `onKeyUp` instead.

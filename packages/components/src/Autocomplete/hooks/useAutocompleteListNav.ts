@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   UseFloatingReturn,
   UseInteractionsReturn,
@@ -38,17 +38,39 @@ export interface UseAutocompleteListNavReturn {
 export interface UseAutocompleteListNavProps {
   navigableCount: number;
   shouldResetActiveIndexOnClose?: () => boolean;
+  onMenuOpen?: () => void;
   onMenuClose?: (reason?: string) => void;
   selectedIndex?: number | null;
   readOnly?: boolean;
+  disabled?: boolean;
+  /**
+   * When the reference is smaller than the clickable area (e.g. input inside chip area),
+   * pass a selector for the extended zone. Clicks inside it won't trigger outsidePress dismiss.
+   */
+  outsidePressExcludeSelector?: string;
+}
+
+function useStableSetReference(
+  refs: UseFloatingReturn["refs"],
+): (el: HTMLElement | null) => void {
+  const latestRefs = useRef(refs);
+  latestRefs.current = refs;
+
+  return useCallback(
+    (el: HTMLElement | null) => latestRefs.current.setReference(el),
+    [],
+  );
 }
 
 export function useAutocompleteListNav({
   navigableCount,
   shouldResetActiveIndexOnClose,
+  onMenuOpen,
   onMenuClose,
   selectedIndex,
   readOnly = false,
+  disabled = false,
+  outsidePressExcludeSelector,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -61,7 +83,9 @@ export function useAutocompleteListNav({
     onOpenChange: (isOpen, _event, reason) => {
       setOpen(isOpen);
 
-      if (isOpen === false) {
+      if (isOpen) {
+        onMenuOpen?.();
+      } else {
         if (shouldResetActiveIndexOnClose?.()) {
           setActiveIndex(null);
         }
@@ -72,20 +96,23 @@ export function useAutocompleteListNav({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["top"] }),
       size({
-        apply({ availableHeight, elements }) {
+        apply({ availableHeight, rects, elements }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
           });
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
+            width: `${rects.reference.width}px`,
           });
         },
       }),
     ],
   });
 
+  const enabled = !readOnly && !disabled;
+
   const click = useClick(context, {
-    enabled: !readOnly,
+    enabled,
     toggle: false, // Only open, never close on click
   });
 
@@ -107,7 +134,20 @@ export function useAutocompleteListNav({
   });
 
   const dismiss = useDismiss(context, {
-    outsidePress: true,
+    outsidePress: outsidePressExcludeSelector
+      ? (event: MouseEvent) => {
+          const target = event.target as Node;
+          const insideRef =
+            context.elements.domReference?.contains(target) ?? false;
+          const insideFloating =
+            context.elements.floating?.contains(target) ?? false;
+          const insideExclude = (event.target as Element).closest(
+            outsidePressExcludeSelector,
+          );
+
+          return !(insideRef || insideFloating || insideExclude);
+        }
+      : true,
     escapeKey: true,
     outsidePressEvent: "click",
   });
@@ -127,6 +167,8 @@ export function useAutocompleteListNav({
     });
   }, [navigableCount, setActiveIndex, listRef]);
 
+  const setReferenceElement = useStableSetReference(refs);
+
   return {
     refs,
     floatingStyles,
@@ -139,6 +181,6 @@ export function useAutocompleteListNav({
     listRef,
     open,
     setOpen,
-    setReferenceElement: (el: HTMLElement | null) => refs.setReference(el),
+    setReferenceElement,
   };
 }

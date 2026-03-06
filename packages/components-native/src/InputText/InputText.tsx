@@ -398,6 +398,7 @@ function InputTextInternal(
       toolbarVisibility={toolbarVisibility}
       loading={loading}
       loadingType={loadingType}
+      multiline={multiline}
     >
       <TextInput
         inputAccessoryViewID={inputAccessoryID || undefined}
