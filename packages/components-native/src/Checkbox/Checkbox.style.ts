@@ -12,8 +12,12 @@ export const useStyles = buildThemedStyles(tokens => {
       width: "100%",
       justifyContent: "space-between",
       flexDirection: "row",
+      alignItems: "center",
+      minHeight: 48,
+    },
+
+    checkBoxContainerWithAssistiveText: {
       alignItems: "flex-start",
-      paddingVertical: tokens["space-small"],
     },
 
     label: {

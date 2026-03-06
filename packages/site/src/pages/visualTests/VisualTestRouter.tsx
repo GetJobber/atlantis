@@ -3,6 +3,7 @@ import { useParams } from "@tanstack/react-router";
 import { VisualTestAutocompletePage } from "./VisualTestAutocompletePage";
 import { VisualTestCardPage } from "./VisualTestCardPage";
 import { VisualTestAutocompleteV2Page } from "./VisualTestAutocompleteV2Page";
+import { VisualTestAvatarPage } from "./VisualTestAvatarPage";
 import { VisualTestChipPage } from "./VisualTestChipPage";
 import { VisualTestChipsPage } from "./VisualTestChipsPage";
 import { VisualTestComboboxPage } from "./VisualTestComboboxPage";
@@ -34,6 +35,7 @@ import { VisualTestInputTimePage } from "./VisualTestInputTimePage";
 import { VisualTestInputValidationPage } from "./VisualTestInputValidationPage";
 import { VisualTestLayoutPage } from "./VisualTestLayoutPage";
 import { VisualTestLightBoxPage } from "./VisualTestLightBoxPage";
+import { VisualTestLightBoxComposablePage } from "./VisualTestLightBoxComposablePage";
 import { VisualTestLinkPage } from "./VisualTestLinkPage";
 import { VisualTestListPage } from "./VisualTestListPage";
 import { VisualTestMarkdownPage } from "./VisualTestMarkdownPage";
@@ -43,6 +45,7 @@ import {
   VisualTestMenuSmallStickyPage,
 } from "./VisualTestMenuSmallPage";
 import { VisualTestModalPage } from "./VisualTestModalPage";
+import { VisualTestPagePage } from "./VisualTestPagePage";
 import { VisualTestPopoverPage } from "./VisualTestPopoverPage";
 import { VisualTestProgressBarPage } from "./VisualTestProgressBarPage";
 import { VisualTestRadioGroupPage } from "./VisualTestRadioGroupPage";
@@ -69,6 +72,7 @@ const visualTestPages: Record<string, () => ReactElement> = {
   datalist: VisualTestDataListPage,
   autocomplete: VisualTestAutocompletePage,
   "autocomplete-v2": VisualTestAutocompleteV2Page,
+  avatar: VisualTestAvatarPage,
   banner: VisualTestBannerPage,
   card: VisualTestCardPage,
   chip: VisualTestChipPage,
@@ -99,12 +103,14 @@ const visualTestPages: Record<string, () => ReactElement> = {
   "input-time": VisualTestInputTimePage,
   "input-validation": VisualTestInputValidationPage,
   lightbox: VisualTestLightBoxPage,
+  "lightbox-composable": VisualTestLightBoxComposablePage,
   link: VisualTestLinkPage,
   list: VisualTestListPage,
   markdown: VisualTestMarkdownPage,
   menu: VisualTestMenuPage,
   "menu-small": VisualTestMenuSmallPage,
   "menu-small-sticky": VisualTestMenuSmallStickyPage,
+  page: VisualTestPagePage,
   popover: VisualTestPopoverPage,
   "progress-bar": VisualTestProgressBarPage,
   "radio-group": VisualTestRadioGroupPage,

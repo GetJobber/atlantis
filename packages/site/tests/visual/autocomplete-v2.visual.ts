@@ -164,6 +164,46 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     );
   });
 
+  test.describe("multiple select", () => {
+    test("multi: empty state", async ({ page }) => {
+      const multi = page.getByRole("combobox").nth(11);
+      await multi.click();
+      await page.waitForTimeout(200);
+      await expect(page).toHaveScreenshot(
+        "13-multi-empty-open.png",
+        screenshotOptions,
+      );
+    });
+
+    test("multi: with selections and menu open", async ({ page }) => {
+      const multi = page.getByRole("combobox").nth(12);
+      await multi.click();
+      await page.waitForTimeout(200);
+      await expect(page).toHaveScreenshot(
+        "14-multi-selections-open.png",
+        screenshotOptions,
+      );
+    });
+
+    test("multi: many selections wrapping", async ({ page }) => {
+      await expect(page).toHaveScreenshot(
+        "15-multi-many-selections-closed.png",
+        screenshotOptions,
+      );
+    });
+
+    test("multi: with selections and actions open", async ({ page }) => {
+      const multi = page.getByRole("combobox").nth(14);
+      await multi.click();
+      await page.waitForTimeout(200);
+      await moveDown(page, 5);
+      await expect(page).toHaveScreenshot(
+        "16-multi-actions-highlight.png",
+        screenshotOptions,
+      );
+    });
+  });
+
   test("constrained space: open near bottom and verify layout", async ({
     page,
   }) => {

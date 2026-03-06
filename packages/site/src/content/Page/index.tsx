@@ -1,5 +1,6 @@
 import Content, { toc } from "./Page.stories.mdx";
 import Props from "./Page.props.json";
+import Notes from "./PageNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -31,4 +32,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

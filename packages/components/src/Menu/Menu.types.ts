@@ -209,7 +209,7 @@ export interface MenuContentComposableProps extends UnsafeProps {
   readonly children: ReactNode;
 }
 
-export interface MenuTriggerComposableProps {
+export interface MenuTriggerComposableProps extends UnsafeProps {
   /**
    * Accessible name for the trigger.
    */
