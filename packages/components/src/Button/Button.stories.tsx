@@ -1,15 +1,28 @@
+import type { CSSProperties, ComponentPropsWithoutRef } from "react";
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import classnames from "classnames";
 import { fn } from "storybook/test";
-import type { ButtonType, ButtonVariation } from "@jobber/components/Button";
+import type {
+  ButtonFoundationProps,
+  ButtonProps,
+  ButtonType,
+  ButtonVariation,
+  ButtonWithChildrenProps,
+} from "@jobber/components/Button";
 import { Button, useButtonStyles } from "@jobber/components/Button";
+import type { InlineLabelColors } from "@jobber/components/InlineLabel";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import type { StatusIndicatorType } from "@jobber/components/StatusIndicator";
 import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
+import styles from "./ButtonStories.module.css";
+import { Stack } from "../Stack";
 
 const meta = {
   title: "Components/Actions/Button",
@@ -347,4 +360,207 @@ export const Comparison: Story = {
 
 export const FormSubmit: Story = {
   render: FormTemplate,
+};
+
+/**
+ * Factory function to create a styled button
+ */
+function createStyledButton<TVariation extends string | ButtonVariation>({
+  colors,
+  className,
+}: {
+  colors?: ButtonColors;
+  className?: string;
+}) {
+  const StyledButton = ({
+    variation,
+    ...props
+  }: StyledButtonProps<TVariation>) => {
+    if (isButtonVariation(variation)) {
+      return <Button {...(props as ButtonProps)} />;
+    } else {
+      return (
+        <Button
+          {...(props as ButtonProps)}
+          UNSAFE_style={{
+            container: {
+              backgroundColor: colors?.surface,
+            },
+          }}
+          UNSAFE_className={{
+            container: className,
+          }}
+        />
+      );
+    }
+  };
+  StyledButton.Label = Button.Label;
+  StyledButton.Icon = Button.Icon;
+
+  return StyledButton;
+}
+
+/**
+ * The button colors needed for custom styled buttons
+ */
+interface ButtonColors {
+  surface: string;
+  surfaceHover: string;
+  primaryLabel: string;
+  variationColor: string;
+  variationColorHover: string;
+}
+
+/**
+ * The props for a styled button
+ */
+interface StyledButtonProps<TVariation extends string | ButtonVariation>
+  extends Omit<ButtonWithChildrenProps, "variation"> {
+  readonly variation: TVariation;
+}
+
+function isButtonVariation(variation: string): variation is ButtonVariation {
+  return ["work", "learning", "subtle", "destructive"].includes(variation);
+}
+
+const TestStyledButton = createStyledButton<"franchise">({
+  className: styles.franchiseStyledButton,
+});
+
+const StyledButtonTemplate = () => {
+  return (
+    <Stack gap="large">
+      <TestStyledButton variation="franchise">
+        <TestStyledButton.Label>Test</TestStyledButton.Label>
+        <TestStyledButton.Icon name="add" />
+      </TestStyledButton>
+      <TestStyledButton variation="franchise" type="secondary">
+        <TestStyledButton.Label>Test</TestStyledButton.Label>
+        <TestStyledButton.Icon name="add" />
+      </TestStyledButton>
+      <TestStyledButton variation="franchise" type="tertiary">
+        <TestStyledButton.Label>Test</TestStyledButton.Label>
+        <TestStyledButton.Icon name="add" />
+      </TestStyledButton>
+    </Stack>
+  );
+};
+
+export const StyledButton: Story = {
+  render: StyledButtonTemplate,
+};
+
+/**
+ * Factory function to create a styled status label (e.g. for franchise status)
+ */
+function createStyledStatusLabel<TStatus extends string | StatusIndicatorType>({
+  className,
+}: {
+  className: string;
+}) {
+  const StyledStatusLabel = ({
+    status,
+    ...props
+  }: Omit<ComponentPropsWithoutRef<typeof StatusLabel>, "status"> & {
+    readonly status: TStatus;
+  }) => {
+    if (isStatusIndicatorType(status)) {
+      return <StatusLabel {...props} status={status} />;
+    }
+
+    return (
+      <div className={className}>
+        <StatusLabel {...props} status="informative" />
+      </div>
+    );
+  };
+
+  return StyledStatusLabel;
+}
+
+function isStatusIndicatorType(status: string): status is StatusIndicatorType {
+  return ["success", "warning", "critical", "inactive", "informative"].includes(
+    status,
+  );
+}
+
+const StyledStatusLabel = createStyledStatusLabel<
+  "franchise" | StatusIndicatorType
+>({
+  className: styles.franchiseStatusLabel,
+});
+
+const StyledStatusLabelTemplate = () => (
+  <Stack gap="large">
+    <StyledStatusLabel label="Franchise location" status="franchise" />
+    <StyledStatusLabel label="Regular status" status="success" />
+  </Stack>
+);
+
+export const StyledStatusLabelStory: Story = {
+  render: StyledStatusLabelTemplate,
+};
+
+/**
+ * Factory function to create a styled inline label (e.g. for franchise)
+ */
+function createStyledInlineLabel<TColor extends string | InlineLabelColors>({
+  className,
+}: {
+  className: string;
+}) {
+  const StyledInlineLabel = ({
+    color,
+    ...props
+  }: Omit<ComponentPropsWithoutRef<typeof InlineLabel>, "color"> & {
+    readonly color?: TColor;
+  }) => {
+    if (color === undefined || isInlineLabelColor(color)) {
+      return <InlineLabel {...props} color={color} />;
+    }
+
+    return (
+      <span className={className}>
+        <InlineLabel {...props} color="purple" />
+      </span>
+    );
+  };
+
+  return StyledInlineLabel;
+}
+
+function isInlineLabelColor(color: string): color is InlineLabelColors {
+  return [
+    "greyBlue",
+    "red",
+    "orange",
+    "green",
+    "blue",
+    "yellow",
+    "lime",
+    "purple",
+    "pink",
+    "teal",
+    "yellowGreen",
+    "blueDark",
+    "lightBlue",
+    "indigo",
+  ].includes(color);
+}
+
+const StyledInlineLabel = createStyledInlineLabel<
+  "franchise" | InlineLabelColors
+>({
+  className: styles.franchiseInlineLabel,
+});
+
+const StyledInlineLabelTemplate = () => (
+  <Stack gap="large">
+    <StyledInlineLabel color="franchise">Franchise</StyledInlineLabel>
+    <StyledInlineLabel color="green">Regular green</StyledInlineLabel>
+  </Stack>
+);
+
+export const StyledInlineLabelStory: Story = {
+  render: StyledInlineLabelTemplate,
 };

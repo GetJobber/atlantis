@@ -1,0 +1,53 @@
+.franchiseStyledButton {
+  --color-franchise: var(--color-base-purple--300);
+  --color-franchise--surface: var(--color-base-purple--100);
+  --color-franchise--onSurface: var(--color-base-purple--800);
+  --public--button--color-variation: var(--color-franchise);
+  --public--button--color-variation--hover: var(--color-franchise--hover);
+  --button--color-surface: var(--color-franchise--surface);
+  --button--color-surface--hover: var(--color-franchise--surface--hover);
+  --button--color-primaryLabel: var(--color-franchise--onSurface);
+}
+
+:root[data-theme="dark"],
+div[data-theme="dark"] .franchiseStyledButton {
+  --color-franchise: var(--color-base-purple--600);
+  --color-franchise--surface: var(--color-base-purple--1000);
+  --color-franchise--onSurface: var(--color-base-purple--200);
+}
+
+.franchiseStatusLabel {
+  display: contents;
+}
+/* Styled status label (franchise) – overrides for wrapper around StatusLabel */
+.franchiseStatusLabel > :first-child {
+  --color-franchise: var(--color-base-purple--300);
+  --color-franchise--surface: var(--color-base-purple--100);
+  --color-franchise--onSurface: var(--color-base-purple--800);
+  --labelBackgroundColor: var(--color-franchise--surface);
+  --labelTextColor: var(--color-franchise--onSurface);
+  --color-informative: var(--color-franchise);
+}
+
+:root[data-theme="dark"],
+div[data-theme="dark"] .franchiseStatusLabel > :first-child {
+  --color-franchise: var(--color-base-purple--600);
+  --color-franchise--surface: var(--color-base-purple--1000);
+  --color-franchise--onSurface: var(--color-base-purple--200);
+  --labelBackgroundColor: var(--color-franchise--surface);
+  --labelTextColor: var(--color-franchise--onSurface);
+  --color-informative: var(--color-franchise);
+}
+
+/* Styled inline label (franchise) – overrides for wrapper around InlineLabel */
+.franchiseInlineLabel {
+  display: contents;
+  --color-invoice--onSurface: var(--color-base-purple--800);
+  --color-invoice--surface: var(--color-base-purple--100);
+}
+
+:root[data-theme="dark"],
+div[data-theme="dark"] .franchiseInlineLabel {
+  --color-invoice--onSurface: var(--color-base-purple--200);
+  --color-invoice--surface: var(--color-base-purple--1000);
+}
