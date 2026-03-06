@@ -7,7 +7,7 @@ import "./main.css";
 import { RouterProvider } from "@tanstack/react-router";
 import { router } from "./router"; // Loads router + global type registration (declare module)
 import { initAtlantisTheme } from "./utils/theme";
-import { RootSearchOutput } from "./routeTree.gen";
+import { RootSearchOutput } from "./routeTree";
 
 const initialSearch = router.state.location.search as RootSearchOutput | null;
 initAtlantisTheme(initialSearch?.theme ?? null);

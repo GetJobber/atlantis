@@ -16,7 +16,7 @@ import { AtlantisPreviewProvider } from "../preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "../providers/AtlantisSiteProvider";
 import { TritonProvider } from "../providers/TritonProvider";
 import { getStorybookRedirectTarget } from "../utils/storybook";
-import { RootSearchOutput } from "../routeTree.gen";
+import { RootSearchOutput } from "../routeTree";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
