@@ -8,7 +8,7 @@ export interface ContentOverlayProps {
   /**
    * Title of overlay, appears in the header next to the close button.
    */
-  readonly title: string;
+  readonly title?: string;
   /**
    * Optional accessibilityLabel describing the overlay.
    * This will read out when the overlay is opened.

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useDebounce } from "@jobber/hooks";
 import {
   Autocomplete,
@@ -20,11 +20,14 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Flex } from "@jobber/components/Flex";
 import { Typography } from "@jobber/components/Typography";
 import { AutocompleteV2Docgen } from "./V2.docgen";
+import { Avatar } from "../Avatar";
 
-export default {
-  title: "Components/Forms and Inputs/Autocomplete/Web (v2)",
+const meta = {
+  title: "Components/Forms and Inputs/Autocomplete/V2",
   component: AutocompleteV2Docgen,
-} as ComponentMeta<typeof AutocompleteV2Docgen>;
+} satisfies Meta<typeof AutocompleteV2Docgen>;
+export default meta;
+type Story = StoryObj<typeof Autocomplete>;
 
 // Larger demo data (migrated from v1 file)
 const simpleOptions: OptionLike[] = [
@@ -108,7 +111,17 @@ const sectionedMenu = defineMenu<OptionLike>([
   },
 ]);
 
-const TemplateFlat: ComponentStory<typeof Autocomplete> = () => {
+const sectionedWithHeaderFooterMenu = defineMenu<OptionLike>([
+  { type: "section", label: "Indoor", options: simpleOptions },
+  { type: "section", label: "Outdoor", options: simpleOptionsSecondSection },
+  {
+    type: "footer",
+    label: "Pinned footer",
+    onClick: () => console.log("Footer clicked"),
+  },
+]);
+
+const TemplateFlat = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -128,7 +141,7 @@ const TemplateFlat: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
+const TemplateSectioned = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -149,7 +162,7 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
+const TemplateWithActions = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [lastAction, setLastAction] = useState("");
@@ -213,9 +226,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateEmptyStateAndActions: ComponentStory<
-  typeof Autocomplete
-> = () => {
+const TemplateEmptyStateAndActions = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -259,7 +270,7 @@ const TemplateEmptyStateAndActions: ComponentStory<
   );
 };
 
-const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
+const TemplateCustomRenderOption = () => {
   const [value, setValue] = useState<ServiceOption | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -305,7 +316,7 @@ const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
+const TemplateHeaderFooter = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [lastAction, setLastAction] = useState("");
@@ -345,7 +356,7 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateFreeForm: ComponentStory<typeof Autocomplete> = () => {
+const TemplateFreeForm = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -429,7 +440,7 @@ const fakeFetch = (query: string): Promise<OptionLike[]> => {
   });
 };
 
-const TemplateAsyncUserManaged: ComponentStory<typeof Autocomplete> = () => {
+const TemplateAsyncUserManaged = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<OptionLike[]>(INITIAL_OPTIONS);
@@ -566,9 +577,7 @@ interface SectionExtraProps {
   icon: IconNames;
 }
 
-const TemplateEverythingCustomized: ComponentStory<
-  typeof Autocomplete
-> = () => {
+const TemplateEverythingCustomized = () => {
   const [value, setValue] = useState<CustomOption | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [lastAction, setLastAction] = useState("");
@@ -737,7 +746,7 @@ const TemplateEverythingCustomized: ComponentStory<
   );
 };
 
-const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
+const TemplateFocusBehavior = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -848,13 +857,207 @@ const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-export const Flat = TemplateFlat.bind({});
-export const Sectioned = TemplateSectioned.bind({});
-export const WithActions = TemplateWithActions.bind({});
-export const EmptyStateAndActions = TemplateEmptyStateAndActions.bind({});
-export const CustomRenderOption = TemplateCustomRenderOption.bind({});
-export const HeaderFooter = TemplateHeaderFooter.bind({});
-export const FreeForm = TemplateFreeForm.bind({});
-export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
-export const EverythingCustomized = TemplateEverythingCustomized.bind({});
-export const FocusBehavior = TemplateFocusBehavior.bind({});
+// eslint-disable-next-line max-statements
+const TemplateMultiple = () => {
+  const [value, setValue] = useState<OptionLike[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const [customRenderValue, setCustomRenderValue] = useState<OptionLike[]>([]);
+  const [customRenderInputValue, setCustomRenderInputValue] = useState("");
+
+  const [otherValue, setOtherValue] = useState<OptionLike[]>([]);
+  const [otherInputValue, setOtherInputValue] = useState("");
+
+  const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([
+    {
+      label: "Drain Cleaning",
+    },
+  ]);
+  const [headerFooterInputValue, setHeaderFooterInputValue] = useState("");
+
+  const [disabledValue, setDisabledValue] = useState<OptionLike[]>([
+    { label: "Drain Cleaning" },
+  ]);
+  const [disabledInputValue, setDisabledInputValue] = useState("");
+
+  const [allowFreeFormValue, setAllowFreeFormValue] = useState<OptionLike[]>(
+    [],
+  );
+  const [allowFreeFormInputValue, setAllowFreeFormInputValue] = useState("");
+  const [suffix, setSuffix] = useState<IconNames | undefined>("arrowDown");
+
+  return (
+    <Content>
+      <Heading level={4}>Multiple</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={value}
+        clearable="always"
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        multiple
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+      />
+
+      <Heading level={4}>With customRenderValue</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        clearable="always"
+        value={customRenderValue}
+        multiple
+        onChange={setCustomRenderValue}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        inputValue={customRenderInputValue}
+        onInputChange={setCustomRenderInputValue}
+        suffix={{
+          icon: suffix,
+        }}
+        onOpen={() => {
+          console.log("open callback called");
+          setSuffix("arrowUp");
+        }}
+        onClose={() => {
+          console.log("close callback called");
+          setSuffix("arrowDown");
+        }}
+        UNSAFE_styles={{
+          selection: {
+            paddingLeft: 0,
+            backgroundColor: "var(--color-background-surface)",
+            border: "1px solid var(--color-border)",
+          },
+        }}
+        customRenderValue={({ value: v, getOptionLabel }) => (
+          <>
+            <Avatar size="small" initials={getOptionLabel(v)} />
+            <span style={{ fontWeight: "bold" }}>{getOptionLabel(v)}</span>
+            <span>|</span>
+            <Icon name="truck" size="small" />
+            <Typography size="small">+15 min</Typography>
+          </>
+        )}
+      />
+
+      <Heading level={4}>Sectioned</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={otherValue}
+        onChange={setOtherValue}
+        multiple
+        inputValue={otherInputValue}
+        onInputChange={setOtherInputValue}
+        menu={sectionedMenu}
+      />
+
+      <Heading level={4}>Header and footer</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={headerFooterValue}
+        clearable="always"
+        onChange={setHeaderFooterValue}
+        multiple
+        inputValue={headerFooterInputValue}
+        onInputChange={setHeaderFooterInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+
+      <Heading level={4}>Disabled with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        disabled
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Readonly with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        readOnly
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Allow free form</Heading>
+      <Autocomplete
+        version={2}
+        menu={sectionedMenu}
+        multiple
+        allowFreeForm
+        createFreeFormValue={label => ({ label })}
+        inputValue={allowFreeFormInputValue}
+        onInputChange={setAllowFreeFormInputValue}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={allowFreeFormValue}
+        onChange={setAllowFreeFormValue}
+      />
+    </Content>
+  );
+};
+
+export const Multiple: Story = {
+  render: TemplateMultiple,
+};
+
+export const Flat: Story = {
+  render: TemplateFlat,
+};
+
+export const Sectioned: Story = {
+  render: TemplateSectioned,
+};
+
+export const WithActions: Story = {
+  render: TemplateWithActions,
+};
+
+export const EmptyStateAndActions: Story = {
+  render: TemplateEmptyStateAndActions,
+};
+
+export const CustomRenderOption: Story = {
+  render: TemplateCustomRenderOption,
+};
+
+export const HeaderFooter: Story = {
+  render: TemplateHeaderFooter,
+};
+
+export const FreeForm: Story = {
+  render: TemplateFreeForm,
+};
+
+export const AsyncUserManaged: Story = {
+  render: TemplateAsyncUserManaged,
+};
+
+export const EverythingCustomized: Story = {
+  render: TemplateEverythingCustomized,
+};
+
+export const FocusBehavior: Story = {
+  render: TemplateFocusBehavior,
+};

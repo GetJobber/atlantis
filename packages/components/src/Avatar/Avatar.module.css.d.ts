@@ -4,6 +4,7 @@ declare const styles: {
   readonly "small": string;
   readonly "isDark": string;
   readonly "initials": string;
+  readonly "hasCustomColor": string;
   readonly "smallInitials": string;
   readonly "hasBorder": string;
 };

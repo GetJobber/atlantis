@@ -39,14 +39,21 @@ The DataTable uses a compound component pattern with these atomic components:
         <DataTable.Cell>Admin</DataTable.Cell>
       </DataTable.Row>
     </DataTable.Body>
+
+    <DataTable.Footer>
+      <DataTable.Row>
+        <DataTable.Cell colSpan={2}>
+          <Typography fontWeight="bold">Total</Typography>
+        </DataTable.Cell>
+        <DataTable.Cell>3 users</DataTable.Cell>
+      </DataTable.Row>
+    </DataTable.Footer>
   </DataTable.Table>
 
-  <DataTable.Footer>
-    <DataTable.Pagination>
-      <DataTable.PaginationButton direction="previous" />
-      <DataTable.PaginationButton direction="next" />
-    </DataTable.Pagination>
-  </DataTable.Footer>
+  <DataTable.Pagination>
+    <DataTable.PaginationButton direction="previous" />
+    <DataTable.PaginationButton direction="next" />
+  </DataTable.Pagination>
 </DataTable.Container>
 ```
 
@@ -55,6 +62,52 @@ The DataTable uses a compound component pattern with these atomic components:
 Atomic DataTable components are flexible and composable. Each component accepts
 standard HTML attributes, including className, style, onClick, onMouseEnter, and
 more.
+
+### Column Widths
+
+`DataTable.Table` supports an optional `layout` prop:
+
+- **`auto`** (default): Columns size to their content. Use when you prefer
+  content-driven sizing over set proportions.
+- **`fixed`**: Column widths can be set explicitly on `DataTable.HeaderCell`.
+  Columns without explicit widths share the remaining space equally.
+
+Set widths on `DataTable.HeaderCell` via the `style` prop when using
+`layout="fixed"`:
+
+```tsx
+<DataTable.Table layout="fixed">
+  <DataTable.Header>
+    <DataTable.HeaderCell style={{ width: "10%" }}>Status</DataTable.HeaderCell>
+    <DataTable.HeaderCell style={{ width: "25%" }}>Name</DataTable.HeaderCell>
+    {/* Takes remaining space */}
+    <DataTable.HeaderCell>Description</DataTable.HeaderCell>
+    <DataTable.HeaderCell style={{ width: "15%" }}>Amount</DataTable.HeaderCell>
+  </DataTable.Header>
+</DataTable.Table>
+```
+
+When using TanStack Table, you can also leverage its column sizing API and apply
+widths dynamically:
+
+```tsx
+// In column definitions
+const columns = [
+  { accessorKey: "status", size: 10 }, // Treated as percentage
+  { accessorKey: "name", size: 25 },
+  { accessorKey: "description" }, // No size = remaining space
+  { accessorKey: "amount", size: 15 },
+];
+
+// In header rendering
+<DataTable.HeaderCell
+  style={{
+    width: header.column.columnDef.size && `${header.column.columnDef.size}%`,
+  }}
+>
+  {flexRender(header.column.columnDef.header, header.getContext())}
+</DataTable.HeaderCell>;
+```
 
 Rows and cells support fully custom content, including other components,
 enabling rich, interactive table layouts. See an example
@@ -206,14 +259,69 @@ The `direction` prop represents the current sort state of the column. Your
 `onSort` callback should handle the state transitions (ascending → descending →
 equilibrium) based on your application's logic.
 
+### Footer
+
+The `DataTable.Footer` component is used for column-aligned content like totals
+or summaries. It must be placed inside `DataTable.Table`, **after**
+`DataTable.Body`. The footer is a sibling to the body, not a child of it.
+
+The footer uses `DataTable.Row` and `DataTable.Cell` components to align with
+your table columns. Use `colSpan` on cells to span multiple columns.
+
+You can include multiple rows in a footer, which is useful for showing subtotals
+and grand totals:
+
+```tsx
+<DataTable.Table>
+  <DataTable.Header>
+    {/* Header cells */}
+  </DataTable.Header>
+
+  <DataTable.Body>
+    {/* Table rows */}
+  </DataTable.Body>
+
+  <DataTable.Footer>
+    {/* Subtotal row */}
+    <DataTable.Row>
+      <DataTable.Cell colSpan={4}>
+        <Text>Subtotal</Text>
+      </DataTable.Cell>
+      <DataTable.Cell>
+        <Text align="end">$2,250.00</Text>
+      </DataTable.Cell>
+    </DataTable.Row>
+    {/* Grand total row */}
+    <DataTable.Row>
+      <DataTable.Cell colSpan={4}>
+        <Typography fontWeight="bold">Total</Typography>
+      </DataTable.Cell>
+      <DataTable.Cell>
+        <Typography fontWeight="bold" align="end">$3,750.00</Typography>
+      </DataTable.Cell>
+    </DataTable.Row>
+  </DataTable.Footer>
+</DataTable.Table>
+
+<DataTable.Pagination>
+  {/* Pagination goes outside the table */}
+</DataTable.Pagination>
+```
+
+**Note**: Pagination should be placed outside the table, within the container.
+See the [Pagination](#pagination) section below.
+
 ### Pagination
 
 For
-[pagination functionality](../?path=/story/components-lists-and-tables-datatable-web-composable--with-pagination),
-use DataTable.Pagination and DataTable.PaginationButton:
+[pagination functionality](../?path=/story/components-lists-and-tables-datatable-web-composable--pagination),
+use `DataTable.Pagination` and `DataTable.PaginationButton`. Pagination should
+be placed outside the table, within the container:
 
 ```tsx
-<DataTable.Footer>
+<DataTable.Container>
+  <DataTable.Table>{/* Header and Body */}</DataTable.Table>
+
   <DataTable.Pagination>
     <DataTable.PaginationButton
       direction="previous"
@@ -232,7 +340,30 @@ use DataTable.Pagination and DataTable.PaginationButton:
       }
     />
   </DataTable.Pagination>
-</DataTable.Footer>
+</DataTable.Container>
+```
+
+**Important**: Pagination does not go inside the footer. The footer is for
+column-aligned content, like totals. Pagination goes outside the table, but
+within the container, as it is the navigation controls for the table data:
+
+```tsx
+<DataTable.Container>
+  <DataTable.Table>
+    {/* Header and Body */}
+    <DataTable.Footer>
+      <DataTable.Row>
+        <DataTable.Cell colSpan={4}>
+          <Typography fontWeight="bold">Total</Typography>
+        </DataTable.Cell>
+        <DataTable.Cell>$3,750.00</DataTable.Cell>
+      </DataTable.Row>
+    </DataTable.Footer>
+  </DataTable.Table>
+
+  {/* Pagination is outside the table, not inside the footer */}
+  <DataTable.Pagination>{/* Pagination buttons */}</DataTable.Pagination>
+</DataTable.Container>
 ```
 
 **Note**: The `ariaLabel` prop is required and should be a function that takes a

@@ -120,19 +120,13 @@ function mapFileTypeToIconName({
     return "alert";
   }
 
-  if (fileType?.includes("pdf") || fileName?.match(/~*.pdf$/)) {
+  if (fileType?.includes("pdf") || fileName?.match(/\.pdf$/i)) {
     return "pdf";
-  } else if (
-    fileType?.includes("ms-word") ||
-    fileName?.match(/~*.doc$|docx$/)
-  ) {
+  } else if (fileType?.includes("ms-word") || fileName?.match(/\.docx?$/i)) {
     return "word";
-  } else if (
-    fileType?.includes("ms-excel") ||
-    fileName?.match(/~*.xls$|xlsx$/)
-  ) {
+  } else if (fileType?.includes("ms-excel") || fileName?.match(/\.xlsx?$/i)) {
     return "excel";
-  } else if (fileType?.includes("video") || fileName?.match(/~*.mp4$|mp4$/)) {
+  } else if (fileType?.includes("video") || fileName?.match(/\.mp4$/i)) {
     return "video";
   } else {
     return "file";

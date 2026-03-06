@@ -1,108 +1,71 @@
-import type { ReactNode } from "react";
+import type { ReactElement, RefObject } from "react";
 import React from "react";
 import classnames from "classnames";
-import type { XOR } from "ts-xor";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
+import type {
+  ButtonActionProps,
+  PageActionButtonProps,
+  PageActionsProps,
+  PageBodyProps,
+  PageComposableProps,
+  PageHeaderContentProps,
+  PageHeaderProps,
+  PageIntroProps,
+  PageLegacyProps,
+  PageMenuProps,
+  PageProps,
+  PageSlotProps,
+  PageSubtitleProps,
+  PageTitleBarProps,
+  PageTitleProps,
+} from "./types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
 import { Button, type ButtonProps } from "../Button";
-import { Menu, type SectionProps } from "../Menu";
+import { Menu } from "../Menu";
 import { Emphasis } from "../Emphasis";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
-export type ButtonActionProps = ButtonProps & {
-  ref?: React.RefObject<HTMLDivElement | null>;
-};
-
-interface PageFoundationProps {
-  readonly children: ReactNode | ReactNode[];
-
-  /**
-   * Title of the page.
-   *
-   * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
-   * Otherwise it will be rendered as is.
-   *
-   * **Important**: If you're passing a custom element, it must include an H1-level heading within it.
-   * Ideally <Heading level={1}> should be used here.
-   */
-  readonly title: ReactNode;
-
-  /**
-   * TitleMetaData component to be displayed
-   * next to the title. Only compatible with string titles.
-   */
-  readonly titleMetaData?: ReactNode;
-
-  /**
-   * Subtitle of the page.
-   */
-  readonly subtitle?: string;
-
-  /**
-   * Determines the width of the page.
-   *
-   * Fill makes the width grow to 100%.
-   *
-   * Standard caps out at 1280px.
-   *
-   * Narrow caps out at 1024px.
-   *
-   * @default standard
-   */
-  readonly width?: "fill" | "standard" | "narrow";
-
-  /**
-   * Page title primary action button settings.
-   */
-  readonly primaryAction?: ButtonActionProps;
-
-  /**
-   * Page title secondary action button settings.
-   */
-  readonly secondaryAction?: ButtonActionProps;
-
-  /**
-   * Page title Action menu.
-   */
-  readonly moreActionsMenu?: SectionProps[];
+/** Discriminates between the props-based API and the composable children API. */
+function isLegacy(props: PageProps): props is PageLegacyProps {
+  return "title" in props;
 }
 
-interface PageWithIntroProps extends PageFoundationProps {
-  /**
-   * Content of the page. This supports basic markdown node types
-   * such as `_italic_`, `**bold**`, and `[link name](url)`.
-   */
-  readonly intro: string;
+export function Page(props: PageLegacyProps): ReactElement;
+export function Page(props: PageComposableProps): ReactElement;
 
-  /**
-   * Causes any markdown links in the `intro` prop to open in a new
-   * tab, i.e. with `target="_blank"`.
-   *
-   * Can only be used if `intro` prop is also specified.
-   *
-   * Defaults to `false`.
-   */
-  readonly externalIntroLinks?: boolean;
+export function Page(props: PageProps): ReactElement {
+  const pageStyles = classnames(styles.page, styles[props.width ?? "standard"]);
+
+  if (isLegacy(props)) {
+    return <PageLegacy {...props} pageStyles={pageStyles} />;
+  }
+
+  return (
+    <div className={pageStyles}>
+      <Content>{props.children}</Content>
+    </div>
+  );
 }
 
-export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
-
-export function Page({
+/** Props-based renderer. Preserves the original Page behavior for existing consumers. */
+function PageLegacy({
   title,
   titleMetaData,
   intro,
   externalIntroLinks,
   subtitle,
   children,
-  width = "standard",
   primaryAction,
   secondaryAction,
   moreActionsMenu = [],
-}: PageProps) {
-  const pageStyles = classnames(styles.page, styles[width]);
+  pageStyles,
+  ...rest
+}: PageLegacyProps & { readonly pageStyles: string }) {
+  const dataAttrs = filterDataAttributes(rest);
   const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
     useResizeObserver<HTMLDivElement>();
 
@@ -115,26 +78,8 @@ export function Page({
   const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction || secondaryAction;
 
-  if (primaryAction != undefined) {
-    primaryAction = Object.assign({ fullWidth: true }, primaryAction);
-  }
-
-  if (secondaryAction != undefined) {
-    secondaryAction = Object.assign(
-      { type: "secondary", fullWidth: true },
-      secondaryAction,
-    );
-  }
-
-  if (secondaryAction != undefined) {
-    secondaryAction = Object.assign(
-      { type: "secondary", fullWidth: true },
-      secondaryAction,
-    );
-  }
-
   return (
-    <div className={pageStyles}>
+    <div className={pageStyles} {...dataAttrs}>
       <Content>
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
@@ -163,7 +108,10 @@ export function Page({
               <div className={styles.actionGroup}>
                 {primaryAction && (
                   <div className={styles.primaryAction} ref={primaryAction.ref}>
-                    <Button {...getActionProps(primaryAction)} />
+                    <Button
+                      {...getActionProps(primaryAction)}
+                      fullWidth={true}
+                    />
                   </div>
                 )}
                 {secondaryAction && (
@@ -171,7 +119,11 @@ export function Page({
                     className={styles.actionButton}
                     ref={secondaryAction.ref}
                   >
-                    <Button {...getActionProps(secondaryAction)} />
+                    <Button
+                      {...getActionProps(secondaryAction)}
+                      fullWidth={true}
+                      type="secondary"
+                    />
                   </div>
                 )}
                 {showMenu && (
@@ -198,9 +150,236 @@ export function Page({
   );
 }
 
-export const getActionProps = (actionProps: ButtonActionProps): ButtonProps => {
-  const buttonProps = { ...actionProps };
-  if (actionProps.ref) delete buttonProps.ref;
+/**
+ * Groups the title area and actions into the page header layout.
+ * Place non-action content (title, subtitle) inside `Page.HeaderContent`
+ * and actions inside `Page.Actions`.
+ */
+function PageHeader({ children, ...rest }: PageHeaderProps) {
+  const dataAttrs = filterDataAttributes(rest);
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
+
+  const titleBarClasses = classnames(styles.titleBar, {
+    [styles.small]: titleBarWidth > Breakpoints.smaller,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.base,
+  });
+
+  return (
+    <div className={titleBarClasses} ref={titleBarRef} {...dataAttrs}>
+      {children}
+    </div>
+  );
+}
+
+/** Wraps the title area (title, subtitle) inside `Page.Header`. Use when the header contains more than one content element to keep them stacked vertically. */
+function PageHeaderContent({ children, ...rest }: PageHeaderContentProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return <div {...dataAttrs}>{children}</div>;
+}
+
+/**
+ * Flex container for the page title and optional sibling elements such as
+ * status badges. Use when you need to display metadata alongside the heading.
+ *
+ * @example
+ * ```tsx
+ * <Page.TitleBar>
+ *   <Page.Title>Clients</Page.Title>
+ *   <StatusLabel label="Active" status="success" />
+ * </Page.TitleBar>
+ * ```
+ */
+function PageTitleBar({ children, ...rest }: PageTitleBarProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.titleRow} {...dataAttrs}>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * Renders the page heading as an H1. When metadata is present alongside the
+ * title, wrap both in `Page.TitleBar`.
+ */
+function PageTitle({ children, ...rest }: PageTitleProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <Heading level={1} {...dataAttrs}>
+      {children}
+    </Heading>
+  );
+}
+
+/** Secondary text below the title. Always applies default Text/Emphasis styling. */
+function PageSubtitle({ children, ...rest }: PageSubtitleProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.subtitle} {...dataAttrs}>
+      <Text size="large" variation="subdued">
+        <Emphasis variation="bold">{children}</Emphasis>
+      </Text>
+    </div>
+  );
+}
+
+/** Introduction text between the header and body. Always applies default Text styling. */
+function PageIntro({ children }: PageIntroProps) {
+  return <Text size="large">{children}</Text>;
+}
+
+/** Container for action buttons and menu. Applies responsive actionGroup layout. */
+function PageActions({ children, ...rest }: PageActionsProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.actionGroup} {...dataAttrs}>
+      {children}
+    </div>
+  );
+}
+
+/** Positional container for the primary action. Should contain a Button element, e.g. <Page.PrimaryButton>. */
+function PageActionPrimary({ children, ref }: PageSlotProps) {
+  return (
+    <div className={styles.primaryAction} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+/** Positional container for the secondary action. Should contain a Button element, e.g. <Page.SecondaryButton>. */
+function PageActionSecondary({ children, ref }: PageSlotProps) {
+  return (
+    <div className={styles.actionButton} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+/** Positional container for the menu action. Should contain Page.Menu or a custom Menu. */
+function PageActionMenu({ children, ref }: PageSlotProps) {
+  return (
+    <div className={styles.actionButton} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+/** Default primary Button with opinionated styling. Use inside Page.ActionPrimary. */
+function PagePrimaryButton({
+  ref,
+  label,
+  onClick,
+  icon,
+  disabled,
+  loading,
+  ariaLabel,
+  ...rest
+}: PageActionButtonProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div ref={ref} {...dataAttrs}>
+      <Button
+        label={label}
+        onClick={onClick}
+        icon={icon}
+        disabled={disabled}
+        loading={loading}
+        ariaLabel={ariaLabel}
+        fullWidth={true}
+      />
+    </div>
+  );
+}
+
+/** Default secondary Button with opinionated styling. Use inside Page.ActionSecondary. */
+function PageSecondaryButton({
+  ref,
+  label,
+  onClick,
+  icon,
+  disabled,
+  loading,
+  ariaLabel,
+  ...rest
+}: PageActionButtonProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div ref={ref} {...dataAttrs}>
+      <Button
+        label={label}
+        onClick={onClick}
+        icon={icon}
+        disabled={disabled}
+        loading={loading}
+        ariaLabel={ariaLabel}
+        fullWidth={true}
+        type="secondary"
+      />
+    </div>
+  );
+}
+
+/**
+ * "More Actions" menu with a default trigger button.
+ * Consumers supply Menu.Item children (in case custom routing is needed,
+ * e.g. wrapping Menu.Item with createLink() from TanStack Router).
+ */
+function PageMenu({
+  children,
+  triggerLabel = "More Actions",
+  ...rest
+}: PageMenuProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div {...dataAttrs}>
+      <Menu>
+        <Menu.Trigger UNSAFE_style={{ display: "block" }}>
+          <Button icon="more" label={triggerLabel} type="secondary" fullWidth />
+        </Menu.Trigger>
+        <Menu.Content>{children}</Menu.Content>
+      </Menu>
+    </div>
+  );
+}
+
+/** Main content area of the page. */
+function PageBody({ children }: PageBodyProps) {
+  return <Content>{children}</Content>;
+}
+
+export const getActionProps = (
+  actionProps?: ButtonActionProps,
+): ButtonProps => {
+  const buttonProps = (actionProps ?? {}) as ButtonProps & {
+    ref?: RefObject<HTMLDivElement | null>;
+  };
+  if (actionProps?.ref) delete buttonProps.ref;
 
   return buttonProps;
 };
+
+Page.Header = PageHeader;
+Page.HeaderContent = PageHeaderContent;
+Page.TitleBar = PageTitleBar;
+Page.Title = PageTitle;
+Page.Subtitle = PageSubtitle;
+Page.Intro = PageIntro;
+Page.Actions = PageActions;
+Page.ActionPrimary = PageActionPrimary;
+Page.ActionSecondary = PageActionSecondary;
+Page.ActionMenu = PageActionMenu;
+Page.PrimaryButton = PagePrimaryButton;
+Page.SecondaryButton = PageSecondaryButton;
+Page.Menu = PageMenu;
+Page.Body = PageBody;

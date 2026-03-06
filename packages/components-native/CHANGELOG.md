@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.97.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.97.0...@jobber/components-native@0.97.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **components-native:** Fix styling of checkbox [JOB-152492] ([#2936](https://github.com/GetJobber/atlantis/issues/2936)) ([71313c0](https://github.com/GetJobber/atlantis/commit/71313c04cb581d02891e35931b5992aa327542a3))
+
+
+
+
+
+# [0.97.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.96.0...@jobber/components-native@0.97.0) (2026-02-25)
+
+
+### Features
+
+* **components-native:** expose onLoadEnd from FormatFileThumbnail ([#2926](https://github.com/GetJobber/atlantis/issues/2926)) ([6ccd434](https://github.com/GetJobber/atlantis/commit/6ccd43435505486dc580472c36ed7b623bf84850))
+
+
+
+
+
+# [0.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.4...@jobber/components-native@0.96.0) (2026-02-17)
+
+
+### Features
+
+* **components-native:** Expose Isolated Aspects of FormatFile ([#2908](https://github.com/GetJobber/atlantis/issues/2908)) ([ac1cd1e](https://github.com/GetJobber/atlantis/commit/ac1cd1eb61206e97e3d24ff1d36559d3e9af1c1b))
+
+
+
+
+
+## [0.95.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.3...@jobber/components-native@0.95.4) (2026-01-27)
+
+
+### Bug Fixes
+
+* **components-native:** Provide way for users to escape react native multiline input scroll trap ([#2891](https://github.com/GetJobber/atlantis/issues/2891)) ([9c68197](https://github.com/GetJobber/atlantis/commit/9c68197c5d804ac682efb79147422c35d9a69b0b))
+
+
+
+
+
 ## [0.95.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.2...@jobber/components-native@0.95.3) (2026-01-12)
 
 

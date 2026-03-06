@@ -240,6 +240,21 @@
         "type": {
           "name": "\"spinner\" | \"glimmer\""
         }
+      },
+      "multiline": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether the input is a multiline input.",
+        "name": "multiline",
+        "parent": {
+          "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }

@@ -252,7 +252,7 @@ describe("SelectRebuilt", () => {
   });
 
   describe("inputRef (deprecated)", () => {
-    it("forwards inputRef to the select element", () => {
+    it("forwards inputRef to the select element using RefObject", () => {
       const ref = React.createRef<HTMLSelectElement>();
 
       render(
@@ -264,7 +264,20 @@ describe("SelectRebuilt", () => {
       expect(ref.current).toBeInstanceOf(HTMLSelectElement);
     });
 
-    it("can access native select methods through inputRef", () => {
+    it("forwards inputRef to the select element using callback ref", () => {
+      const callbackRef = jest.fn();
+
+      render(
+        <SelectRebuilt version={2} inputRef={callbackRef}>
+          <Option>Foo</Option>
+        </SelectRebuilt>,
+      );
+
+      expect(callbackRef).toHaveBeenCalledTimes(1);
+      expect(callbackRef).toHaveBeenCalledWith(screen.getByRole("combobox"));
+    });
+
+    it("can access native select methods through RefObject", () => {
       const ref = React.createRef<HTMLSelectElement>();
 
       render(
@@ -280,6 +293,27 @@ describe("SelectRebuilt", () => {
       expect(selectElement).toHaveFocus();
 
       ref.current?.blur();
+      expect(selectElement).not.toHaveFocus();
+    });
+
+    it("can access native select methods through callback ref", () => {
+      const callbackRef = jest.fn<void, [HTMLSelectElement | null]>();
+
+      render(
+        <SelectRebuilt version={2} inputRef={callbackRef}>
+          <Option>Foo</Option>
+        </SelectRebuilt>,
+      );
+
+      const selectElement = screen.getByRole("combobox");
+      const capturedElement = callbackRef.mock.calls[0][0];
+
+      expect(capturedElement).toBe(selectElement);
+
+      capturedElement?.focus();
+      expect(selectElement).toHaveFocus();
+
+      capturedElement?.blur();
       expect(selectElement).not.toHaveFocus();
     });
   });
