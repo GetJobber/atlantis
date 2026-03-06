@@ -159,7 +159,7 @@
         },
         "required": false,
         "type": {
-          "name": "RefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollView>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
+          "name": "RefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollViewRef>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
         }
       },
       "saveButtonLabel": {
