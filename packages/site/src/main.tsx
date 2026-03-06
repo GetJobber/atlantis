@@ -7,12 +7,10 @@ import "./main.css";
 import { RouterProvider } from "@tanstack/react-router";
 import { router } from "./router"; // Loads router + global type registration (declare module)
 import { initAtlantisTheme } from "./utils/theme";
-import { handleStorybookRedirect } from "./utils/storybook";
+import { RootSearchOutput } from "./routeTree.gen";
 
-handleStorybookRedirect();
-
-const urlParams = new URLSearchParams(window.location.search);
-initAtlantisTheme(urlParams.get("theme"));
+const initialSearch = router.state.location.search as RootSearchOutput | null;
+initAtlantisTheme(initialSearch?.theme ?? null);
 
 function renderApp() {
   const root = document.getElementById("root");

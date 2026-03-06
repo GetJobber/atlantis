@@ -37,11 +37,15 @@ import { VisualTestCatchAll } from "./pages/visualTests/VisualTestCatchAll";
 export interface RootSearchInput {
   isLegacy?: boolean;
   minimal?: boolean;
+  path?: string;
+  theme?: string;
 }
 
 export interface RootSearchOutput {
   isLegacy?: boolean;
   minimal?: boolean;
+  path?: string;
+  theme?: string;
 }
 
 const validateSearch = (search?: RootSearchInput): RootSearchOutput => ({
@@ -51,6 +55,8 @@ const validateSearch = (search?: RootSearchInput): RootSearchOutput => ({
   minimal:
     search?.minimal === true ||
     String(search?.minimal).toLowerCase() === "true",
+  path: search?.path ? String(search.path) : undefined,
+  theme: search?.theme ? String(search.theme) : undefined,
 });
 
 const rootRoute = createRootRoute({

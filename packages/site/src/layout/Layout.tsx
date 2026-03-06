@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 import type { PropsWithChildren } from "react";
-import { Outlet, useNavigate, useSearch } from "@tanstack/react-router";
+import {
+  Outlet,
+  useLocation,
+  useNavigate,
+  useSearch,
+} from "@tanstack/react-router";
 import { AtlantisThemeContextProvider } from "@jobber/components";
 import { NavMenu } from "./NavMenu";
 import { Analytics } from "../components/Analytics";
@@ -10,6 +15,8 @@ import { TritonSideDrawer } from "../components/TritonSideDrawer";
 import { AtlantisPreviewProvider } from "../preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "../providers/AtlantisSiteProvider";
 import { TritonProvider } from "../providers/TritonProvider";
+import { getStorybookRedirectTarget } from "../utils/storybook";
+import { RootSearchOutput } from "../routeTree.gen";
 
 /**
  * Layout for whole application. This will display the NavMenu and the content of the page.
@@ -18,7 +25,8 @@ import { TritonProvider } from "../providers/TritonProvider";
 
 export const Layout = () => {
   const scrollPane = useRef<HTMLDivElement>(null);
-  const search = useSearch({ strict: false });
+  const search = useSearch({ strict: false }) as RootSearchOutput;
+  const location = useLocation();
 
   useEffect(() => {
     if (scrollPane?.current) {
@@ -27,6 +35,7 @@ export const Layout = () => {
   }, [location.pathname, scrollPane?.current]);
 
   useHookRedirect();
+  useStorybookRedirect();
 
   const minimalMode = search?.minimal === true;
 
@@ -78,10 +87,13 @@ export const Layout = () => {
 };
 
 const useHookRedirect = () => {
-  const path = new URLSearchParams(location.search).get("path");
+  const search = useSearch({ strict: false }) as RootSearchOutput;
   const navigate = useNavigate();
+  const path = search?.path;
 
-  if (path && path.includes("hooks")) {
+  useEffect(() => {
+    if (!path || !path.includes("hooks")) return;
+
     const pathRegex = /hooks-(.*)--docs/g.exec(path);
     const match = hooksList.find(
       hook => pathRegex?.[1] === hook.title.toLowerCase(),
@@ -90,7 +102,32 @@ const useHookRedirect = () => {
     if (match) {
       navigate({ to: match.to });
     }
-  }
+  }, [navigate, path]);
+};
+
+const useStorybookRedirect = () => {
+  const location = useLocation();
+  const search = useSearch({ strict: false }) as RootSearchOutput;
+
+  useEffect(() => {
+    const isLocalhost =
+      typeof window !== "undefined" &&
+      window.location.host.includes("localhost");
+    const redirectToNewSite =
+      typeof window !== "undefined" &&
+      Boolean(localStorage.getItem("nolikeynewsite"));
+
+    const target = getStorybookRedirectTarget({
+      isLocalhost,
+      pathname: location.pathname,
+      pathParam: search?.path,
+      redirectToNewSite,
+    });
+
+    if (target) {
+      window.location.assign(target);
+    }
+  }, [location.pathname, search?.path]);
 };
 
 export const LayoutWrapper = ({ children }: PropsWithChildren) => {
