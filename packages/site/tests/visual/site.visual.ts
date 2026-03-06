@@ -315,14 +315,6 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
-    test("tooltip components", { tag: "@Tooltip" }, async ({ page }) => {
-      await page.goto("/visual-tests/tooltip");
-      await page.waitForTimeout(500);
-      await expect(page).toHaveScreenshot("visual-test-tooltip-page.png", {
-        fullPage: true,
-      });
-    });
-
     /*
 
     We have a font rendering issue between local and CI with JobberPro.

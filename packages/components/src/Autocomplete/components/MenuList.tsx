@@ -263,8 +263,11 @@ function DefaultOptionContent({
 }) {
   return (
     <div className={styles.defaultOptionContent}>
-      <div className={styles.icon}>
-        {isSelected && <Icon name="checkmark" size="small" />}
+      <div
+        className={styles.icon}
+        style={isSelected ? undefined : { visibility: "hidden" }}
+      >
+        <Icon name="checkmark" size="small" />
       </div>
       <Text>{text}</Text>
     </div>
