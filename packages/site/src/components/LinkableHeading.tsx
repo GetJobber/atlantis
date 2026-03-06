@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Button } from "@jobber/components/Button";
 import { showToast } from "@jobber/components/Toast";
-import { useLocation } from "@tanstack/react-router";
+import { useLocation, useRouter } from "@tanstack/react-router";
 import styles from "./LinkableHeading.module.css";
 
 interface LinkableHeadingProps
@@ -18,8 +18,28 @@ export const LinkableHeading = ({
 }: LinkableHeadingProps) => {
   const isLinkable = props.id?.startsWith("component-view-");
   const location = useLocation();
+  const router = useRouter();
 
-  const urlToCopy = `${window.location.origin}${location.pathname}#${props.id}`;
+  const builtLocation = router.buildLocation({
+    to: location.pathname,
+    search: {},
+    hash: props.id ?? "",
+  });
+  const urlToCopy = `${window.location.origin}${builtLocation.publicHref}`;
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(urlToCopy);
+
+      showToast({
+        message: "Copied link to clipboard",
+      });
+    } catch (error) {
+      showToast({
+        message: "Unable to copy link",
+      });
+    }
+  };
 
   return (
     <Tag
@@ -38,12 +58,7 @@ export const LinkableHeading = ({
           type="tertiary"
           variation="subtle"
           UNSAFE_className={{ container: styles.copyButton }}
-          onClick={() => {
-            navigator.clipboard.writeText(urlToCopy);
-            showToast({
-              message: `Copied link to clipboard`,
-            });
-          }}
+          onClick={copyToClipboard}
         />
       )}
     </Tag>
