@@ -27,7 +27,7 @@
           "fileName": "packages/components-native/src/ContentOverlay/types.ts",
           "name": "ContentOverlayProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "string"
         }
