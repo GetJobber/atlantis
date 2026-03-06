@@ -13,6 +13,7 @@ import {
   useSearch,
 } from "@tanstack/react-router";
 import type { ComponentType } from "../types/content";
+import { resolveComponentTypeFromRoute } from "../utils/componentTypeUtils";
 
 const AtlantisSiteContext = createContext<{
   minimal: {
@@ -65,10 +66,12 @@ export const AtlantisSiteProvider = ({
   const isLegacy = search?.isLegacy === true;
   const componentTypeFromUrl: ComponentType | null = useMemo(() => {
     if (!isComponentPage) return null;
-    if (tab === "mobile") return "mobile";
-    if (tab === "web") return isLegacy ? "web" : "webSupported";
 
-    return null;
+    return resolveComponentTypeFromRoute({
+      tab,
+      isLegacy,
+      allowNullWhenNoTab: true,
+    });
   }, [isComponentPage, tab, isLegacy]);
 
   const setComponentTypeInUrl = useCallback(

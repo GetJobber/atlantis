@@ -1,17 +1,10 @@
 import { useCallback, useRef, useState } from "react";
 import { useParams, useSearch } from "@tanstack/react-router";
 import { ComponentType } from "../types/content";
-import { getPlatformForComponentType } from "../utils/componentTypeUtils";
-
-function getTypeFromUrl(
-  tab: string | undefined,
-  isLegacy: boolean,
-): ComponentType {
-  if (tab === "mobile") return "mobile";
-  if (tab === "web") return isLegacy ? "web" : "webSupported";
-
-  return "webSupported"; // Design tab / no platform: default to supported
-}
+import {
+  getPlatformForComponentType,
+  resolveComponentTypeFromRoute,
+} from "../utils/componentTypeUtils";
 
 export const useAtlantisPreviewViewer = () => {
   const iframe = useRef<HTMLIFrameElement>(null);
@@ -23,8 +16,12 @@ export const useAtlantisPreviewViewer = () => {
   const tab = params.tab?.toLowerCase().trim();
   const isLegacy = search?.isLegacy === true;
 
-  const [type, setType] = useState<ComponentType>(() =>
-    getTypeFromUrl(tab, isLegacy),
+  const [type, setType] = useState<ComponentType>(
+    () =>
+      resolveComponentTypeFromRoute({
+        tab,
+        isLegacy,
+      }) ?? "webSupported",
   );
 
   const updateType = (value: ComponentType) => {

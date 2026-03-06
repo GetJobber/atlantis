@@ -36,6 +36,7 @@ import {
   getComponentTypeConfig,
   getDefaultComponentType,
   getPlatformForComponentType,
+  resolveComponentTypeFromRoute,
 } from "../utils/componentTypeUtils";
 import { VersionSelector } from "../components/VersionSelector";
 import { LinkableHeading } from "../components/LinkableHeading";
@@ -317,6 +318,7 @@ const getComponentUrlForTab = ({
  * Derives the active tab index and component type from the URL tab param.
  * Updates type via updateType and returns the tab index.
  */
+// eslint-disable-next-line max-statements
 const getTabFromUrl = ({
   tabFromUrl,
   availablePlatforms,
@@ -333,27 +335,39 @@ const getTabFromUrl = ({
   isLegacy: boolean;
 }): number => {
   if (!tabFromUrl || tabFromUrl.trim() === "") {
-    const typeForPlatform =
-      defaultType === "webSupported" && isLegacy ? "web" : defaultType;
-    updateType(typeForPlatform);
+    const resolved = resolveComponentTypeFromRoute({
+      tab: tabFromUrl,
+      isLegacy,
+      availableTypes,
+      defaultType,
+    });
+
+    if (resolved) updateType(resolved);
 
     return DESIGN_TAB_INDEX;
   }
   const platformIndex = availablePlatforms.indexOf(tabFromUrl as PlatformType);
 
   if (tabFromUrl === "implement") {
-    updateType(defaultType);
+    const resolved = resolveComponentTypeFromRoute({
+      tab: tabFromUrl,
+      isLegacy,
+      availableTypes,
+      defaultType,
+    });
+
+    if (resolved) updateType(resolved);
 
     return availablePlatforms.length + 1;
   } else if (platformIndex !== -1) {
-    const typeForPlatform =
-      tabFromUrl === "web" &&
-      !isLegacy &&
-      availableTypes.includes("webSupported")
-        ? "webSupported"
-        : (tabFromUrl as ComponentType);
+    const resolved = resolveComponentTypeFromRoute({
+      tab: tabFromUrl,
+      isLegacy,
+      availableTypes,
+      defaultType,
+    });
 
-    updateType(typeForPlatform);
+    if (resolved) updateType(resolved);
 
     return platformIndex + 1;
   } else {
