@@ -266,7 +266,6 @@ function InternalForm<T extends FieldValues, S>({
     </FormProvider>
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async function internalSubmit(data: FormValues<T>) {
     let performSubmit = true;
 
