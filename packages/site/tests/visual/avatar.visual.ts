@@ -22,7 +22,7 @@ test.describe("Avatar Visual Tests", () => {
         .filter({ hasText: "Default (no color)" });
       // Use .first() to target the Light mode avatar
       const iconAvatar = defaultAvatarSection
-        .locator('[aria-label="Icon fallback"]')
+        .locator('[aria-description="Tooltip avatar"]')
         .first();
 
       await defaultAvatarSection.scrollIntoViewIfNeeded();

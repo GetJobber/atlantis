@@ -6,6 +6,7 @@ import {
   Heading,
   Stack,
   Text,
+  Tooltip,
 } from "@jobber/components";
 
 const CUSTOM_COLORS = [
@@ -57,8 +58,7 @@ export const VisualTestAvatarPage = () => {
           <section>
             <Heading level={2}>Default (no color)</Heading>
             <Text>
-              Interactive subtle background with hover state. Sizes, initials,
-              and icon fallback.
+              Subtle background. Hover state only when a tooltip is present.
             </Text>
             <Stack gap="large">
               <div>
@@ -70,6 +70,9 @@ export const VisualTestAvatarPage = () => {
                       <Avatar size="base" initials="ST" />
                       <Avatar size="large" initials="ST" />
                       <Avatar initials="" name="Icon fallback" />
+                      <Tooltip message="Tooltip avatar">
+                        <Avatar initials="TT" name="Tooltip avatar" />
+                      </Tooltip>
                     </Cluster>
                   </Box>
                 </AtlantisThemeContextProvider>
@@ -83,6 +86,9 @@ export const VisualTestAvatarPage = () => {
                       <Avatar size="base" initials="ST" />
                       <Avatar size="large" initials="ST" />
                       <Avatar initials="" name="Icon fallback" />
+                      <Tooltip message="Tooltip avatar">
+                        <Avatar initials="TT" name="Tooltip avatar" />
+                      </Tooltip>
                     </Cluster>
                   </Box>
                 </AtlantisThemeContextProvider>
