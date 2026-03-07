@@ -41,12 +41,12 @@
   border-color: var(--color-interactive);
 }
 
-.isChecked {
+.track[data-checked] {
   border-color: var(--color-interactive);
   background-color: var(--color-interactive);
 }
 
-.isChecked:hover {
+.track[data-checked]:hover {
   border-color: var(--color-interactive--hover);
   background-color: var(--color-interactive--hover);
 }
@@ -60,36 +60,36 @@
   transform: translateX(var(--switch-pipOffPosition));
 }
 
-.isChecked .toggle {
+.track[data-checked] .toggle {
   border-color: var(--color-interactive);
   background-color: var(--color-surface);
   transform: translateX(var(--switch-pipOnPosition));
 }
 
-.disabled .toggle {
+.track[data-disabled] .toggle {
   border-color: var(--color-disabled--secondary);
   background-color: var(--color-disabled);
 }
 
-.disabled.isChecked .toggle {
+.track[data-disabled][data-checked] .toggle {
   background-color: var(--color-surface);
 }
 
-.disabled {
+.track[data-disabled] {
   border-color: var(--color-disabled);
   background-color: var(--color-surface);
   cursor: not-allowed;
 }
 
-.isChecked.disabled {
+.track[data-checked][data-disabled] {
   background-color: var(--color-disabled);
 }
 
-.isChecked.disabled .pip {
+.track[data-checked][data-disabled] .pip {
   background-color: var(--color-surface);
 }
 
-.disabled:hover {
+.track[data-disabled]:hover {
   border-color: var(--color-disabled);
 }
 
@@ -104,7 +104,7 @@
   );
 }
 
-.isChecked .icon {
+.track[data-checked] .icon {
   transform: translateX(
     calc(
       var(--switch-pipOnPosition) - var(--switch--pipSize) -
