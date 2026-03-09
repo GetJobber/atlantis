@@ -1,112 +1,142 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FormField } from "@jobber/components/FormField";
 
-export default {
-  title: "Components/Private/FormField/Web",
+const meta = {
+  title: "Components/Private/FormField",
   component: FormField,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof FormField>;
+} satisfies Meta<typeof FormField>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof FormField>>>;
 
-const BasicTemplate: ComponentStory<typeof FormField> = args => (
-  <FormField {...args} />
+const BasicTemplate = (args: Story["args"]) => (
+  <FormField
+    {...args}
+    name={args?.name ?? "example"}
+    type={args?.type ?? "text"}
+  />
 );
 
-const SelectTemplate: ComponentStory<typeof FormField> = args => {
+const SelectTemplate = (args: Story["args"]) => {
   return (
-    <FormField {...args}>
+    <FormField {...args} name={args?.name ?? "favoriteNumber"} type="select">
       <option>1</option>
       <option>2</option>
     </FormField>
   );
 };
 
-const InlineTemplate: ComponentStory<typeof FormField> = args => {
+const InlineTemplate = (args: Story["args"]) => {
   return (
     <p>
-      Send a follow up <FormField {...args} /> days after the job is complete.
+      Send a follow up{" "}
+      <FormField
+        {...args}
+        name={args?.name ?? "inline"}
+        type={args?.type ?? "text"}
+      />{" "}
+      days after the job is complete.
     </p>
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Words...",
-  type: "text",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Words...",
+    type: "text",
+  },
 };
 
-export const TextArea = BasicTemplate.bind({});
-TextArea.args = {
-  placeholder: "Your life story",
-  type: "textarea",
-  name: "story",
+export const TextArea: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Your life story",
+    type: "textarea",
+    name: "story",
+  },
 };
 
-export const TimeInput = BasicTemplate.bind({});
-TimeInput.args = {
-  placeholder: "Your time of birth",
-  type: "time",
-  name: "birthday",
+export const TimeInput: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Your time of birth",
+    type: "time",
+    name: "birthday",
+  },
 };
 
-export const NumberInput = BasicTemplate.bind({});
-NumberInput.args = {
-  placeholder: "Your age in numbers",
-  type: "number",
-  name: "age",
+export const NumberInput: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Your age in numbers",
+    type: "number",
+    name: "age",
+  },
 };
 
-export const Select = SelectTemplate.bind({});
-Select.args = {
-  placeholder: "Your favorite number",
-  type: "select",
-  name: "favoriteNumber",
+export const Select: Story = {
+  render: SelectTemplate,
+  args: {
+    placeholder: "Your favorite number",
+    type: "select",
+    name: "favoriteNumber",
+  },
 };
 
-export const Small = BasicTemplate.bind({});
-Small.args = {
-  placeholder: "Small",
-  name: "small",
-  size: "small",
+export const Small: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Small",
+    name: "small",
+    size: "small",
+  },
 };
 
-export const Large = BasicTemplate.bind({});
-Large.args = {
-  placeholder: "Large",
-  name: "large",
-  size: "large",
+export const Large: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Large",
+    name: "large",
+    size: "large",
+  },
 };
 
-export const Error = BasicTemplate.bind({});
-Error.args = {
-  placeholder: "Error",
-  name: "error",
-  invalid: true,
+export const Error: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Error",
+    name: "error",
+    invalid: true,
+  },
 };
 
-export const ReadOnly = BasicTemplate.bind({});
-ReadOnly.args = {
-  placeholder: "Read-only",
-  name: "readOnly",
-  readonly: true,
-  value: "ABCXYZ",
+export const ReadOnly: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Read-only",
+    name: "readOnly",
+    readonly: true,
+    value: "ABCXYZ",
+  },
 };
 
-export const Disabled = BasicTemplate.bind({});
-Disabled.args = {
-  placeholder: "Disabled",
-  name: "disabled",
-  disabled: true,
+export const Disabled: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Disabled",
+    name: "disabled",
+    disabled: true,
+  },
 };
 
-export const Inline = InlineTemplate.bind({});
-Inline.args = {
-  value: "7",
-  size: "small",
-  inline: true,
-  maxLength: 2,
-  align: "center",
+export const Inline: Story = {
+  render: InlineTemplate,
+  args: {
+    value: "7",
+    size: "small",
+    inline: true,
+    maxLength: 2,
+    align: "center",
+  },
 };
