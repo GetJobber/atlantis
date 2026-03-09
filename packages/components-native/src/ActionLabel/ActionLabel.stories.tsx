@@ -1,32 +1,42 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { ActionLabel } from "@jobber/components-native";
 
-export default {
-  title: "Components/Actions/ActionLabel/Mobile",
+const meta = {
+  title: "Components/Actions/ActionLabel",
+  component: ActionLabel,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-  component: ActionLabel,
-} as ComponentMeta<typeof ActionLabel>;
+} satisfies Meta<typeof ActionLabel>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof ActionLabel> = args => (
-  <ActionLabel {...args}>{args.children}</ActionLabel>
-);
+const BasicTemplate = (args: Story["args"]) => {
+  const { children, ...actionLabelProps } = args ?? {};
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = { children: "I am a label text" };
-
-export const Color = BasicTemplate.bind({});
-Color.args = { variation: "learning", children: "Learning" };
-
-export const DarkBackground = BasicTemplate.bind({});
-DarkBackground.args = { variation: "onPrimary", children: "Light Me Up" };
-DarkBackground.parameters = {
-  backgrounds: { default: "dark" },
+  return <ActionLabel {...actionLabelProps}>{children}</ActionLabel>;
 };
 
-export const Disabled = BasicTemplate.bind({});
-Disabled.args = { disabled: true, children: "Disabled" };
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: { children: "I am a label text" },
+};
+
+export const Color: Story = {
+  render: BasicTemplate,
+  args: { variation: "learning", children: "Learning" },
+};
+
+export const DarkBackground: Story = {
+  render: BasicTemplate,
+  args: { variation: "onPrimary", children: "Light Me Up" },
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
+};
+
+export const Disabled: Story = {
+  render: BasicTemplate,
+  args: { disabled: true, children: "Disabled" },
+};

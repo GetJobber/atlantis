@@ -20,7 +20,11 @@ const meta = {
   },
 } satisfies Meta<typeof ActionItemGroup>;
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<
+  Omit<React.ComponentProps<typeof ActionItemGroup>, "children"> & {
+    children?: React.ReactNode;
+  }
+>;
 
 const BasicTemplate = () => {
   return (
