@@ -15,7 +15,6 @@ export function PullRequestGenerator() {
   const [description, setDescription] = useState<string>();
   const [issue, setIssue] = useState<string>();
 
-  // eslint-disable-next-line prettier/prettier
   const title = `${type}${scope ? `(${scope})` : ``}: ${
     description ? description : ``
   } ${issue ? `[${issue}]` : ``}`;
