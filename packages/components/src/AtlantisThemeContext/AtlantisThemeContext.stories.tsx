@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   AtlantisThemeContextProvider,
   updateTheme,
@@ -12,18 +12,19 @@ import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Flex } from "@jobber/components/Flex";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Themes/AtlantisThemeContext/Web",
+const meta = {
+  title: "Components/Themes/AtlantisThemeContext",
   component: AtlantisThemeContextProvider,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
-  },
-} as ComponentMeta<typeof AtlantisThemeContextProvider>;
+} satisfies Meta<typeof AtlantisThemeContextProvider>;
+export default meta;
+type Story = StoryObj<
+  Omit<
+    React.ComponentProps<typeof AtlantisThemeContextProvider>,
+    "children"
+  > & {
+    children?: React.ReactNode;
+  }
+>;
 
 function ChildrenComponent({
   message = "It is possible to have multiple Atlantis Theme providers.",
@@ -104,9 +105,7 @@ function SecondProviderUsage({
   );
 }
 
-const BasicTemplate: ComponentStory<
-  typeof AtlantisThemeContextProvider
-> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return (
     <>
       <AtlantisThemeContextProvider {...args}>
@@ -119,12 +118,11 @@ const BasicTemplate: ComponentStory<
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-BasicTemplate.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-const ForceThemeTemplate: ComponentStory<
-  typeof AtlantisThemeContextProvider
-> = args => {
+const ForceThemeTemplate = (args: Story["args"]) => {
   return (
     <>
       <AtlantisThemeContextProvider {...args}>
@@ -137,8 +135,9 @@ const ForceThemeTemplate: ComponentStory<
   );
 };
 
-export const ForceThemeForProvider = ForceThemeTemplate.bind({});
-ForceThemeForProvider.args = {};
+export const ForceThemeForProvider: Story = {
+  render: ForceThemeTemplate,
+};
 
 function OverrideTokensComponent({ message }: { readonly message: string }) {
   const { theme, tokens, overrideTokens } = useAtlantisTheme();
@@ -176,9 +175,7 @@ function OverrideTokensComponent({ message }: { readonly message: string }) {
   );
 }
 
-const OverrideTokensTemplate: ComponentStory<
-  typeof AtlantisThemeContextProvider
-> = args => {
+const OverrideTokensTemplate = (args: Story["args"]) => {
   const customTokens = {
     "color-text": "hsl(280, 100%, 50%)",
     "color-critical--onSurface": "blue",
@@ -207,5 +204,6 @@ const OverrideTokensTemplate: ComponentStory<
   );
 };
 
-export const OverrideTokens = OverrideTokensTemplate.bind({});
-OverrideTokens.args = {};
+export const OverrideTokens: Story = {
+  render: OverrideTokensTemplate,
+};
