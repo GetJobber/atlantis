@@ -1,31 +1,34 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { InputNumber } from "@jobber/components-native";
 
-export default {
-  title: "Components/Forms and Inputs/InputNumber/Mobile",
+const meta = {
+  title: "Components/Forms and Inputs/InputNumber",
   component: InputNumber,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof InputNumber>;
+} satisfies Meta<typeof InputNumber>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InputNumber>>>;
 
-const BasicTemplate: ComponentStory<typeof InputNumber> = args => (
-  <InputNumber {...args} />
-);
+const BasicTemplate = (args: Story["args"]) => <InputNumber {...args} />;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Quantity",
-  value: 12,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Quantity",
+    value: 12,
+  },
 };
 
-export const Invalid = BasicTemplate.bind({});
-Invalid.args = {
-  placeholder: "Area",
-  invalid: "Enter a number",
-  suffix: { label: "meters" },
-  clearable: "never",
+export const Invalid: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Area",
+    invalid: "Enter a number",
+    suffix: { label: "meters" },
+    clearable: "never",
+  },
 };

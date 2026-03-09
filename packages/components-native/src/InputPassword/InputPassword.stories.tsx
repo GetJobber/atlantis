@@ -1,22 +1,23 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { InputPassword } from "@jobber/components-native";
 
-export default {
-  title: "Components/Forms and Inputs/InputPassword/Mobile",
+const meta = {
+  title: "Components/Forms and Inputs/InputPassword",
   component: InputPassword,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof InputPassword>;
+} satisfies Meta<typeof InputPassword>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InputPassword>>>;
 
-const BasicTemplate: ComponentStory<typeof InputPassword> = args => (
-  <InputPassword {...args} />
-);
+const BasicTemplate = (args: Story["args"]) => <InputPassword {...args} />;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Password",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Password",
+  },
 };

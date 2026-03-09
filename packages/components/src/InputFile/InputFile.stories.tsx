@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Card } from "@jobber/components/Card";
 import type { FileUpload } from "@jobber/components/InputFile";
 import {
@@ -14,33 +14,25 @@ import { Content } from "@jobber/components/Content";
 import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 
-export default {
-  title: "Components/Forms and Inputs/InputFile/Web",
+const meta = {
+  title: "Components/Forms and Inputs/InputFile",
   component: InputFile,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/InputFile": [
-            "FileUpload",
-            "InputFile",
-            "updateFiles",
-          ],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof InputFile>;
+} satisfies Meta<typeof InputFile>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InputFile>>>;
 
-const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
+function fetchUploadParams() {
+  return Promise.resolve({ url: "https://httpbin.org/post" });
+}
+
+const StatefulTemplate = (args: Story["args"]) => {
   const [files, setFiles] = useState<FileUpload[]>([]);
 
   return (
     <>
       <InputFile
         {...args}
+        getUploadParams={args?.getUploadParams ?? fetchUploadParams}
         onUploadStart={handleUpload}
         onUploadProgress={handleUpload}
         onUploadComplete={handleUpload}
@@ -56,7 +48,7 @@ const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   }
 };
 
-const FileSizeValidatorTemplate: ComponentStory<typeof InputFile> = args => {
+const FileSizeValidatorTemplate = (args: Story["args"]) => {
   const [files, setFiles] = useState<FileUpload[]>([]);
   const maxFileSize = 2 * 1024 * 1024;
   const fileSizeValidator = useCallback(
@@ -80,6 +72,7 @@ const FileSizeValidatorTemplate: ComponentStory<typeof InputFile> = args => {
       <Heading level={4}>Attempt to upload an image larger than 2MB</Heading>
       <InputFile
         {...args}
+        getUploadParams={args?.getUploadParams ?? fetchUploadParams}
         onUploadStart={handleUpload}
         onUploadProgress={handleUpload}
         onUploadComplete={handleUpload}
@@ -98,7 +91,7 @@ const FileSizeValidatorTemplate: ComponentStory<typeof InputFile> = args => {
   }
 };
 
-const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
+const MaxFilesTemplate = (args: Story["args"]) => {
   const [files, setFiles] = useState<FileUpload[]>([]);
 
   return (
@@ -106,6 +99,7 @@ const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
       <Heading level={4}>Attempt to upload more than 3 files</Heading>
       <InputFile
         {...args}
+        getUploadParams={args?.getUploadParams ?? fetchUploadParams}
         onUploadStart={handleUpload}
         onUploadProgress={handleUpload}
         onUploadComplete={handleUpload}
@@ -132,11 +126,14 @@ const MaxFilesTemplate: ComponentStory<typeof InputFile> = args => {
   }
 };
 
-const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
+const VariationsAndSizesTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <Heading level={2}>Default</Heading>
-      <InputFile {...args} />
+      <InputFile
+        {...args}
+        getUploadParams={args?.getUploadParams ?? fetchUploadParams}
+      />
 
       <Heading level={2}>Dropzone</Heading>
       <InputFile
@@ -171,58 +168,70 @@ const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
       />
     </Content>
   );
-
-  function fetchUploadParams() {
-    return Promise.resolve({ url: "https://httpbin.org/post" });
-  }
 };
-export const VariationsAndSizes = VariationsAndSizesTemplate.bind({});
-
-export const UsingUpdateFiles = StatefulTemplate.bind({});
-UsingUpdateFiles.args = {
-  allowMultiple: true,
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+export const VariationsAndSizes: Story = {
+  render: VariationsAndSizesTemplate,
 };
 
-export const ImagesOnly = StatefulTemplate.bind({});
-ImagesOnly.args = {
-  allowMultiple: true,
-  allowedTypes: "images",
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+export const UsingUpdateFiles: Story = {
+  render: StatefulTemplate,
+  args: {
+    allowMultiple: true,
+    getUploadParams: fetchUploadParams,
+  },
 };
 
-export const CustomAllowedTypes = StatefulTemplate.bind({});
-CustomAllowedTypes.args = {
-  allowMultiple: true,
-  allowedTypes: ["JPEG", "PNG", "PDF", "DOCX"],
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+export const ImagesOnly: Story = {
+  render: StatefulTemplate,
+  args: {
+    allowMultiple: true,
+    allowedTypes: "images",
+    getUploadParams: fetchUploadParams,
+  },
 };
 
-export const MaxFilesLimit = MaxFilesTemplate.bind({});
-MaxFilesLimit.args = {
-  allowMultiple: true,
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+export const CustomAllowedTypes: Story = {
+  render: StatefulTemplate,
+  args: {
+    allowMultiple: true,
+    allowedTypes: ["JPEG", "PNG", "PDF", "DOCX"],
+    getUploadParams: fetchUploadParams,
+  },
 };
 
-export const WithDescription = StatefulTemplate.bind({});
-WithDescription.args = {
-  allowMultiple: true,
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
-  description: "JPEG, HEIC, PNG up to 5MB each",
+export const MaxFilesLimit: Story = {
+  render: MaxFilesTemplate,
+  args: {
+    allowMultiple: true,
+    getUploadParams: fetchUploadParams,
+  },
 };
 
-export const WithCustomHintText = StatefulTemplate.bind({});
-WithCustomHintText.args = {
-  allowMultiple: true,
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
-  description: "This is the description",
-  hintText: "This is the custom hint text",
+export const WithDescription: Story = {
+  render: StatefulTemplate,
+  args: {
+    allowMultiple: true,
+    getUploadParams: fetchUploadParams,
+    description: "JPEG, HEIC, PNG up to 5MB each",
+  },
 };
 
-export const FileSizeValidator = FileSizeValidatorTemplate.bind({});
-FileSizeValidator.args = {
-  allowMultiple: true,
-  getUploadParams: () => Promise.resolve({ url: "https://httpbin.org/post" }),
+export const WithCustomHintText: Story = {
+  render: StatefulTemplate,
+  args: {
+    allowMultiple: true,
+    getUploadParams: fetchUploadParams,
+    description: "This is the description",
+    hintText: "This is the custom hint text",
+  },
+};
+
+export const FileSizeValidator: Story = {
+  render: FileSizeValidatorTemplate,
+  args: {
+    allowMultiple: true,
+    getUploadParams: fetchUploadParams,
+  },
 };
 
 const DropzoneContextDisplay = () => {
@@ -256,7 +265,7 @@ const DropzoneContextDisplay = () => {
   );
 };
 
-const CustomDropzoneContentTemplate: ComponentStory<typeof InputFile> = () => {
+const CustomDropzoneContentTemplate = () => {
   const [files, setFiles] = useState<FileUpload[]>([]);
 
   return (
@@ -356,8 +365,9 @@ const CustomDropzoneContentTemplate: ComponentStory<typeof InputFile> = () => {
   }
 };
 
-export const CustomContentInDropzoneVariation =
-  CustomDropzoneContentTemplate.bind({});
+export const CustomContentInDropzoneVariation: Story = {
+  render: CustomDropzoneContentTemplate,
+};
 
 const ButtonContextDisplay = () => {
   const context = useInputFileContentContext();
@@ -369,7 +379,7 @@ const ButtonContextDisplay = () => {
   );
 };
 
-const CustomButtonContentTemplate: ComponentStory<typeof InputFile> = () => {
+const CustomButtonContentTemplate = () => {
   const [files, setFiles] = useState<FileUpload[]>([]);
 
   return (
@@ -417,6 +427,6 @@ const CustomButtonContentTemplate: ComponentStory<typeof InputFile> = () => {
   }
 };
 
-export const CustomContentInButtonVariation = CustomButtonContentTemplate.bind(
-  {},
-);
+export const CustomContentInButtonVariation: Story = {
+  render: CustomButtonContentTemplate,
+};
