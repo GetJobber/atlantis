@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import {
-  Combobox,
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type {
   ComboboxCustomActivatorProps,
   ComboboxOption,
 } from "@jobber/components/Combobox";
+import { Combobox } from "@jobber/components/Combobox";
 import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 import { Typography } from "@jobber/components/Typography";
