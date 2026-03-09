@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { fn } from "storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputDate } from "@jobber/components/InputDate";
 
 const meta = {
-  title: "Components/Forms and Inputs/InputDate/Web (v2)",
+  title: "Components/Forms and Inputs/InputDate/V2",
   component: InputDate,
   args: {
     version: 2,

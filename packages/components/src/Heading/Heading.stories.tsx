@@ -1,22 +1,20 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 
-export default {
-  title: "Components/Text and Typography/Heading/Web",
+const meta = {
+  title: "Components/Text and Typography/Heading",
   component: Heading,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Heading>;
+} satisfies Meta<typeof Heading>;
+export default meta;
+type Story = StoryObj<Pick<React.ComponentProps<typeof Heading>, "level">>;
 
-const LevelsTemplate: ComponentStory<typeof Heading> = args => {
+const LevelsTemplate = (args: Story["args"]) => {
   return (
     <Content>
-      <Heading {...args}>New client</Heading>
+      <Heading level={args?.level ?? 1}>New client</Heading>
       <Divider size="base" />
       <Heading level={2}>Client details</Heading>
       <Divider size="base" />
@@ -31,10 +29,12 @@ const LevelsTemplate: ComponentStory<typeof Heading> = args => {
   );
 };
 
-export const Levels = LevelsTemplate.bind({});
-Levels.args = { level: 1 };
+export const Levels: Story = {
+  render: LevelsTemplate,
+  args: { level: 1 },
+};
 
-const TruncationTemplate: ComponentStory<typeof Heading> = () => {
+const TruncationTemplate = () => {
   return (
     <Content spacing="large">
       <div>
@@ -135,5 +135,6 @@ const TruncationTemplate: ComponentStory<typeof Heading> = () => {
   );
 };
 
-export const Truncation = TruncationTemplate.bind({});
-Truncation.args = {};
+export const Truncation: Story = {
+  render: TruncationTemplate,
+};

@@ -1,21 +1,22 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Content, Divider, Heading } from "@jobber/components-native";
 
-export default {
-  title: "Components/Text and Typography/Heading/Mobile",
+const meta = {
+  title: "Components/Text and Typography/Heading",
   component: Heading,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Heading>;
+} satisfies Meta<typeof Heading>;
+export default meta;
+type Story = StoryObj<Pick<React.ComponentProps<typeof Heading>, "level">>;
 
-const LevelsTemplate: ComponentStory<typeof Heading> = args => {
+const LevelsTemplate = (args: Story["args"]) => {
   return (
     <Content>
-      <Heading {...args}>New client</Heading>
+      <Heading level={args?.level ?? "title"}>New client</Heading>
       <Divider size="base" />
       <Heading level="subtitle">Client details</Heading>
       <Divider size="base" />
@@ -26,5 +27,7 @@ const LevelsTemplate: ComponentStory<typeof Heading> = args => {
   );
 };
 
-export const Levels = LevelsTemplate.bind({});
-Levels.args = { level: "title" };
+export const Levels: Story = {
+  render: LevelsTemplate,
+  args: { level: "title" },
+};

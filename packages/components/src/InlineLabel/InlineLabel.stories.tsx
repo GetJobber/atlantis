@@ -1,19 +1,18 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 
-export default {
-  title: "Components/Status and Feedback/InlineLabel/Web",
+const meta = {
+  title: "Components/Status and Feedback/InlineLabel",
   component: InlineLabel,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof InlineLabel>;
+} satisfies Meta<typeof InlineLabel>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InlineLabel>>>;
 
-const BasicTemplate: ComponentStory<typeof InlineLabel> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <InlineLabel {...args}>Draft</InlineLabel>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};

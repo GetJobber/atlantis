@@ -1,31 +1,31 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputDate } from "@jobber/components/InputDate";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Button } from "@jobber/components/Button";
 
-export default {
-  title: "Components/Forms and Inputs/InputDate/Web",
+const meta = {
+  title: "Components/Forms and Inputs/InputDate",
   component: InputDate,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof InputDate>;
+} satisfies Meta<typeof InputDate>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InputDate>>>;
 
-const BasicTemplate: ComponentStory<typeof InputDate> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [date, setDate] = useState(new Date("11/11/2011"));
 
   return <InputDate {...args} value={date} onChange={setDate} />;
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Start Date",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Start Date",
+  },
 };
 
-const MinMaxTemplate: ComponentStory<typeof InputDate> = args => {
+const MinMaxTemplate = (args: Story["args"]) => {
   const minDate = new Date("11/06/2011");
   const maxDate = new Date("11/25/2011");
   const [date, setDate] = useState(new Date("11/11/2011"));
@@ -41,12 +41,14 @@ const MinMaxTemplate: ComponentStory<typeof InputDate> = args => {
   );
 };
 
-export const MinMax = MinMaxTemplate.bind({});
-MinMax.args = {
-  placeholder: "Start Date",
+export const MinMax: Story = {
+  render: MinMaxTemplate,
+  args: {
+    placeholder: "Start Date",
+  },
 };
 
-export const VersionComparison = () => {
+const VersionComparisonTemplate = () => {
   const [dates, setDates] = React.useState({
     basic: new Date(),
     rightAligned: new Date(),
@@ -248,4 +250,8 @@ export const VersionComparison = () => {
       </Grid>
     </Content>
   );
+};
+
+export const VersionComparison: Story = {
+  render: VersionComparisonTemplate,
 };
