@@ -5,6 +5,7 @@ import { changelogContentMap } from "./changelogContent";
 import { hooksContentMap } from "./hooksContent";
 import { guidesContentMap } from "./guidesContent";
 import { packagesContentMap } from "./packagesContent";
+import { proposalsContentMap } from "./proposalsContent";
 import { ContentMap } from "../types/maps";
 
 export const contentMap: ContentMap = {
@@ -15,4 +16,5 @@ export const contentMap: ContentMap = {
   changelog: changelogContentMap,
   guides: guidesContentMap,
   packages: packagesContentMap,
+  proposals: proposalsContentMap,
 };

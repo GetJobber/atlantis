@@ -15,6 +15,7 @@ import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
+import { ProposalsPage } from "./pages/ProposalsPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -206,8 +207,23 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/welcome-guide",
+        handle: "Welcome guide",
+        exact: true,
+      },
+      {
         path: "/guides/contributing",
         handle: "Contributing",
+        exact: true,
+      },
+      {
+        path: "/guides/repository-contributing",
+        handle: "Repository contributing",
+        exact: true,
+      },
+      {
+        path: "/guides/charter",
+        handle: "Atlantis charter",
         exact: true,
       },
       {
@@ -263,6 +279,74 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/guides/component-support-levels",
         handle: "Component support levels",
+        exact: true,
+      },
+    ],
+  },
+  {
+    path: "/proposals",
+    handle: "Proposals",
+    exact: true,
+    component: ProposalsPage,
+    children: [
+      {
+        path: "/proposals/avatar",
+        handle: "Avatar",
+        exact: true,
+      },
+      {
+        path: "/proposals/banner-mods",
+        handle: "Banner mods",
+        exact: true,
+      },
+      {
+        path: "/proposals/disclosure",
+        handle: "Disclosure",
+        exact: true,
+      },
+      {
+        path: "/proposals/drawer",
+        handle: "Drawer",
+        exact: true,
+      },
+      {
+        path: "/proposals/input-color",
+        handle: "Input color",
+        exact: true,
+      },
+      {
+        path: "/proposals/input-date",
+        handle: "Input date",
+        exact: true,
+      },
+      {
+        path: "/proposals/input-email",
+        handle: "Input email",
+        exact: true,
+      },
+      {
+        path: "/proposals/list-page",
+        handle: "List page",
+        exact: true,
+      },
+      {
+        path: "/proposals/multi-select",
+        handle: "MultiSelect",
+        exact: true,
+      },
+      {
+        path: "/proposals/option-list",
+        handle: "Option list",
+        exact: true,
+      },
+      {
+        path: "/proposals/text-mods",
+        handle: "Text mods",
+        exact: true,
+      },
+      {
+        path: "/proposals/reveal",
+        handle: "Reveal",
         exact: true,
       },
     ],
@@ -397,6 +481,13 @@ export const routes: Array<AtlantisRoute> = [
     path: "/packages/:name",
     component: ContentLoader,
     handle: "PackagesContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/proposals/:name",
+    component: ContentLoader,
+    handle: "ProposalsContent",
     inNav: false,
     exact: true,
   },

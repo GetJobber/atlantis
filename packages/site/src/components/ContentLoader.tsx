@@ -26,6 +26,9 @@ export const ContentLoader = () => {
     case location.pathname.startsWith("/guides"):
       type = "guides";
       break;
+    case location.pathname.startsWith("/proposals"):
+      type = "proposals";
+      break;
     case location.pathname.startsWith("/packages"):
       type = "packages";
       break;
