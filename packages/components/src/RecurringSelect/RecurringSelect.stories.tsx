@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 /* eslint-disable import/no-deprecated */
 import type { RecurrenceRule } from "@jobber/components/RecurringSelect";
 import {
@@ -7,24 +7,14 @@ import {
   RecurringSelect,
 } from "@jobber/components/RecurringSelect";
 
-export default {
-  title: "Components/Deprecated/RecurringSelect/Web",
+type RecurringSelectStoryArgs = Pick<
+  React.ComponentProps<typeof RecurringSelect>,
+  "disabled"
+>;
+
+const meta = {
+  title: "Components/Deprecated/RecurringSelect",
   component: RecurringSelect,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/RecurringSelect": [
-            "DurationPeriod",
-            "RecurrenceRule",
-            "RecurringSelect",
-          ],
-        },
-      },
-    },
-  },
   decorators: [
     Story => (
       <div style={{ maxWidth: 400 }}>
@@ -32,20 +22,36 @@ export default {
       </div>
     ),
   ],
-} as ComponentMeta<typeof RecurringSelect>;
+} satisfies Meta<typeof RecurringSelect>;
 
-const BasicTemplate: ComponentStory<typeof RecurringSelect> = args => {
-  const [rule, setRule] = useState<RecurrenceRule>({
-    interval: 1,
-    type: DurationPeriod.DayOfMonth,
-    date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
-  });
+export default meta;
 
-  return <RecurringSelect {...args} value={rule} onChange={setRule} />;
+type Story = StoryObj<RecurringSelectStoryArgs>;
+
+export const Basic: Story = {
+  render: args => {
+    const [rule, setRule] = useState<RecurrenceRule>({
+      interval: 1,
+      type: DurationPeriod.DayOfMonth,
+      date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
+    });
+
+    return (
+      <RecurringSelect
+        disabled={args?.disabled}
+        value={rule}
+        onChange={setRule}
+      />
+    );
+  },
+  args: {
+    disabled: false,
+  },
 };
 
-export const Basic = BasicTemplate.bind({});
-export const Disabled = BasicTemplate.bind({});
-Disabled.args = {
-  disabled: true,
+export const Disabled: Story = {
+  render: Basic.render,
+  args: {
+    disabled: true,
+  },
 };

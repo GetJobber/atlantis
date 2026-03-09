@@ -1,26 +1,17 @@
-import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
 
-export default {
-  title: "Components/Status and Feedback/StatusIndicator/Web",
+const meta = {
+  title: "Components/Status and Feedback/StatusIndicator",
   component: StatusIndicator,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
+} satisfies Meta<typeof StatusIndicator>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {
+    status: "success",
   },
-} as ComponentMeta<typeof StatusIndicator>;
-
-const BasicTemplate: ComponentStory<typeof StatusIndicator> = args => {
-  return <StatusIndicator {...args} />;
-};
-
-export const Basic = BasicTemplate.bind({});
-
-Basic.args = {
-  status: "success",
 };

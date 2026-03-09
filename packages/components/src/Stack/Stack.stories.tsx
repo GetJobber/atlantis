@@ -1,21 +1,30 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stack } from "@jobber/components/Stack";
 import { Card } from "@jobber/components/Card";
 import { Text } from "@jobber/components/Text";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Layouts and Structure/Stack/Web",
-  component: Stack,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Stack>;
+type StackStoryArgs = Pick<
+  React.ComponentProps<typeof Stack>,
+  "gap" | "splitAfter" | "recursive"
+>;
 
-const BasicTemplate: ComponentStory<typeof Stack> = args => (
-  <Stack {...args}>
+const meta = {
+  title: "Components/Layouts and Structure/Stack",
+  component: Stack,
+} satisfies Meta<typeof Stack>;
+
+export default meta;
+
+type Story = StoryObj<StackStoryArgs>;
+
+const renderStack = (args?: Story["args"]) => (
+  <Stack
+    gap={args?.gap}
+    recursive={args?.recursive}
+    splitAfter={args?.splitAfter}
+  >
     <Card>
       <Box padding="base">
         <Text>First item</Text>
@@ -34,80 +43,68 @@ const BasicTemplate: ComponentStory<typeof Stack> = args => (
   </Stack>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  gap: "base",
+export const Basic: Story = {
+  render: renderStack,
+  args: {
+    gap: "base",
+  },
 };
 
-export const CustomSpace = BasicTemplate.bind({});
-CustomSpace.args = {
-  gap: "large",
+export const CustomSpace: Story = {
+  render: renderStack,
+  args: {
+    gap: "large",
+  },
 };
 
-const SplitTemplate: ComponentStory<typeof Stack> = args => (
-  <div
-    style={{
-      height: "400px",
-    }}
-  >
-    <Stack {...args}>
-      <Card>
-        <Box padding="base">
-          <Text>First item</Text>
-        </Box>
-      </Card>
-      <Card>
-        <Box padding="base">
-          <Text>Second item</Text>
-        </Box>
-      </Card>
-      <Card>
-        <Box padding="base">
-          <Text>Third item</Text>
-        </Box>
-      </Card>
+export const WithSplit: Story = {
+  render: args => (
+    <div
+      style={{
+        height: "400px",
+      }}
+    >
+      {renderStack(args)}
+    </div>
+  ),
+  args: {
+    gap: "base",
+    splitAfter: 1,
+  },
+};
+
+export const Recursive: Story = {
+  render: args => (
+    <Stack gap={args?.gap ?? "large"} recursive={args?.recursive ?? true}>
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>Nested item 1.1</Text>
+            <Text>Nested item 1.1.2</Text>
+          </Box>
+        </Card>
+        <Card>
+          <Box padding="base">
+            <Text>Nested item 1.2</Text>
+          </Box>
+        </Card>
+      </Box>
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>Nested item 2.1</Text>
+          </Box>
+        </Card>
+        <Card>
+          <Box padding="base">
+            <Text>Nested item 2.2</Text>
+          </Box>
+        </Card>
+      </Box>
     </Stack>
-  </div>
-);
-
-export const WithSplit = SplitTemplate.bind({});
-WithSplit.args = {
-  gap: "base",
-  splitAfter: 1,
-};
-
-const RecursiveTemplate: ComponentStory<typeof Stack> = args => (
-  <Stack {...args}>
-    <Box>
-      <Card>
-        <Box padding="base">
-          <Text>Nested item 1.1</Text>
-          <Text>Nested item 1.1.2</Text>
-        </Box>
-      </Card>
-      <Card>
-        <Box padding="base">
-          <Text>Nested item 1.2</Text>
-        </Box>
-      </Card>
-    </Box>
-    <Box>
-      <Card>
-        <Box padding="base">
-          <Text>Nested item 2.1</Text>
-        </Box>
-      </Card>
-      <Card>
-        <Box padding="base">
-          <Text>Nested item 2.2</Text>
-        </Box>
-      </Card>
-    </Box>
-  </Stack>
-);
-
-export const Recursive = RecursiveTemplate.bind({});
-Recursive.args = {
-  gap: "large",
-  recursive: true,
+  ),
+  args: {
+    gap: "large",
+    recursive: true,
+  },
 };

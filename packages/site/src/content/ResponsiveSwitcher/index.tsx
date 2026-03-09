@@ -25,9 +25,11 @@ export default {
   title: "ResponsiveSwitcher",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-responsiveswitcher-web--basic",
+        "?path=/story/components-layouts-and-structure-responsiveswitcher--basic",
+        "web",
       ),
     },
   ],

@@ -1,22 +1,32 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SideKick } from "@jobber/components/SideKick";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Stack } from "@jobber/components/Stack";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Layouts and Structure/SideKick/Web",
-  component: SideKick,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof SideKick>;
+type SideKickStoryArgs = Pick<
+  React.ComponentProps<typeof SideKick>,
+  "contentMinWidth" | "sideWidth" | "gap" | "onRight"
+>;
 
-const BasicTemplate: ComponentStory<typeof SideKick> = args => (
-  <SideKick {...args}>
+const meta = {
+  title: "Components/Layouts and Structure/SideKick",
+  component: SideKick,
+} satisfies Meta<typeof SideKick>;
+
+export default meta;
+
+type Story = StoryObj<SideKickStoryArgs>;
+
+const renderSideKick = (args?: Story["args"]) => (
+  <SideKick
+    contentMinWidth={args?.contentMinWidth}
+    gap={args?.gap}
+    onRight={args?.onRight}
+    sideWidth={args?.sideWidth}
+  >
     <Box>
       <Card>
         <Box padding="base">
@@ -36,62 +46,79 @@ const BasicTemplate: ComponentStory<typeof SideKick> = args => (
   </SideKick>
 );
 
-export const Basic = BasicTemplate.bind({});
-
-Basic.args = {
-  contentMinWidth: "70ch",
-  sideWidth: "50%",
+export const Basic: Story = {
+  render: renderSideKick,
+  args: {
+    contentMinWidth: "70ch",
+    sideWidth: "50%",
+  },
 };
 
-export const CustomSideWidth = BasicTemplate.bind({});
-CustomSideWidth.args = {
-  contentMinWidth: "220px",
-  sideWidth: "20%",
-};
-export const CustomSpace = BasicTemplate.bind({});
-CustomSpace.args = {
-  gap: "var(--space-large)",
+export const CustomSideWidth: Story = {
+  render: renderSideKick,
+  args: {
+    contentMinWidth: "220px",
+    sideWidth: "20%",
+  },
 };
 
-export const RightSide = BasicTemplate.bind({});
-RightSide.args = {
-  onRight: true,
+export const CustomSpace: Story = {
+  render: renderSideKick,
+  args: {
+    gap: "var(--space-large)",
+  },
 };
 
-export const CustomContentMinWidth = BasicTemplate.bind({});
-CustomContentMinWidth.args = {
-  contentMinWidth: "60%",
+export const RightSide: Story = {
+  render: renderSideKick,
+  args: {
+    onRight: true,
+  },
 };
 
-const ComplexTemplate: ComponentStory<typeof SideKick> = args => (
-  <SideKick {...args}>
-    <Card>
-      <Box padding="base">
-        <Stack>
-          <Text>This side panel has a fixed width of 400px</Text>
-          <Text>It contains important navigation or supplementary content</Text>
-        </Stack>
-      </Box>
-    </Card>
-    <Card>
-      <Box padding="base">
-        <Stack>
-          <Text>
-            This main content area grows to fill the available space while
-            maintaining a minimum width of 70% of the container
-          </Text>
-          <Text>
-            The space between the panels is customized to be larger than default
-          </Text>
-        </Stack>
-      </Box>
-    </Card>
-  </SideKick>
-);
+export const CustomContentMinWidth: Story = {
+  render: renderSideKick,
+  args: {
+    contentMinWidth: "60%",
+  },
+};
 
-export const ComplexExample = ComplexTemplate.bind({});
-ComplexExample.args = {
-  sideWidth: "10%",
-  contentMinWidth: "400px",
-  gap: "larger",
+export const ComplexExample: Story = {
+  render: args => (
+    <SideKick
+      contentMinWidth={args?.contentMinWidth ?? "400px"}
+      gap={args?.gap ?? "larger"}
+      sideWidth={args?.sideWidth ?? "10%"}
+    >
+      <Card>
+        <Box padding="base">
+          <Stack>
+            <Text>This side panel has a fixed width of 400px</Text>
+            <Text>
+              It contains important navigation or supplementary content
+            </Text>
+          </Stack>
+        </Box>
+      </Card>
+      <Card>
+        <Box padding="base">
+          <Stack>
+            <Text>
+              This main content area grows to fill the available space while
+              maintaining a minimum width of 70% of the container
+            </Text>
+            <Text>
+              The space between the panels is customized to be larger than
+              default
+            </Text>
+          </Stack>
+        </Box>
+      </Card>
+    </SideKick>
+  ),
+  args: {
+    sideWidth: "10%",
+    contentMinWidth: "400px",
+    gap: "larger",
+  },
 };

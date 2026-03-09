@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react-native";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import {
   Button,
   Content,
@@ -7,54 +7,75 @@ import {
   ProgressBar,
 } from "@jobber/components-native";
 
-export default {
-  title: "Components/Status and Feedback/ProgressBar/Mobile",
+type ProgressBarStoryArgs = Partial<
+  Pick<
+    React.ComponentProps<typeof ProgressBar>,
+    "current" | "total" | "inProgress" | "variation" | "size"
+  >
+>;
+
+const meta = {
+  title: "Components/Status and Feedback/ProgressBar",
   component: ProgressBar,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof ProgressBar>;
+} satisfies Meta<typeof ProgressBar>;
 
-const BasicTemplate: ComponentStory<typeof ProgressBar> = args => (
-  <ProgressBar {...args} />
-);
+export default meta;
 
-const WithHeaderTemplate: ComponentStory<typeof ProgressBar> = args => {
-  const [step, setStep] = useState(1);
-  const totalSteps = 6;
+type Story = StoryObj<ProgressBarStoryArgs>;
 
-  return (
+export const Basic: Story = {
+  render: args => (
     <ProgressBar
-      {...args}
-      current={step}
-      total={totalSteps}
-      header={
-        <>
-          <Content>
-            <Heading level="heading">Upload progress</Heading>
-          </Content>
-          <Button
-            label="Step Back"
-            onPress={() => setStep(Math.max(0, step - 1))}
-          />
-          <Button
-            label="Step Forward"
-            onPress={() => setStep(Math.min(totalSteps, step + 1))}
-          />
-        </>
-      }
+      current={args?.current ?? 1}
+      inProgress={args?.inProgress}
+      size={args?.size}
+      total={args?.total ?? 5}
+      variation={args?.variation}
     />
-  );
+  ),
+  args: {
+    total: 5,
+    current: 1,
+    inProgress: 2,
+  },
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  total: 5,
-  current: 1,
-  inProgress: 2,
-};
+export const WithHeader: Story = {
+  render: args => {
+    const [step, setStep] = useState(1);
+    const totalSteps = 6;
 
-export const WithHeader = WithHeaderTemplate.bind({});
-WithHeader.args = {};
+    return (
+      <ProgressBar
+        current={step}
+        inProgress={args?.inProgress}
+        size={args?.size}
+        total={totalSteps}
+        variation={args?.variation}
+        header={
+          <>
+            <Content>
+              <Heading level="heading">Upload progress</Heading>
+            </Content>
+            <Button
+              label="Step Back"
+              onPress={() => setStep(Math.max(0, step - 1))}
+            />
+            <Button
+              label="Step Forward"
+              onPress={() => setStep(Math.min(totalSteps, step + 1))}
+            />
+          </>
+        }
+      />
+    );
+  },
+  args: {
+    total: 6,
+    current: 1,
+  },
+};

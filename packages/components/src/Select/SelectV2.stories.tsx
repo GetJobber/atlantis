@@ -1,9 +1,9 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Option, Select } from "@jobber/components/Select";
 
 const meta = {
-  title: "Components/Selections/Select/Web (v2)",
+  title: "Components/Selections/Select (v2)",
   component: Select,
   args: {
     version: 2,
@@ -14,6 +14,7 @@ const meta = {
 } satisfies Meta<typeof Select>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {

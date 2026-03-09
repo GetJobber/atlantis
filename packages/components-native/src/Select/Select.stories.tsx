@@ -1,31 +1,49 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Option, Select } from "@jobber/components-native";
 
-export default {
-  title: "Components/Selections/Select/Mobile",
+type SelectStoryArgs = Pick<
+  React.ComponentProps<typeof Select>,
+  "label" | "defaultValue"
+>;
+
+const meta = {
+  title: "Components/Selections/Select",
   component: Select,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Select>;
+} satisfies Meta<typeof Select>;
 
-const BasicTemplate: ComponentStory<typeof Select> = args => (
-  <Select {...args}>
-    <Option value="1">1</Option>
-    <Option value="2">2</Option>
-  </Select>
-);
+export default meta;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  label: "Favorite number",
+type Story = StoryObj<SelectStoryArgs>;
+
+export const Basic: Story = {
+  render: args => (
+    <Select label={args?.label ?? "Favorite number"}>
+      <Option value="1">1</Option>
+      <Option value="2">2</Option>
+    </Select>
+  ),
+  args: {
+    label: "Favorite number",
+  },
 };
 
-export const InitialValue = BasicTemplate.bind({});
-InitialValue.args = {
-  label: "Favorite number",
-  defaultValue: "2",
+export const InitialValue: Story = {
+  render: args => (
+    <Select
+      label={args?.label ?? "Favorite number"}
+      defaultValue={args?.defaultValue ?? "2"}
+    >
+      <Option value="1">1</Option>
+      <Option value="2">2</Option>
+    </Select>
+  ),
+  args: {
+    label: "Favorite number",
+    defaultValue: "2",
+  },
 };
