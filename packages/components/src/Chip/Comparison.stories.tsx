@@ -1,29 +1,20 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Chip } from "@jobber/components/Chip";
 import { Content } from "@jobber/components/Content";
 import { Typography } from "@jobber/components/Typography";
 import { Avatar } from "@jobber/components/Avatar";
 import { Icon } from "@jobber/components/Icon";
 
-export default {
-  title: "Components/Selections/Chip/Web/Comparisons",
+const meta = {
+  title: "Components/Selections/Chip/Comparisons",
   component: Chip,
   subcomponents: { Chip },
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/Chip": ["Chip"],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Chip>;
+} satisfies Meta<typeof Chip>;
+export default meta;
+type Story = StoryObj<Record<string, never>>;
 
-const AllTemplate: ComponentStory<typeof Chip> = () => {
+const AllTemplate = () => {
   const longLabel =
     "This is a very long chip label that will definitely need to be truncated";
   const longHeading =
@@ -496,5 +487,7 @@ const AllTemplate: ComponentStory<typeof Chip> = () => {
   );
 };
 
-export const All = AllTemplate.bind({});
-All.args = {};
+export const All: Story = {
+  render: AllTemplate,
+  args: {},
+};

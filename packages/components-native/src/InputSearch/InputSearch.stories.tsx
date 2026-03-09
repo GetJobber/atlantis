@@ -1,24 +1,28 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { InputSearch } from "@jobber/components-native";
 
-export default {
-  title: "Components/Forms and Inputs/InputSearch/Mobile",
+const meta = {
+  title: "Components/Forms and Inputs/InputSearch",
   component: InputSearch,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof InputSearch>;
+} satisfies Meta<typeof InputSearch>;
+export default meta;
 
-const BasicTemplate: ComponentStory<typeof InputSearch> = args => {
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof InputSearch>, "placeholder" | "prefix">
+>;
+
+const BasicTemplate = (args: Story["args"]) => {
   const [value, setValue] = useState("");
 
   return (
     <InputSearch
-      {...args}
+      placeholder={args?.placeholder}
+      prefix={args?.prefix}
       value={value}
       onChange={newValue => setValue(newValue)}
       onDebouncedChange={() => alert(value)}
@@ -26,10 +30,12 @@ const BasicTemplate: ComponentStory<typeof InputSearch> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Search",
-  prefix: {
-    icon: "search",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Search",
+    prefix: {
+      icon: "search",
+    },
   },
 };

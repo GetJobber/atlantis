@@ -1,22 +1,18 @@
-import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { InputCurrency } from "@jobber/components-native";
 
-export default {
-  title: "Components/Forms and Inputs/InputCurrency/Mobile",
+const meta = {
+  title: "Components/Forms and Inputs/InputCurrency",
   component: InputCurrency,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof InputCurrency>;
+} satisfies Meta<typeof InputCurrency>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof InputCurrency> = args => (
-  <InputCurrency {...args} />
-);
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Unit Price",
+export const Basic: Story = {
+  args: {
+    placeholder: "Unit Price",
+  },
 };

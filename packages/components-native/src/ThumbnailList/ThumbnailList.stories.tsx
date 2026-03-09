@@ -1,20 +1,26 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
+import { Host } from "react-native-portalize";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThumbnailList } from "@jobber/components-native";
 
-export default {
-  title: "Components/Images and Icons/ThumbnailList/Mobile",
+const meta = {
+  title: "Components/Images and Icons/ThumbnailList",
   component: ThumbnailList,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof ThumbnailList>;
+} satisfies Meta<typeof ThumbnailList>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof ThumbnailList> = args => (
-  <ThumbnailList {...args} />
+const BasicTemplate = (args: Story["args"]) => (
+  <SafeAreaProvider>
+    <Host>
+      <ThumbnailList {...args} />
+    </Host>
+  </SafeAreaProvider>
 );
 
 const files = [
@@ -62,8 +68,10 @@ const files = [
   },
 ];
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  files,
-  rowCount: 2,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    files,
+    rowCount: 2,
+  },
 };
