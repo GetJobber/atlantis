@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.91.0...@jobber/design@0.92.0) (2026-03-09)
+
+
+### Features
+
+* **design:** add Franchise icons ([#2959](https://github.com/GetJobber/atlantis/issues/2959)) ([2d736b1](https://github.com/GetJobber/atlantis/commit/2d736b167abb6dbcccc76f3db0c6f9713e011edb))
+
+
+
+
+
 # [0.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.90.1...@jobber/design@0.91.0) (2026-03-02)
 
 
