@@ -152,18 +152,6 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  build_storybook_v7:
-    resource_class: medium+
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - *generate_base_path
-      - run:
-          command: |
-            cd packages/storybook-v7
-            npm run storybook:build
-      - *check_git_status
-
   build_storybook_web:
     <<: *container_config
     steps:
@@ -261,9 +249,6 @@ workflows:
       - test:
           requires:
             - install_dependencies
-      - build_storybook_v7:
-          requires:
-            - install_dependencies
       - build_storybook_web:
           requires:
             - install_dependencies
@@ -284,7 +269,6 @@ workflows:
             - lint_javascript
             - lint_css
             - test
-            - build_storybook_v7
             - build_storybook_web
             - build_storybook_mobile
             - build_new_docs
