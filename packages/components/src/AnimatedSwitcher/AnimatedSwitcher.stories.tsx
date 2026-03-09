@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { AnimatedSwitcher } from "@jobber/components/AnimatedSwitcher";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
