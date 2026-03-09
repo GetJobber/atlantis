@@ -1,33 +1,35 @@
 import React from "react";
 import { View } from "react-native";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Chip } from "@jobber/components-native";
 
-export default {
-  title: "Components/Selections/Chip/Mobile",
+const meta = {
+  title: "Components/Selections/Chip",
   component: Chip,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof Chip>;
+} satisfies Meta<typeof Chip>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Chip> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <View style={{ display: "flex", flexDirection: "row" }}>
     <Chip {...args} />
   </View>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  label: "Active chip",
-  onPress: () => alert("hi!"),
-  accessibilityLabel: "Active chip",
-  isActive: true,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    label: "Active chip",
+    onPress: () => alert("hi!"),
+    accessibilityLabel: "Active chip",
+    isActive: true,
+  },
 };
 
-const AccentTemplate: ComponentStory<typeof Chip> = args => (
+const AccentTemplate = (args: Story["args"]) => (
   <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
     <Chip {...args} />
     <Chip
@@ -65,32 +67,38 @@ const AccentTemplate: ComponentStory<typeof Chip> = args => (
   </View>
 );
 
-export const Accent = AccentTemplate.bind({});
-Accent.args = {
-  label: "Select clients",
-  accent: "client",
-  icon: "clients",
-  onPress: () => alert("Clients"),
-  accessibilityLabel: "Select clients",
-  isActive: true,
+export const Accent: Story = {
+  render: AccentTemplate,
+  args: {
+    label: "Select clients",
+    accent: "client",
+    icon: "clients",
+    onPress: () => alert("Clients"),
+    accessibilityLabel: "Select clients",
+    isActive: true,
+  },
 };
 
-export const Dismissable = BasicTemplate.bind({});
-Dismissable.args = {
-  label: "Test Chip",
-  accent: "client",
-  icon: "clients",
-  onPress: () => alert("Clients"),
-  accessibilityLabel: "Select clients",
-  isDismissible: true,
+export const Dismissable: Story = {
+  render: BasicTemplate,
+  args: {
+    label: "Test Chip",
+    accent: "client",
+    icon: "clients",
+    onPress: () => alert("Clients"),
+    accessibilityLabel: "Select clients",
+    isDismissible: true,
+  },
 };
 
-export const InactiveBackgroundColor = BasicTemplate.bind({});
-InactiveBackgroundColor.args = {
-  label: "Inactive Chip",
-  accent: "client",
-  icon: "clients",
-  onPress: () => alert("Clients"),
-  accessibilityLabel: "Select clients",
-  inactiveBackgroundColor: "surface",
+export const InactiveBackgroundColor: Story = {
+  render: BasicTemplate,
+  args: {
+    label: "Inactive Chip",
+    accent: "client",
+    icon: "clients",
+    onPress: () => alert("Clients"),
+    accessibilityLabel: "Select clients",
+    inactiveBackgroundColor: "surface",
+  },
 };

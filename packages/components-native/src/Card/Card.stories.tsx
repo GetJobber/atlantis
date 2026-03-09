@@ -1,21 +1,21 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Card, Content, Text } from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/Card/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/Card",
   component: Card,
   parameters: {
-    viewMode: "story",
     backgrounds: {
       default: "surface background",
     },
     viewport: { defaultViewport: "mobile1" },
-    previewTabs: { code: { hidden: false } },
   },
-} as ComponentMeta<typeof Card>;
+} satisfies Meta<typeof Card>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Card> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <Card {...args}>
     <Content childSpacing={"small"}>
       <Content spacing={"none"} childSpacing={"none"}>
@@ -30,12 +30,14 @@ const BasicTemplate: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  header: { title: "Client" },
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    header: { title: "Client" },
+  },
 };
 
-const ElevationTemplate: ComponentStory<typeof Card> = args => (
+const ElevationTemplate = (args: Story["args"]) => (
   <Content spacing="none" direction="horizontal">
     <Card header={{ title: "Properties" }}>
       <Content>
@@ -58,20 +60,24 @@ const ElevationTemplate: ComponentStory<typeof Card> = args => (
   </Content>
 );
 
-export const Elevation = ElevationTemplate.bind({});
-Elevation.args = {
-  elevation: "base",
+export const Elevation: Story = {
+  render: ElevationTemplate,
+  args: {
+    elevation: "base",
+  },
 };
 
-export const Pressable = BasicTemplate.bind({});
-Pressable.args = {
-  header: {
-    title: "Your address",
-    actionItem: { iconName: "plus2" },
-    onPress: () => alert("🏡"),
-  },
-  footer: {
-    title: "View All",
-    onPress: () => alert("View all"),
+export const Pressable: Story = {
+  render: BasicTemplate,
+  args: {
+    header: {
+      title: "Your address",
+      actionItem: { iconName: "plus2" },
+      onPress: () => alert("🏡"),
+    },
+    footer: {
+      title: "View All",
+      onPress: () => alert("View all"),
+    },
   },
 };
