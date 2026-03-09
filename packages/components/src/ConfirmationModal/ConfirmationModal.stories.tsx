@@ -1,39 +1,56 @@
-import type { Ref } from "react";
+import type { ComponentProps } from "react";
 import React, { useRef, useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { ConfirmationModalRef } from "@jobber/components/ConfirmationModal";
 import { ConfirmationModal } from "@jobber/components/ConfirmationModal";
 import { Button } from "@jobber/components/Button";
 
-export default {
-  title: "Components/Overlays/ConfirmationModal/Web",
+const meta = {
+  title: "Components/Overlays/ConfirmationModal",
   component: ConfirmationModal,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof ConfirmationModal>;
+} satisfies Meta<typeof ConfirmationModal>;
+export default meta;
+type Story = StoryObj<typeof ConfirmationModal>;
+type ConfirmationModalProps = ComponentProps<typeof ConfirmationModal>;
 
-const BasicTemplate: ComponentStory<typeof ConfirmationModal> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [open, setOpen] = useState(false);
+  const modalArgs = (args ?? {}) as Partial<ConfirmationModalProps>;
+  const modalProps: ConfirmationModalProps = {
+    title: modalArgs.title,
+    message: modalArgs.message ?? `Let's do **something**!`,
+    cancelLabel: modalArgs.cancelLabel,
+    variation: modalArgs.variation,
+    size: modalArgs.size,
+    open,
+    confirmLabel: "Do it",
+    onConfirm: () => alert("✅"),
+    onCancel: () => alert("🙅‍♂️"),
+    onRequestClose: () => setOpen(false),
+  };
 
   return (
     <>
       <Button label="Open" onClick={() => setOpen(true)} />
-      <ConfirmationModal
-        {...args}
-        open={open}
-        confirmLabel="Do it"
-        onConfirm={() => alert("✅")}
-        onCancel={() => alert("🙅‍♂️")}
-        onRequestClose={() => setOpen(false)}
-      />
+      <ConfirmationModal {...modalProps} />
     </>
   );
 };
 
-const ControlledTemplate: ComponentStory<typeof ConfirmationModal> = args => {
-  const confirmationModalRef = useRef<ConfirmationModalRef>();
+const ControlledTemplate = (args: Story["args"]) => {
+  const modalArgs = (args ?? {}) as Partial<ConfirmationModalProps>;
+  const modalProps: ConfirmationModalProps = {
+    title: modalArgs.title,
+    message: modalArgs.message ?? "Should we do this?",
+    confirmLabel: modalArgs.confirmLabel,
+    cancelLabel: modalArgs.cancelLabel,
+    variation: modalArgs.variation,
+    size: modalArgs.size,
+    onConfirm: modalArgs.onConfirm,
+    onCancel: modalArgs.onCancel,
+    onRequestClose: modalArgs.onRequestClose,
+  };
+  const confirmationModalRef = useRef<ConfirmationModalRef | null>(null);
   const users = [
     {
       id: 1,
@@ -53,7 +70,7 @@ const ControlledTemplate: ComponentStory<typeof ConfirmationModal> = args => {
             label={`Confirm ${user.name}`}
             key={user.id}
             onClick={() =>
-              confirmationModalRef.current.show({
+              confirmationModalRef.current?.show({
                 title: "Should we?",
                 message: `Hang out with **${user.name}**?`,
                 confirmLabel: "Hangout",
@@ -63,16 +80,28 @@ const ControlledTemplate: ComponentStory<typeof ConfirmationModal> = args => {
           />
         );
       })}
-      <ConfirmationModal
-        {...args}
-        ref={confirmationModalRef as Ref<ConfirmationModalRef>}
-      />
+      <ConfirmationModal {...modalProps} ref={confirmationModalRef} />
     </>
   );
 };
 
-const DestructiveTemplate: ComponentStory<typeof ConfirmationModal> = args => {
+const DestructiveTemplate = (args: Story["args"]) => {
   const [open, setOpen] = useState(false);
+  const modalArgs = (args ?? {}) as Partial<ConfirmationModalProps>;
+  const modalProps: ConfirmationModalProps = {
+    title: modalArgs.title ?? "Delete Bob?",
+    message:
+      modalArgs.message ??
+      `Deleting Bob will remove their data from your account for good.`,
+    cancelLabel: modalArgs.cancelLabel,
+    variation: modalArgs.variation ?? "destructive",
+    size: modalArgs.size,
+    open,
+    confirmLabel: "Delete Bob",
+    onConfirm: () => alert("Bob has been deleted"),
+    onCancel: () => alert("Bob will not be deleted"),
+    onRequestClose: () => setOpen(false),
+  };
 
   return (
     <>
@@ -82,32 +111,31 @@ const DestructiveTemplate: ComponentStory<typeof ConfirmationModal> = args => {
         type="secondary"
         onClick={() => setOpen(true)}
       />
-      <ConfirmationModal
-        {...args}
-        open={open}
-        confirmLabel="Delete Bob"
-        onConfirm={() => alert("Bob has been deleted")}
-        onCancel={() => alert("Bob will not be deleted")}
-        onRequestClose={() => setOpen(false)}
-      />
+      <ConfirmationModal {...modalProps} />
     </>
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  title: "Should we?",
-  message: `Let's do **something**!`,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    title: "Should we?",
+    message: `Let's do **something**!`,
+  },
 };
 
-export const Controlled = ControlledTemplate.bind({});
-Controlled.args = {
-  title: "Should we?",
+export const Controlled: Story = {
+  render: ControlledTemplate,
+  args: {
+    title: "Should we?",
+  },
 };
 
-export const Destructive = DestructiveTemplate.bind({});
-Destructive.args = {
-  title: "Delete Bob?",
-  message: `Deleting Bob will remove their data from your account for good.`,
-  variation: "destructive",
+export const Destructive: Story = {
+  render: DestructiveTemplate,
+  args: {
+    title: "Delete Bob?",
+    message: `Deleting Bob will remove their data from your account for good.`,
+    variation: "destructive",
+  },
 };
