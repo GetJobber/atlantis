@@ -1,9 +1,8 @@
-import React, { Ref, useRef, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import {
-  ConfirmationModal,
-  ConfirmationModalRef,
-} from "@jobber/components/ConfirmationModal";
+import type { Ref } from "react";
+import React, { useRef, useState } from "react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ConfirmationModalRef } from "@jobber/components/ConfirmationModal";
+import { ConfirmationModal } from "@jobber/components/ConfirmationModal";
 import { Button } from "@jobber/components/Button";
 
 export default {
