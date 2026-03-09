@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AnimatedSwitcher } from "@jobber/components/AnimatedSwitcher";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 
-export default {
-  title: "Components/Utilities/AnimatedSwitcher/Web",
+const meta = {
+  title: "Components/Utilities/AnimatedSwitcher",
   component: AnimatedSwitcher,
   subcomponents: { "AnimatedSwitcher.Icon": AnimatedSwitcher.Icon },
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof AnimatedSwitcher>;
+} satisfies Meta<typeof AnimatedSwitcher>;
+export default meta;
+type Story = StoryObj<typeof AnimatedSwitcher>;
 
-const BasicTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
-  const [switched, setSwitched] = useState(args.switched || false);
+const BasicTemplate = (args: Story["args"]) => {
+  const [switched, setSwitched] = useState(args?.switched ?? false);
 
   return (
     <AnimatedSwitcher
-      {...args}
       switched={switched}
+      type={args?.type}
       initialChild={
         <Button label="Mark complete" onClick={() => setSwitched(true)} />
       }
@@ -36,10 +34,12 @@ const BasicTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {},
+};
 
-const IconTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
+const IconTemplate = () => {
   const [switched, setSwitched] = useState(false);
 
   return (
@@ -53,7 +53,6 @@ const IconTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
         }}
       >
         <AnimatedSwitcher.Icon
-          {...args}
           switched={switched}
           initialIcon="add"
           switchToIcon="checkmark"
@@ -86,5 +85,7 @@ const IconTemplate: ComponentStory<typeof AnimatedSwitcher> = args => {
   );
 };
 
-export const Icon = IconTemplate.bind({});
-Icon.args = {};
+export const Icon: Story = {
+  render: IconTemplate,
+  args: {},
+};

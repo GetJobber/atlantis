@@ -33,9 +33,11 @@ export default {
   title: "AnimatedSwitcher",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/docs/components-utilities-animatedswitcher--docs",
+        "?path=/story/components-utilities-animatedswitcher--basic",
+        "web",
       ),
     },
   ],

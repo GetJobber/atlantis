@@ -114,7 +114,7 @@ export function AnimatedSwitcher({
   }
 }
 
-interface AnimatedSwitcherIconProps
+export interface AnimatedSwitcherIconProps
   extends Pick<AnimatedSwitcherProps, "switched"> {
   readonly initialIcon: IconNames;
   readonly switchToIcon: IconNames;
