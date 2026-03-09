@@ -1,20 +1,22 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import type { IconNames } from "@jobber/design";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Host } from "react-native-portalize";
 import { Menu } from "@jobber/components-native";
 
-export default {
-  title: "Components/Navigation/Menu/Mobile",
+const meta = {
+  title: "Components/Navigation/Menu",
   component: Menu,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Menu>;
+} satisfies Meta<typeof Menu>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Menu>>>;
 
-const BasicTemplate: ComponentStory<typeof Menu> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [selected, setSelected] = useState(0);
 
   const menuOptions = [
@@ -35,8 +37,16 @@ const BasicTemplate: ComponentStory<typeof Menu> = args => {
     },
   ];
 
-  return <Menu {...args} menuOptions={menuOptions} />;
+  return (
+    <SafeAreaProvider>
+      <Host>
+        <Menu {...args} menuOptions={menuOptions} />
+      </Host>
+    </SafeAreaProvider>
+  );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {},
+};

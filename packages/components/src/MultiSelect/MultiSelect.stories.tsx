@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MultiSelect } from "@jobber/components/MultiSelect";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 
-export default {
-  title: "Components/Selections/MultiSelect/Web",
+const meta = {
+  title: "Components/Selections/MultiSelect",
   component: MultiSelect,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof MultiSelect>;
+} satisfies Meta<typeof MultiSelect>;
+export default meta;
+type Story = StoryObj<
+  Pick<
+    React.ComponentProps<typeof MultiSelect>,
+    "defaultLabel" | "allSelectedLabel"
+  >
+>;
 
-const BasicTemplate: ComponentStory<typeof MultiSelect> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [options, setOptions] = useState([
     { label: "Synced", checked: true },
     { label: "Errors", checked: false },
@@ -22,11 +25,16 @@ const BasicTemplate: ComponentStory<typeof MultiSelect> = args => {
   ]);
 
   return (
-    <MultiSelect {...args} options={options} onOptionsChange={setOptions} />
+    <MultiSelect
+      defaultLabel={args?.defaultLabel ?? "Status"}
+      allSelectedLabel={args?.allSelectedLabel ?? "All statuses"}
+      options={options}
+      onOptionsChange={setOptions}
+    />
   );
 };
 
-const SizesTemplate: ComponentStory<typeof MultiSelect> = args => {
+const SizesTemplate = (args: Story["args"]) => {
   const [options, setOptions] = useState([
     { label: "Small", checked: false },
     { label: "Large", checked: false },
@@ -35,16 +43,16 @@ const SizesTemplate: ComponentStory<typeof MultiSelect> = args => {
   return (
     <Content>
       <MultiSelect
-        {...args}
-        defaultLabel="Small"
+        defaultLabel={args?.defaultLabel ?? "Small"}
+        allSelectedLabel={args?.allSelectedLabel ?? "All selected"}
         options={options}
         onOptionsChange={setOptions}
         size="small"
       />
       <Divider size="largest" />
       <MultiSelect
-        {...args}
-        defaultLabel="Large"
+        defaultLabel={args?.defaultLabel ?? "Large"}
+        allSelectedLabel={args?.allSelectedLabel ?? "All selected"}
         options={options}
         onOptionsChange={setOptions}
         size="large"
@@ -53,13 +61,17 @@ const SizesTemplate: ComponentStory<typeof MultiSelect> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  defaultLabel: "Status",
-  allSelectedLabel: "All statuses",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    defaultLabel: "Status",
+    allSelectedLabel: "All statuses",
+  },
 };
 
-export const Sizes = SizesTemplate.bind({});
-Sizes.args = {
-  allSelectedLabel: "All selected",
+export const Sizes: Story = {
+  render: SizesTemplate,
+  args: {
+    allSelectedLabel: "All selected",
+  },
 };

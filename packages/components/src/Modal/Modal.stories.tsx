@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Modal } from "@jobber/components/Modal";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
@@ -23,16 +23,19 @@ import {
 import type { Option as AutocompleteOption } from "@jobber/components/Autocomplete";
 import { Option, Select } from "@jobber/components/Select";
 
-export default {
-  title: "Components/Overlays/Modal/Web",
+const meta = {
+  title: "Components/Overlays/Modal",
   component: Modal,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Modal>;
+} satisfies Meta<typeof Modal>;
+export default meta;
+type Story = StoryObj<
+  Pick<
+    React.ComponentProps<typeof Modal>,
+    "title" | "size" | "dismissible" | "ariaLabel"
+  >
+>;
 
-const BasicTemplate: ComponentStory<typeof Modal> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -51,12 +54,14 @@ const BasicTemplate: ComponentStory<typeof Modal> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  title: "We've updated Jobber",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    title: "We've updated Jobber",
+  },
 };
 
-const ActionTemplate: ComponentStory<typeof Modal> = args => {
+const ActionTemplate = (args: Story["args"]) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [value, setValue] = useState<string>("");
 
@@ -104,9 +109,11 @@ const ActionTemplate: ComponentStory<typeof Modal> = args => {
   }
 };
 
-export const ActionTypes = ActionTemplate.bind({});
-ActionTypes.args = {
-  title: "Atlantis Modals are Action Packed!",
+export const ActionTypes: Story = {
+  render: ActionTemplate,
+  args: {
+    title: "Atlantis Modals are Action Packed!",
+  },
 };
 
 function CustomHeader() {
@@ -133,7 +140,7 @@ function CustomHeader() {
   );
 }
 
-const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
+const ModalWithProviderExampleTemplate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<
     Array<{ id: string | number; label: string }>
@@ -261,11 +268,11 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
     </Content>
   );
 };
-export const ModalWithProviderExample = ModalWithProviderExampleTemplate.bind(
-  {},
-);
+export const ModalWithProviderExample: Story = {
+  render: ModalWithProviderExampleTemplate,
+};
 
-const ModalWithDatePickerTestTemplate: ComponentStory<typeof Modal> = () => {
+const ModalWithDatePickerTestTemplate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [inputDateValue, setInputDateValue] = useState<Date | undefined>();
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -326,9 +333,11 @@ const ModalWithDatePickerTestTemplate: ComponentStory<typeof Modal> = () => {
     </Content>
   );
 };
-export const ModalWithDatePickerTest = ModalWithDatePickerTestTemplate.bind({});
+export const ModalWithDatePickerTest: Story = {
+  render: ModalWithDatePickerTestTemplate,
+};
 
-const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
+const NestedExampleTemplate = (args: Story["args"]) => {
   const [outerModalOpen, setOuterModalOpen] = useState(false);
   const [innerModalOpen, setInnerModalOpen] = useState(false);
 
@@ -353,7 +362,7 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
         }}
       >
         <Modal.Content>
-          <Modal.Header title={args.title} />
+          <Modal.Header title={args?.title ?? "Outer Modal"} />
           <Content>
             <Text>
               This is the outer modal. You can interact with components here and
@@ -405,7 +414,9 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
     </Content>
   );
 };
-export const NestedExample = NestedExampleTemplate.bind({});
-NestedExample.args = {
-  title: "Outer Modal",
+export const NestedExample: Story = {
+  render: NestedExampleTemplate,
+  args: {
+    title: "Outer Modal",
+  },
 };

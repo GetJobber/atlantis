@@ -27,9 +27,11 @@ export default {
   title: "MultiSelect",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-multiselect--docs`,
+        "?path=/story/components-selections-multiselect--basic",
+        "web",
       ),
     },
   ],
