@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Disclosure } from "@jobber/components/Disclosure";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -9,17 +9,19 @@ import { Icon } from "@jobber/components/Icon";
 import { Button } from "@jobber/components/Button";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Layouts and Structure/Disclosure/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Disclosure",
   component: Disclosure,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Disclosure>;
+} satisfies Meta<typeof Disclosure>;
+export default meta;
+type DisclosureStoryArgs = Pick<
+  React.ComponentProps<typeof Disclosure>,
+  "title"
+>;
+type Story = StoryObj<DisclosureStoryArgs>;
 
-const BasicTemplate: ComponentStory<typeof Disclosure> = args => (
-  <Disclosure {...args}>
+const BasicTemplate = (args: Story["args"]) => (
+  <Disclosure title={args?.title ?? "Advanced instructions"}>
     <Content>
       <Text>Here is some helpful information to level up your business:</Text>
       <Text>For every 2 team members you add, your profits will triple.</Text>
@@ -27,13 +29,17 @@ const BasicTemplate: ComponentStory<typeof Disclosure> = args => (
   </Disclosure>
 );
 
-const ControlledTemplate: ComponentStory<typeof Disclosure> = args => {
+const ControlledTemplate = (args: Story["args"]) => {
   const [open, setOpen] = useState(false);
 
   return (
     <Content>
       <Box border={"base"} padding={"base"}>
-        <Disclosure {...args} open={open} onToggle={setOpen}>
+        <Disclosure
+          title={args?.title ?? "Controlled Disclosure"}
+          open={open}
+          onToggle={setOpen}
+        >
           <Content>
             <Text>
               The state of the disclosure can be controlled without needing to
@@ -52,24 +58,30 @@ const ControlledTemplate: ComponentStory<typeof Disclosure> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  title: "Advanced instructions",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    title: "Advanced instructions",
+  },
 };
 
-export const CustomTitle = BasicTemplate.bind({});
-CustomTitle.args = {
-  title: (
-    <Flex template={["shrink", "grow"]} gap="small">
-      <Icon name="sparkles" />
-      <Heading level={5} element="span">
-        Jobber Pro Tips
-      </Heading>
-    </Flex>
-  ),
+export const CustomTitle: Story = {
+  render: BasicTemplate,
+  args: {
+    title: (
+      <Flex template={["shrink", "grow"]} gap="small">
+        <Icon name="sparkles" />
+        <Heading level={5} element="span">
+          Jobber Pro Tips
+        </Heading>
+      </Flex>
+    ),
+  },
 };
 
-export const Controlled = ControlledTemplate.bind({});
-Controlled.args = {
-  title: "Controlled Disclosure",
+export const Controlled: Story = {
+  render: ControlledTemplate,
+  args: {
+    title: "Controlled Disclosure",
+  },
 };

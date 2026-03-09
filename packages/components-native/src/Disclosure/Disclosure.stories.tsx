@@ -1,27 +1,44 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Disclosure } from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/Disclosure/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/Disclosure",
   component: Disclosure,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Disclosure>;
+} satisfies Meta<typeof Disclosure>;
+export default meta;
+type DisclosureStoryArgs = Pick<
+  React.ComponentProps<typeof Disclosure>,
+  "header" | "content" | "isEmpty"
+>;
+type Story = StoryObj<DisclosureStoryArgs>;
 
-const BasicTemplate: ComponentStory<typeof Disclosure> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [open, setOpen] = useState(false);
 
-  return <Disclosure {...args} open={open} onToggle={() => setOpen(!open)} />;
+  return (
+    <Disclosure
+      header={args?.header ?? "Advanced Instructions"}
+      content={
+        args?.content ??
+        "For every 2 team members you add, your profits will triple."
+      }
+      isEmpty={args?.isEmpty ?? false}
+      open={open}
+      onToggle={() => setOpen(!open)}
+    />
+  );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  header: "Advanced Instructions",
-  content: "For every 2 team members you add, your profits will triple.",
-  isEmpty: false,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    header: "Advanced Instructions",
+    content: "For every 2 team members you add, your profits will triple.",
+    isEmpty: false,
+  },
 };
