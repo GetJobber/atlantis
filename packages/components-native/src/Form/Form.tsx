@@ -124,8 +124,9 @@ function InternalForm<T extends FieldValues, S>({
 
   const keyboardProps = Platform.select({
     ios: {
-      onKeyboardWillHide: handleKeyboardHide,
-      onKeyboardWillShow: handleKeyboardShow,
+      // onKeyboardDidHide: handleKeyboardHide,
+      // onKeyboardDidShow: handleKeyboardShow,
+      onKeyboardDidChangeFrame: handleKeyboardDidChangeFrame,
     },
     android: {
       onKeyboardDidHide: handleKeyboardHide,
@@ -233,6 +234,21 @@ function InternalForm<T extends FieldValues, S>({
       <FormMessage />
     </FormProvider>
   );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function handleKeyboardDidChangeFrame(frames: Record<string, any>) {
+    if (
+      frames &&
+      "endCoordinates" in frames &&
+      "height" in frames.endCoordinates &&
+      typeof frames.endCoordinates.height === "number" &&
+      frames.endCoordinates.height > keyboardHeight
+    ) {
+      handleKeyboardShow(frames);
+    } else {
+      handleKeyboardHide();
+    }
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleKeyboardShow(frames: Record<string, any>) {
