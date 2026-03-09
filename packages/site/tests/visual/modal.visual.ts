@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("Modal Visual Tests", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/visual-tests/modal");
-    await page.waitForTimeout(1000);
+    await page.waitForLoadState("networkidle");
   });
 
   test("should capture initial page state", async ({ page }) => {
@@ -18,14 +18,14 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Basic Modal",
       });
       await basicModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("2-basic-modal-open.png", {
         fullPage: true,
       });
 
       const closeButton = page.getByRole("button", { name: "Close" });
       await closeButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "hidden" });
       await expect(page).toHaveScreenshot("3-basic-modal-closed.png", {
         fullPage: true,
       });
@@ -36,7 +36,7 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Confirmation Modal",
       });
       await confirmationModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("4-confirmation-modal-open.png", {
         fullPage: true,
       });
@@ -46,7 +46,7 @@ test.describe("Modal Visual Tests", () => {
         exact: true,
       });
       await confirmButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "hidden" });
       await expect(page).toHaveScreenshot("5-confirmation-modal-closed.png", {
         fullPage: true,
       });
@@ -59,13 +59,13 @@ test.describe("Modal Visual Tests", () => {
 
       if (await customModalButton.isVisible()) {
         await customModalButton.click();
-        await page.waitForTimeout(500);
+        await page.getByRole("dialog").waitFor({ state: "visible" });
         await expect(page).toHaveScreenshot("6-custom-modal-open.png", {
           fullPage: true,
         });
 
         await page.keyboard.press("Escape");
-        await page.waitForTimeout(500);
+        await page.getByRole("dialog").waitFor({ state: "hidden" });
         await expect(page).toHaveScreenshot("7-custom-modal-closed.png", {
           fullPage: true,
         });
@@ -80,7 +80,7 @@ test.describe("Modal Visual Tests", () => {
         exact: true,
       });
       await largeModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("8-large-modal-open.png", {
         fullPage: true,
       });
@@ -90,7 +90,7 @@ test.describe("Modal Visual Tests", () => {
         exact: true,
       });
       await cancelButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "hidden" });
       await expect(page).toHaveScreenshot("9-large-modal-closed.png", {
         fullPage: true,
       });
@@ -103,7 +103,7 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Form Modal",
       });
       await formModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
 
       // Fill in some form fields
       await page.getByText("Enter your name").fill("Test User");
@@ -120,7 +120,7 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Form Modal",
       });
       await formModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
 
       // Fill in form fields quickly for submission test
       await page.getByText("Enter your name").fill("Test User");
@@ -131,7 +131,7 @@ test.describe("Modal Visual Tests", () => {
         exact: true,
       });
       await submitButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "hidden" });
       await expect(page).toHaveScreenshot("13-form-modal-closed.png", {
         fullPage: true,
       });
@@ -144,7 +144,7 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Modal with Tabs",
       });
       await tabModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
 
       await expect(page).toHaveScreenshot("14-tab-modal-general.png", {
         fullPage: true,
@@ -156,10 +156,10 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Modal with Tabs",
       });
       await tabModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
 
       await page.getByRole("tab", { name: "Advanced" }).click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("15-tab-modal-advanced.png", {
         fullPage: true,
       });
@@ -172,10 +172,10 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Modal with Tabs",
       });
       await tabModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
 
       await page.getByRole("tab", { name: "Notifications" }).click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("16-tab-modal-notifications.png", {
         fullPage: true,
       });
@@ -186,14 +186,14 @@ test.describe("Modal Visual Tests", () => {
         name: "Open Modal with Tabs",
       });
       await tabModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
 
       const saveButton = page.getByRole("button", {
         name: "Save",
         exact: true,
       });
       await saveButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "hidden" });
       await expect(page).toHaveScreenshot("17-tab-modal-closed.png", {
         fullPage: true,
       });
@@ -207,7 +207,7 @@ test.describe("Modal Visual Tests", () => {
         exact: true,
       });
       await narrowContentModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("18-narrow-content-modal-open.png", {
         fullPage: true,
       });
@@ -221,7 +221,7 @@ test.describe("Modal Visual Tests", () => {
         exact: true,
       });
       await overflowModalButton.click();
-      await page.waitForTimeout(500);
+      await page.getByRole("dialog").waitFor({ state: "visible" });
       await expect(page).toHaveScreenshot("19-overflow-modal-open.png", {
         fullPage: true,
       });

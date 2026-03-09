@@ -26,7 +26,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     await page.goto("/visual-tests/autocomplete-v2");
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.setViewportSize({ width: 1280, height: 1000 });
-    await page.waitForTimeout(500);
+    await page.waitForLoadState("networkidle");
   });
 
   test("initial page", async ({ page }) => {
