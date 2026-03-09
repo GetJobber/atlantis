@@ -1,20 +1,22 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
 
-export default {
-  title: "Components/Status and Feedback/Banner/Web",
+const meta = {
+  title: "Components/Status and Feedback/Banner",
   component: Banner,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+  args: {
+    type: "notice",
+    children: "Your import is in progress",
   },
-} as ComponentMeta<typeof Banner>;
+} satisfies Meta<typeof Banner>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Banner> = () => (
+const BasicTemplate = () => (
   <Content>
     <Banner type="success">Your account was upgraded successfully</Banner>
     <Banner type="notice">
@@ -29,7 +31,7 @@ const BasicTemplate: ComponentStory<typeof Banner> = () => (
   </Content>
 );
 
-const ActionsTemplate: ComponentStory<typeof Banner> = args => (
+const ActionsTemplate = (args: Story["args"]) => (
   <>
     <Banner
       type="notice"
@@ -43,6 +45,7 @@ const ActionsTemplate: ComponentStory<typeof Banner> = args => (
     </Banner>
     <Banner
       {...args}
+      type={args?.type ?? "error"}
       primaryAction={{
         label: "Refresh",
         onClick: () => alert("Refreshing"),
@@ -54,19 +57,20 @@ const ActionsTemplate: ComponentStory<typeof Banner> = args => (
   </>
 );
 
-const SuccessTemplate: ComponentStory<typeof Banner> = args => (
+const SuccessTemplate = (args: Story["args"]) => (
   <Banner
+    {...args}
+    type={args?.type ?? "success"}
     primaryAction={{
       label: "View clients",
       onClick: () => alert("🎉 Woo hoo"),
     }}
-    {...args}
   >
     Your client import is complete
   </Banner>
 );
 
-const ControlledTemplate: ComponentStory<typeof Banner> = args => {
+const ControlledTemplate = (args: Story["args"]) => {
   const [showBanner, setShowBanner] = useState(true);
 
   return (
@@ -74,6 +78,7 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
       <div>
         <Banner
           {...args}
+          type={args?.type ?? "notice"}
           onDismiss={() => setShowBanner(_val => !_val)}
           controlledVisiblity={showBanner}
         >
@@ -88,7 +93,7 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
   );
 };
 
-const ComposedTemplate: ComponentStory<typeof Banner> = () => {
+const ComposedTemplate = () => {
   return (
     <Content>
       <Heading level={2}>Default banner styling</Heading>
@@ -154,28 +159,35 @@ const ComposedTemplate: ComponentStory<typeof Banner> = () => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  type: "notice",
+export const Basic: Story = {
+  render: BasicTemplate,
 };
 
-export const ActionsInBanners = ActionsTemplate.bind({});
-ActionsInBanners.args = {
-  type: "error",
+export const ActionsInBanners: Story = {
+  render: ActionsTemplate,
+  args: {
+    type: "error",
+    children: "Network is unavailable. Please check your internet connection.",
+  },
 };
 
-export const Success = SuccessTemplate.bind({});
-Success.args = {
-  type: "success",
-  dismissible: false,
+export const Success: Story = {
+  render: SuccessTemplate,
+  args: {
+    type: "success",
+    dismissible: false,
+    children: "Your client import is complete",
+  },
 };
 
-export const Controlled = ControlledTemplate.bind({});
-Controlled.args = {
-  type: "notice",
+export const Controlled: Story = {
+  render: ControlledTemplate,
+  args: {
+    type: "notice",
+    children: "Your import is in progress",
+  },
 };
 
-export const Composed = ComposedTemplate.bind({});
-Composed.args = {
-  type: "notice",
+export const Composed: Story = {
+  render: ComposedTemplate,
 };
