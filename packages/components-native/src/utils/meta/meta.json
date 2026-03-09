@@ -21,6 +21,7 @@
     "Checkbox",
     "CheckboxGroup",
     "Chip",
+    "ClearAction",
     "Content",
     "ContentOverlay",
     "Disclosure",
