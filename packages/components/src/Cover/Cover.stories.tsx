@@ -1,21 +1,19 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Cover } from "@jobber/components/Cover";
 import { Box } from "@jobber/components/Box";
 import { Stack } from "@jobber/components/Stack";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 
-export default {
-  title: "Components/Layouts and Structure/Cover/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Cover",
   component: Cover,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Cover>;
+} satisfies Meta<typeof Cover>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Cover> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <Cover {...args}>
     <Cover.Center>
       <Box padding="base" background="surface--background">
@@ -28,12 +26,14 @@ const BasicTemplate: ComponentStory<typeof Cover> = args => (
   </Cover>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  minHeight: "30vh",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    minHeight: "30vh",
+  },
 };
 
-export const WithTopAndBottom: ComponentStory<typeof Cover> = () => (
+const WithTopAndBottomTemplate = () => (
   <Cover minHeight="50vh">
     <Stack>
       <Text>Content at the top</Text>
@@ -52,7 +52,7 @@ export const WithTopAndBottom: ComponentStory<typeof Cover> = () => (
   </Cover>
 );
 
-export const TallCover: ComponentStory<typeof Cover> = () => (
+const TallCoverTemplate = () => (
   <Cover minHeight="80vh">
     <Cover.Center>
       <Box padding="base" background="surface--background">
@@ -64,3 +64,11 @@ export const TallCover: ComponentStory<typeof Cover> = () => (
     </Cover.Center>
   </Cover>
 );
+
+export const WithTopAndBottom: Story = {
+  render: WithTopAndBottomTemplate,
+};
+
+export const TallCover: Story = {
+  render: TallCoverTemplate,
+};
