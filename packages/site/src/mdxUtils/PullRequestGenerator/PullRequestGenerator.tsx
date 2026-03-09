@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -16,7 +16,9 @@ export function PullRequestGenerator() {
   const [issue, setIssue] = useState<string>();
 
   // eslint-disable-next-line prettier/prettier
-  const title = `${type}${scope ? `(${scope})` : ``}: ${description ? description : ``} ${issue ? `[${issue}]` : ``}`;
+  const title = `${type}${scope ? `(${scope})` : ``}: ${
+    description ? description : ``
+  } ${issue ? `[${issue}]` : ``}`;
 
   return (
     <Content>
@@ -29,14 +31,20 @@ export function PullRequestGenerator() {
               <Option value="feat">adds a new feature</Option>
               <Option value="docs">adds or updates documentation only</Option>
               <Option value="build">improves the build system</Option>
-              <Option value="chore">doesn't modify src or test files</Option>
-              <Option value="refactor">doesn't fix a bug or introduce a new feature</Option>
+              <Option value="chore">
+                doesn&apos;t modify src or test files
+              </Option>
+              <Option value="refactor">
+                doesn&apos;t fix a bug or introduce a new feature
+              </Option>
             </Select>
             <Text>in our...</Text>
             <Select value={scope} onChange={(val: string) => setScope(val)}>
               <Option value="---">---</Option>
               <Option value="components">component library</Option>
-              <Option value="components-native">component native library</Option>
+              <Option value="components-native">
+                component native library
+              </Option>
               <Option value="hooks">hooks library</Option>
               <Option value="design">design foundation system</Option>
               <Option value="eslint">eslint config</Option>

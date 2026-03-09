@@ -195,21 +195,8 @@ changes._
 
 ### Code and sandbox
 
-Some components, like [Card](/components/Card), includes a "Code" tab on the top
-right of the screen. This is turned off by default. To turn this feature on, add
-a `parameter` of `previewTabs.code.hidden` and set it to `false` on your stories
-meta.
-
-```ts
-export default {
-   title: ...,
-   component: ...,
-   parameters: {
-      ...,
-      previewTabs: { code: { hidden: false } }, // <-- Add this
-   },
-} as ComponentMeta<YourComponent>;
-```
+The docs site renders interactive examples from the component stories, so keep
+examples self-contained and focused on the behavior you want to document.
 
 ### Native components disclaimer
 
@@ -226,5 +213,5 @@ export default {
       ...,
       showNativeOnWebDisclaimer: true, // <-- Add this
    },
-} as ComponentMeta<YourComponent>;
+} satisfies Meta<typeof YourComponent>;
 ```
