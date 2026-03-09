@@ -1,42 +1,40 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DescriptionList } from "@jobber/components/DescriptionList";
 import { FormatDate } from "@jobber/components/FormatDate";
 
-export default {
-  title: "Components/Lists and Tables/DescriptionList/Web",
+const meta = {
+  title: "Components/Lists and Tables/DescriptionList",
   component: DescriptionList,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
-  },
-} as ComponentMeta<typeof DescriptionList>;
+} satisfies Meta<typeof DescriptionList>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof DescriptionList>>>;
 
-const BasicTemplate: ComponentStory<typeof DescriptionList> = args => (
-  <DescriptionList {...args} />
-);
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  data: [
-    ["Issued", "2018-12-08"],
-    ["Due", "2019-01-06"],
-  ],
-};
-
-const CustomLabelTemplate: ComponentStory<typeof DescriptionList> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <DescriptionList
-    {...args}
-    data={[
-      ["Issued", <FormatDate date={new Date("2018-12-08")} key={1} />],
-      ["Due", <FormatDate date={new Date("2019-01-06")} key={2} />],
-    ]}
+    {...(args as React.ComponentProps<typeof DescriptionList>)}
   />
 );
 
-export const CustomLabel = CustomLabelTemplate.bind({});
-CustomLabel.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    data: [
+      ["Issued", "2018-12-08"],
+      ["Due", "2019-01-06"],
+    ],
+  },
+};
+
+const CustomLabelTemplate = (args: Story["args"]) => {
+  const data: React.ComponentProps<typeof DescriptionList>["data"] = [
+    ["Issued", <FormatDate date={new Date("2018-12-08")} key={1} />],
+    ["Due", <FormatDate date={new Date("2019-01-06")} key={2} />],
+  ];
+
+  return <DescriptionList {...args} data={data} />;
+};
+
+export const CustomLabel: Story = {
+  render: CustomLabelTemplate,
+};

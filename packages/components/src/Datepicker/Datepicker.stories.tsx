@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DatePicker } from "@jobber/components/DatePicker";
 import { Content } from "@jobber/components/Content";
 import { DataDump } from "@jobber/components/DataDump";
@@ -9,25 +9,14 @@ import {
   atlantisContextDefaultValues,
 } from "@jobber/components/AtlantisContext";
 
-export default {
-  title: "Components/Selections/DatePicker/Web",
+const meta = {
+  title: "Components/Selections/DatePicker",
   component: DatePicker,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/AtlantisContext": [
-            "atlantisContextDefaultValues",
-          ],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof DatePicker>;
+} satisfies Meta<typeof DatePicker>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof DatePicker>>>;
 
-const BasicTemplate: ComponentStory<typeof DatePicker> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [date, setDate] = useState(new Date("01/01/2021"));
 
   return (
@@ -38,15 +27,18 @@ const BasicTemplate: ComponentStory<typeof DatePicker> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
-
-export const Inline = BasicTemplate.bind({});
-Inline.args = {
-  inline: true,
+export const Basic: Story = {
+  render: BasicTemplate,
 };
 
-const MinMaxTemplate: ComponentStory<typeof DatePicker> = args => {
+export const Inline: Story = {
+  render: BasicTemplate,
+  args: {
+    inline: true,
+  },
+};
+
+const MinMaxTemplate = (args: Story["args"]) => {
   const [date, setDate] = useState(new Date("01/01/2021"));
 
   return (
@@ -63,10 +55,12 @@ const MinMaxTemplate: ComponentStory<typeof DatePicker> = args => {
   );
 };
 
-export const MinDateMaxDate = MinMaxTemplate.bind({});
+export const MinDateMaxDate: Story = {
+  render: MinMaxTemplate,
+};
 
-const CustomActivatorTemplate: ComponentStory<typeof DatePicker> = args => {
-  const [date, setDate] = useState(args.selected);
+const CustomActivatorTemplate = (args: Story["args"]) => {
+  const [date, setDate] = useState(args?.selected);
 
   return (
     <Content>
@@ -82,9 +76,11 @@ const CustomActivatorTemplate: ComponentStory<typeof DatePicker> = args => {
   );
 };
 
-export const CustomActivator = CustomActivatorTemplate.bind({});
+export const CustomActivator: Story = {
+  render: CustomActivatorTemplate,
+};
 
-const RestrictedDateRateTemplate: ComponentStory<typeof DatePicker> = args => {
+const RestrictedDateRateTemplate = (args: Story["args"]) => {
   const [date, setDate] = useState(new Date("01/02/2023"));
   const highlightDates = [
     new Date("01/01/2023"),
@@ -110,11 +106,11 @@ const RestrictedDateRateTemplate: ComponentStory<typeof DatePicker> = args => {
   );
 };
 
-export const RestrictedDateRange = RestrictedDateRateTemplate.bind({});
+export const RestrictedDateRange: Story = {
+  render: RestrictedDateRateTemplate,
+};
 
-RestrictedDateRange.args = {};
-
-const WeekStartTemplate: ComponentStory<typeof DatePicker> = () => {
+const WeekStartTemplate = () => {
   const [date, setDate] = useState(new Date());
 
   return (
@@ -144,10 +140,11 @@ const WeekStartTemplate: ComponentStory<typeof DatePicker> = () => {
   );
 };
 
-export const WeekStart = WeekStartTemplate.bind({});
-WeekStart.args = {};
+export const WeekStart: Story = {
+  render: WeekStartTemplate,
+};
 
-const OverflowHiddenTemplate: ComponentStory<typeof DatePicker> = args => {
+const OverflowHiddenTemplate = (args: Story["args"]) => {
   const [date, setDate] = useState(new Date("01/01/2021"));
 
   return (
@@ -164,5 +161,6 @@ const OverflowHiddenTemplate: ComponentStory<typeof DatePicker> = args => {
   );
 };
 
-export const InsideOverflowHidden = OverflowHiddenTemplate.bind({});
-InsideOverflowHidden.args = {};
+export const InsideOverflowHidden: Story = {
+  render: OverflowHiddenTemplate,
+};

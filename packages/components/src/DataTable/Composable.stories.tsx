@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import {
+import type {
   ColumnFiltersState,
   PaginationState,
   RowSelectionState,
   SortingState,
   VisibilityState,
+} from "@tanstack/react-table";
+import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -12,37 +14,31 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { DataTable, SortDirection } from "@jobber/components/DataTable";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ChipDismissible } from "@jobber/components/Chips";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
-import { Icon, IconNames } from "@jobber/components/Icon";
+import { Combobox, type ComboboxOption } from "@jobber/components/Combobox";
+import { Icon, type IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Typography } from "@jobber/components/Typography";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
 import { Modal } from "@jobber/components/Modal";
-import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { Content } from "@jobber/components/Content";
 import { Cluster } from "@jobber/components/Cluster";
 import { Glimmer } from "@jobber/components/Glimmer";
 import { Stack } from "@jobber/components/Stack";
 
-export default {
-  title: "Components/Lists and Tables/DataTable/Web/Composable",
+const meta = {
+  title: "Components/Lists and Tables/DataTable/Composable",
   component: DataTable,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
-  },
-} as ComponentMeta<typeof DataTable>;
+} satisfies Meta<typeof DataTable>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof DataTable>>>;
 
 const transactionData = [
   {
@@ -203,7 +199,7 @@ const exampleData = [
   },
 ];
 
-export const Basic = () => {
+const BasicTemplate = () => {
   return (
     <DataTable.Container>
       <DataTable.Table>
@@ -228,7 +224,7 @@ export const Basic = () => {
   );
 };
 
-export const TableActions = () => {
+const TableActionsTemplate = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   // Get unique roles for combobox options
@@ -408,7 +404,7 @@ const StorybookTableProvider = ({
   );
 };
 
-export const RowActions = () => {
+const RowActionsTemplate = () => {
   const [hoveredRow, setHoveredRow] = React.useState<string | null>(null);
 
   const table = useReactTable({
@@ -498,7 +494,7 @@ export const RowActions = () => {
   );
 };
 
-export const EndAlignedColumns = () => {
+const EndAlignedColumnsTemplate = () => {
   const table = useReactTable({
     data: paymentMethodsData,
     columns: [
@@ -553,7 +549,7 @@ export const EndAlignedColumns = () => {
   );
 };
 
-export const Sortable = () => {
+const SortableTemplate = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
@@ -642,7 +638,7 @@ export const Sortable = () => {
   );
 };
 
-export const Pagination = () => {
+const PaginationTemplate = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 4,
@@ -728,7 +724,7 @@ export const Pagination = () => {
   );
 };
 
-export const WithFooter = () => {
+const WithFooterTemplate = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 6,
@@ -917,7 +913,7 @@ const businessObjectsData = [
 
 type ObjectType = "all" | "invoice" | "job" | "quote" | "request";
 
-export const AdvancedFiltering = () => {
+const AdvancedFilteringTemplate = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   // Get unique properties for combobox options
@@ -1191,7 +1187,7 @@ export const AdvancedFiltering = () => {
   );
 };
 
-export const ColumnVisibility = () => {
+const ColumnVisibilityTemplate = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const table = useReactTable({
@@ -1263,7 +1259,7 @@ export const ColumnVisibility = () => {
   );
 };
 
-export const BulkSelection = () => {
+const BulkSelectionTemplate = () => {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const table = useReactTable({
@@ -1446,7 +1442,7 @@ export const BulkSelection = () => {
   );
 };
 
-export const GlobalSearch = () => {
+const GlobalSearchTemplate = () => {
   const [globalFilter, setGlobalFilter] = useState("");
 
   const table = useReactTable({
@@ -1527,7 +1523,7 @@ export const GlobalSearch = () => {
   );
 };
 
-export const MobileResponsive = () => {
+const MobileResponsiveTemplate = () => {
   const { mediumAndUp } = useBreakpoints();
   const isDesktop = mediumAndUp;
   const isMobile = !isDesktop;
@@ -1638,7 +1634,7 @@ export const MobileResponsive = () => {
   );
 };
 
-export const RowSelection = () => {
+const RowSelectionTemplate = () => {
   const [selectedRow, setSelectedRow] = useState<
     (typeof exampleData)[0] | null
   >(null);
@@ -1756,7 +1752,7 @@ export const RowSelection = () => {
   );
 };
 
-export const Loading = () => {
+const LoadingTemplate = () => {
   const isLoading = true;
 
   const table = useReactTable({
@@ -1872,7 +1868,7 @@ const columnWidthData = [
  * Columns without explicit widths share the remaining space equally.
  *
  */
-export const ColumnWidths = () => {
+const ColumnWidthsTemplate = () => {
   const { mediumAndUp } = useBreakpoints();
   const isDesktop = mediumAndUp;
   const isMobile = !isDesktop;
@@ -2074,7 +2070,7 @@ const invoiceData = [
   },
 ];
 
-export const FooterWithPagination = () => {
+const FooterWithPaginationTemplate = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 4,
@@ -2229,7 +2225,7 @@ export const FooterWithPagination = () => {
   );
 };
 
-export const FooterWithPageTotals = () => {
+const FooterWithPageTotalsTemplate = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 3,
@@ -2375,4 +2371,72 @@ export const FooterWithPageTotals = () => {
       </DataTable.Container>
     </StorybookTableProvider>
   );
+};
+
+export const Basic: Story = {
+  render: BasicTemplate,
+};
+
+export const TableActions: Story = {
+  render: TableActionsTemplate,
+};
+
+export const RowActions: Story = {
+  render: RowActionsTemplate,
+};
+
+export const EndAlignedColumns: Story = {
+  render: EndAlignedColumnsTemplate,
+};
+
+export const Sortable: Story = {
+  render: SortableTemplate,
+};
+
+export const Pagination: Story = {
+  render: PaginationTemplate,
+};
+
+export const WithFooter: Story = {
+  render: WithFooterTemplate,
+};
+
+export const AdvancedFiltering: Story = {
+  render: AdvancedFilteringTemplate,
+};
+
+export const ColumnVisibility: Story = {
+  render: ColumnVisibilityTemplate,
+};
+
+export const BulkSelection: Story = {
+  render: BulkSelectionTemplate,
+};
+
+export const GlobalSearch: Story = {
+  render: GlobalSearchTemplate,
+};
+
+export const MobileResponsive: Story = {
+  render: MobileResponsiveTemplate,
+};
+
+export const RowSelection: Story = {
+  render: RowSelectionTemplate,
+};
+
+export const Loading: Story = {
+  render: LoadingTemplate,
+};
+
+export const ColumnWidths: Story = {
+  render: ColumnWidthsTemplate,
+};
+
+export const FooterWithPagination: Story = {
+  render: FooterWithPaginationTemplate,
+};
+
+export const FooterWithPageTotals: Story = {
+  render: FooterWithPageTotalsTemplate,
 };
