@@ -1,11 +1,13 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
 import uniq from "lodash/uniq";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useDebounce } from "@jobber/hooks/useDebounce";
 import type {
   DataListEmptyStateProps,
+  DataListHeader,
   DataListItemType,
+  DataListObject,
   DataListSelectedType,
   DataListSorting,
 } from "@jobber/components/DataList";
@@ -22,12 +24,18 @@ import { Combobox, type ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
 import { isNormalClick } from "@jobber/components";
 
-const meta: Meta = {
-  title: "Components/Lists and Tables/DataList/Web",
+interface DataListStoryArgs {
+  data?: DataListObject[];
+  headers?: DataListHeader<DataListObject>;
+  title?: string;
+  headerVisibility?: { xs: boolean; md: boolean };
+  loadingState?: "initial" | "filtering" | "loadingMore" | "none";
+  itemActions?: () => React.ReactElement;
+}
+
+const meta = {
+  title: "Components/Lists and Tables/DataList",
   component: DataList,
-  parameters: {
-    viewMode: "story",
-  },
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -49,7 +57,7 @@ const meta: Meta = {
       );
     },
   ],
-};
+} satisfies Meta<typeof DataList>;
 
 export default meta;
 
@@ -176,13 +184,7 @@ const mockedData = [
   },
 ];
 
-const DataListStory = (args: {
-  data?: unknown;
-  title: string;
-  headerVisibility?: { xs: boolean; md: boolean };
-  loadingState?: "initial" | "filtering" | "loadingMore" | "none";
-  itemActions?: () => React.ReactElement;
-}) => {
+const DataListStory = (args: DataListStoryArgs) => {
   const items = mockedData;
   const totalCount = mockedData.length;
   const mappedData = items.map(node => ({
@@ -330,7 +332,7 @@ const DataListStory = (args: {
       ) : (
         <DataList.ItemActions onClick={handleActionClick}>
           <DataList.ItemAction
-            visible={item => item.species !== "Droid"}
+            visible={item => item?.species !== "Droid"}
             icon="edit"
             label="Edit"
             onClick={handleActionClick}
@@ -502,7 +504,9 @@ const DataListStory = (args: {
   }
 };
 
-export const Basic: StoryObj<typeof DataList> = {
+type Story = StoryObj<DataListStoryArgs>;
+
+export const Basic: Story = {
   render: () => (
     <DataListStory
       title="All birds"
@@ -511,253 +515,257 @@ export const Basic: StoryObj<typeof DataList> = {
   ),
 };
 
-export const ClearAllFilters: StoryFn<typeof DataList> = args => {
-  interface SelectedFilters {
-    home: ComboboxOption[];
-    eyeColor: ComboboxOption[];
-  }
+export const ClearAllFilters: Story = {
+  render: args => {
+    interface SelectedFilters {
+      home: ComboboxOption[];
+      eyeColor: ComboboxOption[];
+    }
 
-  interface Filter {
-    key: keyof SelectedFilters;
-    label: string;
-    options: string[];
-    isSelected: boolean;
-    selectedFilters: ComboboxOption[];
-  }
+    interface Filter {
+      key: keyof SelectedFilters;
+      label: string;
+      options: string[];
+      isSelected: boolean;
+      selectedFilters: ComboboxOption[];
+    }
 
-  type Entries<T> = {
-    [K in keyof T]: [K, T[K]];
-  }[keyof T][];
+    type Entries<T> = {
+      [K in keyof T]: [K, T[K]];
+    }[keyof T][];
 
-  const selectedFiltersInitialState: SelectedFilters = {
-    home: [],
-    eyeColor: [],
-  };
+    const selectedFiltersInitialState: SelectedFilters = {
+      home: [],
+      eyeColor: [],
+    };
 
-  const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
-    selectedFiltersInitialState,
-  );
+    const [selectedFilters, setSelectedFilters] = useState<SelectedFilters>(
+      selectedFiltersInitialState,
+    );
 
-  const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState("");
 
-  const debouncedRequest = useDebounce((search: string) => {
-    console.log("debounced search request", search);
-  }, 300);
+    const debouncedRequest = useDebounce((search: string) => {
+      console.log("debounced search request", search);
+    }, 300);
 
-  function removeAllFilters() {
-    setSelectedFilters(selectedFiltersInitialState);
-    setSearchValue("");
-  }
+    function removeAllFilters() {
+      setSelectedFilters(selectedFiltersInitialState);
+      setSearchValue("");
+    }
 
-  function handleRemoveIndividualFilterGroup(type: keyof SelectedFilters) {
-    setSelectedFilters({
-      ...selectedFilters,
-      [type]: [],
-    });
-  }
+    function handleRemoveIndividualFilterGroup(type: keyof SelectedFilters) {
+      setSelectedFilters({
+        ...selectedFilters,
+        [type]: [],
+      });
+    }
 
-  function handleSelectFilters(
-    type: keyof SelectedFilters,
-    filters: ComboboxOption[],
-  ) {
-    setSelectedFilters({
-      ...selectedFilters,
-      [type]: filters,
-    });
-  }
+    function handleSelectFilters(
+      type: keyof SelectedFilters,
+      filters: ComboboxOption[],
+    ) {
+      setSelectedFilters({
+        ...selectedFilters,
+        [type]: filters,
+      });
+    }
 
-  const items = mockedData;
-  const totalCount = mockedData.length;
+    const items = mockedData;
+    const totalCount = mockedData.length;
 
-  const mappedData = items.map(node => ({
-    id: node.id,
-    label: node.label,
-    species: node.species,
-    home: node.home,
-    eyeColor: node.eyeColor,
-    tags: uniq(node.tags),
-    homePopulation: node.homePopulation,
-    lastActivity: node.lastActivity,
-  }));
+    const mappedData = items.map(node => ({
+      id: node.id,
+      label: node.label,
+      species: node.species,
+      home: node.home,
+      eyeColor: node.eyeColor,
+      tags: uniq(node.tags),
+      homePopulation: node.homePopulation,
+      lastActivity: node.lastActivity,
+    }));
 
-  const homeFilters = [...new Set(mappedData.map(({ home }) => home))];
-  const eyeColorFilters = [
-    ...new Set(mappedData.map(({ eyeColor }) => eyeColor)),
-  ];
+    const homeFilters = [...new Set(mappedData.map(({ home }) => home))];
+    const eyeColorFilters = [
+      ...new Set(mappedData.map(({ eyeColor }) => eyeColor)),
+    ];
 
-  const FILTERS_MAP: { [K in keyof SelectedFilters]: Filter } = {
-    home: {
-      key: "home",
-      label: "Home world",
-      options: homeFilters,
-      isSelected: selectedFilters.home.length > 0,
-      selectedFilters: selectedFilters.home,
-    },
-    eyeColor: {
-      key: "eyeColor",
-      label: "Eye color",
-      options: eyeColorFilters,
-      isSelected: selectedFilters.eyeColor.length > 0,
-      selectedFilters: selectedFilters.eyeColor,
-    },
-  };
+    const FILTERS_MAP: { [K in keyof SelectedFilters]: Filter } = {
+      home: {
+        key: "home",
+        label: "Home world",
+        options: homeFilters,
+        isSelected: selectedFilters.home.length > 0,
+        selectedFilters: selectedFilters.home,
+      },
+      eyeColor: {
+        key: "eyeColor",
+        label: "Eye color",
+        options: eyeColorFilters,
+        isSelected: selectedFilters.eyeColor.length > 0,
+        selectedFilters: selectedFilters.eyeColor,
+      },
+    };
+    const headers = args.headers ?? {
+      label: "Name",
+      home: "Home world",
+      tags: "Attributes",
+      eyeColor: "Eye color",
+      lastActivity: "Last activity",
+    };
 
-  return (
-    <DataList {...args} totalCount={totalCount} data={mappedData}>
-      <DataList.Filters>
-        <>
-          {(
-            Object.entries(selectedFilters) as Entries<typeof selectedFilters>
-          ).map(([key, value]) => (
-            <Combobox
-              key={key}
-              label={FILTERS_MAP[key].label}
-              selected={value}
-              onSelect={(filters: ComboboxOption[]) =>
-                handleSelectFilters(key as keyof SelectedFilters, filters)
-              }
-              multiSelect
-            >
-              <Combobox.Activator>
-                <Chip
-                  label={
-                    FILTERS_MAP[key].isSelected
-                      ? FILTERS_MAP[key].selectedFilters
-                          .map(({ label }) => label)
-                          .join(", ")
-                      : ""
-                  }
-                  heading={FILTERS_MAP[key].label}
-                  variation={FILTERS_MAP[key].isSelected ? "base" : "subtle"}
-                >
-                  <Chip.Suffix
-                    {...(FILTERS_MAP[key].isSelected
-                      ? {
-                          onClick: () =>
-                            handleRemoveIndividualFilterGroup(
-                              key as keyof SelectedFilters,
-                            ),
-                        }
-                      : {})}
+    return (
+      <DataList
+        title={args.title}
+        headerVisibility={args.headerVisibility}
+        headers={headers}
+        totalCount={totalCount}
+        data={mappedData}
+      >
+        <DataList.Filters>
+          <>
+            {(
+              Object.entries(selectedFilters) as Entries<typeof selectedFilters>
+            ).map(([key, value]) => (
+              <Combobox
+                key={key}
+                label={FILTERS_MAP[key].label}
+                selected={value}
+                onSelect={(filters: ComboboxOption[]) =>
+                  handleSelectFilters(key as keyof SelectedFilters, filters)
+                }
+                multiSelect
+              >
+                <Combobox.Activator>
+                  <Chip
+                    label={
+                      FILTERS_MAP[key].isSelected
+                        ? FILTERS_MAP[key].selectedFilters
+                            .map(({ label }) => label)
+                            .join(", ")
+                        : ""
+                    }
+                    heading={FILTERS_MAP[key].label}
+                    variation={FILTERS_MAP[key].isSelected ? "base" : "subtle"}
                   >
-                    <Icon
-                      name={FILTERS_MAP[key].isSelected ? "cross" : "add"}
-                      size="small"
-                    />
-                  </Chip.Suffix>
-                </Chip>
-              </Combobox.Activator>
+                    <Chip.Suffix
+                      {...(FILTERS_MAP[key].isSelected
+                        ? {
+                            onClick: () =>
+                              handleRemoveIndividualFilterGroup(
+                                key as keyof SelectedFilters,
+                              ),
+                          }
+                        : {})}
+                    >
+                      <Icon
+                        name={FILTERS_MAP[key].isSelected ? "cross" : "add"}
+                        size="small"
+                      />
+                    </Chip.Suffix>
+                  </Chip>
+                </Combobox.Activator>
 
-              {FILTERS_MAP[key].options.map((option: string) => (
-                <Combobox.Option key={option} id={option} label={option} />
-              ))}
-            </Combobox>
-          ))}
-        </>
+                {FILTERS_MAP[key].options.map((option: string) => (
+                  <Combobox.Option key={option} id={option} label={option} />
+                ))}
+              </Combobox>
+            ))}
+          </>
 
-        <Button
-          label="Clear filters"
-          type="tertiary"
-          variation="subtle"
-          onClick={removeAllFilters}
+          <Button
+            label="Clear filters"
+            type="tertiary"
+            variation="subtle"
+            onClick={removeAllFilters}
+          />
+        </DataList.Filters>
+
+        <DataList.Search
+          value={searchValue}
+          onSearch={search => {
+            setSearchValue(search);
+            debouncedRequest(search);
+          }}
+          placeholder="Search data..."
         />
-      </DataList.Filters>
-
-      <DataList.Search
-        value={searchValue}
-        onSearch={search => {
-          setSearchValue(search);
-          debouncedRequest(search);
-        }}
-        placeholder="Search data..."
-      />
-      <DataList.Layout size="md">
-        {item => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
-              <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-              </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
+        <DataList.Layout size="md">
+          {item => (
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 5 }}>
+                <Grid alignItems="center">
+                  <Grid.Cell size={{ xs: 6 }}>
+                    {item.label}
+                    {item.species}
+                  </Grid.Cell>
+                  <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+                </Grid>
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+              <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+              <Grid.Cell size={{ xs: 2 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    textAlign: "right",
+                  }}
+                >
+                  {item.lastActivity}
+                </div>
+              </Grid.Cell>
+            </Grid>
+          )}
+        </DataList.Layout>
+        <DataList.Layout size="xs">
+          {item => (
+            <Content spacing="small">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
+                  display: "grid",
+                  gridTemplateColumns: item.species
+                    ? "max-content auto max-content"
+                    : "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
+                }}
+              >
+                {item.label}
+                {item.species}
+                {item.eyeColor}
+              </div>
+              {item.tags}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
                 }}
               >
                 {item.lastActivity}
+                <DataList.LayoutActions />
               </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
-      <DataList.Layout size="xs">
-        {item => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.eyeColor}
-            </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
-    </DataList>
-  );
-};
-
-ClearAllFilters.args = {
-  title: "All birds",
-  headerVisibility: { xs: false, md: true },
-  headers: {
-    label: "Name",
-    home: "Home world",
-    tags: "Attributes",
-    eyeColor: "Eye color",
-    lastActivity: "Last activity",
+            </Content>
+          )}
+        </DataList.Layout>
+      </DataList>
+    );
   },
-};
-ClearAllFilters.parameters = {
-  previewTabs: {
-    code: {
-      hidden: false,
-      extraImports: {
-        lodash: ["uniq"],
-      },
+  args: {
+    title: "All birds",
+    headerVisibility: { xs: false, md: true },
+    headers: {
+      label: "Name",
+      home: "Home world",
+      tags: "Attributes",
+      eyeColor: "Eye color",
+      lastActivity: "Last activity",
     },
   },
 };
 
-export const EmptyState: StoryObj<typeof DataList> = {
+export const EmptyState: Story = {
   render: () => (
     <DataListStory
       data={[]}
@@ -767,7 +775,7 @@ export const EmptyState: StoryObj<typeof DataList> = {
   ),
 };
 
-export const CustomItemNavigation: StoryObj<typeof DataList> = {
+export const CustomItemNavigation: Story = {
   render: () => (
     <DataListStory
       title="All birds"
@@ -781,119 +789,127 @@ export const CustomItemNavigation: StoryObj<typeof DataList> = {
               alert("✅ Intercepted a normal left click for custom navigation");
             }
           }}
-          url="/?path=/story/components-lists-and-tables-datalist-web--custom-item-navigation"
+          url="/?path=/story/components-lists-and-tables-datalist--custom-item-navigation"
         />
       )}
     />
   ),
 };
 
-export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
-  return (
-    <DataList {...args} totalCount={args.data?.length}>
-      <DataList.Layout size="md">
-        {item => (
-          <Grid alignItems="center">
-            <Grid.Cell size={{ xs: 5 }}>
-              <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 6 }}>
-                  {item.label}
-                  {item.species}
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
-              </Grid>
-            </Grid.Cell>
-            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
-            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>
+export const CustomRenderEmptyState: Story = {
+  render: args => {
+    const headers = args.headers ?? {
+      label: "Name",
+      home: "Home world",
+      tags: "Attributes",
+      eyeColor: "Eye color",
+      lastActivity: "Last activity",
+    };
+    const data = args.data ?? [];
+
+    return (
+      <DataList
+        title={args.title}
+        headerVisibility={args.headerVisibility}
+        headers={headers}
+        totalCount={data.length}
+        data={data}
+      >
+        <DataList.Layout size="md">
+          {item => (
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 5 }}>
+                <Grid alignItems="center">
+                  <Grid.Cell size={{ xs: 6 }}>
+                    {item.label}
+                    {item.species}
+                  </Grid.Cell>
+                  <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+                </Grid>
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+              <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+              <Grid.Cell size={{ xs: 2 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    textAlign: "right",
+                  }}
+                >
+                  {item.lastActivity}
+                </div>
+              </Grid.Cell>
+            </Grid>
+          )}
+        </DataList.Layout>
+        <DataList.Layout size="xs">
+          {item => (
+            <Content spacing="small">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  textAlign: "right",
+                  display: "grid",
+                  gridTemplateColumns: item.species
+                    ? "max-content auto max-content"
+                    : "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
+                }}
+              >
+                {item.label}
+                {item.species}
+                {item.eyeColor}
+              </div>
+              {item.tags}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "auto max-content",
+                  gap: 8,
+                  alignItems: "center",
                 }}
               >
                 {item.lastActivity}
+                <DataList.LayoutActions />
               </div>
-            </Grid.Cell>
-          </Grid>
-        )}
-      </DataList.Layout>
-      <DataList.Layout size="xs">
-        {item => (
-          <Content spacing="small">
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: item.species
-                  ? "max-content auto max-content"
-                  : "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.label}
-              {item.species}
-              {item.eyeColor}
+            </Content>
+          )}
+        </DataList.Layout>
+        <DataList.EmptyState
+          type="empty"
+          message="Bird list is looking empty"
+          customRender={({
+            message,
+          }: Omit<DataListEmptyStateProps, "customRender">) => (
+            <div>
+              <h3>{message}</h3>
+              <Flex template={["grow", "shrink"]} direction="column">
+                <Button
+                  label="Create a new bird"
+                  onClick={() => alert("Create")}
+                />
+                <Button
+                  label="Clear filters"
+                  type="secondary"
+                  onClick={() => alert("Clear filters")}
+                />
+              </Flex>
             </div>
-            {item.tags}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto max-content",
-                gap: 8,
-                alignItems: "center",
-              }}
-            >
-              {item.lastActivity}
-              <DataList.LayoutActions />
-            </div>
-          </Content>
-        )}
-      </DataList.Layout>
-      <DataList.EmptyState
-        type="empty"
-        message="Bird list is looking empty"
-        customRender={({
-          message,
-        }: Omit<DataListEmptyStateProps, "customRender">) => (
-          <div>
-            <h3>{message}</h3>
-            <Flex template={["grow", "shrink"]} direction="column">
-              <Button
-                label="Create a new bird"
-                onClick={() => alert("Create")}
-              />
-              <Button
-                label="Clear filters"
-                type="secondary"
-                onClick={() => alert("Clear filters")}
-              />
-            </Flex>
-          </div>
-        )}
-      />
-    </DataList>
-  );
-};
-
-CustomRenderEmptyState.args = {
-  title: "All birds",
-  headerVisibility: { xs: false, md: true },
-  headers: {
-    label: "Name",
-    home: "Home world",
-    tags: "Attributes",
-    eyeColor: "Eye color",
-    lastActivity: "Last activity",
+          )}
+        />
+      </DataList>
+    );
   },
-  data: [],
-};
-
-CustomRenderEmptyState.parameters = {
-  previewTabs: {
-    code: {
-      hidden: false,
+  args: {
+    title: "All birds",
+    headerVisibility: { xs: false, md: true },
+    headers: {
+      label: "Name",
+      home: "Home world",
+      tags: "Attributes",
+      eyeColor: "Eye color",
+      lastActivity: "Last activity",
     },
+    data: [],
   },
 };
