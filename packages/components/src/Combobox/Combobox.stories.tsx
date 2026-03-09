@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type {
   ComboboxCustomActivatorProps,
   ComboboxOption,
@@ -21,20 +21,14 @@ import { Box } from "@jobber/components/Box";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { useFakeQuery } from "./storyUtils";
 
-export default {
-  title: "Components/Selections/Combobox/Web",
+const meta = {
+  title: "Components/Selections/Combobox",
   component: Combobox,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-  decorators: [
-    // Workaround Storybook's wrapping flex parent that make everything full width
-    story => <div>{story()}</div>,
-  ],
-} as ComponentMeta<typeof Combobox>;
+} satisfies Meta<typeof Combobox>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Combobox>>>;
 
-const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
+const ComboboxClearSelection = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([
     {
       id: "1",
@@ -91,7 +85,7 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
+const ComboboxCustomActivator = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
@@ -227,9 +221,15 @@ const ComboboxCustomActivator: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
+const ComboboxEmptyState = (args: Story["args"]) => {
   return (
-    <Combobox {...args} label="Teammates" subjectNoun="teammates" selected={[]}>
+    <Combobox
+      {...args}
+      label="Teammates"
+      subjectNoun="teammates"
+      selected={[]}
+      onSelect={() => undefined}
+    >
       <Combobox.Action
         label="Add Teammate"
         onClick={() => {
@@ -240,7 +240,7 @@ const ComboboxEmptyState: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxPrefixOptions: ComponentStory<typeof Combobox> = args => {
+const ComboboxPrefixOptions = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
@@ -292,7 +292,7 @@ const ComboboxPrefixOptions: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
+const ComboboxMultiSelection = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
@@ -336,7 +336,7 @@ const ComboboxMultiSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
+const ComboboxSingleSelection = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
@@ -368,7 +368,7 @@ const ComboboxSingleSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const DynamicButton: ComponentStory<typeof Combobox> = args => {
+const DynamicButton = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
 
   return (
@@ -394,7 +394,7 @@ const DynamicButton: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxCustomSearch: ComponentStory<typeof Combobox> = args => {
+const ComboboxCustomSearch = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const { data, loading } = useFakeQuery(searchTerm);
@@ -451,7 +451,7 @@ const infiniteScrollComboboxOptions = {
   ],
 };
 
-const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
+const ComboboxInfiniteScroll = (args: Story["args"]) => {
   const [page, setPage] = useState<number>(1);
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   const [options, setOptions] = useState<ComboboxOption[]>(
@@ -488,7 +488,7 @@ const ComboboxInfiniteScroll: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
+const ComboboxKeepOpenOnClick = (args: Story["args"]) => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   const [chips, setChips] = useState<string[]>([]);
 
@@ -528,7 +528,7 @@ const ComboboxKeepOpenOnClick: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
+const ComboboxCustomRenderOptions = (args: Story["args"]) => {
   const [selectedFellows, setSelectedFellows] = useState<ComboboxOption[]>([]);
   const [selectedTeamMembers, setSelectedTeamMembers] = useState<
     ComboboxOption[]
@@ -945,59 +945,59 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const CustomRenderOptions = ComboboxCustomRenderOptions.bind({});
-CustomRenderOptions.args = {
-  multiSelect: true,
-};
-
-export const KeepOpenOnClick = ComboboxKeepOpenOnClick.bind({});
-KeepOpenOnClick.args = {};
-
-export const ClearSelection = ComboboxClearSelection.bind({});
-ClearSelection.args = {};
-
-export const CustomActivator = ComboboxCustomActivator.bind({});
-CustomActivator.args = {};
-
-export const EmptyState = ComboboxEmptyState.bind({});
-EmptyState.args = {};
-
-export const PrefixOptions = ComboboxPrefixOptions.bind({});
-PrefixOptions.args = {};
-
-export const MultiSelect = ComboboxMultiSelection.bind({});
-MultiSelect.args = {};
-
-export const SingleSelect = ComboboxSingleSelection.bind({});
-SingleSelect.args = {};
-
-export const DynamicAction = DynamicButton.bind({});
-DynamicAction.args = {};
-
-export const CustomSearch = ComboboxCustomSearch.bind({});
-CustomSearch.args = {};
-
-export const InfiniteScroll = ComboboxInfiniteScroll.bind({});
-InfiniteScroll.args = {};
-
-InfiniteScroll.parameters = {
-  previewTabs: {
-    code: {
-      hidden: true,
-    },
+export const CustomRenderOptions: Story = {
+  render: ComboboxCustomRenderOptions,
+  args: {
+    multiSelect: true,
   },
 };
 
-CustomSearch.parameters = {
-  previewTabs: {
-    code: {
-      hidden: true,
-      extraImports: {
-        "./useFakeQuery": ["useFakeQuery"],
-      },
-      files: {
-        "/useFakeQuery.ts": require("./storyUtils").default,
-      },
-    },
-  },
+export const KeepOpenOnClick: Story = {
+  render: ComboboxKeepOpenOnClick,
+  args: {},
+};
+
+export const ClearSelection: Story = {
+  render: ComboboxClearSelection,
+  args: {},
+};
+
+export const CustomActivator: Story = {
+  render: ComboboxCustomActivator,
+  args: {},
+};
+
+export const EmptyState: Story = {
+  render: ComboboxEmptyState,
+  args: {},
+};
+
+export const PrefixOptions: Story = {
+  render: ComboboxPrefixOptions,
+  args: {},
+};
+
+export const MultiSelect: Story = {
+  render: ComboboxMultiSelection,
+  args: {},
+};
+
+export const SingleSelect: Story = {
+  render: ComboboxSingleSelection,
+  args: {},
+};
+
+export const DynamicAction: Story = {
+  render: DynamicButton,
+  args: {},
+};
+
+export const CustomSearch: Story = {
+  render: ComboboxCustomSearch,
+  args: {},
+};
+
+export const InfiniteScroll: Story = {
+  render: ComboboxInfiniteScroll,
+  args: {},
 };
