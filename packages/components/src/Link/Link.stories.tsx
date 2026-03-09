@@ -1,22 +1,26 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Link } from "@jobber/components/Link";
 
-export default {
-  title: "Components/Text and Typography/Link/Web",
+const meta = {
+  title: "Components/Text and Typography/Link",
   component: Link,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Link>;
+} satisfies Meta<typeof Link>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof Link>, "url" | "external">
+>;
 
-const BasicTemplate: ComponentStory<typeof Link> = args => (
-  <Link {...args}>What is a Link anyway?</Link>
+const BasicTemplate = (args: Story["args"]) => (
+  <Link url={args?.url ?? ""} external={args?.external}>
+    What is a Link anyway?
+  </Link>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  url: "https://en.wikipedia.org/wiki/Hyperlink",
-  external: true,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    url: "https://en.wikipedia.org/wiki/Hyperlink",
+    external: true,
+  },
 };

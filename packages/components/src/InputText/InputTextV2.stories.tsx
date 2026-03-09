@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { fn } from "storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputText } from "@jobber/components/InputText";
 
 const meta = {
-  title: "Components/Forms and Inputs/InputText/Web (v2)",
+  title: "Components/Forms and Inputs/InputText/V2",
   component: InputText,
   args: {
     version: 2,

@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputValidation } from "@jobber/components/InputValidation";
 import { InputText } from "@jobber/components/InputText";
 import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 
-export default {
-  title: "Components/Forms and Inputs/InputValidation/Web",
-  components: InputValidation,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof InputValidation>;
+const meta = {
+  title: "Components/Forms and Inputs/InputValidation",
+  component: InputValidation,
+} satisfies Meta<typeof InputValidation>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof InputValidation>, "message">
+>;
 
-const BasicTemplate: ComponentStory<typeof InputValidation> = args => {
-  const [validationMessages, setValidationMessages] = useState(args.message);
+const BasicTemplate = (args: Story["args"]) => {
+  const [validationMessages, setValidationMessages] = useState(
+    args?.message ?? "",
+  );
   const [displayError, setDisplayError] = useState(true);
 
   return (
@@ -65,7 +67,9 @@ const BasicTemplate: ComponentStory<typeof InputValidation> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  message: "",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    message: "",
+  },
 };

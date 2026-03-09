@@ -1,53 +1,61 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Button, InputText } from "@jobber/components-native";
 
-export default {
-  title: "Components/Forms and Inputs/InputText/Mobile",
+const meta = {
+  title: "Components/Forms and Inputs/InputText",
   component: InputText,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof InputText>;
+} satisfies Meta<typeof InputText>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InputText>>>;
 
-const BasicTemplate: ComponentStory<typeof InputText> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return <InputText {...args} />;
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  name: "age",
-  placeholder: "Age in words",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    name: "age",
+    placeholder: "Age in words",
+  },
 };
 
-export const Invalid = BasicTemplate.bind({});
-Invalid.args = {
-  placeholder: "What is your favorite fruit?",
-  defaultValue: "Tomato",
-  invalid: "That's not a fruit",
+export const Invalid: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "What is your favorite fruit?",
+    defaultValue: "Tomato",
+    invalid: "That's not a fruit",
+  },
 };
 
-export const Toolbar = BasicTemplate.bind({});
-Toolbar.args = {
-  placeholder: "Write your message",
-  toolbar: (
-    <>
-      <Button
-        label="Rewrite"
-        size="small"
-        icon="sparkles"
-        variation="cancel"
-        fullWidth={false}
-      />
-      <Button
-        accessibilityLabel="Undo"
-        size="small"
-        icon="redo"
-        type="tertiary"
-        variation="cancel"
-        fullWidth={false}
-      />
-    </>
-  ),
+export const Toolbar: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Write your message",
+    toolbar: (
+      <>
+        <Button
+          label="Rewrite"
+          size="small"
+          icon="sparkles"
+          variation="cancel"
+          fullWidth={false}
+        />
+        <Button
+          accessibilityLabel="Undo"
+          size="small"
+          icon="redo"
+          type="tertiary"
+          variation="cancel"
+          fullWidth={false}
+        />
+      </>
+    ),
+  },
 };

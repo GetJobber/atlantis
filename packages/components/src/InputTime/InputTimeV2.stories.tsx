@@ -1,10 +1,10 @@
 import { fn } from "storybook/test";
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputTime } from "@jobber/components/InputTime";
 
 const meta = {
-  title: "Components/Forms and Inputs/InputTime/Web (v2)",
+  title: "Components/Forms and Inputs/InputTime/V2",
   component: InputTime,
   args: {
     version: 2,
