@@ -1,43 +1,48 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 
-export default {
-  title: "Components/Text and Typography/Text/Web",
+type TextStoryArgs = Pick<
+  React.ComponentProps<typeof Text>,
+  "children" | "size"
+>;
+
+const meta = {
+  title: "Components/Text and Typography/Text",
   component: Text,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
+} satisfies Meta<typeof Text>;
+
+export default meta;
+
+type Story = StoryObj<TextStoryArgs>;
+
+const BasicTemplate = (args: Story["args"]) => {
+  return <Text size={args?.size}>{args?.children}</Text>;
+};
+
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    children:
+      '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
   },
-} as ComponentMeta<typeof Text>;
-
-const BasicTemplate: ComponentStory<typeof Text> = args => {
-  return <Text {...args}>{args.children}</Text>;
-};
-export const Basic = BasicTemplate.bind({});
-
-Basic.args = {
-  children:
-    '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
 };
 
-const SizesTemplate: ComponentStory<typeof Text> = args => {
+const SizesTemplate = (args: Story["args"]) => {
   return (
     <Content>
-      <Text {...args}>{args.children}</Text>
+      <Text size={args?.size}>{args?.children}</Text>
       <Text size="small">Sometimes they are small</Text>
       <Text size="large">Other times they are large</Text>
     </Content>
   );
 };
 
-export const Sizes = SizesTemplate.bind({});
-Sizes.args = {
-  children: "Both Trains and Text come in all different kinds of sizes",
-  size: "base",
+export const Sizes: Story = {
+  render: SizesTemplate,
+  args: {
+    children: "Both Trains and Text come in all different kinds of sizes",
+    size: "base",
+  },
 };

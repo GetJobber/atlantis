@@ -1,25 +1,36 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Typography } from "@jobber/components-native";
 
-export default {
-  title: "Components/Text and Typography/Typography/Mobile",
+type TypographyStoryArgs = Pick<
+  React.ComponentProps<typeof Typography>,
+  "transform"
+>;
+
+const meta = {
+  title: "Components/Text and Typography/Typography",
   component: Typography,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Typography>;
+} satisfies Meta<typeof Typography>;
 
-const BasicTemplate: ComponentStory<typeof Typography> = args => (
-  <Typography {...args}>Some type here</Typography>
+export default meta;
+
+type Story = StoryObj<TypographyStoryArgs>;
+
+const BasicTemplate = (args: Story["args"]) => (
+  <Typography transform={args?.transform}>Some type here</Typography>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-export const Transform = BasicTemplate.bind({});
-Transform.args = {
-  transform: "uppercase",
+export const Transform: Story = {
+  render: BasicTemplate,
+  args: {
+    transform: "uppercase",
+  },
 };

@@ -1,28 +1,19 @@
-import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 
-export default {
-  title: "Components/Status and Feedback/StatusLabel/Web",
+const meta = {
+  title: "Components/Status and Feedback/StatusLabel",
   component: StatusLabel,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
+} satisfies Meta<typeof StatusLabel>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {
+    label: "Success",
+    alignment: "start",
+    status: "success",
   },
-} as ComponentMeta<typeof StatusLabel>;
-
-const BasicTemplate: ComponentStory<typeof StatusLabel> = args => {
-  return <StatusLabel {...args} />;
-};
-
-export const Basic = BasicTemplate.bind({});
-
-Basic.args = {
-  label: "Success",
-  alignment: "start",
-  status: "success",
 };

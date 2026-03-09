@@ -1,28 +1,22 @@
-import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { StatusLabel } from "@jobber/components-native";
 
-export default {
-  title: "Components/Status and Feedback/StatusLabel/Mobile",
+const meta = {
+  title: "Components/Status and Feedback/StatusLabel",
   component: StatusLabel,
   parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof StatusLabel>;
+} satisfies Meta<typeof StatusLabel>;
 
-const BasicTemplate: ComponentStory<typeof StatusLabel> = args => {
-  return <StatusLabel {...args} />;
-};
+export default meta;
 
-export const Basic = BasicTemplate.bind({});
+type Story = StoryObj<typeof meta>;
 
-Basic.args = {
-  text: "Success",
-  alignment: "start",
+export const Basic: Story = {
+  args: {
+    text: "Success",
+    alignment: "start",
+  },
 };

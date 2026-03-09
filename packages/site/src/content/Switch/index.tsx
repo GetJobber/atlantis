@@ -24,7 +24,11 @@ export default {
     },
     {
       label: "Mobile Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-switch--docs"),
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-switch--basic",
+        "mobile",
+      ),
     },
   ],
 } as const satisfies ContentExport;

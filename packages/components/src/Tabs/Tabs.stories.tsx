@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Typography } from "@jobber/components/Typography";
@@ -9,26 +9,24 @@ import { Flex } from "@jobber/components/Flex";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 
-export default {
-  title: "Components/Navigation/Tabs/Web",
+interface TabsStoryArgs {
+  defaultTab?: React.ComponentProps<typeof Tabs>["defaultTab"];
+  label?: React.ComponentProps<typeof Tab>["label"];
+}
+
+const meta = {
+  title: "Components/Navigation/Tabs",
   component: Tabs,
   subcomponents: { Tab },
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/Tabs": ["Tabs", "Tab"],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Tabs>;
+} satisfies Meta<typeof Tabs>;
 
-const BasicTemplate: ComponentStory<typeof Tab> = args => (
+export default meta;
+
+type Story = StoryObj<TabsStoryArgs>;
+
+const BasicTemplate = (args: Story["args"]) => (
   <Tabs>
-    <Tab {...args}>
+    <Tab label={args?.label ?? "Eggs"}>
       🍳 Some eggs are laid by female animals of many different species,
       including birds, reptiles, amphibians, mammals, and fish, and have been
       eaten by humans for thousands of years.
@@ -46,8 +44,8 @@ const BasicTemplate: ComponentStory<typeof Tab> = args => (
   </Tabs>
 );
 
-const WithDefaultTabTemplate: ComponentStory<typeof Tabs> = args => (
-  <Tabs {...args}>
+const WithDefaultTabTemplate = (args: Story["args"]) => (
+  <Tabs defaultTab={args?.defaultTab}>
     <Tab label="Eggs">
       🍳 Some eggs are laid by female animals of many different species,
       including birds, reptiles, amphibians, mammals, and fish, and have been
@@ -66,8 +64,8 @@ const WithDefaultTabTemplate: ComponentStory<typeof Tabs> = args => (
   </Tabs>
 );
 
-const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
-  const [tab, setTab] = useState(args.defaultTab ?? 0);
+const WithTabChangeCallbackTemplate = (args: Story["args"]) => {
+  const [tab, setTab] = useState(args?.defaultTab ?? 0);
 
   return (
     <div>
@@ -93,7 +91,7 @@ const WithTabChangeCallbackTemplate: ComponentStory<typeof Tabs> = args => {
   );
 };
 
-const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = () => {
+const WithCustomReactNodeTemplate = () => {
   return (
     <Tabs>
       <Tab
@@ -142,13 +140,13 @@ const WithCustomReactNodeTemplate: ComponentStory<typeof Tabs> = () => {
   );
 };
 
-const ControlledTemplate: ComponentStory<typeof Tabs> = args => {
+const ControlledTemplate = () => {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
     <div>
       <p>Active tab index: {activeTab}</p>
-      <Tabs {...args} activeTab={activeTab} onTabChange={setActiveTab}>
+      <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
         <Tab label="Eggs">
           🍳 Some eggs are laid by female animals of many different species,
           including birds, reptiles, amphibians, mammals, and fish, and have
@@ -169,7 +167,7 @@ const ControlledTemplate: ComponentStory<typeof Tabs> = args => {
   );
 };
 
-const DynamicTabsTemplate: ComponentStory<typeof Tab> = args => {
+const DynamicTabsTemplate = (args: Story["args"]) => {
   const [showCheese, setShowCheese] = useState(false);
 
   const toggleCheese = () => {
@@ -180,7 +178,7 @@ const DynamicTabsTemplate: ComponentStory<typeof Tab> = args => {
     <Content>
       <Button onClick={toggleCheese}>Toggle Cheese Tab</Button>
       <Tabs>
-        <Tab {...args}>
+        <Tab label={args?.label ?? "Eggs"}>
           🍳 Some eggs are laid by female animals of many different species,
           including birds, reptiles, amphibians, mammals, and fish, and have
           been eaten by humans for thousands of years.
@@ -202,25 +200,38 @@ const DynamicTabsTemplate: ComponentStory<typeof Tab> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-export const WithDefaultTab = WithDefaultTabTemplate.bind({});
-export const WithTabChangeCallback = WithTabChangeCallbackTemplate.bind({});
-export const WithCustomReactNode = WithCustomReactNodeTemplate.bind({});
-export const Controlled = ControlledTemplate.bind({});
-export const DynamicTabs = DynamicTabsTemplate.bind({});
-
-Basic.args = {
-  label: "Eggs",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    label: "Eggs",
+  },
 };
 
-WithDefaultTab.args = {
-  defaultTab: 1,
+export const WithDefaultTab: Story = {
+  render: WithDefaultTabTemplate,
+  args: {
+    defaultTab: 1,
+  },
 };
 
-WithTabChangeCallback.args = {
-  defaultTab: 1,
+export const WithTabChangeCallback: Story = {
+  render: WithTabChangeCallbackTemplate,
+  args: {
+    defaultTab: 1,
+  },
 };
 
-DynamicTabs.args = {
-  label: "Eggs",
+export const WithCustomReactNode: Story = {
+  render: WithCustomReactNodeTemplate,
+};
+
+export const Controlled: Story = {
+  render: ControlledTemplate,
+};
+
+export const DynamicTabs: Story = {
+  render: DynamicTabsTemplate,
+  args: {
+    label: "Eggs",
+  },
 };

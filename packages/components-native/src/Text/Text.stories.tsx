@@ -1,67 +1,86 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Text } from "@jobber/components-native";
 
-export default {
-  title: "Components/Text and Typography/Text/Mobile",
+type TextStoryArgs = Pick<
+  React.ComponentProps<typeof Text>,
+  "children" | "level" | "reverseTheme"
+>;
+
+const meta = {
+  title: "Components/Text and Typography/Text",
   component: Text,
   parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Text>;
+} satisfies Meta<typeof Text>;
 
-const BasicTemplate: ComponentStory<typeof Text> = args => {
-  return <Text {...args}>{args.children}</Text>;
-};
-export const Basic = BasicTemplate.bind({});
+export default meta;
 
-Basic.args = {
-  children:
-    '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
-};
+type Story = StoryObj<TextStoryArgs>;
 
-export const SupportingText = BasicTemplate.bind({});
-SupportingText.args = {
-  children:
-    "Supporting Text should be used to supplement additional, more important content",
-  level: "textSupporting",
+const BasicTemplate = (args: Story["args"]) => {
+  return (
+    <Text level={args?.level} reverseTheme={args?.reverseTheme}>
+      {args?.children}
+    </Text>
+  );
 };
 
-export const ReverseTheme = BasicTemplate.bind({});
-
-ReverseTheme.args = {
-  children: "Changes Text color for display on a dark background",
-  reverseTheme: true,
-};
-ReverseTheme.parameters = {
-  backgrounds: { default: "dark" },
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    children:
+      '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
+  },
 };
 
-export const NestedBold = () => (
-  <Text>
-    This is <Text emphasis="strong">bold</Text> inside a sentence.
-  </Text>
-);
+export const SupportingText: Story = {
+  render: BasicTemplate,
+  args: {
+    children:
+      "Supporting Text should be used to supplement additional, more important content",
+    level: "textSupporting",
+  },
+};
 
-export const NestedMixedStyles = () => (
-  <Text>
-    Start, <Text italic>italic segment</Text>, and a
-    <Text emphasis="strong"> bold segment</Text>.
-  </Text>
-);
+export const ReverseTheme: Story = {
+  render: BasicTemplate,
+  args: {
+    children: "Changes Text color for display on a dark background",
+    reverseTheme: true,
+  },
+  parameters: {
+    backgrounds: { default: "dark" },
+  },
+};
 
-export const MultiLevelNesting = () => (
-  <Text>
-    Level 1{" "}
+export const NestedBold: Story = {
+  render: () => (
     <Text>
-      contains <Text emphasis="strong">Level 2</Text>
-    </Text>{" "}
-    done.
-  </Text>
-);
+      This is <Text emphasis="strong">bold</Text> inside a sentence.
+    </Text>
+  ),
+};
+
+export const NestedMixedStyles: Story = {
+  render: () => (
+    <Text>
+      Start, <Text italic>italic segment</Text>, and a
+      <Text emphasis="strong"> bold segment</Text>.
+    </Text>
+  ),
+};
+
+export const MultiLevelNesting: Story = {
+  render: () => (
+    <Text>
+      Level 1{" "}
+      <Text>
+        contains <Text emphasis="strong">Level 2</Text>
+      </Text>{" "}
+      done.
+    </Text>
+  ),
+};

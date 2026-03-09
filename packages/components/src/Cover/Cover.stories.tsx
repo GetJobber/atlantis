@@ -11,10 +11,11 @@ const meta = {
   component: Cover,
 } satisfies Meta<typeof Cover>;
 export default meta;
-type Story = StoryObj<typeof meta>;
+type CoverStoryArgs = Pick<React.ComponentProps<typeof Cover>, "minHeight">;
+type Story = StoryObj<CoverStoryArgs>;
 
 const BasicTemplate = (args: Story["args"]) => (
-  <Cover {...args}>
+  <Cover minHeight={args?.minHeight}>
     <Cover.Center>
       <Box padding="base" background="surface--background">
         <Stack>
@@ -67,8 +68,14 @@ const TallCoverTemplate = () => (
 
 export const WithTopAndBottom: Story = {
   render: WithTopAndBottomTemplate,
+  args: {
+    minHeight: "50vh",
+  },
 };
 
 export const TallCover: Story = {
   render: TallCoverTemplate,
+  args: {
+    minHeight: "80vh",
+  },
 };

@@ -1,45 +1,45 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Button, Content, Switch } from "@jobber/components-native";
 
-export default {
-  title: "Components/Selections/Switch/Mobile",
+type SwitchStoryArgs = Pick<React.ComponentProps<typeof Switch>, "label">;
+
+const meta = {
+  title: "Components/Selections/Switch",
   component: Switch,
   parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Switch>;
+} satisfies Meta<typeof Switch>;
 
-const BasicTemplate: ComponentStory<typeof Switch> = args => {
-  return <Switch {...args} />;
+export default meta;
+
+type Story = StoryObj<SwitchStoryArgs>;
+
+export const Basic: Story = {
+  render: args => <Switch label={args?.label ?? "Toggle example"} />,
+  args: {
+    label: "Toggle example",
+  },
 };
 
-export const Basic = BasicTemplate.bind({});
+export const Controlled: Story = {
+  render: args => {
+    const [value, setValue] = useState(false);
 
-Basic.args = {
-  label: "Toggle example",
-};
-
-const ControlledTemplate: ComponentStory<typeof Switch> = args => {
-  const [value, setValue] = useState(false);
-
-  return (
-    <Content>
-      <Button onPress={() => setValue(!value)} label="Toggle Switch" />
-      <Switch {...args} value={value} onValueChange={setValue} />
-    </Content>
-  );
-};
-
-export const Controlled = ControlledTemplate.bind({});
-
-Controlled.args = {
-  label: "Controlled Toggle example",
+    return (
+      <Content>
+        <Button onPress={() => setValue(!value)} label="Toggle Switch" />
+        <Switch
+          label={args?.label ?? "Controlled Toggle example"}
+          value={value}
+          onValueChange={setValue}
+        />
+      </Content>
+    );
+  },
+  args: {
+    label: "Controlled Toggle example",
+  },
 };
