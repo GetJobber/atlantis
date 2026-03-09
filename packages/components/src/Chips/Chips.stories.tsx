@@ -1,28 +1,19 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content } from "@jobber/components/Content";
 import { Chip, Chips } from "@jobber/components/Chips";
 import { Text } from "@jobber/components/Text";
 import { useFakeOptionQuery } from "./utils/storyUtils";
 
-export default {
-  title: "Components/Selections/Chips/Web",
+const meta = {
+  title: "Components/Selections/Chips",
   component: Chips,
   subcomponents: { Chip },
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/Chips": ["Chips", "Chip"],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Chips>;
+} satisfies Meta<typeof Chips>;
+export default meta;
+type Story = StoryObj<typeof Chips>;
 
-const BasicTemplate: ComponentStory<typeof Chips> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [selected, setSelected] = useState<string>();
 
   return (
@@ -45,10 +36,12 @@ const BasicTemplate: ComponentStory<typeof Chips> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {},
+};
 
-const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
+const MultiSelectTemplate = (args: Story["args"]) => {
   const [selected, setSelected] = useState<string[]>([]);
 
   return (
@@ -71,10 +64,12 @@ const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
   );
 };
 
-export const MultiSelect = MultiSelectTemplate.bind({});
-MultiSelect.args = {};
+export const MultiSelect: Story = {
+  render: MultiSelectTemplate,
+  args: {},
+};
 
-const SelectionTemplate: ComponentStory<typeof Chips> = args => {
+const SelectionTemplate = (args: Story["args"]) => {
   const {
     selected,
     options,
@@ -103,21 +98,9 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
   );
 };
 
-export const Selection = SelectionTemplate.bind({});
-Selection.args = {
-  type: "dismissible",
-};
-
-Selection.parameters = {
-  previewTabs: {
-    code: {
-      hidden: true,
-      extraImports: {
-        "./useFakeOptionQuery": ["useFakeOptionQuery"],
-      },
-      files: {
-        "/useFakeOptionQuery.ts": require("./utils/storyUtils").default,
-      },
-    },
+export const Selection: Story = {
+  render: SelectionTemplate,
+  args: {
+    type: "dismissible",
   },
 };
