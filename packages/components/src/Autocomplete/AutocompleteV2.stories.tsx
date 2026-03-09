@@ -20,6 +20,7 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Flex } from "@jobber/components/Flex";
 import { Typography } from "@jobber/components/Typography";
 import { AutocompleteV2Docgen } from "./V2.docgen";
+import { Avatar } from "../Avatar";
 
 const meta = {
   title: "Components/Forms and Inputs/Autocomplete/V2",
@@ -107,6 +108,16 @@ const sectionedMenu = defineMenu<OptionLike>([
     type: "section",
     label: "Extras",
     options: simpleOptionsThirdSection,
+  },
+]);
+
+const sectionedWithHeaderFooterMenu = defineMenu<OptionLike>([
+  { type: "section", label: "Indoor", options: simpleOptions },
+  { type: "section", label: "Outdoor", options: simpleOptionsSecondSection },
+  {
+    type: "footer",
+    label: "Pinned footer",
+    onClick: () => console.log("Footer clicked"),
   },
 ]);
 
@@ -844,6 +855,171 @@ const TemplateFocusBehavior = () => {
       )}
     </Content>
   );
+};
+
+// eslint-disable-next-line max-statements
+const TemplateMultiple = () => {
+  const [value, setValue] = useState<OptionLike[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const [customRenderValue, setCustomRenderValue] = useState<OptionLike[]>([]);
+  const [customRenderInputValue, setCustomRenderInputValue] = useState("");
+
+  const [otherValue, setOtherValue] = useState<OptionLike[]>([]);
+  const [otherInputValue, setOtherInputValue] = useState("");
+
+  const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([
+    {
+      label: "Drain Cleaning",
+    },
+  ]);
+  const [headerFooterInputValue, setHeaderFooterInputValue] = useState("");
+
+  const [disabledValue, setDisabledValue] = useState<OptionLike[]>([
+    { label: "Drain Cleaning" },
+  ]);
+  const [disabledInputValue, setDisabledInputValue] = useState("");
+
+  const [allowFreeFormValue, setAllowFreeFormValue] = useState<OptionLike[]>(
+    [],
+  );
+  const [allowFreeFormInputValue, setAllowFreeFormInputValue] = useState("");
+  const [suffix, setSuffix] = useState<IconNames | undefined>("arrowDown");
+
+  return (
+    <Content>
+      <Heading level={4}>Multiple</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={value}
+        clearable="always"
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        multiple
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+      />
+
+      <Heading level={4}>With customRenderValue</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        clearable="always"
+        value={customRenderValue}
+        multiple
+        onChange={setCustomRenderValue}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        inputValue={customRenderInputValue}
+        onInputChange={setCustomRenderInputValue}
+        suffix={{
+          icon: suffix,
+        }}
+        onOpen={() => {
+          console.log("open callback called");
+          setSuffix("arrowUp");
+        }}
+        onClose={() => {
+          console.log("close callback called");
+          setSuffix("arrowDown");
+        }}
+        UNSAFE_styles={{
+          selection: {
+            paddingLeft: 0,
+            backgroundColor: "var(--color-background-surface)",
+            border: "1px solid var(--color-border)",
+          },
+        }}
+        customRenderValue={({ value: v, getOptionLabel }) => (
+          <>
+            <Avatar size="small" initials={getOptionLabel(v)} />
+            <span style={{ fontWeight: "bold" }}>{getOptionLabel(v)}</span>
+            <span>|</span>
+            <Icon name="truck" size="small" />
+            <Typography size="small">+15 min</Typography>
+          </>
+        )}
+      />
+
+      <Heading level={4}>Sectioned</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={otherValue}
+        onChange={setOtherValue}
+        multiple
+        inputValue={otherInputValue}
+        onInputChange={setOtherInputValue}
+        menu={sectionedMenu}
+      />
+
+      <Heading level={4}>Header and footer</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={headerFooterValue}
+        clearable="always"
+        onChange={setHeaderFooterValue}
+        multiple
+        inputValue={headerFooterInputValue}
+        onInputChange={setHeaderFooterInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+
+      <Heading level={4}>Disabled with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        disabled
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Readonly with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        readOnly
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Allow free form</Heading>
+      <Autocomplete
+        version={2}
+        menu={sectionedMenu}
+        multiple
+        allowFreeForm
+        createFreeFormValue={label => ({ label })}
+        inputValue={allowFreeFormInputValue}
+        onInputChange={setAllowFreeFormInputValue}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={allowFreeFormValue}
+        onChange={setAllowFreeFormValue}
+      />
+    </Content>
+  );
+};
+
+export const Multiple: Story = {
+  render: TemplateMultiple,
 };
 
 export const Flat: Story = {

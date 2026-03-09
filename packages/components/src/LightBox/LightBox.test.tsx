@@ -1,8 +1,8 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
-import { slideVariants } from "./LightBox";
+import { BUTTON_DEBOUNCE_DELAY, slideVariants } from "./LightBox.constants";
 import * as POM from "./LightBox.pom";
 
 const { setViewportWidth } = mockViewportWidth();
@@ -295,6 +295,192 @@ describe("LightBox", () => {
       expect(imagesWithAlt).toHaveLength(2);
 
       expect(screen.queryByText(destinationImageCaption)).toBeInTheDocument();
+    });
+  });
+
+  describe("composable components", () => {
+    const multiImages = [
+      {
+        title: "Image 1",
+        caption: "Caption 1",
+        alt: "image one",
+        url: "https://example.com/1.jpg",
+      },
+      {
+        title: "Image 2",
+        caption: "Caption 2",
+        alt: "image two",
+        url: "https://example.com/2.jpg",
+      },
+    ];
+
+    const singleImage = [multiImages[0]];
+
+    describe("LightBox.Provider + LightBox.Content", () => {
+      test("renders the lightbox when open", () => {
+        render(
+          <LightBox.Provider
+            open={true}
+            images={multiImages}
+            onRequestClose={jest.fn()}
+          >
+            <LightBox.Content />
+          </LightBox.Provider>,
+        );
+
+        expect(screen.getByText("Image 1")).toBeInTheDocument();
+        expect(screen.getByText("Caption 1")).toBeInTheDocument();
+        expect(POM.getThumbnailBar()).toBeInTheDocument();
+      });
+
+      test("renders nothing when closed", () => {
+        render(
+          <LightBox.Provider
+            open={false}
+            images={multiImages}
+            onRequestClose={jest.fn()}
+          >
+            <LightBox.Content />
+          </LightBox.Provider>,
+        );
+
+        expect(screen.queryByText("Image 1")).toBeNull();
+      });
+
+      test("calls onRequestClose with the last position when the close button is clicked", () => {
+        const onRequestClose = jest.fn();
+
+        render(
+          <LightBox.Provider
+            open={true}
+            images={multiImages}
+            onRequestClose={onRequestClose}
+          >
+            <LightBox.Content />
+          </LightBox.Provider>,
+        );
+
+        fireEvent.click(POM.getCloseButton());
+        expect(onRequestClose).toHaveBeenCalledWith({ lastPosition: 0 });
+      });
+    });
+
+    describe("selective sub-components", () => {
+      test("only renders the sub-components that are explicitly mounted", () => {
+        render(
+          <LightBox.Provider open={true} images={multiImages}>
+            <LightBox.Slides />
+            <LightBox.Navigation />
+          </LightBox.Provider>,
+        );
+
+        expect(screen.getByAltText("image one")).toBeInTheDocument();
+        expect(POM.getNextButton()).toBeInTheDocument();
+        expect(screen.queryByText("1/2")).toBeNull();
+        expect(screen.queryByText("Caption 1")).toBeNull();
+      });
+    });
+
+    describe("LightBox.Caption", () => {
+      test("renders the title and caption of the current image", () => {
+        render(
+          <LightBox.Provider open={true} images={multiImages}>
+            <LightBox.Caption />
+          </LightBox.Provider>,
+        );
+
+        expect(screen.getByText("Image 1")).toBeInTheDocument();
+        expect(screen.getByText("Caption 1")).toBeInTheDocument();
+      });
+
+      test("renders nothing when the current image has no title or caption", () => {
+        const { container } = render(
+          <LightBox.Provider
+            open={true}
+            images={[{ url: "https://example.com/1.jpg" }]}
+          >
+            <LightBox.Caption />
+          </LightBox.Provider>,
+        );
+
+        expect(container).toBeEmptyDOMElement();
+      });
+    });
+
+    describe("LightBox.Navigation", () => {
+      test("renders null when there is only one image", () => {
+        render(
+          <LightBox.Provider open={true} images={singleImage}>
+            <LightBox.Navigation />
+          </LightBox.Provider>,
+        );
+
+        expect(POM.getPreviousButton()).toBeNull();
+        expect(POM.getNextButton()).toBeNull();
+      });
+
+      test("applies custom classNames to the previous and next button wrappers", () => {
+        const { container } = render(
+          <LightBox.Provider open={true} images={multiImages}>
+            <LightBox.Navigation
+              prevButtonClassName="custom-prev"
+              nextButtonClassName="custom-next"
+            />
+          </LightBox.Provider>,
+        );
+
+        expect(container.querySelector(".custom-prev")).toBeInTheDocument();
+        expect(container.querySelector(".custom-next")).toBeInTheDocument();
+      });
+    });
+
+    describe("onImageChange", () => {
+      beforeEach(() => {
+        jest.useFakeTimers();
+      });
+
+      afterEach(() => {
+        jest.useRealTimers();
+      });
+
+      test("calls onImageChange when navigating to the next image", async () => {
+        const onImageChange = jest.fn();
+
+        render(
+          <LightBox.Provider
+            open={true}
+            images={multiImages}
+            onImageChange={onImageChange}
+          >
+            <LightBox.Navigation />
+          </LightBox.Provider>,
+        );
+
+        fireEvent.click(screen.getByLabelText("Next image"));
+
+        await act(async () => {
+          jest.advanceTimersByTime(BUTTON_DEBOUNCE_DELAY);
+        });
+
+        expect(onImageChange).toHaveBeenCalledWith(1);
+      });
+
+      test("calls onImageChange when a thumbnail is clicked", () => {
+        const onImageChange = jest.fn();
+
+        render(
+          <LightBox.Provider
+            open={true}
+            images={multiImages}
+            onImageChange={onImageChange}
+          >
+            <LightBox.Thumbnails />
+          </LightBox.Provider>,
+        );
+
+        fireEvent.click(POM.getThumbnailByAlt("image two"));
+        expect(onImageChange).toHaveBeenCalledWith(1);
+      });
     });
   });
 });

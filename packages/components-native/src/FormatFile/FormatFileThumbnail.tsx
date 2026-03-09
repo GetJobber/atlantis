@@ -42,6 +42,13 @@ export interface FormatFileThumbnailProps<T> {
    * A reference to the element in the rendered output.
    */
   readonly testID?: string;
+
+  /**
+   * @internal
+   * A function to be called when the media has loaded.
+   * Not to be used for Files
+   */
+  readonly onMediaLoadEnd?: () => void;
 }
 
 /**
@@ -62,6 +69,7 @@ export function FormatFileThumbnail<T extends File | FileUpload>({
   createThumbnail: createThumbnailProp,
   size,
   testID,
+  onMediaLoadEnd,
 }: FormatFileThumbnailProps<T>) {
   const formattedFile = useMemo(
     () => parseFile(file, showFileTypeIndicator),
@@ -98,6 +106,7 @@ export function FormatFileThumbnail<T extends File | FileUpload>({
           styleInGrid={true}
           showOverlay={showOverlay}
           skipContainerStyles={true}
+          onMediaLoadEnd={onMediaLoadEnd}
         />
       </View>
     </AtlantisFormatFileContext.Provider>

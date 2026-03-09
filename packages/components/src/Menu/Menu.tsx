@@ -540,10 +540,15 @@ function getDerivedAnimation(
 const MenuTriggerComposable = React.forwardRef<
   HTMLDivElement,
   MenuTriggerComposableProps
->(function MenuTriggerComposable({ ariaLabel, children }, ref) {
+>(function MenuTriggerComposable(
+  { ariaLabel, children, UNSAFE_style, UNSAFE_className },
+  ref,
+) {
+  const className = classnames(styles.triggerWrapper, UNSAFE_className);
+
   return (
     <AriaPressable aria-label={ariaLabel}>
-      <div role="button" className={styles.triggerWrapper} ref={ref}>
+      <div role="button" className={className} ref={ref} style={UNSAFE_style}>
         {children}
       </div>
     </AriaPressable>

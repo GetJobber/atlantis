@@ -28,6 +28,7 @@
 
 .container {
   height: 100%;
+  overflow: clip;
   background-color: var(--sideDrawer--background);
 }
 

@@ -98,6 +98,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "onMediaLoadEnd": {
+        "defaultValue": null,
+        "description": "*\n@internal A function to be called when the media has loaded.\nThis is only used in FormatFileThumbnail.",
+        "name": "onMediaLoadEnd",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
       }
     }
   },

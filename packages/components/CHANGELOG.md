@@ -3,6 +3,151 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.114.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.5...@jobber/components@6.114.6) (2026-03-06)
+
+
+### Reverts
+
+* **components:** Clearable Positioning Logic ([#2952](https://github.com/GetJobber/atlantis/issues/2952)) ([a820a86](https://github.com/GetJobber/atlantis/commit/a820a8601b9e3c485e27f7f2c0094bc2f7e5a526)), closes [#2925](https://github.com/GetJobber/atlantis/issues/2925)
+
+
+
+
+
+## [6.114.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.4...@jobber/components@6.114.5) (2026-03-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.114.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.3...@jobber/components@6.114.4) (2026-03-05)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.114.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.2...@jobber/components@6.114.3) (2026-03-05)
+
+
+### Bug Fixes
+
+* **components:** Fix autocomplete crashing on resize larger [JOB-151844] ([#2924](https://github.com/GetJobber/atlantis/issues/2924)) ([4cce232](https://github.com/GetJobber/atlantis/commit/4cce2324c37b69c3276f4dd046f4b49f1cd0c2c8))
+
+
+
+
+
+## [6.114.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.1...@jobber/components@6.114.2) (2026-03-05)
+
+
+### Bug Fixes
+
+* **components:** Fix DatePickers rendering inside Modals ([#2944](https://github.com/GetJobber/atlantis/issues/2944)) ([c616587](https://github.com/GetJobber/atlantis/commit/c61658723251de7bb7045efb76af1403739d7f79)), closes [#2912](https://github.com/GetJobber/atlantis/issues/2912)
+
+
+
+
+
+## [6.114.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.0...@jobber/components@6.114.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **components:** Revert "Fix DatePickers rendering inside Modals ([#2912](https://github.com/GetJobber/atlantis/issues/2912))" ([#2940](https://github.com/GetJobber/atlantis/issues/2940)) ([f975e2c](https://github.com/GetJobber/atlantis/commit/f975e2c941cf9e04a27dd05a30715e7af6171b64))
+
+
+
+
+
+# [6.114.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.113.1...@jobber/components@6.114.0) (2026-03-03)
+
+
+### Features
+
+* **components:** Make Atlantis LightBox composable [153332] ([#2929](https://github.com/GetJobber/atlantis/issues/2929)) ([d184425](https://github.com/GetJobber/atlantis/commit/d1844252f34ad40030ae40af6d2b83b990f26b5e))
+
+
+
+
+
+## [6.113.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.113.0...@jobber/components@6.113.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **components:** Remove doubled shadow on SideDrawer  ([#2933](https://github.com/GetJobber/atlantis/issues/2933)) ([4dda576](https://github.com/GetJobber/atlantis/commit/4dda5762cefdfbd13e90d84ea1243c0c5d3c04ca))
+
+
+
+
+
+# [6.113.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.2...@jobber/components@6.113.0) (2026-03-02)
+
+
+### Features
+
+* **components:** Autocomplete Multiselect ([#2921](https://github.com/GetJobber/atlantis/issues/2921)) ([8ad6fa6](https://github.com/GetJobber/atlantis/commit/8ad6fa6879714d3df74c7b89ce51489eeec8184a))
+
+
+
+
+
+## [6.112.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.1...@jobber/components@6.112.2) (2026-02-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.112.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.0...@jobber/components@6.112.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* **components:** Fix DatePickers rendering inside Modals ([#2912](https://github.com/GetJobber/atlantis/issues/2912)) ([b8dfc56](https://github.com/GetJobber/atlantis/commit/b8dfc566091297cf095629b90c3bb5b113b6ff72))
+
+
+
+
+
+# [6.112.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.7...@jobber/components@6.112.0) (2026-02-25)
+
+
+### Features
+
+* **components:** Add UNSAFE to Menu Trigger ([#2927](https://github.com/GetJobber/atlantis/issues/2927)) ([898a6de](https://github.com/GetJobber/atlantis/commit/898a6de50fe0fc015af9c7454aba7491552151c2))
+
+
+
+
+
+## [6.111.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.6...@jobber/components@6.111.7) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Adjust Clearable Positioning ([#2925](https://github.com/GetJobber/atlantis/issues/2925)) ([d137e67](https://github.com/GetJobber/atlantis/commit/d137e67cd622712677afb5f602aff726f4127abf))
+
+
+
+
+
+## [6.111.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.5...@jobber/components@6.111.6) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Update SegmentedControl visual styling and add hover state ([#2919](https://github.com/GetJobber/atlantis/issues/2919)) ([d57b082](https://github.com/GetJobber/atlantis/commit/d57b082b21241c05a77a5e65766c786a2609b82f))
+
+
+
+
+
 ## [6.111.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.4...@jobber/components@6.111.5) (2026-02-23)
 
 
