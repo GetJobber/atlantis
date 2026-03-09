@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Cluster } from "@jobber/components/Cluster";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
