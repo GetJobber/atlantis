@@ -1,0 +1,51 @@
+import React, { useState } from "react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+/* eslint-disable import/no-deprecated */
+import type { RecurrenceRule } from "@jobber/components/RecurringSelect";
+import {
+  DurationPeriod,
+  RecurringSelect,
+} from "@jobber/components/RecurringSelect";
+
+export default {
+  title: "Components/Deprecated/RecurringSelect/Web",
+  component: RecurringSelect,
+  parameters: {
+    viewMode: "story",
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/RecurringSelect": [
+            "DurationPeriod",
+            "RecurrenceRule",
+            "RecurringSelect",
+          ],
+        },
+      },
+    },
+  },
+  decorators: [
+    Story => (
+      <div style={{ maxWidth: 400 }}>
+        <Story />
+      </div>
+    ),
+  ],
+} as ComponentMeta<typeof RecurringSelect>;
+
+const BasicTemplate: ComponentStory<typeof RecurringSelect> = args => {
+  const [rule, setRule] = useState<RecurrenceRule>({
+    interval: 1,
+    type: DurationPeriod.DayOfMonth,
+    date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
+  });
+
+  return <RecurringSelect {...args} value={rule} onChange={setRule} />;
+};
+
+export const Basic = BasicTemplate.bind({});
+export const Disabled = BasicTemplate.bind({});
+Disabled.args = {
+  disabled: true,
+};
