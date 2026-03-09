@@ -12,9 +12,11 @@ export default {
   title: "ActivityIndicator",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-activityindicator--docs`,
+        "?path=/story/components-status-and-feedback-activityindicator--basic",
+        "mobile",
       ),
     },
   ],
