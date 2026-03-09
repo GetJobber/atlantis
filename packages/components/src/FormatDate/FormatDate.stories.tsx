@@ -1,25 +1,19 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FormatDate } from "@jobber/components/FormatDate";
 
-export default {
-  title: "Components/Utilities/FormatDate/Web",
+const meta = {
+  title: "Components/Utilities/FormatDate",
   component: FormatDate,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
+} satisfies Meta<typeof FormatDate>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+const BasicTemplate = (args: Story["args"]) => <FormatDate {...args} />;
+
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    date: new Date(),
   },
-} as ComponentMeta<typeof FormatDate>;
-
-const BasicTemplate: ComponentStory<typeof FormatDate> = args => (
-  <FormatDate {...args} />
-);
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  date: new Date(),
 };
