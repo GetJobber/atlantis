@@ -192,8 +192,7 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--docs)
-to learn how.
+[contribution guidelines](/guides/contributing) to learn how.
 
 ## Publishing
 
