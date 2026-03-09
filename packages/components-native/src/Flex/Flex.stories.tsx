@@ -1,30 +1,44 @@
 import React from "react";
 import { View } from "react-native";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
-import { StatusLabel } from "@jobber/components/StatusLabel";
-import { Card, Content, Flex, Icon, Text } from "@jobber/components-native";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
+import {
+  Card,
+  Content,
+  Flex,
+  Icon,
+  StatusLabel,
+  Text,
+} from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/Flex/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/Flex",
   component: Flex,
   parameters: {
-    viewMode: "story",
     backgrounds: {
       default: "surface background",
     },
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof Flex>;
+} satisfies Meta<typeof Flex>;
+export default meta;
+type FlexStoryArgs = Pick<
+  React.ComponentProps<typeof Flex>,
+  "template" | "align" | "gap"
+>;
+type Story = StoryObj<FlexStoryArgs>;
 
-const NestedTemplate: ComponentStory<typeof Flex> = args => (
-  <Flex {...args}>
+const NestedTemplate = (args: Story["args"]) => (
+  <Flex
+    template={args?.template ?? ["grow", "shrink"]}
+    align={args?.align}
+    gap={args?.gap}
+  >
     <Flex align={"flex-start"} template={["shrink", "grow"]}>
       <Icon name="quote" />
       <View>
         <Flex template={["grow", "shrink"]}>
           <Text emphasis="strong">Dylan Tec</Text>
-          <StatusLabel label="Success" status="success" />
+          <StatusLabel text="Success" status="success" />
         </Flex>
         <Text>Sep 03 | $100 | Quote #93</Text>
       </View>
@@ -33,8 +47,12 @@ const NestedTemplate: ComponentStory<typeof Flex> = args => (
   </Flex>
 );
 
-const MultiRowTemplate: ComponentStory<typeof Flex> = args => (
-  <Flex {...args}>
+const MultiRowTemplate = (args: Story["args"]) => (
+  <Flex
+    template={args?.template ?? ["grow", "grow"]}
+    align={args?.align}
+    gap={args?.gap}
+  >
     {[
       "Cash",
       "Cheque",
@@ -53,14 +71,18 @@ const MultiRowTemplate: ComponentStory<typeof Flex> = args => (
   </Flex>
 );
 
-export const Nested = NestedTemplate.bind({});
-Nested.args = {
-  template: ["grow", "shrink"],
-  align: "center",
+export const Nested: Story = {
+  render: NestedTemplate,
+  args: {
+    template: ["grow", "shrink"],
+    align: "center",
+  },
 };
 
-export const MultiRow = MultiRowTemplate.bind({});
-MultiRow.args = {
-  template: ["grow", "grow"],
-  gap: "small",
+export const MultiRow: Story = {
+  render: MultiRowTemplate,
+  args: {
+    template: ["grow", "grow"],
+    gap: "small",
+  },
 };

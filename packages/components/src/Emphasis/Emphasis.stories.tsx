@@ -1,24 +1,28 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Text } from "@jobber/components/Text";
 import { Emphasis } from "@jobber/components/Emphasis";
 
-export default {
-  title: "Components/Text and Typography/Emphasis/Web",
+const meta = {
+  title: "Components/Text and Typography/Emphasis",
   component: Emphasis,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Emphasis>;
+} satisfies Meta<typeof Emphasis>;
+export default meta;
+type EmphasisStoryArgs = Pick<
+  React.ComponentProps<typeof Emphasis>,
+  "variation"
+>;
+type Story = StoryObj<EmphasisStoryArgs>;
 
-const BasicTemplate: ComponentStory<typeof Emphasis> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <Text>
-    To <Emphasis {...args}>boldly</Emphasis> go…
+    To <Emphasis variation={args?.variation ?? "bold"}>boldly</Emphasis> go…
   </Text>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  variation: "bold",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    variation: "bold",
+  },
 };

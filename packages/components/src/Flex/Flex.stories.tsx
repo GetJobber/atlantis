@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
 import { Text } from "@jobber/components/Text";
@@ -7,17 +7,24 @@ import { Icon } from "@jobber/components/Icon";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 
-export default {
-  title: "Components/Layouts and Structure/Flex/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Flex",
   component: Flex,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Flex>;
+} satisfies Meta<typeof Flex>;
+export default meta;
+type FlexStoryArgs = Pick<
+  React.ComponentProps<typeof Flex>,
+  "template" | "align" | "gap" | "direction"
+>;
+type Story = StoryObj<FlexStoryArgs>;
 
-const BasicTemplate: ComponentStory<typeof Flex> = args => (
-  <Flex {...args}>
+const BasicTemplate = (args: Story["args"]) => (
+  <Flex
+    template={args?.template ?? ["grow", "shrink"]}
+    align={args?.align}
+    gap={args?.gap}
+    direction={args?.direction}
+  >
     <Flex align="start" template={["shrink", "grow"]}>
       <Icon name="quote" />
       <Content spacing="small">
@@ -32,7 +39,9 @@ const BasicTemplate: ComponentStory<typeof Flex> = args => (
   </Flex>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  template: ["grow", "shrink"],
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    template: ["grow", "shrink"],
+  },
 };
