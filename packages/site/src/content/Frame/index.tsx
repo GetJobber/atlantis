@@ -14,9 +14,11 @@ export default {
   title: "Frame",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-frame-web--basic",
+        "?path=/story/components-layouts-and-structure-frame--basic",
+        "web",
       ),
     },
   ],

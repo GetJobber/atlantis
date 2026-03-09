@@ -1,37 +1,39 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Content, Flex, Glimmer } from "@jobber/components-native";
 
-export default {
-  title: "Components/Status and Feedback/Glimmer/Mobile",
+const meta = {
+  title: "Components/Status and Feedback/Glimmer",
   component: Glimmer,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
   decorators: [
-    Story => (
-      // Take out storybooks weird flex layout to enable the shape prop
+    // Take out Storybook's wrapper layout to preserve native glimmer shapes.
+    (Story: React.ComponentType) => (
       // eslint-disable-next-line react/forbid-elements
       <div style={{ display: "block" }}>
         <Story />
       </div>
     ),
   ],
-} as ComponentMeta<typeof Glimmer>;
+} satisfies Meta<typeof Glimmer>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Glimmer>>>;
 
-const BasicTemplate: ComponentStory<typeof Glimmer> = args => (
-  <Glimmer {...args} />
-);
+const BasicTemplate = (args: Story["args"]) => <Glimmer {...args} />;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  shape: "rectangle",
-  size: "base",
-  timing: "base",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    shape: "rectangle",
+    size: "base",
+    timing: "base",
+  },
 };
 
-const InDepthTemplate: ComponentStory<typeof Glimmer> = args => (
+const InDepthTemplate = (args: Story["args"]) => (
   <Content spacing="none">
     <Flex template={["shrink", "grow"]}>
       <Glimmer {...args} />
@@ -56,8 +58,10 @@ const InDepthTemplate: ComponentStory<typeof Glimmer> = args => (
   </Content>
 );
 
-export const InDepth = InDepthTemplate.bind({});
-InDepth.args = {
-  size: "larger",
-  shape: "circle",
+export const InDepth: Story = {
+  render: InDepthTemplate,
+  args: {
+    size: "larger",
+    shape: "circle",
+  },
 };
