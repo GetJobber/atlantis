@@ -14,9 +14,11 @@ export default {
   title: "ButtonDismiss",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-private-buttondismiss--docs`,
+        "?path=/story/components-private-buttondismiss--basic",
+        "web",
       ),
     },
   ],
