@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Cover } from "@jobber/components/Cover";
 import { Box } from "@jobber/components/Box";
 import { Stack } from "@jobber/components/Stack";

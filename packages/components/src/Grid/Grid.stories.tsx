@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Grid } from "@jobber/components/Grid";
 import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
