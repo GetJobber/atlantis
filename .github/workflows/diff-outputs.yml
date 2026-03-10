@@ -5,7 +5,7 @@ on:
     inputs:
       # This is just a reminder. You can choose to ignore this, but you might see unexpected differences if you're behind master.
       confirm_branch_synced:
-        description: Is your branch is up to date with master? Otherwise output diffs can be misleading.
+        description: Is your branch up to date with master? Otherwise output diffs can be misleading.
         required: true
         type: boolean
         default: false
