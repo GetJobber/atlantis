@@ -2,7 +2,7 @@
   {
     "tags": {},
     "filePath": "../components/src/LightBox/LightBox.tsx",
-    "description": "",
+    "description": "LightBox displays images in a fullscreen overlay.\n\n**Self-contained (legacy) usage:**\n```tsx\n<LightBox\n  open={isOpen}\n  images={images}\n  imageIndex={imageIndex}\n  onRequestClose={({ lastPosition }) => { setIsOpen(false); }}\n/>\n```\n\n**Full composable (fullscreen) usage:**\n```tsx\n<LightBox.Provider open={isOpen} images={images} onRequestClose={onClose}>\n  <LightBox.Content />\n</LightBox.Provider>\n```\n\n**Inline gallery usage (no overlay, no close):**\n```tsx\n<LightBox.Provider\n  open={true}\n  images={images}\n  imageIndex={activeIndex}\n  onImageChange={onImageChange}\n>\n  <div className={styles.lightboxWrapper} onMouseMove={handleMouseMove}>\n    <LightBox.Background className={styles.backgroundImage} />\n    <LightBox.Overlay className={styles.blurOverlay} />\n    <LightBox.Slides className={styles.imageArea} />\n    <LightBox.Navigation\n      prevButtonClassName={styles.prev}\n      nextButtonClassName={styles.next}\n    />\n  </div>\n</LightBox.Provider>\n```",
     "displayName": "LightBox",
     "methods": [],
     "props": {
@@ -11,7 +11,7 @@
         "description": "Specify if the Lightbox is open or closed.",
         "name": "open",
         "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
           "name": "LightBoxProps"
         },
         "required": true,
@@ -24,7 +24,100 @@
         "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
         "name": "images",
         "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "PresentedImage[]"
+        }
+      },
+      "imageIndex": {
+        "defaultValue": null,
+        "description": "Use this to specify which image in `images` to initialize the lightbox with.\nThis is useful when you have a collection of thumbnails as you only need one\ncollection of image urls, order doesn't matter.",
+        "name": "imageIndex",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "onRequestClose": {
+        "defaultValue": null,
+        "description": "This function must set open to false in order to close the lightbox. Note there\nis a 300ms easing animation on lightbox close that occurs before this function\nis called.\nThis function receives an object as an argument with the key `lastPosition`\nthat has the index of the image the user was on when LightBox was closed.",
+        "name": "onRequestClose",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(options: RequestCloseOptions) => void"
+        }
+      },
+      "boxSizing": {
+        "defaultValue": {
+          "value": "\"content-box\""
+        },
+        "description": "Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where\ntailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.",
+        "name": "boxSizing",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "BoxSizing"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "",
+    "displayName": "LightBox.Provider",
+    "methods": [],
+    "props": {
+      "boxSizing": {
+        "defaultValue": {
+          "value": "content-box"
+        },
+        "description": "Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where\ntailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.",
+        "name": "boxSizing",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "BoxSizing"
+        }
+      },
+      "open": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "Specify if the Lightbox is open or closed.",
+        "name": "open",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "images": {
+        "defaultValue": null,
+        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
+        "name": "images",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
           "name": "LightBoxProps"
         },
         "required": true,
@@ -39,7 +132,7 @@
         "description": "Use this to specify which image in `images` to initialize the lightbox with.\nThis is useful when you have a collection of thumbnails as you only need one\ncollection of image urls, order doesn't matter.",
         "name": "imageIndex",
         "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
           "name": "LightBoxProps"
         },
         "required": false,
@@ -51,30 +144,137 @@
         "defaultValue": null,
         "description": "This function must set open to false in order to close the lightbox. Note there\nis a 300ms easing animation on lightbox close that occurs before this function\nis called.\nThis function receives an object as an argument with the key `lastPosition`\nthat has the index of the image the user was on when LightBox was closed.",
         "name": "onRequestClose",
-        "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
-          "name": "LightBoxProps"
-        },
-        "required": true,
+        "required": false,
         "type": {
           "name": "(options: RequestCloseOptions) => void"
         }
       },
-      "boxSizing": {
-        "defaultValue": {
-          "value": "content-box"
-        },
-        "description": "Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where\ntailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.",
-        "name": "boxSizing",
-        "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
-          "name": "LightBoxProps"
-        },
+      "onImageChange": {
+        "defaultValue": null,
+        "description": "Callback function that is invoked whenever the current image index changes.\nThis includes when the user navigates to a different image (via arrow keys,\nnavigation buttons, or swipe gestures) or when clicking a thumbnail.\n@param index - The new current image index (0-based)",
+        "name": "onImageChange",
         "required": false,
         "type": {
-          "name": "BoxSizing"
+          "name": "(index: number) => void"
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "Blurred, desaturated copy of the current image rendered as a full-bleed\nbackground behind the lightbox. Pass `className` to apply additional styles.",
+    "displayName": "LightBox.Background",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "Semi-transparent blur backdrop. Clicking it calls `onRequestClose`.\nPass `className` to apply additional styles.",
+    "displayName": "LightBox.Overlay",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "Top bar showing the current image counter (`1/3`) and a close button.\nStyled for dark backgrounds.",
+    "displayName": "LightBox.Toolbar",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {
+      "example": "```tsx\n<LightBox.Slides className={styles.imageArea} />\n<LightBox.Navigation\n  prevButtonClassName={styles.prev}\n  nextButtonClassName={styles.next}\n/>\n```"
+    },
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "The animated hero image with swipe-to-navigate and slide animation.\n\nPass `className` to add styles to the image wrapper. Supports\nswipe-to-navigate (drag). Keyboard arrow navigation is handled by\n`LightBox.Provider`.",
+    "displayName": "LightBox.Slides",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {
+      "example": "```tsx\n<LightBox.Navigation\n  prevButtonClassName={styles.prev}\n  nextButtonClassName={styles.next}\n/>\n```"
+    },
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "Previous and next navigation buttons. Returns `null` when the image set\nhas only one image.\n\nUse `prevButtonClassName` and `nextButtonClassName` to override the styles\non each button's wrapper for custom layouts.",
+    "displayName": "LightBox.Navigation",
+    "methods": [],
+    "props": {
+      "prevButtonClassName": {
+        "defaultValue": null,
+        "description": "The class name to apply to the previous button wrapper.",
+        "name": "prevButtonClassName",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxNavigationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "nextButtonClassName": {
+        "defaultValue": null,
+        "description": "The class name to apply to the next button wrapper.",
+        "name": "nextButtonClassName",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.types.ts",
+          "name": "LightBoxNavigationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "Title and caption text for the current image. Only renders when the current\nimage has a `title` or `caption`. Styled for dark backgrounds.",
+    "displayName": "LightBox.Caption",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "description": "Scrollable thumbnail strip. Only renders when there are two or more images.",
+    "displayName": "LightBox.Thumbnails",
+    "methods": [],
+    "props": {}
   }
 ]

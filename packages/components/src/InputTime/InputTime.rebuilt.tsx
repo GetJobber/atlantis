@@ -1,4 +1,4 @@
-import type { RefObject } from "react";
+import type { Ref } from "react";
 import React, { useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
 import { useInputTimeActions } from "./hooks/useInputTimeActions";
@@ -123,17 +123,10 @@ export function InputTimeRebuilt({
   );
 }
 
-function useInputTimeRefs(
-  inputRef?: RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
-  >,
-) {
+function useInputTimeRefs(inputRef?: Ref<HTMLInputElement>) {
   const internalRef = useRef<HTMLInputElement>(null);
-  const mergedRef = mergeRefs<HTMLInputElement>([
-    internalRef,
-    inputRef as React.RefObject<HTMLInputElement>,
-  ]);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const mergedRef = mergeRefs([internalRef, inputRef]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   return { internalRef, mergedRef, wrapperRef };
 }

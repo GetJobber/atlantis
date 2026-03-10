@@ -92,3 +92,7 @@
   font-weight: 500;
   line-height: var(--typography--lineHeight-base);
 }
+
+.hidden {
+  display: none;
+}

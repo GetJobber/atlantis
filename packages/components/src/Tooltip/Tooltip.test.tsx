@@ -4,6 +4,31 @@ import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 import { mockLargeViewport } from "../utils/mockLargeViewport";
 
+let viewportMock: ReturnType<typeof mockLargeViewport>;
+
+beforeEach(() => {
+  viewportMock = mockLargeViewport();
+  // Ensures the tooltip is considered visible within the viewport
+  jest
+    .spyOn(Element.prototype, "getBoundingClientRect")
+    .mockImplementation(() => ({
+      width: 100,
+      height: 50,
+      x: 500,
+      y: 500,
+      top: 500,
+      left: 500,
+      bottom: 550,
+      right: 600,
+      toJSON: () => ({}),
+    }));
+});
+
+afterEach(() => {
+  viewportMock.restore();
+  jest.restoreAllMocks();
+});
+
 it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";
   const content = "Don't show my tooltip";
@@ -122,16 +147,6 @@ describe("with a message of an empty string", () => {
 });
 
 describe("with a preferred placement", () => {
-  let viewportMock: ReturnType<typeof mockLargeViewport>;
-
-  beforeEach(() => {
-    viewportMock = mockLargeViewport();
-  });
-
-  afterEach(() => {
-    viewportMock.restore();
-  });
-
   it.each(["top", "bottom", "left", "right"] as const)(
     "should show the tooltip on the %s",
     async placement => {
@@ -154,4 +169,53 @@ describe("with a preferred placement", () => {
       expect(tooltip).toHaveClass(placement);
     },
   );
+});
+
+describe("tooltip visibility", () => {
+  it("visible when in view", async () => {
+    const message = "Visible tooltip";
+
+    render(
+      <Tooltip message={message}>
+        <div>tooltip test</div>
+      </Tooltip>,
+    );
+
+    const tooltipContent = screen.getByText("tooltip test");
+    await userEvent.hover(tooltipContent);
+
+    const tooltip = screen.getByRole("tooltip");
+    expect(tooltip).toBeInTheDocument();
+  });
+
+  it("hidden when out of view", async () => {
+    const message = "Hidden tooltip";
+
+    // Force the tooltip to be outside of the viewport
+    jest
+      .spyOn(Element.prototype, "getBoundingClientRect")
+      .mockImplementation(() => ({
+        width: 100,
+        height: 50,
+        x: -500,
+        y: -500,
+        top: -500,
+        left: -500,
+        bottom: -450,
+        right: -400,
+        toJSON: () => ({}),
+      }));
+
+    render(
+      <Tooltip message={message}>
+        <div>tooltip test</div>
+      </Tooltip>,
+    );
+
+    const tooltipContent = screen.getByText("tooltip test");
+    await userEvent.hover(tooltipContent);
+
+    const tooltip = screen.getByRole("tooltip", { hidden: true });
+    expect(tooltip).not.toBeVisible();
+  });
 });

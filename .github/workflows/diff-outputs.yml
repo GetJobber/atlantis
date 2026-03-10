@@ -1,12 +1,24 @@
 name: Diff Outputs
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      # This is just a reminder. You can choose to ignore this, but you might see unexpected differences if you're behind master.
+      confirm_branch_synced:
+        description: Is your branch up to date with master? Otherwise output diffs can be misleading.
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   diff-outputs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: package.json
 
       - name: Configure git author
         run: |

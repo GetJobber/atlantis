@@ -262,4 +262,42 @@ describe("InputTimeRebuilt", () => {
       expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe("inputRef", () => {
+    it("forwards inputRef to the input element using RefObject", () => {
+      const ref = React.createRef<HTMLInputElement>();
+
+      render(<InputTime version={2} inputRef={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+
+    it("forwards inputRef to the input element using callback ref", () => {
+      const callbackRef = jest.fn();
+
+      render(<InputTime version={2} inputRef={callbackRef} />);
+
+      expect(callbackRef).toHaveBeenCalledTimes(1);
+      expect(callbackRef).toHaveBeenCalledWith(
+        screen.getByTestId("ATL-InputTime-input"),
+      );
+    });
+
+    it("can access native input methods through callback ref", () => {
+      const callbackRef = jest.fn<void, [HTMLInputElement | null]>();
+
+      render(<InputTime version={2} inputRef={callbackRef} />);
+
+      const inputElement = screen.getByTestId("ATL-InputTime-input");
+      const capturedElement = callbackRef.mock.calls[0][0];
+
+      expect(capturedElement).toBe(inputElement);
+
+      capturedElement?.focus();
+      expect(inputElement).toHaveFocus();
+
+      capturedElement?.blur();
+      expect(inputElement).not.toHaveFocus();
+    });
+  });
 });
