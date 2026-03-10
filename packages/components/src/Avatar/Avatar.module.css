@@ -23,12 +23,6 @@
   transition: box-shadow var(--timing-quick) ease-out;
 }
 
-.avatar:hover {
-  box-shadow: var(--shadow-base);
-  background-color: var(--color-interactive--subtle--hover);
-  transition: box-shadow var(--timing-quick) ease-in;
-}
-
 .avatar:focus {
   box-shadow: var(--shadow-focus);
   outline: none;
