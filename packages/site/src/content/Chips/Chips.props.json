@@ -86,7 +86,7 @@
       },
       "activator": {
         "defaultValue": null,
-        "description": "Use a custom activator to trigger the Chip option selector",
+        "description": "Use a custom activator to trigger the Chip option selector\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "activator",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
@@ -99,7 +99,7 @@
       },
       "isLoadingMore": {
         "defaultValue": null,
-        "description": "Adds a loading indicator",
+        "description": "Adds a loading indicator\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "isLoadingMore",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
@@ -112,7 +112,7 @@
       },
       "onCustomAdd": {
         "defaultValue": null,
-        "description": "Callback when the user selects the custom option instead of the available\nchips.\n\nIf not implemented, it won't allow custom add.\n@param value",
+        "description": "Callback when the user selects the custom option instead of the available\nchips.\n\nIf not implemented, it won't allow custom add.\n@param value\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "onCustomAdd",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
@@ -125,7 +125,7 @@
       },
       "onSearch": {
         "defaultValue": null,
-        "description": "Callback when a user types a word that filters the options. Use this when\nyou need to query new options from the database based on the search value.\n@param searchValue - The input value",
+        "description": "Callback when a user types a word that filters the options. Use this when\nyou need to query new options from the database based on the search value.\n@param searchValue - The input value\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "onSearch",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
@@ -138,7 +138,7 @@
       },
       "onLoadMore": {
         "defaultValue": null,
-        "description": "Callback when the user scrolls at the end of the chip option list. Use this\nto load more options from the database.\n@param searchValue - The input value",
+        "description": "Callback when the user scrolls at the end of the chip option list. Use this\nto load more options from the database.\n@param searchValue - The input value\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "onLoadMore",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
@@ -153,7 +153,7 @@
         "defaultValue": {
           "value": "false"
         },
-        "description": "Control whether the menu only appears once the user types.",
+        "description": "Control whether the menu only appears once the user types.\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "onlyShowMenuOnSearch",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
@@ -168,7 +168,7 @@
         "defaultValue": {
           "value": "false"
         },
-        "description": "If true, automatically selects an option based on the current search value when the input loses focus.\nThe automatic selection order is: an exact match of the search value if available, a custom option if\nonCustomOptionSelect is provided, or the closest match.",
+        "description": "If true, automatically selects an option based on the current search value when the input loses focus.\nThe automatic selection order is: an exact match of the search value if available, a custom option if\nonCustomOptionSelect is provided, or the closest match.\n@deprecated Dismissible Chips will be removed in the next major version",
         "name": "autoSelectOnClickOutside",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
