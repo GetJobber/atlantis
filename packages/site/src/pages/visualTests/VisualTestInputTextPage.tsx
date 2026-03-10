@@ -4,6 +4,12 @@ import { useState } from "react";
 export const VisualTestInputTextPage = () => {
   const [value, setValue] = useState("");
   const [multilineValue, setMultilineValue] = useState("");
+  const [multilineResizeValue, setMultilineResizeValue] = useState(
+    "First line of text\nSecond line of text\nThird line of text",
+  );
+  const [multilineResizeV2Value, setMultilineResizeV2Value] = useState(
+    "First line of text\nSecond line of text\nThird line of text",
+  );
 
   return (
     <Box padding="large">
@@ -153,6 +159,44 @@ export const VisualTestInputTextPage = () => {
                   onChange={newValue => setValue(newValue as string)}
                   placeholder="With maxLength"
                   maxLength={200}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Multiline InputText for resize testing.
+              The Playwright test will programmatically resize the wrapper
+              to verify text stays anchored to the top. */}
+          <section data-testid="multiline-resize-section">
+            <Text size="large">Multiline InputText (resize test)</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <InputText
+                  value={multilineResizeValue}
+                  onChange={newValue =>
+                    setMultilineResizeValue(newValue as string)
+                  }
+                  placeholder="Resize me"
+                  multiline={true}
+                  rows={{ min: 3, max: 10 }}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          <section data-testid="multiline-resize-v2-section">
+            <Text size="large">Multiline InputText v2 (resize test)</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <InputText
+                  value={multilineResizeV2Value}
+                  version={2}
+                  onChange={newValue =>
+                    setMultilineResizeV2Value(newValue as string)
+                  }
+                  placeholder="Resize me (v2)"
+                  multiline={true}
+                  rows={{ min: 3, max: 10 }}
                 />
               </Grid.Cell>
             </Grid>
