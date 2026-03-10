@@ -57,8 +57,7 @@ export const VisualTestAvatarPage = () => {
           <section>
             <Heading level={2}>Default (no color)</Heading>
             <Text>
-              Interactive subtle background with hover state. Sizes, initials,
-              and icon fallback.
+              Interactive subtle background. Sizes, initials, and icon fallback.
             </Text>
             <Stack gap="large">
               <div>
