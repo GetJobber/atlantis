@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import { Chip, Chips } from "@jobber/components/Chips";
+import { Banner } from "@jobber/components/Banner";
 import { Text } from "@jobber/components/Text";
 import { useFakeOptionQuery } from "./utils/storyUtils";
 
@@ -86,20 +87,26 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
   } = useFakeOptionQuery();
 
   return (
-    <Chips
-      {...args}
-      type="dismissible"
-      selected={selected}
-      onChange={handleSelect}
-      onCustomAdd={handleCustomAdd}
-      isLoadingMore={loading}
-      onSearch={handleSearch}
-      onLoadMore={handleLoadMore}
-    >
-      {options.map(name => (
-        <Chip key={name} label={name} value={name} />
-      ))}
-    </Chips>
+    <Content>
+      <Banner type="warning" dismissible={false}>
+        This component is deprecated. Please use Autocomplete with the
+        &quot;multiple&quot; prop instead.
+      </Banner>
+      <Chips
+        {...args}
+        type="dismissible"
+        selected={selected}
+        onChange={handleSelect}
+        onCustomAdd={handleCustomAdd}
+        isLoadingMore={loading}
+        onSearch={handleSearch}
+        onLoadMore={handleLoadMore}
+      >
+        {options.map(name => (
+          <Chip key={name} label={name} value={name} />
+        ))}
+      </Chips>
+    </Content>
   );
 };
 
