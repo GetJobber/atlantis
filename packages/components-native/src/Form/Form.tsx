@@ -10,7 +10,10 @@ import type { LayoutChangeEvent } from "react-native";
 import { Keyboard, Platform, View, findNodeHandle } from "react-native";
 import { useStyles } from "./Form.style";
 import { FormErrorBanner } from "./components/FormErrorBanner";
-import { KEYBOARD_SAVE_BUTTON_DISTANCE } from "./constants";
+import {
+  KEYBOARD_SAVE_BUTTON_DISTANCE,
+  KEYBOARD_TOP_PADDING_AUTO_SCROLL,
+} from "./constants";
 import { FormMessageBanner } from "./components/FormMessageBanner";
 import type {
   FormErrors,
@@ -96,7 +99,7 @@ function InternalForm<T extends FieldValues, S>({
     messageBannerHeight,
     UNSAFE_allowDiscardLocalCacheWhenOffline,
   });
-  const { windowHeight, headerHeight } = useScreenInformation();
+  const { windowHeight } = useScreenInformation();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [keyboardScreenY, setKeyboardScreenY] = useState(0);
   const [formContentHeight, setFormContentHeight] = useState(0);
@@ -207,7 +210,7 @@ function InternalForm<T extends FieldValues, S>({
             enabled={!disableKeyboardAwareScroll}
             keyboardShouldPersistTaps={"handled"}
             ref={scrollViewRef}
-            bottomOffset={headerHeight}
+            bottomOffset={KEYBOARD_TOP_PADDING_AUTO_SCROLL}
             extraKeyboardSpace={edgeToEdgeEnabled ? tokens["space-large"] : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
