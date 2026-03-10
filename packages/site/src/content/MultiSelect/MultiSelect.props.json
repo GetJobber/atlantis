@@ -1,6 +1,8 @@
 [
   {
-    "tags": {},
+    "tags": {
+      "deprecated": "MultiSelect will be removed in the next major version"
+    },
     "filePath": "../components/src/MultiSelect/MultiSelect.tsx",
     "description": "",
     "displayName": "MultiSelect",
