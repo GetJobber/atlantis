@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.115.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.6...@jobber/components@6.115.0) (2026-03-10)
+
+
+### Features
+
+* **components:** Remove hover state from Avatar ([#2966](https://github.com/GetJobber/atlantis/issues/2966)) ([7f05316](https://github.com/GetJobber/atlantis/commit/7f05316ad42b990e9252e62d5562238506e6a53e))
+
+
+
+
+
 ## [6.114.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.5...@jobber/components@6.114.6) (2026-03-06)
 
 
