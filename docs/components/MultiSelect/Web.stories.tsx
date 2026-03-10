@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MultiSelect } from "@jobber/components/MultiSelect";
