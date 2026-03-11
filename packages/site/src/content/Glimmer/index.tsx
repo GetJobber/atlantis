@@ -15,9 +15,19 @@ export default {
   title: "Glimmer",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-glimmer--docs`,
+        "?path=/story/components-status-and-feedback-glimmer--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-status-and-feedback-glimmer--basic",
+        "mobile",
       ),
     },
   ],

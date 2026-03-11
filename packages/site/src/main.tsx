@@ -11,10 +11,7 @@ import { AtlantisPreviewProvider } from "./preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
 import { Analytics } from "./components/Analytics";
-import { handleStorybookRedirect } from "./utils/storybook";
 import { TritonProvider } from "./providers/TritonProvider";
-
-handleStorybookRedirect();
 
 const urlParams = new URLSearchParams(window.location.search);
 const minimalMode = urlParams.has("minimal");

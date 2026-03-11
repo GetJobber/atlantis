@@ -12,8 +12,12 @@ export default {
   title: "DataDump",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-datadump--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-utilities-datadump--basic",
+        "web",
+      ),
     },
   ],
 } as const satisfies ContentExport;

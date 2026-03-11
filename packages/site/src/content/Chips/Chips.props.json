@@ -1,6 +1,8 @@
 [
   {
-    "tags": {},
+    "tags": {
+      "deprecated": "Use Autocomplete with the \"multiple\" prop instead of dismissible Chips."
+    },
     "filePath": "../components/src/Chips/Chips.tsx",
     "description": "",
     "displayName": "Chips",
@@ -12,11 +14,11 @@
         "name": "type",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipSingleSelectProps"
+          "name": "ChipDismissibleProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "\"singleselect\" | \"multiselect\" | \"dismissible\""
+          "name": "\"dismissible\""
         }
       },
       "selected": {
@@ -25,24 +27,11 @@
         "name": "selected",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipSingleSelectProps"
+          "name": "ChipDismissibleProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "string | string[]"
-        }
-      },
-      "showSelectedSuffix": {
-        "defaultValue": null,
-        "description": "Show the checkmark suffix on the selected Chip(s)\ndefaults to true",
-        "name": "showSelectedSuffix",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipSingleSelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "string[]"
         }
       },
       "onChange": {
@@ -51,37 +40,11 @@
         "name": "onChange",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipSingleSelectProps"
+          "name": "ChipDismissibleProps"
         },
         "required": true,
         "type": {
-          "name": "((value?: string) => void) | ((value: string[]) => void) | ((value: string[]) => void)"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "The Chip's radio input name.\n@link https://www.w3schools.com/tags/att_input_name.asp",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipSingleSelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "Callback when a specific chip is clicked\n@param event\n@param clickedChipValue - The value of the chip that was clicked",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement, MouseEvent>, clickedChipValue?: string) => void"
+          "name": "(value: string[]) => void"
         }
       },
       "activator": {
@@ -177,6 +140,19 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Callback when a specific chip is clicked\n@param event\n@param clickedChipValue - The value of the chip that was clicked",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement, MouseEvent>, clickedChipValue?: string) => void"
         }
       }
     }

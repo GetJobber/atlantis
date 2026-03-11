@@ -12,9 +12,11 @@ export default {
   title: "InlineLabel",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-inlinelabel--docs`,
+        "?path=/story/components-status-and-feedback-inlinelabel--basic",
+        "web",
       ),
     },
   ],
