@@ -19,9 +19,11 @@ export default {
   title: "Tiles",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-tiles-web--basic",
+        "?path=/story/components-layouts-and-structure-tiles--basic",
+        "web",
       ),
     },
   ],

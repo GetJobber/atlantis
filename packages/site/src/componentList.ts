@@ -577,7 +577,7 @@ export const componentList = [
     title: "MultiSelect",
     to: "/components/MultiSelect",
     imageURL: "/MultiSelect.png",
-    sections: ["Selections"],
+    sections: ["Deprecated"],
     additionalMatches: ["Dropdown", "Menu"],
   },
   {

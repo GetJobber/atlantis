@@ -40,9 +40,11 @@ export default {
   title: "LightBox",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-lightbox--docs`,
+        "?path=/story/components-images-and-icons-lightbox--basic",
+        "web",
       ),
     },
   ],

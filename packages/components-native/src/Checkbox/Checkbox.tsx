@@ -147,7 +147,12 @@ function CheckboxInternal({
         onChange?.(!internalValue);
       }}
     >
-      <View style={styles.checkBoxContainer}>
+      <View
+        style={[
+          styles.checkBoxContainer,
+          assistiveText ? styles.checkBoxContainerWithAssistiveText : undefined,
+        ]}
+      >
         {label && (
           <View style={styles.label}>
             <Text variation={textVariation} align="start">

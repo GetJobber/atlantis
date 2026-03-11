@@ -26,15 +26,29 @@ export default {
   title: "Select",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-select--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-select--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-select--basic",
+        "mobile",
+      ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-selections-select-web-v2--basic",
+        "?path=/story/components-selections-select-v2--basic",
+        "web",
       ),
     },
   ],

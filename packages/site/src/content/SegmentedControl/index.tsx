@@ -36,9 +36,11 @@ export default {
   title: "SegmentedControl",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-segmentedcontrol--docs`,
+        "?path=/story/components-selections-segmentedcontrol--controlled",
+        "web",
       ),
     },
   ],

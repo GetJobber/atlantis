@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.95.3",
+  "version": "0.97.1",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -58,9 +58,9 @@
     "@gorhom/bottom-sheet": "^5.2.8",
     "@react-native-community/datetimepicker": "^8.4.5",
     "@react-native/babel-preset": "^0.82.1",
-    "@storybook/addon-a11y": "^9.1.2",
-    "@storybook/react": "^9.1.2",
-    "@storybook/react-native-web-vite": "^9.1.2",
+    "@storybook/addon-a11y": "9.1.19",
+    "@storybook/react": "9.1.19",
+    "@storybook/react-native-web-vite": "9.1.19",
     "@testing-library/react-native": "^13.3.3",
     "@types/lodash.chunk": "^4.2.7",
     "@types/lodash.debounce": "^4.0.7",
@@ -77,7 +77,7 @@
     "react-native-svg": "^15.1.0",
     "react-native-web": "^0.20.0",
     "react-test-renderer": "^19.1.1",
-    "storybook": "^9.1.2"
+    "storybook": "9.1.19"
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",

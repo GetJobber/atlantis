@@ -39,9 +39,11 @@ export default {
   title: "AnimatedPresence",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/docs/components-utilities-animatedpresence--docs",
+        "?path=/story/components-utilities-animatedpresence--basic",
+        "web",
       ),
     },
   ],

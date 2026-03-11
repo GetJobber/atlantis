@@ -9,7 +9,6 @@ export default {
   props: Props,
   component: {
     element: `<Avatar
-      color={"var(--color-indigo)"}
       initials={"JBLR"}
       name={"The Jobbler"}
       size={"large"}
@@ -20,9 +19,11 @@ export default {
     "An Avatar is used to display a visual identifier for an individual user.",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-avatar--docs`,
+        "?path=/story/components-images-and-icons-avatar--basic",
+        "web",
       ),
     },
   ],

@@ -28,8 +28,11 @@
   max-width: 100%;
 }
 
-.datePickerWrapper :global(.react-datepicker-popper) {
-  z-index: var(--elevation-datepicker);
+.portalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--elevation-modal);
 }
 
 .datePicker :global(.react-datepicker__header) {

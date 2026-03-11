@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
+          "name": "Ref<HTMLInputElement>"
         }
       },
       "onEnter": {

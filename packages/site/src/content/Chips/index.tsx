@@ -28,8 +28,12 @@ export default {
   title: "Chips",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-chips--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-chips--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

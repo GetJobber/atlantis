@@ -13,9 +13,11 @@ export default {
   description: "",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-link--docs`,
+        "?path=/story/components-text-and-typography-link--basic",
+        "web",
       ),
     },
   ],
