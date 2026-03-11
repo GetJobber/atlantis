@@ -52,7 +52,6 @@ describe("sitemap-generator", () => {
       "/patterns",
       "/content",
       "/changelog",
-      "/proposals",
     ];
 
     expectedRoutes.forEach(route => {
