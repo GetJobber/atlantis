@@ -4,6 +4,7 @@ declare const styles: {
   readonly "standard": string;
   readonly "narrow": string;
   readonly "titleBar": string;
+  readonly "titleContent": string;
   readonly "titleRow": string;
   readonly "actionGroup": string;
   readonly "primaryAction": string;
@@ -11,4 +12,3 @@ declare const styles: {
   readonly "subtitle": string;
 };
 export = styles;
-

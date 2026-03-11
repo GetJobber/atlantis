@@ -20,8 +20,23 @@
   max-width: calc(var(--base-unit) * 64);
 }
 
+/* ── Title bar grid (macro layout: title vs actions) ── */
+
+.titleBar {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "actions";
+  grid-template-columns: 1fr;
+}
+
+.titleContent,
+.titleBar > h1,
+.titleRow {
+  grid-area: title;
+}
+
 .titleBar h1 {
-  flex: 0 1 auto;
   margin-bottom: var(--space-base);
 }
 
@@ -37,62 +52,73 @@
   margin-bottom: 0;
 }
 
-.titleBar > .actionGroup {
-  flex: 1 0 auto;
-  align-self: baseline;
+.titleBar .subtitle {
+  margin-bottom: var(--space-base);
+}
+
+/* ── Action group (flex for button arrangement) ── */
+
+.actionGroup {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: var(--space-small);
 }
 
 .primaryAction {
   flex: 0 0 100%;
-  margin-bottom: var(--space-small);
 }
 
 .actionButton {
-  margin-top: var(--space-small);
-  flex: 1;
+  flex: 0 0 100%;
 }
 
 .actionButton > div {
   width: 100%;
 }
 
-.titleBar .subtitle {
-  margin-bottom: var(--space-base);
-}
+/* ── Small (≥ 490px) ── */
 
-@container page-titlebar (max-width: 499px) {
-  .titleBar .actionButton {
-    flex: 0 0 100%;
-    margin-top: 0;
-  }
-
-  .titleBar .actionButton + .actionButton {
-    margin-top: var(--space-small);
+@media (--small-screens-and-up) {
+  .actionButton {
+    flex: 1;
   }
 }
 
-@container page-titlebar (min-width: 500px) {
-  .titleBar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+/* ── Medium (≥ 768px) ── */
 
-  .titleBar > .actionGroup {
+@media (--medium-screens-and-up) {
+  .actionGroup {
     flex-wrap: nowrap;
     justify-content: flex-end;
   }
 
-  .titleBar .primaryAction,
-  .titleBar .actionButton {
-    margin: 0;
-    flex: 0 auto;
+  .primaryAction,
+  .actionButton {
+    flex: 0 0 auto;
+  }
+}
+
+/* ── Large (≥ 1080px) ── */
+
+@media (--large-screens-and-up) {
+  .titleBar {
+    grid-template-areas: "title actions";
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    column-gap: var(--space-small);
   }
 
-  .titleBar .actionButton {
-    margin-left: var(--space-small);
+  .titleBar h1 {
+    margin-bottom: 0;
+  }
+
+  .titleRow {
+    margin-bottom: 0;
+  }
+
+  .titleBar .subtitle {
+    margin-top: var(--space-small);
+    margin-bottom: 0;
   }
 }

@@ -59,6 +59,7 @@ const PopoverTemplate: StoryFn<PageLegacyProps> = args => {
   return (
     <>
       <Page
+        subtitle="This is a subtitle on the current branch"
         primaryAction={{
           label: "Trigger Food Popover",
           onClick: () => setShowPrimaryPopover(true),

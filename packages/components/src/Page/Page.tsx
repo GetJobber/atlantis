@@ -76,7 +76,7 @@ function PageLegacy({
         <Content>
           <Container name="page-titlebar">
             <div className={styles.titleBar}>
-              <div>
+              <div className={styles.titleContent}>
                 {typeof title === "string" && titleMetaData ? (
                   <div className={styles.titleRow}>
                     <Heading level={1}>{title}</Heading>
@@ -169,7 +169,11 @@ function PageHeader({ children, ...rest }: PageHeaderProps) {
 function PageHeaderContent({ children, ...rest }: PageHeaderContentProps) {
   const dataAttrs = filterDataAttributes(rest);
 
-  return <div {...dataAttrs}>{children}</div>;
+  return (
+    <div className={styles.titleContent} {...dataAttrs}>
+      {children}
+    </div>
+  );
 }
 
 /**
