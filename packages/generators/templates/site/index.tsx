@@ -1,10 +1,11 @@
-import {{ name }}Content from "./{{name}}.stories.mdx";
+import {{ name }}Content, { toc } from "./{{name}}.stories.mdx";
 import Props from "./{{name}}.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <{{ name }}Content />,
+  toc,
   props: Props,
   component: {
     element: `<{{name}} />`,
