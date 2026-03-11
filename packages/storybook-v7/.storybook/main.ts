@@ -153,6 +153,7 @@ const config: StorybookConfig = {
       "react-native-safe-area-context": path.resolve(__dirname, "../node_modules/react-native-safe-area-context"),
       "react-native-reanimated": path.resolve(__dirname, "../node_modules/react-native-reanimated"),
       "react-native-keyboard-aware-scroll-view": path.resolve(__dirname, "../node_modules/react-native-keyboard-aware-scroll-view"),
+      "@gorhom/bottom-sheet": path.resolve(__dirname, "../../components-native/src/__mocks__/MockBottomSheet.tsx"),
       "react-native-portalize": path.resolve(__dirname, "../node_modules/react-native-portalize"),
       "react-native-modal-datetime-picker": path.resolve(__dirname, "../node_modules/react-native-modal-datetime-picker"),
       "react-native-modalize": path.resolve(__dirname, "../node_modules/react-native-modalize"),
