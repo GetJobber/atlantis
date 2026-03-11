@@ -34,6 +34,9 @@ interface MultiSelectProps {
   readonly size?: "small" | "large";
 }
 
+/**
+ * @deprecated Use the "multiple" Autocomplete component instead.
+ */
 export function MultiSelect({
   defaultLabel,
   allSelectedLabel,

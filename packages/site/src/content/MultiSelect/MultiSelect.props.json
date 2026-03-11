@@ -1,6 +1,8 @@
 [
   {
-    "tags": {},
+    "tags": {
+      "deprecated": "Use the \"multiple\" Autocomplete component instead."
+    },
     "filePath": "../components/src/MultiSelect/MultiSelect.tsx",
     "description": "",
     "displayName": "MultiSelect",

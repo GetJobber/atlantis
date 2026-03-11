@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MultiSelect } from "@jobber/components/MultiSelect";
@@ -5,7 +6,7 @@ import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 
 const meta = {
-  title: "Components/Selections/MultiSelect",
+  title: "Components/Deprecated/MultiSelect",
   component: MultiSelect,
 } satisfies Meta<typeof MultiSelect>;
 export default meta;
