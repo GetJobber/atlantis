@@ -152,7 +152,7 @@ const config: StorybookConfig = {
       "react-native-gesture-handler": path.resolve(__dirname, "../node_modules/react-native-gesture-handler"),
       "react-native-safe-area-context": path.resolve(__dirname, "../node_modules/react-native-safe-area-context"),
       "react-native-reanimated": path.resolve(__dirname, "../node_modules/react-native-reanimated"),
-      "react-native-keyboard-aware-scroll-view": path.resolve(__dirname, "../node_modules/react-native-keyboard-aware-scroll-view"),
+      "react-native-keyboard-controller": path.resolve(__dirname, "../node_modules/react-native-keyboard-controller"),
       "react-native-portalize": path.resolve(__dirname, "../node_modules/react-native-portalize"),
       "react-native-modal-datetime-picker": path.resolve(__dirname, "../node_modules/react-native-modal-datetime-picker"),
       "react-native-modalize": path.resolve(__dirname, "../node_modules/react-native-modalize"),

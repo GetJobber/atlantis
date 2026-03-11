@@ -42,7 +42,7 @@
     "react-ga4": "2.1.0",
     "react-native": "0.77.0",
     "react-native-gesture-handler": "2.25.0",
-    "react-native-keyboard-aware-scroll-view": "0.9.5",
+    "react-native-keyboard-controller": "1.20.7",
     "react-native-modal-datetime-picker": "15.0.1",
     "react-native-modalize": "2.0.13",
     "react-native-portalize": "1.0.7",
