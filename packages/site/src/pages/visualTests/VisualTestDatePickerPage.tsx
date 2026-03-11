@@ -28,7 +28,7 @@ export const VisualTestDatePickerPage = () => {
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
-    new Date(2025, 8, 18),
+    new Date(2025, 5, 18),
   );
   const highlightDates = [
     new Date(2025, 5, 3),
@@ -128,7 +128,7 @@ export const VisualTestDatePickerPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Stack>
-                  <Text>Highlights dates at 3, 7, and 14 days from today</Text>
+                  <Text>Highlights dates 3, 7, and 14</Text>
                   <DatePicker
                     selected={highlightedDate}
                     onChange={date => setHighlightedDate(date)}

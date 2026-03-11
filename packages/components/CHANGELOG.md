@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.115.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.6...@jobber/components@6.115.0) (2026-03-10)
+
+
+### Features
+
+* **components:** Remove hover state from Avatar ([#2966](https://github.com/GetJobber/atlantis/issues/2966)) ([7f05316](https://github.com/GetJobber/atlantis/commit/7f05316ad42b990e9252e62d5562238506e6a53e))
+
+
+
+
+
+## [6.114.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.5...@jobber/components@6.114.6) (2026-03-06)
+
+
+### Reverts
+
+* **components:** Clearable Positioning Logic ([#2952](https://github.com/GetJobber/atlantis/issues/2952)) ([a820a86](https://github.com/GetJobber/atlantis/commit/a820a8601b9e3c485e27f7f2c0094bc2f7e5a526)), closes [#2925](https://github.com/GetJobber/atlantis/issues/2925)
+
+
+
+
+
 ## [6.114.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.4...@jobber/components@6.114.5) (2026-03-06)
 
 **Note:** Version bump only for package @jobber/components
