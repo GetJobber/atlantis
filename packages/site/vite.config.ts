@@ -52,6 +52,10 @@ export default defineConfig({
       ],
     }),
   ],
+  server: {
+    port: 5173,
+    strictPort: true,
+  },
   build: {
     minify: false,
   },
@@ -72,18 +76,10 @@ export default defineConfig({
       ),
       "@storybook/blocks": path.resolve(
         __dirname,
-        "../storybook-v7/node_modules/@storybook/blocks",
+        "./src/components/StorybookOverrides",
       ),
-      "@storybook/components": path.resolve(
-        __dirname,
-        "../storybook-v7/node_modules/@storybook/components",
-      ),
-      mdxUtils: path.resolve(
-        __dirname,
-        "../storybook-v7/.storybook/components",
-      ),
+      mdxUtils: path.resolve(__dirname, "./src/mdxUtils"),
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
-      "@atlantis/docs": path.resolve(__dirname, "../../docs"),
       "@atlantis/packages": path.resolve(__dirname, "../../packages"),
     },
   },

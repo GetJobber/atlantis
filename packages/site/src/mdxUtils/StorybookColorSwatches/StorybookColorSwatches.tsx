@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@jobber/components/Button";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Flex } from "@jobber/components/Flex";
@@ -12,7 +11,9 @@ interface StorybookColorSwatchesProps {
   readonly description?: string;
 }
 
-export function StorybookColorSwatches({ colors }: StorybookColorSwatchesProps) {
+export function StorybookColorSwatches({
+  colors,
+}: StorybookColorSwatchesProps) {
   return (
     <Content>
       {colors.map((color: string) => (
@@ -28,21 +29,26 @@ interface ColorProps {
 }
 
 function Color({ color, description }: ColorProps) {
-
   const style = {
     backgroundColor: `var(${color})`,
   };
 
   return (
     <Flex gap="small" align="center" template={["shrink", "shrink"]}>
-      <div key={color} style={style} className={styles.swatch}>
-      </div>
+      <div key={color} style={style} className={styles.swatch}></div>
       <Content spacing="small">
-        { description && (<Text>{description}</Text>) }
+        {description && <Text>{description}</Text>}
         <Flex gap="smaller" align="center" template={["shrink", "shrink"]}>
           <pre className={styles.pre}>{color}</pre>
           <Tooltip message="Copy">
-            <Button size="small" variation="subtle" type="tertiary" icon="copy" onClick={handleClick} ariaLabel="Copy" />
+            <Button
+              size="small"
+              variation="subtle"
+              type="tertiary"
+              icon="copy"
+              onClick={handleClick}
+              ariaLabel="Copy"
+            />
           </Tooltip>
         </Flex>
       </Content>
