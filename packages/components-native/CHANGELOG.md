@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.97.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.97.0...@jobber/components-native@0.97.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **components-native:** Fix styling of checkbox [JOB-152492] ([#2936](https://github.com/GetJobber/atlantis/issues/2936)) ([71313c0](https://github.com/GetJobber/atlantis/commit/71313c04cb581d02891e35931b5992aa327542a3))
+
+
+
+
+
+# [0.97.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.96.0...@jobber/components-native@0.97.0) (2026-02-25)
+
+
+### Features
+
+* **components-native:** expose onLoadEnd from FormatFileThumbnail ([#2926](https://github.com/GetJobber/atlantis/issues/2926)) ([6ccd434](https://github.com/GetJobber/atlantis/commit/6ccd43435505486dc580472c36ed7b623bf84850))
+
+
+
+
+
+# [0.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.4...@jobber/components-native@0.96.0) (2026-02-17)
+
+
+### Features
+
+* **components-native:** Expose Isolated Aspects of FormatFile ([#2908](https://github.com/GetJobber/atlantis/issues/2908)) ([ac1cd1e](https://github.com/GetJobber/atlantis/commit/ac1cd1eb61206e97e3d24ff1d36559d3e9af1c1b))
+
+
+
+
+
+## [0.95.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.3...@jobber/components-native@0.95.4) (2026-01-27)
+
+
+### Bug Fixes
+
+* **components-native:** Provide way for users to escape react native multiline input scroll trap ([#2891](https://github.com/GetJobber/atlantis/issues/2891)) ([9c68197](https://github.com/GetJobber/atlantis/commit/9c68197c5d804ac682efb79147422c35d9a69b0b))
+
+
+
+
+
+## [0.95.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.2...@jobber/components-native@0.95.3) (2026-01-12)
+
+
+### Bug Fixes
+
+* **components-native:** Fix issue with save button not being accessible on iOS forms ([#2872](https://github.com/GetJobber/atlantis/issues/2872)) ([e121a61](https://github.com/GetJobber/atlantis/commit/e121a61c23ea9b27e6eca2f2ea6b8f790bcbf588))
+
+
+
+
+
+## [0.95.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.1...@jobber/components-native@0.95.2) (2026-01-08)
+
+
+### Bug Fixes
+
+* **components-native:** Improve scroll behaviour on multiline inputs ([#2868](https://github.com/GetJobber/atlantis/issues/2868)) ([f4f9ee2](https://github.com/GetJobber/atlantis/commit/f4f9ee2de70ca1e5fb2568385aa66ca2d2c65edf))
+
+
+
+
+
+## [0.95.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.0...@jobber/components-native@0.95.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* **components-native:** Fix useFormController setting defaultValue false on checkbox and switches to undefined  ([#2849](https://github.com/GetJobber/atlantis/issues/2849)) ([01e5e41](https://github.com/GetJobber/atlantis/commit/01e5e41db36b62256ccc96a09bbcde3bc08079d4))
+
+
+
+
+
+# [0.95.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.94.0...@jobber/components-native@0.95.0) (2025-12-12)
+
+
+### Features
+
+* allow alternate colors on ProgressBar ([#2836](https://github.com/GetJobber/atlantis/issues/2836)) ([df6ac57](https://github.com/GetJobber/atlantis/commit/df6ac5723d79daa07b4d29473259f46ba45f2304))
+
+
+
+
+
 # [0.94.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.93.0...@jobber/components-native@0.94.0) (2025-12-08)
 
 

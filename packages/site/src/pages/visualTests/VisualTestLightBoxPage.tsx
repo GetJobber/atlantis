@@ -10,7 +10,9 @@ import {
 import { useState } from "react";
 
 export const VisualTestLightBoxPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [basicOpen, setBasicOpen] = useState(false);
+  const [specificOpen, setSpecificOpen] = useState(false);
+  const [singleOpen, setSingleOpen] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
 
   const images = [
@@ -47,15 +49,15 @@ export const VisualTestLightBoxPage = () => {
                     label="Open LightBox"
                     onClick={() => {
                       setImageIndex(0);
-                      setIsOpen(true);
+                      setBasicOpen(true);
                     }}
                   />
                   <LightBox
-                    open={isOpen}
+                    open={basicOpen}
                     images={images}
                     imageIndex={imageIndex}
                     onRequestClose={({ lastPosition }) => {
-                      setIsOpen(false);
+                      setBasicOpen(false);
                       setImageIndex(lastPosition);
                     }}
                   />
@@ -74,15 +76,15 @@ export const VisualTestLightBoxPage = () => {
                     label="Open Second Image"
                     onClick={() => {
                       setImageIndex(1);
-                      setIsOpen(true);
+                      setSpecificOpen(true);
                     }}
                   />
                   <LightBox
-                    open={isOpen}
+                    open={specificOpen}
                     images={images}
                     imageIndex={imageIndex}
                     onRequestClose={({ lastPosition }) => {
-                      setIsOpen(false);
+                      setSpecificOpen(false);
                       setImageIndex(lastPosition);
                     }}
                   />
@@ -101,14 +103,14 @@ export const VisualTestLightBoxPage = () => {
                     label="Open Single Image"
                     onClick={() => {
                       setImageIndex(0);
-                      setIsOpen(true);
+                      setSingleOpen(true);
                     }}
                   />
                   <LightBox
-                    open={isOpen}
+                    open={singleOpen}
                     images={[images[0]]}
                     imageIndex={0}
-                    onRequestClose={() => setIsOpen(false)}
+                    onRequestClose={() => setSingleOpen(false)}
                   />
                 </Stack>
               </Grid.Cell>

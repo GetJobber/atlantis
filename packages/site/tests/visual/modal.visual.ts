@@ -213,4 +213,18 @@ test.describe("Modal Visual Tests", () => {
       });
     });
   });
+
+  test.describe("overflowing content modal", () => {
+    test("should test modal with overflowing content", async ({ page }) => {
+      const overflowModalButton = page.getByRole("button", {
+        name: "Open Modal with Overflowing Content",
+        exact: true,
+      });
+      await overflowModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("19-overflow-modal-open.png", {
+        fullPage: true,
+      });
+    });
+  });
 });

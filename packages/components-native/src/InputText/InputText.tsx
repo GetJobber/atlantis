@@ -392,6 +392,7 @@ function InputTextInternal(
       toolbarVisibility={toolbarVisibility}
       loading={loading}
       loadingType={loadingType}
+      multiline={multiline}
     >
       <TextInput
         inputAccessoryViewID={inputAccessoryID || undefined}
@@ -420,7 +421,13 @@ function InputTextInternal(
         autoFocus={autoFocus}
         autoComplete={autoComplete}
         multiline={multiline}
-        scrollEnabled={false}
+        // TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+        // This hack should be removed once we swap keyboard aware libraries in JOB-147156
+        // If this is needed then we need to figure out a better solution.
+        // Makes sure it doesn't jump to the top of the screen when the keyboard is shown and a new line is added.
+        // This is tech debt related to an issue where keyboard aware scrollview doesn't work if `scrollEnabled` is true. However,
+        // when `scrollEnabled` is false it causes an issue where super long text inputs will jump to the top when a new line is added to the bottom of the input.
+        scrollEnabled={Platform.OS === "ios" && multiline}
         textContentType={textContentType}
         onChangeText={handleChangeText}
         onSubmitEditing={handleOnSubmitEditing}

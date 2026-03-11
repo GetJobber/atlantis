@@ -34,7 +34,7 @@
       },
       "autocomplete": {
         "defaultValue": null,
-        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
+        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.\n\nPrefer the **on** option over the boolean **true** value to explicitly indicate auto-completion behavior.",
         "name": "autocomplete",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",

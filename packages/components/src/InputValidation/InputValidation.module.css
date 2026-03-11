@@ -5,8 +5,7 @@
 .message {
   display: flex;
   align-items: center;
-  padding: var(--space-smaller);
-  padding-left: 0;
+  padding: var(--space-smaller) 0;
 }
 
 .message > svg {

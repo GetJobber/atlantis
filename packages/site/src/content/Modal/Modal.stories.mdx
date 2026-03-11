@@ -8,6 +8,12 @@ Modals are overlays that allow users to view, edit, or show informations that
 doesn't require a page to be built. It also prevent users from interacting with
 the rest of the application until a specific action is taken.
 
+## Scrolling
+
+When modal content exceeds the available viewport height, the composed
+`Modal.Provider` implementation automatically handles scrolling within the modal
+itself, whereas the prop based `Modal` will result in scrolling the entire page.
+
 ## Related components
 
 Use [SideDrawer](/components/SideDrawer) if you need to overlay the page's

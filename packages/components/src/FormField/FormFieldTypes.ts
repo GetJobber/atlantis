@@ -25,6 +25,7 @@ export type KeyBoardTypes =
   | "decimal";
 
 export type AutocompleteTypes =
+  | "on"
   | "one-time-code"
   | "address-line1"
   | "address-line2";
@@ -173,6 +174,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Note that "one-time-code" is experimental and should not be used without
    * consultation. "address-line1" and "address-line2" are
    * used for billing address information.
+   *
+   * Prefer the **on** option over the boolean **true** value to explicitly indicate auto-completion behavior.
    */
   readonly autocomplete?: boolean | AutocompleteTypes;
 

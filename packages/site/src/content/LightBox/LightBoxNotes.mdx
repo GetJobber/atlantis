@@ -1,4 +1,143 @@
-## Developer notes
+## Configuration
+
+### OnRequestClose
+
+This function receives the index of the last image the user viewed before
+closing the LightBox with the `lastPosition` key. This can be useful for
+returning information about the final state when closed (e.g. for analytics).
+
+### Box Sizing
+
+The lightbox uses the `boxSizing` prop to ensure that thumbnails are rendered in
+the correct box-sizing context. This is a solution for a problem where Tailwind
+was setting `box-sizing` to `border-box` and causing layout issues.
+
+This is a one-off solution. If this issue is encountered again in other
+components, a more robust solution should be considered.
+
+## Component customization
+
+### Composable usage
+
+LightBox exposes its internal building blocks as subcomponents:
+`LightBox.Provider`, `LightBox.Content`, `LightBox.Background`,
+`LightBox.Overlay`, `LightBox.Toolbar`, `LightBox.Slides`,
+`LightBox.Navigation`, `LightBox.Caption`, and `LightBox.Thumbnails`. This gives
+you more control over the LightBox's appearance and behaviour.
+
+Here's a basic example of how the non-composable LightBox is used:
+
+```tsx
+<LightBox
+  open={isOpen}
+  images={images}
+  imageIndex={imageIndex}
+  onRequestClose={({ lastPosition }) => {
+    setIsOpen(false);
+    setImageIndex(lastPosition);
+  }}
+/>
+```
+
+Using LightBox's built-in subcomponents, this UI can alternatively be expressed
+as:
+
+```tsx
+<LightBox.Provider
+  open={isOpen}
+  images={images}
+  imageIndex={imageIndex}
+  onRequestClose={({ lastPosition }) => {
+    setIsOpen(false);
+    setImageIndex(lastPosition);
+  }}
+>
+  <LightBox.Content />
+</LightBox.Provider>
+```
+
+If you want to omit specific parts of the LightBox, you can render only the
+subcomponents you need. For example, showing the slides and navigation without a
+caption or background:
+
+```tsx
+<LightBox.Provider open={isOpen} images={images} onRequestClose={onClose}>
+  <LightBox.Overlay />
+  <LightBox.Toolbar />
+  <LightBox.Slides />
+  <LightBox.Navigation />
+  <LightBox.Thumbnails />
+</LightBox.Provider>
+```
+
+If you want to build an always-visible inline gallery, with no fullscreen
+overlay or close button, you can omit `LightBox.Content` entirely and compose
+only the pieces you need. Mouse-move tracking is wired up inside
+`LightBox.Content`, so you'll need to forward `handleMouseMove` from
+`useLightBoxContext` onto your own container so the navigation arrows appear on
+hover:
+
+```tsx
+import { LightBox, useLightBoxContext } from "@jobber/components";
+
+function GalleryView() {
+  const { handleMouseMove } = useLightBoxContext();
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      style={{ position: "relative", height: 400 }}
+    >
+      <LightBox.Slides />
+      <LightBox.Navigation />
+    </div>
+  );
+}
+
+function ImageGallery() {
+  const [index, setIndex] = useState(0);
+
+  return (
+    <LightBox.Provider
+      open={true}
+      images={images}
+      imageIndex={index}
+      onImageChange={setIndex}
+    >
+      <GalleryView />
+      <LightBox.Thumbnails />
+    </LightBox.Provider>
+  );
+}
+```
+
+For any custom component rendered inside `LightBox.Provider`, you can call
+`useLightBoxContext` to read state or trigger navigation:
+
+```tsx
+import { useLightBoxContext } from "@jobber/components";
+
+function CustomControls() {
+  const {
+    images,
+    currentImageIndex,
+    debouncedHandleNext,
+    debouncedHandlePrevious,
+    handleRequestClose,
+  } = useLightBoxContext();
+
+  return (
+    <div>
+      <span>
+        {currentImageIndex + 1} of {images.length}
+      </span>
+      <button onClick={debouncedHandlePrevious}>Prev</button>
+      <button onClick={debouncedHandleNext}>Next</button>
+      <button onClick={handleRequestClose}>Close</button>
+    </div>
+  );
+}
+```
 
 ## Testing
 
@@ -9,20 +148,3 @@ mock in your test setup:
 const scrollIntoViewMock = jest.fn();
 window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
 ```
-
-### OnRequestClose
-
-This function receives the index of the last image the user viewed before
-closing the LightBox component with the lastPosition key. This might we useful
-if we want to return information about the final state when closed (e.g. for
-analytics).
-
-### Box Sizing
-
-The lightbox uses the box-sizing property to ensure that the lightbox and its
-children are rendered in the correct box-sizing context. This is a solution for
-a problem where tailwind was setting the box-sizing to `border-box` and causing
-issues with the lightbox.
-
-This is a one off solution for this type of problem. If we were to encounter
-this issue again, we should consider a more robust solution.

@@ -8,6 +8,7 @@ import { useMemo, useState } from "react";
 
 type OptionV2 = OptionLike;
 type MenuItemsV2 = AutocompleteRebuiltProps<OptionV2, false>["menu"];
+type MultiMenuItemsV2 = AutocompleteRebuiltProps<OptionV2, true>["menu"];
 
 function AutoV2Demo({
   placeholder,
@@ -47,6 +48,35 @@ function AutoV2Demo({
   );
 }
 
+function AutoV2MultiDemo({
+  placeholder,
+  menu,
+  initialValue = [],
+  disabled,
+}: {
+  readonly placeholder: string;
+  readonly menu: MultiMenuItemsV2;
+  readonly initialValue?: OptionV2[];
+  readonly disabled?: boolean;
+}) {
+  const [value, setValue] = useState<OptionV2[]>(initialValue);
+  const [inputValue, setInputValue] = useState<string>("");
+
+  return (
+    <Autocomplete
+      version={2}
+      multiple
+      placeholder={placeholder}
+      value={value}
+      onChange={setValue}
+      inputValue={inputValue}
+      onInputChange={setInputValue}
+      menu={menu}
+      disabled={disabled}
+    />
+  );
+}
+
 export const VisualTestAutocompleteV2Page = () => {
   const flatOptions = useMemo<OptionV2[]>(
     () => [
@@ -54,6 +84,11 @@ export const VisualTestAutocompleteV2Page = () => {
       { label: "Pipe Replacement" },
       { label: "Sewer Line Repair" },
       { label: "Window Cleaning" },
+      { label: "Electrical Work" },
+      { label: "Plumbing Work" },
+      { label: "HVAC Work" },
+      { label: "General Maintenance" },
+      { label: "Other" },
     ],
     [],
   );
@@ -274,6 +309,51 @@ export const VisualTestAutocompleteV2Page = () => {
                   menu={flatOnlyMenu}
                   initialValue={{ label: "Pipe Replacement" }}
                   initialInputValue="Pipe Replacement"
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          <section>
+            <Text size="large">Multiple select</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <AutoV2MultiDemo
+                  placeholder="Multi: empty"
+                  menu={flatOnlyMenu}
+                />
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <AutoV2MultiDemo
+                  placeholder="Multi: with selections"
+                  menu={flatOnlyMenu}
+                  initialValue={[
+                    { label: "Drain Cleaning" },
+                    { label: "Pipe Replacement" },
+                  ]}
+                />
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <AutoV2MultiDemo
+                  placeholder="Multi: many selections (wrapping)"
+                  menu={flatOnlyMenu}
+                  initialValue={[
+                    { label: "Drain Cleaning" },
+                    { label: "Pipe Replacement" },
+                    { label: "Sewer Line Repair" },
+                    { label: "Window Cleaning" },
+                    { label: "Electrical Work" },
+                    { label: "Plumbing Work" },
+                    { label: "HVAC Work" },
+                    { label: "General Maintenance" },
+                  ]}
+                />
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <AutoV2MultiDemo
+                  placeholder="Multi: with actions"
+                  menu={flatWithActionsMenu}
+                  initialValue={[{ label: "Drain Cleaning" }]}
                 />
               </Grid.Cell>
             </Grid>

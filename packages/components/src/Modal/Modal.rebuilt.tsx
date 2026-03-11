@@ -15,6 +15,7 @@ import type {
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
 import { MODAL_HEADER_ID } from "./constants";
+import styles from "./Modal.rebuilt.module.css";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -164,7 +165,9 @@ export function ModalContent({ children }: ModalContainerProps) {
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    {children}
+                    <div className={styles.modalBody} tabIndex={-1}>
+                      {children}
+                    </div>
                   </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>

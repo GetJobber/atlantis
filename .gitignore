@@ -13,6 +13,9 @@ jobber-*.tgz
 .npmrc
 styles.css.backup
 
+# Generated static content files (only generated in CI)
+packages/site/public/staticContent/
+
 # Ignore local Cursor rules
 .cursor/rules/local-*
 .cursor/worktrees.json
