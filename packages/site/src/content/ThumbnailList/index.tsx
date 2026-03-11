@@ -58,9 +58,11 @@ export default {
   title: "ThumbnailList",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-thumbnaillist--docs`,
+        "?path=/story/components-images-and-icons-thumbnaillist--basic",
+        "mobile",
       ),
     },
   ],

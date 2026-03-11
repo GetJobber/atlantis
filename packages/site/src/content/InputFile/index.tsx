@@ -14,9 +14,11 @@ export default {
   title: "InputFile",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputfile--docs`,
+        "?path=/story/components-forms-and-inputs-inputfile--variations-and-sizes",
+        "web",
       ),
     },
   ],

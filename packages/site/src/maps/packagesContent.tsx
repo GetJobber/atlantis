@@ -1,8 +1,8 @@
-import ComponentsPackageComponent from "@atlantis/packages/components/README.md";
-import DesignPackageComponent from "@atlantis/packages/design/README.md";
-import EslintConfigPackageComponent from "@atlantis/packages/eslint-config/README.md";
-import HooksPackageComponent from "@atlantis/packages/hooks/README.md";
-import StylelintConfigPackageComponent from "@atlantis/packages/stylelint-config/README.md";
+import ComponentsPackageComponent from "../content/packages/components.stories.mdx";
+import DesignPackageComponent from "../content/packages/design.stories.mdx";
+import EslintConfigPackageComponent from "../content/packages/eslint-config.stories.mdx";
+import HooksPackageComponent from "../content/packages/hooks.stories.mdx";
+import StylelintConfigPackageComponent from "../content/packages/stylelint-config.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const packagesContentMap: ContentMapItems = {

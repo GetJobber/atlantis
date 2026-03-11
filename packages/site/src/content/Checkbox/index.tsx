@@ -21,15 +21,29 @@ export default {
   title: "Checkbox",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-checkbox--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-checkbox--basic",
+        "mobile",
+      ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
         "?path=/story/components-selections-checkbox-web-v2--basic",
+        "web",
       ),
     },
   ],

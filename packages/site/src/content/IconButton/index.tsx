@@ -18,8 +18,12 @@ export default {
   title: "IconButton",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-actions-iconbutton--docs`),
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-iconbutton--basic",
+        "mobile",
+      ),
     },
   ],
 } as const satisfies ContentExport;

@@ -18,9 +18,11 @@ export default {
   title: "Cover",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-cover-web--basic",
+        "?path=/story/components-layouts-and-structure-cover--basic",
+        "web",
       ),
     },
   ],

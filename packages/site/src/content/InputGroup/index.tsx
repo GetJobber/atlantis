@@ -24,9 +24,11 @@ export default {
   title: "InputGroup",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputgroup--docs`,
+        "?path=/story/components-forms-and-inputs-inputgroup--basic",
+        "web",
       ),
     },
   ],

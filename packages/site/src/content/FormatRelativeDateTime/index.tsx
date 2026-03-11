@@ -15,9 +15,11 @@ export default {
   title: "FormatRelativeDateTime",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-utilities-formatrelativedatetime--docs`,
+        "?path=/story/components-utilities-formatrelativedatetime--basic",
+        "web",
       ),
     },
   ],
