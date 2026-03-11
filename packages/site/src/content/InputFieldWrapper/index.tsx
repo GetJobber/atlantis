@@ -16,9 +16,11 @@ export default {
   title: "InputFieldWrapper",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-private-inputfieldwrapper--docs`,
+        "?path=/story/components-private-inputfieldwrapper--basic",
+        "mobile",
       ),
     },
   ],

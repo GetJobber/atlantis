@@ -13,9 +13,11 @@ export default {
   title: "AutoLink",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-autolink--docs`,
+        "?path=/story/components-text-and-typography-autolink--basic",
+        "mobile",
       ),
     },
   ],

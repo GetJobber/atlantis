@@ -42,9 +42,19 @@ return (
   title: "AtlantisThemeContext",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-themes-atlantisthemecontext--docs`,
+        "?path=/story/components-themes-atlantisthemecontext--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-themes-atlantisthemecontext--basic",
+        "mobile",
       ),
     },
   ],

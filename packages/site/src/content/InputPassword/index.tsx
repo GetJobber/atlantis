@@ -15,9 +15,19 @@ export default {
   title: "InputPassword",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputphonenumber--docs`,
+        "?path=/story/components-forms-and-inputs-inputpassword--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputpassword--basic",
+        "mobile",
       ),
     },
   ],

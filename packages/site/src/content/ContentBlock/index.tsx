@@ -21,9 +21,11 @@ export default {
   title: "ContentBlock",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-contentblock-web--basic",
+        "?path=/story/components-layouts-and-structure-contentblock--basic",
+        "web",
       ),
     },
   ],
