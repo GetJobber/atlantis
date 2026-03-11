@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import {
   Banner,
   Box,
@@ -319,25 +320,24 @@ const getComponentUrlForTab = ({
 };
 
 /**
- * Derives the active tab index and component type from the URL tab param.
- * Updates type via updateType and returns the tab index.
+ * Derives the active tab index and resolved editor type from the URL tab param.
+ * Returns both the tab index and the resolved type (if any).
  */
-// eslint-disable-next-line max-statements
-const getTabFromUrl = ({
+const getTabAndTypeFromUrl = ({
   tabFromUrl,
   availablePlatforms,
   availableTypes,
   defaultType,
-  updateType,
   isLegacy,
 }: {
   tabFromUrl: string;
   availablePlatforms: PlatformType[];
   availableTypes: ComponentType[];
   defaultType: ComponentType;
-  updateType: (type: ComponentType) => void;
   isLegacy: boolean;
-}): number => {
+}): { tabIndex: number; resolvedType: ComponentType | null } => {
+  let resolvedType: ComponentType | null = null;
+
   if (!tabFromUrl || tabFromUrl.trim() === "") {
     const resolved = resolveComponentTypeFromRoute({
       tab: tabFromUrl,
@@ -346,9 +346,9 @@ const getTabFromUrl = ({
       defaultType,
     });
 
-    if (resolved) updateType(resolved);
+    resolvedType = resolved;
 
-    return DESIGN_TAB_INDEX;
+    return { tabIndex: DESIGN_TAB_INDEX, resolvedType };
   }
   const platformIndex = availablePlatforms.indexOf(tabFromUrl as PlatformType);
 
@@ -360,9 +360,9 @@ const getTabFromUrl = ({
       defaultType,
     });
 
-    if (resolved) updateType(resolved);
+    resolvedType = resolved;
 
-    return availablePlatforms.length + 1;
+    return { tabIndex: availablePlatforms.length + 1, resolvedType };
   } else if (platformIndex !== -1) {
     const resolved = resolveComponentTypeFromRoute({
       tab: tabFromUrl,
@@ -371,11 +371,11 @@ const getTabFromUrl = ({
       defaultType,
     });
 
-    if (resolved) updateType(resolved);
+    resolvedType = resolved;
 
-    return platformIndex + 1;
+    return { tabIndex: platformIndex + 1, resolvedType };
   } else {
-    return DESIGN_TAB_INDEX;
+    return { tabIndex: DESIGN_TAB_INDEX, resolvedType };
   }
 };
 
@@ -416,14 +416,15 @@ const useComponentViewTabs = ({
 
     const initialDefaultType = getDefaultComponentType(PageMeta);
 
-    return getTabFromUrl({
+    const initial = getTabAndTypeFromUrl({
       tabFromUrl,
       availablePlatforms: getAvailablePlatformTypes(PageMeta),
       availableTypes: getAvailableComponentTypes(PageMeta),
       defaultType: initialDefaultType,
-      updateType,
       isLegacy,
     });
+
+    return initial.tabIndex;
   });
 
   // Reset tabs when the page meta changes for example when we switch to a different component
@@ -434,16 +435,15 @@ const useComponentViewTabs = ({
       return;
     }
 
-    setTab(
-      getTabFromUrl({
-        tabFromUrl,
-        availablePlatforms,
-        availableTypes,
-        defaultType,
-        updateType,
-        isLegacy,
-      }),
-    );
+    const nextTab = getTabAndTypeFromUrl({
+      tabFromUrl,
+      availablePlatforms,
+      availableTypes,
+      defaultType,
+      isLegacy,
+    });
+
+    setTab(nextTab.tabIndex);
   }, [
     tabFromUrl,
     availablePlatforms,
@@ -452,6 +452,30 @@ const useComponentViewTabs = ({
     updateType,
     isLegacy,
     PageMeta,
+  ]);
+
+  useEffect(() => {
+    if (!PageMeta || !defaultType) return;
+
+    const nextTab = getTabAndTypeFromUrl({
+      tabFromUrl,
+      availablePlatforms,
+      availableTypes,
+      defaultType,
+      isLegacy,
+    });
+
+    if (nextTab.resolvedType) {
+      updateType(nextTab.resolvedType);
+    }
+  }, [
+    PageMeta,
+    tabFromUrl,
+    availablePlatforms,
+    availableTypes,
+    defaultType,
+    isLegacy,
+    updateType,
   ]);
 
   const setAndNavigateTab = (tabIndex: number) => {
