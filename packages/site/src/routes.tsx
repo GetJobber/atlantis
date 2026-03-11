@@ -206,8 +206,23 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/welcome-guide",
+        handle: "Welcome guide",
+        exact: true,
+      },
+      {
         path: "/guides/contributing",
         handle: "Contributing",
+        exact: true,
+      },
+      {
+        path: "/guides/repository-contributing",
+        handle: "Repository contributing",
+        exact: true,
+      },
+      {
+        path: "/guides/charter",
+        handle: "Atlantis charter",
         exact: true,
       },
       {

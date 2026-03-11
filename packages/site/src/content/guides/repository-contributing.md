@@ -1,4 +1,4 @@
-# Contributing to Atlantis
+# Contributing
 
 ## How can you contribute?
 
@@ -215,5 +215,3 @@ export default {
    },
 } satisfies Meta<typeof YourComponent>;
 ```
-
-<br />

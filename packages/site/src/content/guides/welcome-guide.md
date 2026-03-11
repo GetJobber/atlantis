@@ -27,11 +27,13 @@ cd atlantis
 npm install
 ```
 
-To start the [Storybook](https://storybook.js.org/) development server:
+To start local development for Atlantis:
 
 ```sh
 npm start
 ```
+
+This starts the web Storybook, the mobile Storybook, and the docs site together.
 
 ### Monorepo notes
 

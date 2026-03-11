@@ -1,5 +1,10 @@
 export const guidesList = [
   {
+    title: "Welcome guide",
+    to: "/guides/welcome-guide",
+    sections: ["Getting started"],
+  },
+  {
     title: "Atlantis overview",
     to: "/guides/atlantis-overview",
     sections: ["Getting started"],
@@ -8,6 +13,16 @@ export const guidesList = [
   {
     title: "Contributing to Atlantis",
     to: "/guides/contributing",
+    sections: ["Contributing"],
+  },
+  {
+    title: "Repository contributing",
+    to: "/guides/repository-contributing",
+    sections: ["Contributing"],
+  },
+  {
+    title: "Atlantis charter",
+    to: "/guides/charter",
     sections: ["Contributing"],
   },
   {
