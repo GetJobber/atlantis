@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Countdown } from "@jobber/components/Countdown";
 import { Button } from "@jobber/components/Button";
 import { Emphasis } from "@jobber/components/Emphasis";
@@ -7,29 +7,29 @@ import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 
-export default {
-  title: "Components/Utilities/Countdown/Web",
+const meta = {
+  title: "Components/Utilities/Countdown",
   component: Countdown,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Countdown>;
+} satisfies Meta<typeof Countdown>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Countdown>>>;
 
-const BasicTemplate: ComponentStory<typeof Countdown> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <Countdown
     {...args}
     date={new Date(new Date().getTime() + 25 * 3600 * 1000)}
   />
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  granularity: "dhms",
-  showUnits: true,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    granularity: "dhms",
+    showUnits: true,
+  },
 };
 
-const OnCompleteTemplate: ComponentStory<typeof Countdown> = args => {
+const OnCompleteTemplate = (args: Story["args"]) => {
   const [start, setStart] = useState(false);
   const inTenSeconds = new Date(new Date().getTime() + 10 * 1000);
 
@@ -45,14 +45,16 @@ const OnCompleteTemplate: ComponentStory<typeof Countdown> = args => {
   );
 };
 
-export const OnComplete = OnCompleteTemplate.bind({});
-OnComplete.args = {
-  granularity: "s",
-  showUnits: true,
-  onComplete: () => alert("Completed Timer!"),
+export const OnComplete: Story = {
+  render: OnCompleteTemplate,
+  args: {
+    granularity: "s",
+    showUnits: true,
+    onComplete: () => alert("Completed Timer!"),
+  },
 };
 
-const StylingTemplate: ComponentStory<typeof Countdown> = args => (
+const StylingTemplate = (args: Story["args"]) => (
   <Content>
     <Text>
       <Countdown
@@ -73,8 +75,10 @@ const StylingTemplate: ComponentStory<typeof Countdown> = args => (
   </Content>
 );
 
-export const Styling = StylingTemplate.bind({});
-Styling.args = {
-  granularity: "s",
-  showUnits: true,
+export const Styling: Story = {
+  render: StylingTemplate,
+  args: {
+    granularity: "s",
+    showUnits: true,
+  },
 };

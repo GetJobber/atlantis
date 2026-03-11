@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputNumber } from "@jobber/components/InputNumber";
 
 const meta = {
-  title: "Components/Forms and Inputs/InputNumber/Web (v2)",
+  title: "Components/Forms and Inputs/InputNumber/V2",
   component: InputNumber,
   args: {
     version: 2,

@@ -1,22 +1,24 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTime";
 
-export default {
-  title: "Components/Utilities/FormatRelativeDateTime/Web",
+const meta = {
+  title: "Components/Utilities/FormatRelativeDateTime",
   component: FormatRelativeDateTime,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof FormatRelativeDateTime>;
+} satisfies Meta<typeof FormatRelativeDateTime>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof FormatRelativeDateTime>, "date">
+>;
 
-const BasicTemplate: ComponentStory<typeof FormatRelativeDateTime> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <FormatRelativeDateTime
-    {...args}
-    date={new Date(new Date().setMinutes(new Date().getMinutes() - 5))}
+    date={
+      args?.date ?? new Date(new Date().setMinutes(new Date().getMinutes() - 5))
+    }
   />
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};

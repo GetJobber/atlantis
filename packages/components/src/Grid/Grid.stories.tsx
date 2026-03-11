@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Grid } from "@jobber/components/Grid";
 import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
@@ -8,17 +8,17 @@ import { Card } from "@jobber/components/Card";
 import { DescriptionList } from "@jobber/components/DescriptionList";
 import { Stack } from "@jobber/components/Stack";
 
-export default {
-  title: "Components/Layouts and Structure/Grid/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Grid",
   component: Grid,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Grid>;
+} satisfies Meta<typeof Grid>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof Grid>, "gap" | "alignItems">
+>;
 
-const BasicTemplate: ComponentStory<typeof Grid> = args => (
-  <Grid {...args}>
+const BasicTemplate = (args: Story["args"]) => (
+  <Grid gap={args?.gap} alignItems={args?.alignItems}>
     <Grid.Cell size={{ xs: 12, sm: 6, md: 7, lg: 7, xl: 6 }}>
       <Content>
         <Heading level={1}>Welcome to Atlantis!</Heading>
@@ -48,9 +48,9 @@ const BasicTemplate: ComponentStory<typeof Grid> = args => (
   </Grid>
 );
 
-const ThreeColumnsTemplate: ComponentStory<typeof Grid> = args => (
+const ThreeColumnsTemplate = (args: Story["args"]) => (
   <Content spacing="large">
-    <Grid {...args}>
+    <Grid gap={args?.gap} alignItems={args?.alignItems}>
       <Grid.Cell
         size={{
           xs: 12,
@@ -91,7 +91,7 @@ const ThreeColumnsTemplate: ComponentStory<typeof Grid> = args => (
   </Content>
 );
 
-const SpacingTemplate: ComponentStory<typeof Grid> = () => (
+const SpacingTemplate = () => (
   <Stack gap="large">
     <div>
       <Text variation="subdued">gap=true (default)</Text>
@@ -175,15 +175,21 @@ const SpacingTemplate: ComponentStory<typeof Grid> = () => (
   </Stack>
 );
 
-export const Spacing = SpacingTemplate.bind({});
-
-export const ThreeColumns = ThreeColumnsTemplate.bind({});
-ThreeColumns.args = {
-  gap: true,
+export const Spacing: Story = {
+  render: SpacingTemplate,
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  gap: true,
-  alignItems: "start",
+export const ThreeColumns: Story = {
+  render: ThreeColumnsTemplate,
+  args: {
+    gap: true,
+  },
+};
+
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    gap: true,
+    alignItems: "start",
+  },
 };

@@ -1,28 +1,25 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { FormField, InputText, Text } from "@jobber/components-native";
 
-export default {
-  title: "Components/Private/FormField/Mobile",
+const meta = {
+  title: "Components/Private/FormField",
   component: FormField,
   parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "react-hook-form": ["useForm", "FormProvider"],
-        },
-      },
-    },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof FormField>;
+} satisfies Meta<typeof FormField>;
+export default meta;
 
-const BasicTemplate: ComponentStory<typeof FormField> = args => {
+interface NativeFormFieldStoryArgs {
+  name?: string;
+}
+type Story = StoryObj<NativeFormFieldStoryArgs>;
+
+const BasicTemplate = (args: Story["args"]) => {
   return (
-    <FormField {...args}>
+    <FormField name={args?.name ?? "name"}>
       {field => {
         return <InputText value={field.value} placeholder="Enter name here" />;
       }}
@@ -30,13 +27,13 @@ const BasicTemplate: ComponentStory<typeof FormField> = args => {
   );
 };
 
-const WithValidationsTemplate: ComponentStory<typeof FormField> = args => {
+const WithValidationsTemplate = (args: Story["args"]) => {
   const methods = useForm({ mode: "onChange" });
 
   return (
     <FormProvider {...methods}>
       <FormField
-        {...args}
+        name={args?.name ?? "validations"}
         validations={{
           maxLength: {
             value: 5,
@@ -61,12 +58,16 @@ const WithValidationsTemplate: ComponentStory<typeof FormField> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  name: "name",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    name: "name",
+  },
 };
 
-export const WithValidations = WithValidationsTemplate.bind({});
-WithValidations.args = {
-  name: "validations",
+export const WithValidations: Story = {
+  render: WithValidationsTemplate,
+  args: {
+    name: "validations",
+  },
 };

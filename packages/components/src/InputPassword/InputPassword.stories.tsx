@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputPassword } from "@jobber/components/InputPassword";
 
-export default {
-  title: "Components/Forms and Inputs/InputPassword/Web",
+const meta = {
+  title: "Components/Forms and Inputs/InputPassword",
   component: InputPassword,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof InputPassword>;
+} satisfies Meta<typeof InputPassword>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof InputPassword>>>;
 
-const BasicTemplate: ComponentStory<typeof InputPassword> = args => (
-  <InputPassword {...args} />
-);
+const BasicTemplate = (args: Story["args"]) => <InputPassword {...args} />;
 
-const ControlledTemplate: ComponentStory<typeof InputPassword> = args => {
+const ControlledTemplate = (args: Story["args"]) => {
   const [value, setValue] = useState("password");
 
   return (
@@ -27,30 +23,38 @@ const ControlledTemplate: ComponentStory<typeof InputPassword> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Password",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Password",
+  },
 };
 
-export const Controlled = ControlledTemplate.bind({});
-Controlled.args = {
-  placeholder: "Password",
+export const Controlled: Story = {
+  render: ControlledTemplate,
+  args: {
+    placeholder: "Password",
+  },
 };
 
-export const HasVisibility = BasicTemplate.bind({});
-HasVisibility.args = {
-  placeholder: "Password",
-  hasVisibility: true,
+export const HasVisibility: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Password",
+    hasVisibility: true,
+  },
 };
 
-export const WithError = BasicTemplate.bind({});
-WithError.args = {
-  placeholder: "Password",
-  validations: {
-    required: { value: true, message: "Password is required" },
-    minLength: {
-      value: 10,
-      message: "Password must be at least 10 characters",
+export const WithError: Story = {
+  render: BasicTemplate,
+  args: {
+    placeholder: "Password",
+    validations: {
+      required: { value: true, message: "Password is required" },
+      minLength: {
+        value: 10,
+        message: "Password must be at least 10 characters",
+      },
     },
   },
 };

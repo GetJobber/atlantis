@@ -1,30 +1,17 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Chip, ChipDismissible, ChipSelectable } from "@jobber/components/Chip";
 import { Content } from "@jobber/components/Content";
 import { Icon } from "@jobber/components/Icon";
 
-export default {
-  title: "Components/Selections/Chip/Web",
+const meta = {
+  title: "Components/Selections/Chip",
   component: Chip,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/Chip": [
-            "Chip",
-            "ChipDismissible",
-            "ChipSelectable",
-          ],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Chip>;
+} satisfies Meta<typeof Chip>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Chip> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <Chip {...args} onClick={() => alert("you clicked me!")} />
@@ -32,7 +19,7 @@ const BasicTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const SuffixTemplate: ComponentStory<typeof Chip> = args => {
+const SuffixTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <Chip {...args} onClick={() => alert("you clicked the Chip!")}>
@@ -44,7 +31,7 @@ const SuffixTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const ClickableSuffixTemplate: ComponentStory<typeof Chip> = args => {
+const ClickableSuffixTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <Chip {...args} onClick={() => alert("you clicked the Chip!")}>
@@ -59,7 +46,7 @@ const ClickableSuffixTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const PrefixTemplate: ComponentStory<typeof Chip> = args => {
+const PrefixTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <Chip {...args} onClick={() => alert("you clicked me!")}>
@@ -71,7 +58,7 @@ const PrefixTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const DismissibleTemplate: ComponentStory<typeof Chip> = args => {
+const DismissibleTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <ChipDismissible
@@ -82,7 +69,7 @@ const DismissibleTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const SelectableTemplate: ComponentStory<typeof Chip> = args => {
+const SelectableTemplate = (args: Story["args"]) => {
   const [selected, setSelected] = useState(false);
 
   return (
@@ -96,7 +83,7 @@ const SelectableTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-const TruncatingTemplate: ComponentStory<typeof Chip> = args => {
+const TruncatingTemplate = (args: Story["args"]) => {
   return (
     <Content>
       <div
@@ -125,7 +112,6 @@ const TruncatingTemplate: ComponentStory<typeof Chip> = args => {
   );
 };
 
-export const Base = BasicTemplate.bind({});
 const defaultArgs = {
   ariaLabel: "Accessible Label",
   disabled: false,
@@ -138,100 +124,131 @@ const defaultArgs = {
   variation: "base" as const,
 };
 
-Base.args = {
-  ...defaultArgs,
-  label: "Chip Label",
+export const Base: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Chip Label",
+  },
 };
 
-export const BaseDisabled = BasicTemplate.bind({});
-BaseDisabled.args = {
-  ...defaultArgs,
-  label: "Disabled Chip",
-  disabled: true,
+export const BaseDisabled: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Disabled Chip",
+    disabled: true,
+  },
 };
 
-export const Invalid = BasicTemplate.bind({});
-Invalid.args = {
-  ...defaultArgs,
-  label: "Invalid Chip",
-  invalid: true,
+export const Invalid: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Invalid Chip",
+    invalid: true,
+  },
 };
 
-export const Subtle = BasicTemplate.bind({});
-Subtle.args = {
-  ...defaultArgs,
-  label: "Subtle Chip",
-  variation: "subtle",
+export const Subtle: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Subtle Chip",
+    variation: "subtle",
+  },
 };
 
-export const SubtleDisabled = BasicTemplate.bind({});
-SubtleDisabled.args = {
-  ...defaultArgs,
-  label: "Subtle Disabled Chip",
-  disabled: true,
+export const SubtleDisabled: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Subtle Disabled Chip",
+    disabled: true,
+  },
 };
 
-export const SubtleInvalid = BasicTemplate.bind({});
-SubtleInvalid.args = {
-  ...defaultArgs,
-  label: "Subtle Invalid Chip",
-  variation: "subtle",
-  invalid: true,
+export const SubtleInvalid: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Subtle Invalid Chip",
+    variation: "subtle",
+    invalid: true,
+  },
 };
 
-export const WithHeading = BasicTemplate.bind({});
-WithHeading.args = {
-  ...defaultArgs,
-  heading: "Heading",
+export const WithHeading: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    heading: "Heading",
+  },
 };
 
-export const WithHeadingInvalid = BasicTemplate.bind({});
-WithHeadingInvalid.args = {
-  ...defaultArgs,
-  heading: "Heading",
-  invalid: true,
+export const WithHeadingInvalid: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    heading: "Heading",
+    invalid: true,
+  },
 };
 
-export const WithHeadingDisabled = BasicTemplate.bind({});
-WithHeadingDisabled.args = {
-  ...defaultArgs,
-  heading: "Heading",
-  disabled: true,
+export const WithHeadingDisabled: Story = {
+  render: BasicTemplate,
+  args: {
+    ...defaultArgs,
+    heading: "Heading",
+    disabled: true,
+  },
 };
 
-export const Suffix = SuffixTemplate.bind({});
-Suffix.args = {
-  ...defaultArgs,
-  label: "Chip With Suffix",
+export const Suffix: Story = {
+  render: SuffixTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Chip With Suffix",
+  },
 };
 
-export const ClickableSuffix = ClickableSuffixTemplate.bind({});
-ClickableSuffix.args = {
-  ...defaultArgs,
-  label: "Clickable Chip With Suffix",
+export const ClickableSuffix: Story = {
+  render: ClickableSuffixTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Clickable Chip With Suffix",
+  },
 };
 
-export const Prefix = PrefixTemplate.bind({});
-Prefix.args = {
-  ...defaultArgs,
-  label: "Chip With Prefix",
+export const Prefix: Story = {
+  render: PrefixTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Chip With Prefix",
+  },
 };
 
-export const Dismissible = DismissibleTemplate.bind({});
-Dismissible.args = {
-  ...defaultArgs,
-  label: "Dismissible Chip",
+export const Dismissible: Story = {
+  render: DismissibleTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Dismissible Chip",
+  },
 };
 
-export const Selectable = SelectableTemplate.bind({});
-Selectable.args = {
-  ...defaultArgs,
-  label: "Selectable Chip",
+export const Selectable: Story = {
+  render: SelectableTemplate,
+  args: {
+    ...defaultArgs,
+    label: "Selectable Chip",
+  },
 };
 
-export const Truncating = TruncatingTemplate.bind({});
-Truncating.args = {
-  ...defaultArgs,
-  heading: "Heading",
-  label: "Truncating Chip",
+export const Truncating: Story = {
+  render: TruncatingTemplate,
+  args: {
+    ...defaultArgs,
+    heading: "Heading",
+    label: "Truncating Chip",
+  },
 };

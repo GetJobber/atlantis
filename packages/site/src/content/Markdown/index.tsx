@@ -17,9 +17,11 @@ export default {
   title: "Markdown",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-markdown--docs`,
+        "?path=/story/components-text-and-typography-markdown--basic",
+        "web",
       ),
     },
   ],

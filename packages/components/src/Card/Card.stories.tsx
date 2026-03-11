@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -11,16 +11,42 @@ import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Layouts and Structure/Card/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Card",
   component: Card,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Card>;
+} satisfies Meta<typeof Card>;
+export default meta;
 
-const BasicTemplate: ComponentStory<typeof Card> = args => (
+type BaseCardStoryProps = Omit<
+  React.ComponentProps<typeof Card>,
+  "children"
+> & {
+  children?: React.ReactNode;
+};
+
+type BaseCardArgs = BaseCardStoryProps & {
+  url?: never;
+  onClick?: never;
+  external?: never;
+};
+
+type LinkCardArgs = BaseCardStoryProps & {
+  url: string;
+  external?: boolean;
+  onClick?: never;
+};
+
+type ClickCardArgs = BaseCardStoryProps & {
+  onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
+  url?: never;
+  external?: never;
+};
+
+type BaseStory = StoryObj<BaseCardArgs>;
+type LinkStory = StoryObj<LinkCardArgs>;
+type ClickStory = StoryObj<ClickCardArgs>;
+
+const BasicTemplate = (args: BaseStory["args"]) => (
   <Card {...args}>
     <Content>
       <Heading level={4}>Details</Heading>
@@ -53,7 +79,25 @@ const BasicTemplate: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-const ClickTemplate: ComponentStory<typeof Card> = args => (
+const LinkTemplate = (args: LinkStory["args"]) => {
+  const linkProps = args as LinkCardArgs;
+
+  return (
+    <Card {...linkProps}>
+      <Content>
+        <Flex template={["grow", "shrink"]} align="start">
+          <Heading level={4}>View all</Heading>
+          <Icon size="small" name="arrowRight" />
+        </Flex>
+        <Text>
+          See how our 20+ features can help you organize, impress, and grow.
+        </Text>
+      </Content>
+    </Card>
+  );
+};
+
+const ClickTemplate = (args: ClickStory["args"]) => (
   <Card {...args}>
     <Content>
       <Flex template={["grow", "shrink"]} align="start">
@@ -67,31 +111,39 @@ const ClickTemplate: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  header: "Company settings",
-};
-
-export const WithURL = ClickTemplate.bind({});
-WithURL.args = {
-  url: "/",
-};
-
-export const WithOnClick = ClickTemplate.bind({});
-WithOnClick.args = {
-  onClick: e => {
-    alert("😻");
-    console.log(e.currentTarget);
+export const Basic: BaseStory = {
+  render: BasicTemplate,
+  args: {
+    header: "Company settings",
   },
 };
 
-export const WithElevation = BasicTemplate.bind({});
-WithElevation.args = {
-  header: "Company settings",
-  elevation: "base",
+export const WithURL: LinkStory = {
+  render: LinkTemplate,
+  args: {
+    url: "/",
+  },
 };
 
-const WithAccentTemplate: ComponentStory<typeof Card> = args => (
+export const WithOnClick: ClickStory = {
+  render: ClickTemplate,
+  args: {
+    onClick: e => {
+      alert("😻");
+      console.log(e.currentTarget);
+    },
+  },
+};
+
+export const WithElevation: BaseStory = {
+  render: BasicTemplate,
+  args: {
+    header: "Company settings",
+    elevation: "base",
+  },
+};
+
+const WithAccentTemplate = (args: BaseStory["args"]) => (
   <div
     style={{
       maxWidth: "700px",
@@ -131,13 +183,15 @@ const WithAccentTemplate: ComponentStory<typeof Card> = args => (
   </div>
 );
 
-export const WithAccent = WithAccentTemplate.bind({});
-WithAccent.args = {
-  header: "Company settings",
-  accent: "indigoLight",
+export const WithAccent: BaseStory = {
+  render: WithAccentTemplate,
+  args: {
+    header: "Company settings",
+    accent: "indigoLight",
+  },
 };
 
-const CustomHeaderTemplate: ComponentStory<typeof Card> = args => (
+const CustomHeaderTemplate = (args: BaseStory["args"]) => (
   <Card
     header={
       <div
@@ -176,9 +230,11 @@ const CustomHeaderTemplate: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-export const CustomHeader = CustomHeaderTemplate.bind({});
+export const CustomHeader: BaseStory = {
+  render: CustomHeaderTemplate,
+};
 
-const HeaderActionTemplate: ComponentStory<typeof Card> = () => (
+const HeaderActionTemplate = () => (
   <Card
     header={{
       title: "The Jobber App",
@@ -194,9 +250,11 @@ const HeaderActionTemplate: ComponentStory<typeof Card> = () => (
   </Card>
 );
 
-export const HeaderAction = HeaderActionTemplate.bind({});
+export const HeaderAction: BaseStory = {
+  render: HeaderActionTemplate,
+};
 
-const CompoundComponentTemplate: ComponentStory<typeof Card> = args => (
+const CompoundComponentTemplate = (args: BaseStory["args"]) => (
   <Card {...args}>
     <Card.Header>
       <Box padding="base">
@@ -239,7 +297,9 @@ const CompoundComponentTemplate: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-export const CompoundComponent = CompoundComponentTemplate.bind({});
-CompoundComponent.args = {
-  elevation: "base",
+export const CompoundComponent: BaseStory = {
+  render: CompoundComponentTemplate,
+  args: {
+    elevation: "base",
+  },
 };

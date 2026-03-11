@@ -1,21 +1,21 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FormatEmail } from "@jobber/components/FormatEmail";
 
-export default {
-  title: "Components/Utilities/FormatEmail/Web",
+const meta = {
+  title: "Components/Utilities/FormatEmail",
   component: FormatEmail,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof FormatEmail>;
+} satisfies Meta<typeof FormatEmail>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof FormatEmail>>>;
 
-const BasicTemplate: ComponentStory<typeof FormatEmail> = args => (
-  <FormatEmail {...args} />
+const BasicTemplate = (args: Story["args"]) => (
+  <FormatEmail email={args?.email ?? "myemail@address.me"} />
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  email: "myemail@address.me",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    email: "myemail@address.me",
+  },
 };

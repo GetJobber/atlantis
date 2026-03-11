@@ -61,8 +61,12 @@ export default {
   title: "Combobox",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-combobox--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-combobox--clear-selection",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

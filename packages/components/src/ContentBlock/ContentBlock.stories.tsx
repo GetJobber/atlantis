@@ -1,21 +1,28 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ContentBlock } from "@jobber/components/ContentBlock";
 import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 import { Stack } from "@jobber/components/Stack";
 import { Cluster } from "@jobber/components/Cluster";
 
-export default {
-  title: "Components/Layouts and Structure/ContentBlock/Web",
+const meta = {
+  title: "Components/Layouts and Structure/ContentBlock",
   component: ContentBlock,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof ContentBlock>;
+} satisfies Meta<typeof ContentBlock>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof ContentBlock>>>;
 
-const BasicTemplate: ComponentStory<typeof ContentBlock> = args => (
+function mapClusterJustify(
+  justify: React.ComponentProps<typeof ContentBlock>["justify"],
+) {
+  if (justify === "center") return "center";
+  if (justify === "right") return "end";
+
+  return "start";
+}
+
+const BasicTemplate = (args: Story["args"]) => (
   <ContentBlock {...args}>
     <Stack>
       <Text>
@@ -26,11 +33,7 @@ const BasicTemplate: ComponentStory<typeof ContentBlock> = args => (
         is no more room at the edges of the container to prevent it from bumping
         up against the edges.
       </Text>
-      <Cluster
-        justify={
-          args.justify as "center" | "start" | "end" | "between" | "around"
-        }
-      >
+      <Cluster justify={mapClusterJustify(args?.justify)}>
         <Button>
           <Button.Label>Click me</Button.Label>
         </Button>
@@ -39,26 +42,32 @@ const BasicTemplate: ComponentStory<typeof ContentBlock> = args => (
   </ContentBlock>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  maxWidth: "50ch",
-  justify: "left",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    maxWidth: "50ch",
+    justify: "left",
+  },
 };
 
-export const WithGutters = BasicTemplate.bind({});
-WithGutters.args = {
-  maxWidth: "50ch",
-  gutters: "base",
+export const WithGutters: Story = {
+  render: BasicTemplate,
+  args: {
+    maxWidth: "50ch",
+    gutters: "base",
+  },
 };
 
-export const WithAndText = BasicTemplate.bind({});
-WithAndText.args = {
-  maxWidth: "50ch",
-  justify: "center",
-  andText: true,
+export const WithAndText: Story = {
+  render: BasicTemplate,
+  args: {
+    maxWidth: "50ch",
+    justify: "center",
+    andText: true,
+  },
 };
 
-const CustomMaxWidthTemplate: ComponentStory<typeof ContentBlock> = args => (
+const CustomMaxWidthTemplate = (args: Story["args"]) => (
   <ContentBlock {...args}>
     <Stack>
       <Text>
@@ -70,8 +79,10 @@ const CustomMaxWidthTemplate: ComponentStory<typeof ContentBlock> = args => (
   </ContentBlock>
 );
 
-export const CustomMaxWidth = CustomMaxWidthTemplate.bind({});
-CustomMaxWidth.args = {
-  maxWidth: "12ch",
-  gutters: "large",
+export const CustomMaxWidth: Story = {
+  render: CustomMaxWidthTemplate,
+  args: {
+    maxWidth: "12ch",
+    gutters: "large",
+  },
 };

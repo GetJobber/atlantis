@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
-import type { InputNumberRef } from "@jobber/components/InputNumber";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import type {
+  InputNumberLegacyProps,
+  InputNumberRebuiltProps,
+  InputNumberRef,
+} from "@jobber/components/InputNumber";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
@@ -10,34 +14,48 @@ import { Grid } from "@jobber/components/Grid";
 import { Link } from "@jobber/components/Link";
 import { Flex } from "@jobber/components/Flex";
 
-export default {
-  title: "Components/Forms and Inputs/InputNumber/Web",
+const meta = {
+  title: "Components/Forms and Inputs/InputNumber",
   component: InputNumber,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof InputNumber>;
+} satisfies Meta<typeof InputNumber>;
+export default meta;
+type Story = StoryObj<Partial<InputNumberLegacyProps>>;
+type V2Story = StoryObj<Partial<InputNumberRebuiltProps> & { version?: 2 }>;
+type ControlledStory = StoryObj<{
+  value?: number;
+  placeholder?: string;
+  prefix?: InputNumberLegacyProps["prefix"];
+  suffix?: InputNumberLegacyProps["suffix"];
+}>;
+type MinMaxValueStory = StoryObj<{
+  minValue: number;
+  maxValue: number;
+  value: number;
+}>;
 
-const BasicTemplate: ComponentStory<typeof InputNumber> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return <InputNumber {...args} />;
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  name: "age",
-  placeholder: "Age in years",
-  value: 37,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    name: "age",
+    placeholder: "Age in years",
+    value: 37,
+  },
 };
 
-export const Invalid = BasicTemplate.bind({});
-Invalid.args = {
-  value: 1.1,
-  invalid: true,
-  placeholder: "Give a whole number",
+export const Invalid: Story = {
+  render: BasicTemplate,
+  args: {
+    value: 1.1,
+    invalid: true,
+    placeholder: "Give a whole number",
+  },
 };
 
-const SizesTemplate: ComponentStory<typeof InputNumber> = () => {
+const SizesTemplate = () => {
   return (
     <Content>
       <InputNumber size="small" value={100} />
@@ -46,10 +64,12 @@ const SizesTemplate: ComponentStory<typeof InputNumber> = () => {
   );
 };
 
-export const Sizes = SizesTemplate.bind({});
+export const Sizes: Story = {
+  render: SizesTemplate,
+};
 
-const InlineTemplate: ComponentStory<typeof InputNumber> = args => {
-  const [value, setValue] = useState(args.value);
+const InlineTemplate = (args: Story["args"]) => {
+  const [value, setValue] = useState(args?.value);
 
   return (
     <Text>
@@ -64,16 +84,18 @@ const InlineTemplate: ComponentStory<typeof InputNumber> = args => {
   );
 };
 
-export const Inline = InlineTemplate.bind({});
-Inline.args = {
-  size: "small",
-  value: 2,
-  inline: true,
-  maxLength: 2,
-  align: "center",
+export const Inline: Story = {
+  render: InlineTemplate,
+  args: {
+    size: "small",
+    value: 2,
+    inline: true,
+    maxLength: 2,
+    align: "center",
+  },
 };
 
-const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
+const FocusTemplate = (args: Story["args"]) => {
   const inputNumberRef = useRef<InputNumberRef>(null);
 
   function toggleInputFocus(shouldFocus = true) {
@@ -91,45 +113,53 @@ const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
   );
 };
 
-export const FocusAndBlur = FocusTemplate.bind({});
-FocusAndBlur.args = {};
+export const FocusAndBlur: Story = {
+  render: FocusTemplate,
+  args: {},
+};
 
-const ReadonlyTemplate: ComponentStory<typeof InputNumber> = args => {
+const ReadonlyTemplate = (args: Story["args"]) => {
   return <InputNumber {...args} />;
 };
 
-export const Readonly = ReadonlyTemplate.bind({});
-Readonly.args = {
-  placeholder: "Your pin number",
-  value: 12345,
-  readonly: true,
+export const Readonly: Story = {
+  render: ReadonlyTemplate,
+  args: {
+    placeholder: "Your pin number",
+    value: 12345,
+    readonly: true,
+  },
 };
 
-const DisabledTemplate: ComponentStory<typeof InputNumber> = args => {
+const DisabledTemplate = (args: Story["args"]) => {
   return <InputNumber {...args} />;
 };
 
-export const Disabled = DisabledTemplate.bind({});
-Disabled.args = {
-  placeholder: "SIN number",
-  value: 12345,
-  disabled: true,
+export const Disabled: Story = {
+  render: DisabledTemplate,
+  args: {
+    placeholder: "SIN number",
+    value: 12345,
+    disabled: true,
+  },
 };
 
-const PrefixAndSuffixTemplate: ComponentStory<typeof InputNumber> = args => {
+const PrefixAndSuffixTemplate = (args: Story["args"]) => {
   return <InputNumber {...args} />;
 };
 
-export const PrefixAndSuffix = PrefixAndSuffixTemplate.bind({});
-PrefixAndSuffix.args = {
-  suffix: { label: ".00" },
-  prefix: { label: "$", icon: "invoice" },
-  placeholder: "Invoice total",
-  defaultValue: "100000",
+export const PrefixAndSuffix: Story = {
+  render: PrefixAndSuffixTemplate,
+  args: {
+    suffix: { label: ".00" },
+    prefix: { label: "$", icon: "invoice" },
+    placeholder: "Invoice total",
+    defaultValue: "100000",
+  },
 };
 
-const ControlledTemplate: ComponentStory<typeof InputNumber> = args => {
-  const [value, setValue] = useState<number>(args.value ?? 11.77);
+const ControlledTemplate = (args: ControlledStory["args"]) => {
+  const [value, setValue] = useState<number>(args?.value ?? 11.77);
 
   return (
     <Box gap="base">
@@ -152,251 +182,255 @@ const ControlledTemplate: ComponentStory<typeof InputNumber> = args => {
   );
 };
 
-export const Controlled = ControlledTemplate.bind({});
-Controlled.args = {
-  value: 10.1337,
-  placeholder: "Enter a number",
-  prefix: { label: "$", icon: "invoice" },
-  suffix: { label: ".00" },
+export const Controlled: ControlledStory = {
+  render: ControlledTemplate,
+  args: {
+    value: 10.1337,
+    placeholder: "Enter a number",
+    prefix: { label: "$", icon: "invoice" },
+    suffix: { label: ".00" },
+  },
 };
 
-export const VersionComparison = () => {
-  const [values, setValues] = useState({
-    basic: 11.77,
-    multiline: 11.77,
-    error: 11.77,
-    disabled: 11.77,
-    readonly: 11.77,
-    withToolbar: 11.77,
-    prefix: 11.77,
-    suffix: 11.77,
-    both: 11.77,
-    rightAlign: 11.77,
-    centerAlign: 11.77,
-    sizeSmall: 11.77,
-    sizeLarge: 11.77,
-    inline: 11.77,
-    multilineResize: 11.77,
-  });
-  const [inline, setInline] = useState(false);
-  const [invalid, setInvalid] = useState<boolean | undefined>(undefined);
-  const [disabled, setDisabled] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-  const [description, setDescription] = useState<string>("");
+export const VersionComparison: Story = {
+  render: () => {
+    const [values, setValues] = useState({
+      basic: 11.77,
+      multiline: 11.77,
+      error: 11.77,
+      disabled: 11.77,
+      readonly: 11.77,
+      withToolbar: 11.77,
+      prefix: 11.77,
+      suffix: 11.77,
+      both: 11.77,
+      rightAlign: 11.77,
+      centerAlign: 11.77,
+      sizeSmall: 11.77,
+      sizeLarge: 11.77,
+      inline: 11.77,
+      multilineResize: 11.77,
+    });
+    const [inline, setInline] = useState(false);
+    const [invalid, setInvalid] = useState<boolean | undefined>(undefined);
+    const [disabled, setDisabled] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | undefined>();
+    const [description, setDescription] = useState<string>("");
 
-  const extraProps = {
-    invalid,
-    error: errorMessage,
-    inline,
-    disabled,
-    description,
-  };
+    const extraProps = {
+      invalid,
+      error: errorMessage,
+      inline,
+      disabled,
+      description,
+    };
 
-  const handleChange = (field: keyof typeof values) => (value: number) => {
-    setValues(prev => ({ ...prev, [field]: value }));
-  };
+    const handleChange = (field: keyof typeof values) => (value: number) => {
+      setValues(prev => ({ ...prev, [field]: value }));
+    };
 
-  const renderBothVersions = (
-    title: string,
-    props: Record<string, unknown>,
-    field: keyof typeof values,
-  ) => (
-    <Grid>
-      <Grid.Cell size={{ xs: 12 }}>
-        <h3>{title}</h3>
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 6 }}>
-        <InputNumber
-          {...props}
-          version={1}
-          value={values[field]}
-          onChange={handleChange(field)}
-        />
-      </Grid.Cell>
-      <Grid.Cell size={{ xs: 6 }}>
-        <InputNumber
-          {...props}
-          version={2}
-          value={values[field]}
-          onChange={handleChange(field)}
-        />
-      </Grid.Cell>
-    </Grid>
-  );
-
-  return (
-    <Content>
-      <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-        <Grid>
-          <Grid.Cell size={{ xs: 6 }}>
-            <h2>V1</h2>
-          </Grid.Cell>
-          <Grid.Cell size={{ xs: 6 }}>
-            <h2>V2</h2>
-          </Grid.Cell>
-        </Grid>
-        {renderBothVersions(
-          "Left Aligned (Default)",
-          {
-            placeholder: "Default alignment",
-            ...extraProps,
-            showMiniLabel: false,
-            description: "Description text",
-            error: "Error string",
-          },
-          "basic",
-        )}
-        {renderBothVersions(
-          "Readonly",
-          {
-            placeholder: "Readonly",
-            ...extraProps,
-            // For version 1
-            readonly: true,
-            // For version 2
-            // readonly: true,
-          },
-          "readonly",
-        )}
-        {renderBothVersions(
-          "Right Aligned",
-          {
-            placeholder: "Right aligned text",
-            align: "right",
-            ...extraProps,
-          },
-          "rightAlign",
-        )}
-
-        {renderBothVersions(
-          "Center Aligned",
-          {
-            placeholder: "Center aligned text",
-            align: "center",
-            ...extraProps,
-          },
-          "centerAlign",
-        )}
-
-        {renderBothVersions(
-          "With Prefix",
-          {
-            placeholder: "Input with prefix",
-            prefix: { label: "$" },
-            ...extraProps,
-          },
-          "prefix",
-        )}
-
-        {renderBothVersions(
-          "With Suffix",
-          {
-            placeholder: "Input with suffix",
-            suffix: { label: "%" },
-            ...extraProps,
-            title: "this is a title",
-          },
-          "suffix",
-        )}
-
-        {renderBothVersions(
-          "With Prefix and Suffix",
-          {
-            placeholder: "Input with both",
-            prefix: { icon: "search" },
-            suffix: { icon: "calendar" },
-            ...extraProps,
-          },
-          "both",
-        )}
-
-        {renderBothVersions(
-          "With Toolbar",
-          {
-            placeholder: "With toolbar",
-            toolbar: toolbar,
-            ...extraProps,
-          },
-          "withToolbar",
-        )}
-
-        {renderBothVersions(
-          "Combined Features",
-          {
-            placeholder: "All features",
-            align: "right",
-            prefix: { label: "$" },
-            suffix: { icon: "remove" },
-            toolbar: toolbar,
-            ...extraProps,
-          },
-          "both",
-        )}
-        {renderBothVersions(
-          "Size small",
-          {
-            placeholder: "With Size",
-            size: "small",
-            ...extraProps,
-          },
-          "sizeSmall",
-        )}
-        {renderBothVersions(
-          "Size large",
-          { placeholder: "With Size", size: "large", ...extraProps },
-          "sizeLarge",
-        )}
-      </div>
+    const renderBothVersions = (
+      title: string,
+      props: Record<string, unknown>,
+      field: keyof typeof values,
+    ) => (
       <Grid>
-        <Grid.Cell size={{ xs: 6 }}>
-          <Button label="Toggle inline" onClick={() => setInline(!inline)} />
+        <Grid.Cell size={{ xs: 12 }}>
+          <h3>{title}</h3>
         </Grid.Cell>
         <Grid.Cell size={{ xs: 6 }}>
-          <Button
-            label="Toggle Invalid"
-            onClick={() => {
-              if (invalid) {
-                setInvalid(undefined);
-              } else {
-                setInvalid(true);
-              }
-            }}
+          <InputNumber
+            {...props}
+            version={1}
+            value={values[field]}
+            onChange={handleChange(field)}
           />
         </Grid.Cell>
         <Grid.Cell size={{ xs: 6 }}>
-          <Button
-            label="Toggle Error message"
-            onClick={() => {
-              if (errorMessage) {
-                setErrorMessage(undefined);
-              } else {
-                setErrorMessage("This is an error message");
-              }
-            }}
-          />
-        </Grid.Cell>
-        <Grid.Cell size={{ xs: 6 }}>
-          <Button
-            label="Toggle Disabled"
-            onClick={() => {
-              setDisabled(!disabled);
-            }}
-          />
-        </Grid.Cell>
-        <Grid.Cell size={{ xs: 6 }}>
-          <Button
-            label="Toggle Description"
-            onClick={() => {
-              setDescription(description ? "" : "This is a description");
-            }}
+          <InputNumber
+            {...props}
+            version={2}
+            value={values[field]}
+            onChange={handleChange(field)}
           />
         </Grid.Cell>
       </Grid>
-    </Content>
-  );
+    );
+
+    return (
+      <Content>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+          <Grid>
+            <Grid.Cell size={{ xs: 6 }}>
+              <h2>V1</h2>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 6 }}>
+              <h2>V2</h2>
+            </Grid.Cell>
+          </Grid>
+          {renderBothVersions(
+            "Left Aligned (Default)",
+            {
+              placeholder: "Default alignment",
+              ...extraProps,
+              showMiniLabel: false,
+              description: "Description text",
+              error: "Error string",
+            },
+            "basic",
+          )}
+          {renderBothVersions(
+            "Readonly",
+            {
+              placeholder: "Readonly",
+              ...extraProps,
+              // For version 1
+              readonly: true,
+              // For version 2
+              // readonly: true,
+            },
+            "readonly",
+          )}
+          {renderBothVersions(
+            "Right Aligned",
+            {
+              placeholder: "Right aligned text",
+              align: "right",
+              ...extraProps,
+            },
+            "rightAlign",
+          )}
+
+          {renderBothVersions(
+            "Center Aligned",
+            {
+              placeholder: "Center aligned text",
+              align: "center",
+              ...extraProps,
+            },
+            "centerAlign",
+          )}
+
+          {renderBothVersions(
+            "With Prefix",
+            {
+              placeholder: "Input with prefix",
+              prefix: { label: "$" },
+              ...extraProps,
+            },
+            "prefix",
+          )}
+
+          {renderBothVersions(
+            "With Suffix",
+            {
+              placeholder: "Input with suffix",
+              suffix: { label: "%" },
+              ...extraProps,
+              title: "this is a title",
+            },
+            "suffix",
+          )}
+
+          {renderBothVersions(
+            "With Prefix and Suffix",
+            {
+              placeholder: "Input with both",
+              prefix: { icon: "search" },
+              suffix: { icon: "calendar" },
+              ...extraProps,
+            },
+            "both",
+          )}
+
+          {renderBothVersions(
+            "With Toolbar",
+            {
+              placeholder: "With toolbar",
+              toolbar: toolbar,
+              ...extraProps,
+            },
+            "withToolbar",
+          )}
+
+          {renderBothVersions(
+            "Combined Features",
+            {
+              placeholder: "All features",
+              align: "right",
+              prefix: { label: "$" },
+              suffix: { icon: "remove" },
+              toolbar: toolbar,
+              ...extraProps,
+            },
+            "both",
+          )}
+          {renderBothVersions(
+            "Size small",
+            {
+              placeholder: "With Size",
+              size: "small",
+              ...extraProps,
+            },
+            "sizeSmall",
+          )}
+          {renderBothVersions(
+            "Size large",
+            { placeholder: "With Size", size: "large", ...extraProps },
+            "sizeLarge",
+          )}
+        </div>
+        <Grid>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Button label="Toggle inline" onClick={() => setInline(!inline)} />
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Button
+              label="Toggle Invalid"
+              onClick={() => {
+                if (invalid) {
+                  setInvalid(undefined);
+                } else {
+                  setInvalid(true);
+                }
+              }}
+            />
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Button
+              label="Toggle Error message"
+              onClick={() => {
+                if (errorMessage) {
+                  setErrorMessage(undefined);
+                } else {
+                  setErrorMessage("This is an error message");
+                }
+              }}
+            />
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Button
+              label="Toggle Disabled"
+              onClick={() => {
+                setDisabled(!disabled);
+              }}
+            />
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Button
+              label="Toggle Description"
+              onClick={() => {
+                setDescription(description ? "" : "This is a description");
+              }}
+            />
+          </Grid.Cell>
+        </Grid>
+      </Content>
+    );
+  },
 };
 
-const FormattingExamplesTemplate: ComponentStory<typeof InputNumber> = args => {
+const FormattingExamplesTemplate = (args: V2Story["args"]) => {
   const [value, setValue] = useState<number>(11.1337);
   const [formatOptions, setFormatOptions] = useState<Intl.NumberFormatOptions>({
     minimumFractionDigits: 2,
@@ -514,59 +548,60 @@ const FormattingExamplesTemplate: ComponentStory<typeof InputNumber> = args => {
   );
 };
 
-export const FormattingExamples_v2Only = FormattingExamplesTemplate.bind({});
-FormattingExamples_v2Only.args = {
-  placeholder: "Number with formatting",
-  formatOptions: {
-    maximumFractionDigits: 2,
-  },
-  description: "Use Intl.NumberFormat for detailed options",
-};
-
-export const MinMaxValue_v2 = (args: {
-  minValue: number;
-  maxValue: number;
-  value: number;
-}) => {
-  const [value, setValue] = useState<number | undefined>(args.value);
-
-  return (
-    <Box gap="base">
-      <InputNumber
-        version={2}
-        value={value}
-        onChange={v => setValue(v)}
-        placeholder="Enter a number"
-        minValue={args.minValue}
-        maxValue={args.maxValue}
-        description={`minValue and maxValue props are passed through to React Aria's NumberField. Current constraints: ${
-          args.minValue !== undefined ? `min: ${args.minValue}` : ""
-        } ${args.maxValue !== undefined ? `max: ${args.maxValue}` : ""}`.trim()}
-      />
-      <Text size="small" variation="subdued">
-        Current value: {value ?? "undefined"}
-      </Text>
-    </Box>
-  );
-};
-
-MinMaxValue_v2.argTypes = {
-  minValue: {
-    control: { type: "number" },
-    description: "Minimum allowed value",
-  },
-  maxValue: {
-    control: { type: "number" },
-    description: "Maximum allowed value",
-  },
-  value: {
-    control: { type: "number" },
-    description: "Current input value",
+export const FormattingExamples_v2Only: V2Story = {
+  render: FormattingExamplesTemplate,
+  args: {
+    version: 2,
+    placeholder: "Number with formatting",
+    formatOptions: {
+      maximumFractionDigits: 2,
+    },
+    description: "Use Intl.NumberFormat for detailed options",
   },
 };
 
-MinMaxValue_v2.args = {
-  minValue: 0,
-  maxValue: 100,
-  value: 15,
+export const MinMaxValue_v2: MinMaxValueStory = {
+  render: args => {
+    const [value, setValue] = useState<number | undefined>(args.value);
+
+    return (
+      <Box gap="base">
+        <InputNumber
+          version={2}
+          value={value}
+          onChange={v => setValue(v)}
+          placeholder="Enter a number"
+          minValue={args.minValue}
+          maxValue={args.maxValue}
+          description={`minValue and maxValue props are passed through to React Aria's NumberField. Current constraints: ${
+            args.minValue !== undefined ? `min: ${args.minValue}` : ""
+          } ${
+            args.maxValue !== undefined ? `max: ${args.maxValue}` : ""
+          }`.trim()}
+        />
+        <Text size="small" variation="subdued">
+          Current value: {value ?? "undefined"}
+        </Text>
+      </Box>
+    );
+  },
+  argTypes: {
+    minValue: {
+      control: { type: "number" },
+      description: "Minimum allowed value",
+    },
+    maxValue: {
+      control: { type: "number" },
+      description: "Maximum allowed value",
+    },
+    value: {
+      control: { type: "number" },
+      description: "Current input value",
+    },
+  },
+  args: {
+    minValue: 0,
+    maxValue: 100,
+    value: 15,
+  },
 };

@@ -1,19 +1,21 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Icon } from "@jobber/components/Icon";
 
-export default {
-  title: "Components/Images and Icons/Icon/Web",
+const meta = {
+  title: "Components/Images and Icons/Icon",
   component: Icon,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+} satisfies Meta<typeof Icon>;
+export default meta;
+type Story = StoryObj<Pick<React.ComponentProps<typeof Icon>, "name">>;
+
+const BasicTemplate = (args: Story["args"]) => (
+  <Icon name={args?.name ?? "gift"} />
+);
+
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    name: "gift",
   },
-} as ComponentMeta<typeof Icon>;
-
-const BasicTemplate: ComponentStory<typeof Icon> = args => <Icon {...args} />;
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  name: "gift",
 };

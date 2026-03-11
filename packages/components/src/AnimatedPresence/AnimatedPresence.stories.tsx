@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { AnimatedPresenceTransitions } from "@jobber/components/AnimatedPresence";
 import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
 import { Button } from "@jobber/components/Button";
@@ -11,16 +11,18 @@ import { Divider } from "@jobber/components/Divider";
 import { Heading } from "@jobber/components/Heading";
 import { AnimatedSwitcher } from "@jobber/components/AnimatedSwitcher";
 
-export default {
-  title: "Components/Utilities/AnimatedPresence/Web",
+const meta = {
+  title: "Components/Utilities/AnimatedPresence",
   component: AnimatedPresence,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof AnimatedPresence>;
+} satisfies Meta<typeof AnimatedPresence>;
+export default meta;
+type Story = StoryObj<
+  Omit<React.ComponentProps<typeof AnimatedPresence>, "children"> & {
+    children?: React.ReactNode;
+  }
+>;
 
-const BasicTemplate: ComponentStory<typeof AnimatedPresence> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [switched, setSwitched] = useState(false);
 
   return (
@@ -85,7 +87,7 @@ const BasicTemplate: ComponentStory<typeof AnimatedPresence> = args => {
   );
 };
 
-const ListTemplate: ComponentStory<typeof AnimatedPresence> = args => {
+const ListTemplate = (args: Story["args"]) => {
   const [count, setCount] = useState(12);
 
   return (
@@ -114,7 +116,7 @@ const ListTemplate: ComponentStory<typeof AnimatedPresence> = args => {
   );
 };
 
-const StepperTemplate: ComponentStory<typeof AnimatedPresence> = args => {
+const StepperTemplate = (args: Story["args"]) => {
   const [step, setStep] = useState(1);
   const [transition, setTransition] =
     useState<AnimatedPresenceTransitions>("fromLeftToRight");
@@ -169,28 +171,20 @@ const StepperTemplate: ComponentStory<typeof AnimatedPresence> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-
-export const List = ListTemplate.bind({});
-List.args = {
-  initial: true,
+export const Basic: Story = {
+  render: BasicTemplate,
 };
 
-export const Stepper = StepperTemplate.bind({});
-Stepper.args = {
-  transition: "fromLeftToRight",
-  exitBeforeEnter: true,
+export const List: Story = {
+  render: ListTemplate,
+  args: {
+    initial: true,
+  },
 };
-Stepper.parameters = {
-  previewTabs: {
-    code: {
-      hidden: false,
-      extraImports: {
-        "@jobber/components/AnimatedPresence": [
-          "AnimatedPresence",
-          "AnimatedPresenceTransitions",
-        ],
-      },
-    },
+
+export const Stepper: Story = {
+  render: StepperTemplate,
+  args: {
+    transition: "fromLeftToRight",
   },
 };

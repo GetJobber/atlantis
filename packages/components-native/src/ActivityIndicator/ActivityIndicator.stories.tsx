@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import {
   ActivityIndicator,
   Content,
@@ -7,17 +7,17 @@ import {
   Heading,
 } from "@jobber/components-native";
 
-export default {
-  title: "Components/Status and Feedback/ActivityIndicator/Mobile",
+const meta = {
+  title: "Components/Status and Feedback/ActivityIndicator",
   component: ActivityIndicator,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof ActivityIndicator>;
+} satisfies Meta<typeof ActivityIndicator>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof ActivityIndicator> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <Content>
     <Heading level="subtitle">Small</Heading>
     <ActivityIndicator size="small" />
@@ -27,7 +27,9 @@ const BasicTemplate: ComponentStory<typeof ActivityIndicator> = args => (
   </Content>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  size: "large",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    size: "large",
+  },
 };

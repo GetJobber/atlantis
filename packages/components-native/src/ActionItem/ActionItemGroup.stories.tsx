@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import {
   ActionItem,
   ActionItemGroup,
@@ -9,19 +9,24 @@ import {
   Typography,
 } from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/ActionItemGroup/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/ActionItemGroup",
+  component: ActionItemGroup,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     backgrounds: {
       default: "surface background",
     },
   },
-} as ComponentMeta<typeof ActionItemGroup>;
+} satisfies Meta<typeof ActionItemGroup>;
+export default meta;
+type Story = StoryObj<
+  Omit<React.ComponentProps<typeof ActionItemGroup>, "children"> & {
+    children?: React.ReactNode;
+  }
+>;
 
-const BasicTemplate: ComponentStory<typeof ActionItemGroup> = () => {
+const BasicTemplate = () => {
   return (
     <ActionItemGroup>
       <Card>
@@ -52,7 +57,7 @@ const BasicTemplate: ComponentStory<typeof ActionItemGroup> = () => {
   );
 };
 
-const MixedComponentsTemplate: ComponentStory<typeof ActionItemGroup> = () => {
+const MixedComponentsTemplate = () => {
   return (
     <Card>
       <ActionItemGroup>
@@ -94,6 +99,10 @@ const MixedComponentsTemplate: ComponentStory<typeof ActionItemGroup> = () => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-export const MixedComponents = MixedComponentsTemplate.bind({});
+export const MixedComponents: Story = {
+  render: MixedComponentsTemplate,
+};

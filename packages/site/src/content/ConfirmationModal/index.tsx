@@ -28,9 +28,11 @@ export default {
   title: "ConfirmationModal",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-overlays-confirmationmodal--docs`,
+        "?path=/story/components-overlays-confirmationmodal--basic",
+        "web",
       ),
     },
   ],

@@ -1,50 +1,55 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { InputFieldWrapper, Text } from "@jobber/components-native";
 
-export default {
-  title: "Components/Private/InputFieldWrapper/Mobile",
+const meta = {
+  title: "Components/Private/InputFieldWrapper",
   component: InputFieldWrapper,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof InputFieldWrapper>;
+} satisfies Meta<typeof InputFieldWrapper>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+type ClearableStory = StoryObj<
+  Pick<React.ComponentProps<typeof InputFieldWrapper>, "showClearAction">
+>;
 
-const BasicTemplate: ComponentStory<typeof InputFieldWrapper> = args => (
-  <InputFieldWrapper {...args} />
-);
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  placeholder: "Enter a value in cents",
-  prefix: { icon: "invoice" },
+export const Basic: Story = {
+  args: {
+    placeholder: "Enter a value in cents",
+    prefix: { icon: "invoice" },
+  },
 };
 
-export const PrefixAndSuffix = BasicTemplate.bind({});
-PrefixAndSuffix.args = {
-  placeholder: "Invoice Total",
-  prefix: { label: "$", icon: "invoice" },
-  placeholderMode: "mini",
+export const PrefixAndSuffix: Story = {
+  args: {
+    placeholder: "Invoice Total",
+    prefix: { label: "$", icon: "invoice" },
+    placeholderMode: "mini",
+  },
 };
 
-export const Disabled = BasicTemplate.bind({});
-Disabled.args = {
-  placeholder: "Enter a value in cents",
-  prefix: { icon: "invoice" },
-  disabled: true,
+export const Disabled: Story = {
+  args: {
+    placeholder: "Enter a value in cents",
+    prefix: { icon: "invoice" },
+    disabled: true,
+  },
 };
 
-export const Invalid = BasicTemplate.bind({});
-Invalid.args = {
-  placeholder: "Enter a value in cents",
-  prefix: { icon: "invoice" },
-  invalid: true,
+export const Invalid: Story = {
+  args: {
+    placeholder: "Enter a value in cents",
+    prefix: { icon: "invoice" },
+    invalid: true,
+  },
 };
 
-const ClearableTemplate: ComponentStory<typeof InputFieldWrapper> = args => {
+const ClearableTemplate = (
+  args: React.ComponentProps<typeof InputFieldWrapper>,
+) => {
   const [value, setValue] = useState("cucumber");
 
   function handleClear() {
@@ -58,7 +63,12 @@ const ClearableTemplate: ComponentStory<typeof InputFieldWrapper> = args => {
   );
 };
 
-export const Clearable = ClearableTemplate.bind({});
-Clearable.args = {
-  showClearAction: true,
+export const Clearable: ClearableStory = {
+  render: args =>
+    ClearableTemplate({
+      showClearAction: args.showClearAction,
+    }),
+  args: {
+    showClearAction: true,
+  },
 };

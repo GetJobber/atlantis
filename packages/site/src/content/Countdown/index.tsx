@@ -12,8 +12,12 @@ export default {
   title: "Countdown",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-countdown--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-utilities-countdown--basic",
+        "web",
+      ),
     },
   ],
 } as const satisfies ContentExport;

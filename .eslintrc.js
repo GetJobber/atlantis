@@ -5,23 +5,16 @@ const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
   ["@jobber/components-native", "./packages/components-native/src"],
   ["@jobber/hooks", "./packages/hooks/src"],
-  ["@storybook/react", "./packages/storybook-v7/node_modules/@storybook/react"],
   [
     "@storybook/addon-docs",
-    "./packages/storybook-v7/node_modules/@storybook/addon-docs",
+    "./packages/site/src/components/StorybookOverrides",
   ],
   [
-    "@storybook/blocks",
-    "./packages/storybook-v7/node_modules/@storybook/blocks",
+    "@storybook/addon-designs/blocks",
+    "./packages/site/src/components/StorybookOverrides",
   ],
-  [
-    "@storybook/components",
-    "./packages/storybook-v7/node_modules/@storybook/components",
-  ],
-  [
-    "@storybook/react-native",
-    "./packages/storybook-v7/node_modules/@storybook/react-native",
-  ],
+  ["@storybook/blocks", "./packages/site/src/components/StorybookOverrides"],
+  ["mdxUtils", "./packages/site/src/mdxUtils"],
 ];
 
 module.exports = {

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   AtlantisThemeContextProvider,
   useAtlantisTheme,
@@ -11,18 +11,18 @@ import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Overlays/Popover/Web",
+const meta = {
+  title: "Components/Overlays/Popover",
   component: Popover,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Popover>;
+} satisfies Meta<typeof Popover>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof Popover>, "open" | "preferredPlacement">
+>;
 
-const BasicTemplate: ComponentStory<typeof Popover> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const divRef = useRef<HTMLDivElement>(null);
-  const [showPopover, setShowPopover] = useState(args.open);
+  const [showPopover, setShowPopover] = useState(args?.open ?? false);
 
   return (
     <>
@@ -36,9 +36,9 @@ const BasicTemplate: ComponentStory<typeof Popover> = args => {
         />
       </div>
       <Popover
-        {...args}
         attachTo={divRef}
         open={showPopover}
+        preferredPlacement={args?.preferredPlacement}
         onRequestClose={() => setShowPopover(false)}
       >
         <Content>Here is your first Popover</Content>
@@ -47,9 +47,11 @@ const BasicTemplate: ComponentStory<typeof Popover> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-const InformationalTemplate: ComponentStory<typeof Popover> = args => {
+const InformationalTemplate = (args: Story["args"]) => {
   const newFeatureButton = useRef<HTMLDivElement>(null);
   const [showPopover, setShowPopover] = useState(true);
 
@@ -88,15 +90,17 @@ const InformationalTemplate: ComponentStory<typeof Popover> = args => {
   );
 };
 
-export const Informational = InformationalTemplate.bind({});
+export const Informational: Story = {
+  render: InformationalTemplate,
+};
 
-const ComposedTemplate: ComponentStory<typeof Popover> = args => {
+const ComposedTemplate = (args: Story["args"]) => {
   const divRef1 = useRef<HTMLDivElement>(null);
   const divRef2 = useRef<HTMLDivElement>(null);
   const divRef3 = useRef<HTMLDivElement>(null);
-  const [showPopover1, setShowPopover1] = useState(args.open);
-  const [showPopover2, setShowPopover2] = useState(args.open);
-  const [showPopover3, setShowPopover3] = useState(args.open);
+  const [showPopover1, setShowPopover1] = useState(args?.open ?? false);
+  const [showPopover2, setShowPopover2] = useState(args?.open ?? false);
+  const [showPopover3, setShowPopover3] = useState(args?.open ?? false);
   const buttonStyles = { width: "fit-content" };
 
   return (
@@ -109,7 +113,11 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
             onClick={() => setShowPopover1(!showPopover1)}
           />
         </div>
-        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
+        <Popover.Provider
+          preferredPlacement={args?.preferredPlacement}
+          attachTo={divRef1}
+          open={showPopover1}
+        >
           <Popover.DismissButton onClick={() => setShowPopover1(false)} />
 
           <Content>
@@ -127,7 +135,11 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
             onClick={() => setShowPopover2(!showPopover2)}
           />
         </div>
-        <Popover.Provider {...args} attachTo={divRef2} open={showPopover2}>
+        <Popover.Provider
+          preferredPlacement={args?.preferredPlacement}
+          attachTo={divRef2}
+          open={showPopover2}
+        >
           <Content>
             This is a Popover that excludes the arrow and dismiss button
           </Content>
@@ -142,7 +154,11 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
             onClick={() => setShowPopover3(!showPopover3)}
           />
         </div>
-        <Popover.Provider {...args} attachTo={divRef3} open={showPopover3}>
+        <Popover.Provider
+          preferredPlacement={args?.preferredPlacement}
+          attachTo={divRef3}
+          open={showPopover3}
+        >
           <Popover.DismissButton>
             <Button onClick={() => setShowPopover3(false)} variation="subtle">
               <Button.Icon name="eyeCrossed" />
@@ -156,11 +172,13 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
   );
 };
 
-export const Composed = ComposedTemplate.bind({});
+export const Composed: Story = {
+  render: ComposedTemplate,
+};
 
-const ForceInverseThemeTemplate: ComponentStory<typeof Popover> = args => {
+const ForceInverseThemeTemplate = (args: Story["args"]) => {
   const divRef1 = useRef<HTMLDivElement>(null);
-  const [showPopover1, setShowPopover1] = useState(args.open);
+  const [showPopover1, setShowPopover1] = useState(args?.open ?? false);
   const buttonStyles = { width: "fit-content" };
   const { theme } = useAtlantisTheme();
 
@@ -176,7 +194,11 @@ const ForceInverseThemeTemplate: ComponentStory<typeof Popover> = args => {
       <AtlantisThemeContextProvider
         dangerouslyOverrideTheme={theme === "dark" ? "light" : "dark"}
       >
-        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
+        <Popover.Provider
+          preferredPlacement={args?.preferredPlacement}
+          attachTo={divRef1}
+          open={showPopover1}
+        >
           <Popover.DismissButton onClick={() => setShowPopover1(false)} />
           <Content>
             <Heading level={3}>Inverse Theme</Heading>
@@ -189,4 +211,6 @@ const ForceInverseThemeTemplate: ComponentStory<typeof Popover> = args => {
   );
 };
 
-export const ForceInverseTheme = ForceInverseThemeTemplate.bind({});
+export const ForceInverseTheme: Story = {
+  render: ForceInverseThemeTemplate,
+};

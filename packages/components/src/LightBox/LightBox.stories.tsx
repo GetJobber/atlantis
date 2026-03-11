@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { LightBoxProps } from "@jobber/components/LightBox";
 import { Button } from "@jobber/components/Button";
 import { LightBox } from "@jobber/components/LightBox";
 
-export default {
-  title: "Components/Images and Icons/LightBox/Web",
+const meta = {
+  title: "Components/Images and Icons/LightBox",
   component: LightBox,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof LightBox>;
+} satisfies Meta<typeof LightBox>;
+export default meta;
+type Story = StoryObj<Pick<LightBoxProps, "images">>;
 
 const images = [
   {
@@ -31,14 +30,14 @@ const images = [
   },
 ];
 
-const BasicTemplate: ComponentStory<typeof LightBox> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <Button label="Click me!" onClick={() => setIsOpen(true)} />
       <LightBox
-        {...args}
+        images={args?.images ?? []}
         open={isOpen}
         onRequestClose={() => setIsOpen(false)}
       />
@@ -46,7 +45,9 @@ const BasicTemplate: ComponentStory<typeof LightBox> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  images,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    images,
+  },
 };

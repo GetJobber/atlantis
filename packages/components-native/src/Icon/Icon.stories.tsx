@@ -1,20 +1,25 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Icon } from "@jobber/components-native";
 
-export default {
-  title: "Components/Images and Icons/Icon/Mobile",
+const meta = {
+  title: "Components/Images and Icons/Icon",
   component: Icon,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof Icon>;
+} satisfies Meta<typeof Icon>;
+export default meta;
+type Story = StoryObj<Pick<React.ComponentProps<typeof Icon>, "name">>;
 
-const BasicTemplate: ComponentStory<typeof Icon> = args => <Icon {...args} />;
+const BasicTemplate = (args: Story["args"]) => (
+  <Icon name={args?.name ?? "gift"} />
+);
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  name: "gift",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    name: "gift",
+  },
 };

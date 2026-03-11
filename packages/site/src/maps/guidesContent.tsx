@@ -12,6 +12,9 @@ import PageLayoutsComponent from "../content/guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../content/guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 import ComponentSupportLevelsComponent from "../content/guides/component-support-levels.stories.mdx";
+import WelcomeGuideComponent from "../content/guides/welcome-guide.stories.mdx";
+import RepositoryContributingComponent from "../content/guides/repository-contributing.stories.mdx";
+import CharterComponent from "../content/guides/charter.md";
 
 export const guidesContentMap: ContentMapItems = {
   "atlantis-overview": {
@@ -19,10 +22,25 @@ export const guidesContentMap: ContentMapItems = {
     title: "Atlantis overview",
     content: () => <AtlantisOverviewComponent />,
   },
+  "welcome-guide": {
+    intro: "Welcome guide",
+    title: "Welcome guide",
+    content: () => <WelcomeGuideComponent />,
+  },
   contributing: {
     intro: "Contributing",
     title: "Contributing",
     content: () => <ContributingComponent />,
+  },
+  "repository-contributing": {
+    intro: "Repository contributing",
+    title: "Repository contributing",
+    content: () => <RepositoryContributingComponent />,
+  },
+  charter: {
+    intro: "Atlantis charter",
+    title: "Atlantis charter",
+    content: () => <CharterComponent />,
   },
   "create-a-react-component": {
     intro: "Create a react component",

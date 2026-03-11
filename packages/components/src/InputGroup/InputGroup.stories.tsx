@@ -1,25 +1,21 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputGroup } from "@jobber/components/InputGroup";
 import { InputTime } from "@jobber/components/InputTime";
 import { InputText } from "@jobber/components/InputText";
 import { InputDate } from "@jobber/components/InputDate";
 import { Button } from "@jobber/components/Button";
 
-export default {
-  title: "Components/Forms and Inputs/InputGroup/Web",
+const meta = {
+  title: "Components/Forms and Inputs/InputGroup",
   component: InputGroup,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
-  },
-} as ComponentMeta<typeof InputGroup>;
+} satisfies Meta<typeof InputGroup>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof InputGroup>, "flowDirection">
+>;
 
-const BasicTemplate: ComponentStory<typeof InputGroup> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const startTime = new Date();
   startTime.setHours(8, 35, 0, 0);
 
@@ -27,16 +23,16 @@ const BasicTemplate: ComponentStory<typeof InputGroup> = args => {
   endTime.setHours(22, 55, 0, 0);
 
   return (
-    <InputGroup {...args}>
+    <InputGroup flowDirection={args?.flowDirection}>
       <InputTime defaultValue={startTime} />
       <InputTime defaultValue={endTime} />
     </InputGroup>
   );
 };
 
-const NestedTemplate: ComponentStory<typeof InputGroup> = args => {
+const NestedTemplate = (args: Story["args"]) => {
   return (
-    <InputGroup {...args}>
+    <InputGroup flowDirection={args?.flowDirection}>
       <InputText placeholder="Street 1" />
       <InputText placeholder="Street 2" />
       <InputGroup flowDirection="horizontal">
@@ -51,7 +47,7 @@ const NestedTemplate: ComponentStory<typeof InputGroup> = args => {
   );
 };
 
-const DateRangeTemplate: ComponentStory<typeof InputGroup> = args => {
+const DateRangeTemplate = (args: Story["args"]) => {
   const [startDate, setStartDate] = useState(new Date("2024-01-01"));
   const [endDate, setEndDate] = useState(new Date("2024-12-31"));
 
@@ -59,7 +55,7 @@ const DateRangeTemplate: ComponentStory<typeof InputGroup> = args => {
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
       <Button label="Button" />
 
-      <InputGroup {...args}>
+      <InputGroup flowDirection={args?.flowDirection}>
         <InputDate
           value={startDate}
           onChange={setStartDate}
@@ -76,27 +72,31 @@ const DateRangeTemplate: ComponentStory<typeof InputGroup> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  flowDirection: "vertical",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    flowDirection: "vertical",
+  },
 };
 
-export const Nested = NestedTemplate.bind({});
-Nested.args = {
-  flowDirection: "vertical",
+export const Nested: Story = {
+  render: NestedTemplate,
+  args: {
+    flowDirection: "vertical",
+  },
 };
 
-export const DateRange = DateRangeTemplate.bind({});
-DateRange.args = {
-  flowDirection: "horizontal",
+export const DateRange: Story = {
+  render: DateRangeTemplate,
+  args: {
+    flowDirection: "horizontal",
+  },
 };
 
-const VerticalWithHorizontalRowsTemplate: ComponentStory<
-  typeof InputGroup
-> = args => {
+const VerticalWithHorizontalRowsTemplate = (args: Story["args"]) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-      <InputGroup {...args}>
+      <InputGroup flowDirection={args?.flowDirection}>
         <InputText placeholder="Street 1" />
         <InputText placeholder="Street 2" />
         <InputGroup flowDirection="horizontal">
@@ -113,8 +113,9 @@ const VerticalWithHorizontalRowsTemplate: ComponentStory<
   );
 };
 
-export const VerticalWithHorizontalRows =
-  VerticalWithHorizontalRowsTemplate.bind({});
-VerticalWithHorizontalRows.args = {
-  flowDirection: "vertical",
+export const VerticalWithHorizontalRows: Story = {
+  render: VerticalWithHorizontalRowsTemplate,
+  args: {
+    flowDirection: "vertical",
+  },
 };

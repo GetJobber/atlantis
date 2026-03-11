@@ -1,36 +1,32 @@
-import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { EmptyState } from "@jobber/components-native";
 
-export default {
-  title: "Components/Status and Feedback/EmptyState/Mobile",
+const meta = {
+  title: "Components/Status and Feedback/EmptyState",
   component: EmptyState,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof EmptyState>;
+} satisfies Meta<typeof EmptyState>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof EmptyState> = args => (
-  <EmptyState {...args} />
-);
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  icon: "home",
-  title: "Title",
-  description: "Description",
-  primaryAction: {
-    label: "Click Me",
-    onPress: () => {
-      alert("👋");
+export const Basic: Story = {
+  args: {
+    icon: "home",
+    title: "Title",
+    description: "Description",
+    primaryAction: {
+      label: "Click Me",
+      onPress: () => {
+        alert("👋");
+      },
     },
-  },
-  secondaryAction: {
-    label: "Don't Forget About Me",
-    onPress: () => {
-      alert("👋");
+    secondaryAction: {
+      label: "Don't Forget About Me",
+      onPress: () => {
+        alert("👋");
+      },
     },
   },
 };

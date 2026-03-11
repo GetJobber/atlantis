@@ -1,19 +1,17 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Layouts and Structure/Box/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Box",
   component: Box,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Box>;
+} satisfies Meta<typeof Box>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Box> = args => (
-  <Box {...args}>Box Content</Box>
-);
+const BasicTemplate = (args: Story["args"]) => <Box {...args}>Box Content</Box>;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {},
+};

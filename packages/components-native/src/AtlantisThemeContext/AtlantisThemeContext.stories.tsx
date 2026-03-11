@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import {
   AtlantisThemeContextProvider,
   Button,
@@ -9,19 +9,22 @@ import {
   useAtlantisTheme,
 } from "@jobber/components-native";
 
-export default {
-  title: "Components/Themes/AtlantisThemeContext/Mobile",
+const meta = {
+  title: "Components/Themes/AtlantisThemeContext",
   component: AtlantisThemeContextProvider,
   parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof AtlantisThemeContextProvider>;
+} satisfies Meta<typeof AtlantisThemeContextProvider>;
+export default meta;
+type Story = StoryObj<
+  Omit<
+    React.ComponentProps<typeof AtlantisThemeContextProvider>,
+    "children"
+  > & {
+    children?: React.ReactNode;
+  }
+>;
 
 function ChildrenComponent({
   message = "It is possible to have multiple Atlantis Theme providers.",
@@ -64,9 +67,7 @@ function ForcedDarkThemeComponent() {
   );
 }
 
-const BasicTemplate: ComponentStory<
-  typeof AtlantisThemeContextProvider
-> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return (
     <AtlantisThemeContextProvider {...args}>
       <ChildrenComponent />
@@ -74,12 +75,11 @@ const BasicTemplate: ComponentStory<
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-BasicTemplate.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-const ForceThemeTemplate: ComponentStory<
-  typeof AtlantisThemeContextProvider
-> = args => {
+const ForceThemeTemplate = (args: Story["args"]) => {
   return (
     <AtlantisThemeContextProvider {...args}>
       <ChildrenComponent message="It is possible to have a provider ignore Theme Changes" />
@@ -90,5 +90,6 @@ const ForceThemeTemplate: ComponentStory<
   );
 };
 
-export const ForceThemeForProvider = ForceThemeTemplate.bind({});
-ForceThemeForProvider.args = {};
+export const ForceThemeForProvider: Story = {
+  render: ForceThemeTemplate,
+};

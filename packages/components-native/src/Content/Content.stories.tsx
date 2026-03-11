@@ -1,21 +1,24 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Card, Content, Text } from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/Content/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/Content",
   component: Content,
+  args: {
+    children: null,
+  },
   parameters: {
-    viewMode: "story",
     backgrounds: {
       default: "surface background",
     },
     viewport: { defaultViewport: "mobile1" },
-    previewTabs: { code: { hidden: false } },
   },
-} as ComponentMeta<typeof Content>;
+} satisfies Meta<typeof Content>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Content> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <Card>
     <Content {...args}>
       <Text>
@@ -30,12 +33,16 @@ const BasicTemplate: ComponentStory<typeof Content> = args => (
   </Card>
 );
 
-export const Vertical = BasicTemplate.bind({});
-Vertical.args = {
-  direction: "vertical",
+export const Vertical: Story = {
+  render: BasicTemplate,
+  args: {
+    direction: "vertical",
+  },
 };
 
-export const Horizontal = BasicTemplate.bind({});
-Horizontal.args = {
-  direction: "horizontal",
+export const Horizontal: Story = {
+  render: BasicTemplate,
+  args: {
+    direction: "horizontal",
+  },
 };

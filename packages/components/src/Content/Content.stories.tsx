@@ -1,27 +1,36 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Heading } from "@jobber/components/Heading";
 import { InputText } from "@jobber/components/InputText";
 import { Card } from "@jobber/components/Card";
 
-export default {
-  title: "Components/Layouts and Structure/Content/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Content",
   component: Content,
+  argTypes: {
+    children: { control: false, table: { disable: true } },
+  },
   parameters: {
-    viewMode: "story",
     backgrounds: {
       default: "surface background",
     },
-    previewTabs: { code: { hidden: false } },
   },
-} as ComponentMeta<typeof Content>;
+} satisfies Meta<typeof Content>;
+export default meta;
 
-const BasicTemplate: ComponentStory<typeof Content> = args => (
-  <Content {...args}>
+interface ContentStoryArgs {
+  spacing?: React.ComponentProps<typeof Content>["spacing"];
+  type?: React.ComponentProps<typeof Content>["type"];
+}
+
+type Story = StoryObj<ContentStoryArgs>;
+
+const BasicTemplate = (args: Story["args"]) => (
+  <Content spacing={args?.spacing} type={args?.type}>
     <Card title="About me">
-      <Content {...args}>
+      <Content spacing={args?.spacing} type={args?.type}>
         <Heading level={2}>Sign up!</Heading>
         <Text>
           Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
@@ -42,7 +51,9 @@ const BasicTemplate: ComponentStory<typeof Content> = args => (
   </Content>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  spacing: "small",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    spacing: "small",
+  },
 };

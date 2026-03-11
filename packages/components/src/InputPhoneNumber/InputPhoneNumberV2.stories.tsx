@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
 
 const meta = {
-  title: "Components/Forms and Inputs/InputPhoneNumber/Web (v2)",
+  title: "Components/Forms and Inputs/InputPhoneNumber/V2",
   component: InputPhoneNumber,
   args: {
     version: 2,
@@ -12,7 +12,6 @@ const meta = {
     pattern: "(***) ***-****",
     disabled: false,
     invalid: false,
-    required: false,
     onChange: (v: string) => {
       void v;
     },

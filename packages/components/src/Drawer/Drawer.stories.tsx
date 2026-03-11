@@ -1,29 +1,26 @@
 import React, { useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Drawer, DrawerGrid } from "@jobber/components/Drawer";
 import { Page } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 
-export default {
-  title: "Components/Layouts and Structure/Drawer/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Drawer",
   component: Drawer,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/Drawer": ["Drawer", "DrawerGrid"],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Drawer>;
+} satisfies Meta<typeof Drawer>;
+export default meta;
+type DrawerStoryArgs = Pick<
+  React.ComponentProps<typeof Drawer>,
+  "id" | "title" | "open"
+>;
+type Story = StoryObj<DrawerStoryArgs>;
 
-const BasicTemplate: ComponentStory<typeof Drawer> = args => {
-  const [drawerOpen, setDrawerOpen] = useState(args.open);
+const BasicTemplate = (args: Story["args"]) => {
+  const [drawerOpen, setDrawerOpen] = useState(args?.open ?? true);
+  const drawerId = args?.id ?? "drawer-element";
+  const drawerTitle = args?.title ?? "Drawer";
 
   return (
     <DrawerGrid>
@@ -31,7 +28,7 @@ const BasicTemplate: ComponentStory<typeof Drawer> = args => {
         <Content>
           <Button
             label="Toggle Drawer"
-            ariaControls={args.id}
+            ariaControls={drawerId}
             onClick={() => setDrawerOpen(!drawerOpen)}
           />
           <Text>
@@ -46,7 +43,8 @@ const BasicTemplate: ComponentStory<typeof Drawer> = args => {
         </Content>
       </Page>
       <Drawer
-        {...args}
+        id={drawerId}
+        title={drawerTitle}
         open={drawerOpen}
         onRequestClose={() => setDrawerOpen(!drawerOpen)}
       >
@@ -73,9 +71,11 @@ const BasicTemplate: ComponentStory<typeof Drawer> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  id: "drawer-element",
-  title: "Drawer",
-  open: true,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    id: "drawer-element",
+    title: "Drawer",
+    open: true,
+  },
 };

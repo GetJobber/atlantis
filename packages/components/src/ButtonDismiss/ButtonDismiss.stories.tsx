@@ -1,23 +1,22 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ButtonDismiss } from "@jobber/components/ButtonDismiss";
 
-export default {
-  title: "Components/Private/ButtonDismiss/Web",
+const meta = {
+  title: "Components/Private/ButtonDismiss",
   component: ButtonDismiss,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof ButtonDismiss>;
+} satisfies Meta<typeof ButtonDismiss>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof ButtonDismiss> = args => (
-  <ButtonDismiss {...args} />
-);
+const BasicTemplate = (args: Story["args"]) => <ButtonDismiss {...args} />;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  onClick: () => {
-    alert("🎃");
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    ariaLabel: "Dismiss",
+    onClick: () => {
+      alert("🎃");
+    },
   },
 };

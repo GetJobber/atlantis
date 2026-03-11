@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import {
   ActionItem,
   AutoLink,
@@ -9,19 +9,20 @@ import {
   Text,
 } from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/ActionItem/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/ActionItem",
+  component: ActionItem,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     backgrounds: {
       default: "surface background",
     },
   },
-} as ComponentMeta<typeof ActionItem>;
+} satisfies Meta<typeof ActionItem>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof ActionItem> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return (
     <ActionItem {...args}>
       <Text>Service Checklist</Text>
@@ -29,7 +30,7 @@ const BasicTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-const InACardTemplate: ComponentStory<typeof ActionItem> = args => {
+const InACardTemplate = (args: Story["args"]) => {
   return (
     <Card>
       <ActionItem icon="work" {...args}>
@@ -43,7 +44,7 @@ const InACardTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-const MixedComponentsTemplate: ComponentStory<typeof ActionItem> = args => {
+const MixedComponentsTemplate = (args: Story["args"]) => {
   return (
     <Card>
       <Content>
@@ -56,7 +57,7 @@ const MixedComponentsTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-const ActionAlignmentTemplate: ComponentStory<typeof ActionItem> = args => {
+const ActionAlignmentTemplate = (args: Story["args"]) => {
   return (
     <Card>
       <ActionItem {...args}>
@@ -68,7 +69,7 @@ const ActionAlignmentTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-const TitleOnlyTemplate: ComponentStory<typeof ActionItem> = args => {
+const TitleOnlyTemplate = (args: Story["args"]) => {
   return (
     <Card>
       <ActionItem {...args} />
@@ -76,7 +77,7 @@ const TitleOnlyTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-const InteractiveChildrenTemplate: ComponentStory<typeof ActionItem> = args => {
+const InteractiveChildrenTemplate = (args: Story["args"]) => {
   return (
     <Card>
       <ActionItem {...args}>
@@ -89,7 +90,7 @@ const InteractiveChildrenTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-const NoActionTemplate: ComponentStory<typeof ActionItem> = args => {
+const NoActionTemplate = (args: Story["args"]) => {
   return (
     <Card>
       <ActionItem {...args}>
@@ -101,48 +102,62 @@ const NoActionTemplate: ComponentStory<typeof ActionItem> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  icon: "work",
-  onPress: () => alert("👍"),
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    icon: "work",
+    onPress: () => alert("👍"),
+  },
 };
 
-export const InACard = InACardTemplate.bind({});
-InACard.args = {
-  onPress: () => alert("👍"),
+export const InACard: Story = {
+  render: InACardTemplate,
+  args: {
+    onPress: () => alert("👍"),
+  },
 };
 
-export const MixedComponents = MixedComponentsTemplate.bind({});
-MixedComponents.args = {
-  onPress: () => alert("👍"),
-  icon: "person",
-  title: "Assigned to",
+export const MixedComponents: Story = {
+  render: MixedComponentsTemplate,
+  args: {
+    onPress: () => alert("👍"),
+    icon: "person",
+    title: "Assigned to",
+  },
 };
 
-export const ActionAlignment = ActionAlignmentTemplate.bind({});
-ActionAlignment.args = {
-  onPress: () => alert("👍"),
-  actionIconAlignment: "flex-start",
-  title: "Service Details",
+export const ActionAlignment: Story = {
+  render: ActionAlignmentTemplate,
+  args: {
+    onPress: () => alert("👍"),
+    actionIconAlignment: "flex-start",
+    title: "Service Details",
+  },
 };
 
-export const TitleOnly = TitleOnlyTemplate.bind({});
-TitleOnly.args = {
-  title: "Add client",
-  icon: "person",
-  onPress: () => alert("👍"),
-  actionIcon: "add",
+export const TitleOnly: Story = {
+  render: TitleOnlyTemplate,
+  args: {
+    title: "Add client",
+    icon: "person",
+    onPress: () => alert("👍"),
+    actionIcon: "add",
+  },
 };
 
-export const InteractiveChildren = InteractiveChildrenTemplate.bind({});
-InteractiveChildren.args = {
-  onPress: () => alert("Tapped the entire action item"),
-  icon: "presentation",
-  actionIcon: "link",
+export const InteractiveChildren: Story = {
+  render: InteractiveChildrenTemplate,
+  args: {
+    onPress: () => alert("Tapped the entire action item"),
+    icon: "presentation",
+    actionIcon: "link",
+  },
 };
 
-export const NoAction = NoActionTemplate.bind({});
-NoAction.args = {
-  icon: "userSwitch",
-  title: "Team",
+export const NoAction: Story = {
+  render: NoActionTemplate,
+  args: {
+    icon: "userSwitch",
+    title: "Team",
+  },
 };

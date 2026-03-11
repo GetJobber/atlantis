@@ -1,19 +1,27 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { GalleryFile } from "@jobber/components/Gallery";
 import { Gallery } from "@jobber/components/Gallery";
 
-export default {
-  title: "Components/Images and Icons/Gallery/Web",
+const meta = {
+  title: "Components/Images and Icons/Gallery",
   component: Gallery,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Gallery>;
+} satisfies Meta<typeof Gallery>;
+export default meta;
+type Story = StoryObj<
+  Pick<
+    React.ComponentProps<typeof Gallery>,
+    "files" | "size" | "max" | "onDelete"
+  >
+>;
 
-const BasicTemplate: ComponentStory<typeof Gallery> = args => (
-  <Gallery {...args} />
+const BasicTemplate = (args: Story["args"]) => (
+  <Gallery
+    files={args?.files ?? files}
+    size={args?.size}
+    max={args?.max}
+    onDelete={args?.onDelete}
+  />
 );
 
 const files: GalleryFile[] = [
@@ -110,13 +118,17 @@ function convertFileSrcToPromises(fileToConvert: GalleryFile[]) {
   }));
 }
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  files,
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    files,
+  },
 };
 
-export const MaxFiles = BasicTemplate.bind({});
-MaxFiles.args = {
-  files: convertFileSrcToPromises(files),
-  max: 3,
+export const MaxFiles: Story = {
+  render: BasicTemplate,
+  args: {
+    files: convertFileSrcToPromises(files),
+    max: 3,
+  },
 };

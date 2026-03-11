@@ -1,63 +1,97 @@
 import React from "react";
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
+import { Host } from "react-native-portalize";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { FormatFile } from "@jobber/components-native";
 
-export default {
-  title: "Components/Images and Icons/FormatFile/Mobile",
+const meta = {
+  title: "Components/Images and Icons/FormatFile",
   component: FormatFile,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as Meta<typeof FormatFile>;
+} satisfies Meta<typeof FormatFile>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof FormatFile>>>;
 
-const BasicTemplate: StoryFn<typeof FormatFile> = args => (
-  <FormatFile {...args} />
+const BasicTemplate = (args: Story["args"]) => (
+  <SafeAreaProvider>
+    <Host>
+      <FormatFile
+        file={
+          args?.file ?? {
+            fileName: "image.png",
+            contentType: "image/png",
+            url: "https://picsum.photos/250",
+            thumbnailUrl: "https://picsum.photos/250",
+            fileSize: 1024,
+          }
+        }
+        styleInGrid={args?.styleInGrid}
+        accessibilityLabel={args?.accessibilityLabel}
+        accessibilityHint={args?.accessibilityHint}
+        onTap={args?.onTap}
+        onRemove={args?.onRemove}
+        onPreviewPress={args?.onPreviewPress}
+        bottomSheetOptionsSuffix={args?.bottomSheetOptionsSuffix}
+        testID={args?.testID}
+        showFileTypeIndicator={args?.showFileTypeIndicator}
+        createThumbnail={args?.createThumbnail}
+      />
+    </Host>
+  </SafeAreaProvider>
 );
 
-export const Image = BasicTemplate.bind({});
-Image.args = {
-  file: {
-    fileName: "image.png",
-    contentType: "image/png",
-    url: "https://picsum.photos/250",
-    thumbnailUrl: "https://picsum.photos/250",
-    fileSize: 1024,
+export const Image: Story = {
+  render: BasicTemplate,
+  args: {
+    file: {
+      fileName: "image.png",
+      contentType: "image/png",
+      url: "https://picsum.photos/250",
+      thumbnailUrl: "https://picsum.photos/250",
+      fileSize: 1024,
+    },
   },
 };
 
-export const ImageGrid = BasicTemplate.bind({});
-ImageGrid.args = {
-  file: {
-    fileName: "image.png",
-    contentType: "image/png",
-    url: "https://picsum.photos/250",
-    thumbnailUrl: "https://picsum.photos/250",
-    fileSize: 1024,
-  },
-  styleInGrid: true,
-};
-
-export const Video = BasicTemplate.bind({});
-Video.args = {
-  file: {
-    fileName: "video.mp4",
-    contentType: "video/quicktime",
-    url: "https://picsum.photos/250",
-    thumbnailUrl: "https://picsum.photos/250",
-    fileSize: 1024,
+export const ImageGrid: Story = {
+  render: BasicTemplate,
+  args: {
+    file: {
+      fileName: "image.png",
+      contentType: "image/png",
+      url: "https://picsum.photos/250",
+      thumbnailUrl: "https://picsum.photos/250",
+      fileSize: 1024,
+    },
+    styleInGrid: true,
   },
 };
 
-export const PDF = BasicTemplate.bind({});
-PDF.args = {
-  file: {
-    fileName: "document.pdf",
-    contentType: "application/pdf",
-    url: "https://picsum.photos/250",
-    thumbnailUrl: "https://picsum.photos/250",
-    fileSize: 1024,
+export const Video: Story = {
+  render: BasicTemplate,
+  args: {
+    file: {
+      fileName: "video.mp4",
+      contentType: "video/quicktime",
+      url: "https://picsum.photos/250",
+      thumbnailUrl: "https://picsum.photos/250",
+      fileSize: 1024,
+    },
+  },
+};
+
+export const PDF: Story = {
+  render: BasicTemplate,
+  args: {
+    file: {
+      fileName: "document.pdf",
+      contentType: "application/pdf",
+      url: "https://picsum.photos/250",
+      thumbnailUrl: "https://picsum.photos/250",
+      fileSize: 1024,
+    },
   },
 };

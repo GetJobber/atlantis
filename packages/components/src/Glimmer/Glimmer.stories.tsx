@@ -1,19 +1,17 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Glimmer } from "@jobber/components/Glimmer";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 
-export default {
-  title: "Components/Status and Feedback/Glimmer/Web",
+const meta = {
+  title: "Components/Status and Feedback/Glimmer",
   component: Glimmer,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Glimmer>;
+} satisfies Meta<typeof Glimmer>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Glimmer>>>;
 
-const BasicTemplate: ComponentStory<typeof Glimmer> = args => (
+const BasicTemplate = (args: Story["args"]) => (
   <div
     style={{
       display: "flex",
@@ -79,14 +77,16 @@ const BasicTemplate: ComponentStory<typeof Glimmer> = args => (
   </div>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  shape: "rectangle",
-  size: "base",
-  timing: "base",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    shape: "rectangle",
+    size: "base",
+    timing: "base",
+  },
 };
 
-const InDepthTemplate: ComponentStory<typeof Glimmer> = args => (
+const InDepthTemplate = (args: Story["args"]) => (
   <Content>
     <div
       style={{
@@ -113,13 +113,17 @@ const InDepthTemplate: ComponentStory<typeof Glimmer> = args => (
   </Content>
 );
 
-export const InDepth = InDepthTemplate.bind({});
-InDepth.args = {
-  size: "larger",
-  shape: "circle",
+export const InDepth: Story = {
+  render: InDepthTemplate,
+  args: {
+    size: "larger",
+    shape: "circle",
+  },
 };
 
-export const Timing = BasicTemplate.bind({});
-Timing.args = {
-  timing: "fast",
+export const Timing: Story = {
+  render: BasicTemplate,
+  args: {
+    timing: "fast",
+  },
 };

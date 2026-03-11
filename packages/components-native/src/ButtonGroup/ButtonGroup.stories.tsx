@@ -1,13 +1,13 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
+import { Host } from "react-native-portalize";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ButtonGroup } from "@jobber/components-native";
 
-export default {
-  title: "Components/Actions/ButtonGroup/Mobile",
+const meta = {
+  title: "Components/Actions/ButtonGroup",
   component: ButtonGroup,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
@@ -15,74 +15,94 @@ export default {
     "ButtonGroup.PrimaryAction": ButtonGroup.PrimaryAction,
     "ButtonGroup.SecondaryAction": ButtonGroup.SecondaryAction,
   },
-} as ComponentMeta<typeof ButtonGroup>;
+} satisfies Meta<typeof ButtonGroup>;
+export default meta;
 
-const Template: ComponentStory<typeof ButtonGroup> = args => (
-  <ButtonGroup {...args}>
-    <ButtonGroup.PrimaryAction
-      label={"Create"}
-      icon={"plus"}
-      onPress={() => console.log("create")}
-    />
-    <ButtonGroup.PrimaryAction
-      label={"Edit"}
-      icon={"edit"}
-      onPress={() => console.log("edit")}
-    />
-    <ButtonGroup.SecondaryAction
-      label={"Delete"}
-      icon={"trash"}
-      onPress={() => console.log("delete")}
-    />
-  </ButtonGroup>
-);
+type ButtonGroupStory = StoryObj<
+  Partial<React.ComponentProps<typeof ButtonGroup>>
+>;
+type PrimaryActionStory = StoryObj<
+  React.ComponentProps<typeof ButtonGroup.PrimaryAction>
+>;
+type SecondaryActionStory = StoryObj<
+  React.ComponentProps<typeof ButtonGroup.SecondaryAction>
+>;
 
-export const Basic = Template.bind({});
-
-const PrimaryTemplate: ComponentStory<
-  typeof ButtonGroup.PrimaryAction
-> = args => (
-  <ButtonGroup>
-    <ButtonGroup.PrimaryAction {...args} />
-    <ButtonGroup.SecondaryAction
-      label={"Edit"}
-      icon={"edit"}
-      onPress={() => console.log("edit")}
-    />
-    <ButtonGroup.SecondaryAction
-      label={"Delete"}
-      icon={"trash"}
-      onPress={() => console.log("delete")}
-    />
-  </ButtonGroup>
-);
-
-export const Primary = PrimaryTemplate.bind({});
-Primary.args = {
-  label: "Create",
-  icon: "plus",
-  onPress: () => console.log("create"),
+export const Basic: ButtonGroupStory = {
+  render: args => (
+    <SafeAreaProvider>
+      <Host>
+        <ButtonGroup {...args}>
+          <ButtonGroup.PrimaryAction
+            label={"Create"}
+            icon={"plus"}
+            onPress={() => console.log("create")}
+          />
+          <ButtonGroup.PrimaryAction
+            label={"Edit"}
+            icon={"edit"}
+            onPress={() => console.log("edit")}
+          />
+          <ButtonGroup.SecondaryAction
+            label={"Delete"}
+            icon={"trash"}
+            onPress={() => console.log("delete")}
+          />
+        </ButtonGroup>
+      </Host>
+    </SafeAreaProvider>
+  ),
+  args: {},
 };
 
-const SecondaryTemplate: ComponentStory<
-  typeof ButtonGroup.SecondaryAction
-> = args => (
-  <ButtonGroup
-    bottomSheetHeading="What would you like to do"
-    showCancelInBottomSheet={true}
-  >
-    <ButtonGroup.PrimaryAction
-      label={"Click that ellipsis >>>"}
-      buttonType={"secondary"}
-      onPress={() => alert("No, not me. The ellipsis!")}
-    />
-    <ButtonGroup.SecondaryAction {...args} />
-  </ButtonGroup>
-);
+export const Primary: PrimaryActionStory = {
+  render: args => (
+    <SafeAreaProvider>
+      <Host>
+        <ButtonGroup>
+          <ButtonGroup.PrimaryAction {...args} />
+          <ButtonGroup.SecondaryAction
+            label={"Edit"}
+            icon={"edit"}
+            onPress={() => console.log("edit")}
+          />
+          <ButtonGroup.SecondaryAction
+            label={"Delete"}
+            icon={"trash"}
+            onPress={() => console.log("delete")}
+          />
+        </ButtonGroup>
+      </Host>
+    </SafeAreaProvider>
+  ),
+  args: {
+    label: "Create",
+    icon: "plus",
+    onPress: () => console.log("create"),
+  },
+};
 
-export const Secondary = SecondaryTemplate.bind({});
-Secondary.args = {
-  label: "Create",
-  icon: "plus",
-  onPress: () => console.log("create"),
+export const Secondary: SecondaryActionStory = {
+  render: args => (
+    <SafeAreaProvider>
+      <Host>
+        <ButtonGroup
+          bottomSheetHeading="What would you like to do"
+          showCancelInBottomSheet={true}
+        >
+          <ButtonGroup.PrimaryAction
+            label={"Click that ellipsis >>>"}
+            buttonType={"secondary"}
+            onPress={() => alert("No, not me. The ellipsis!")}
+          />
+          <ButtonGroup.SecondaryAction {...args} />
+        </ButtonGroup>
+      </Host>
+    </SafeAreaProvider>
+  ),
+  args: {
+    label: "Create",
+    icon: "plus",
+    onPress: () => console.log("create"),
+  },
 };

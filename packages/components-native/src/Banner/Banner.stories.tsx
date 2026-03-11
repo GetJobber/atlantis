@@ -1,18 +1,22 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Banner, Content, Text, TextList } from "@jobber/components-native";
 
-export default {
-  title: "Components/Status and Feedback/Banner/Mobile",
+const meta = {
+  title: "Components/Status and Feedback/Banner",
   component: Banner,
+  args: {
+    type: "notice",
+    children: "Your import is in progress",
+  },
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof Banner>;
+} satisfies Meta<typeof Banner>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Banner> = () => (
+const BasicTemplate = () => (
   <Content>
     <Banner type="success">
       <Text>Your import is complete</Text>
@@ -29,19 +33,15 @@ const BasicTemplate: ComponentStory<typeof Banner> = () => (
   </Content>
 );
 
-const ActionsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>
-    <Text>Your trial has been extended!</Text>
-  </Banner>
+const ActionsTemplate = (args: Story["args"]) => (
+  <Banner {...args}>{args?.children}</Banner>
 );
 
-const ErrorTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>
-    <Text>Currently offline. Functionality is limited.</Text>
-  </Banner>
+const ErrorTemplate = (args: Story["args"]) => (
+  <Banner {...args}>{args?.children}</Banner>
 );
 
-const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
+const ErrorDetailsTemplate = (args: Story["args"]) => {
   const listItems = [
     "This client already exists",
     "This phone number doesn't receive SMS",
@@ -55,25 +55,32 @@ const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  type: "notice",
+export const Basic: Story = {
+  render: BasicTemplate,
 };
 
-export const ActionsInBanners = ActionsTemplate.bind({});
-ActionsInBanners.args = {
-  type: "notice",
-  action: { label: "View Plans", onPress: () => alert("Plans") },
+export const ActionsInBanners: Story = {
+  render: ActionsTemplate,
+  args: {
+    type: "notice",
+    children: "Your trial has been extended!",
+    action: { label: "View Plans", onPress: () => alert("Plans") },
+  },
 };
 
-export const Error = ErrorTemplate.bind({});
-Error.args = {
-  type: "error",
-  icon: "offline",
+export const Error: Story = {
+  render: ErrorTemplate,
+  args: {
+    type: "error",
+    children: "Currently offline. Functionality is limited.",
+    icon: "offline",
+  },
 };
 
-export const ErrorDetails = ErrorDetailsTemplate.bind({});
-ErrorDetails.args = {
-  type: "error",
-  icon: "alert",
+export const ErrorDetails: Story = {
+  render: ErrorDetailsTemplate,
+  args: {
+    type: "error",
+    icon: "alert",
+  },
 };

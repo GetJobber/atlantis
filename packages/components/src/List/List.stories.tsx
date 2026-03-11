@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { BaseListItemProps, ListItemProps } from "@jobber/components/List";
 import { List, ListItem } from "@jobber/components/List";
 import { Card } from "@jobber/components/Card";
@@ -14,33 +14,38 @@ import { FormatFile } from "@jobber/components/FormatFile";
 import { Box } from "@jobber/components/Box";
 import { Tooltip } from "@jobber/components/Tooltip";
 
-export default {
-  title: "Components/Lists and Tables/List/Web",
+const meta = {
+  title: "Components/Lists and Tables/List",
   component: List,
   subcomponents: { ListItem },
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof List>;
+} satisfies Meta<typeof List>;
+export default meta;
+type Story = StoryObj<Record<string, unknown>>;
 
-const BasicTemplate: ComponentStory<typeof List> = args => (
-  <Card>
-    <List {...args} />
-  </Card>
-);
+const BasicTemplate = (args: Story["args"]) => {
+  const storyArgs = (args ?? {}) as React.ComponentProps<typeof List>;
 
-const SimpleTemplate: ComponentStory<typeof List> = args => (
-  <div style={{ width: "fit-content" }}>
+  return (
     <Card>
-      <div style={{ padding: "var(--space-small)" }}>
-        <List {...args} />
-      </div>
+      <List {...storyArgs} />
     </Card>
-  </div>
-);
+  );
+};
 
-export const Basic = BasicTemplate.bind({});
+const SimpleTemplate = (args: Story["args"]) => {
+  const storyArgs = (args ?? {}) as React.ComponentProps<typeof List>;
+
+  return (
+    <div style={{ width: "fit-content" }}>
+      <Card>
+        <div style={{ padding: "var(--space-small)" }}>
+          <List {...storyArgs} />
+        </div>
+      </Card>
+    </div>
+  );
+};
+
 const basicItems: ListItemProps[] = [
   {
     id: 1,
@@ -60,9 +65,11 @@ const basicItems: ListItemProps[] = [
     onClick: () => alert("TODO: Implement onClick"),
   },
 ];
-Basic.args = { items: basicItems };
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: { items: basicItems },
+};
 
-export const SectionedListItems = BasicTemplate.bind({});
 const sectionedListItems: ListItemProps[] = [
   {
     id: 1,
@@ -98,7 +105,10 @@ const sectionedListItems: ListItemProps[] = [
     section: "Yesterday",
   },
 ];
-SectionedListItems.args = { items: sectionedListItems };
+export const SectionedListItems: Story = {
+  render: BasicTemplate,
+  args: { items: sectionedListItems },
+};
 
 interface SPListItemProps extends BaseListItemProps {
   readonly name: string;
@@ -153,12 +163,14 @@ function RenderServiceProviderList({
   );
 }
 
-export const ListWithCustomRenderer = BasicTemplate.bind({});
-ListWithCustomRenderer.args = {
-  items: serviceProviderListItems,
-  customRenderItem: (item: SPListItemProps) => (
-    <RenderServiceProviderList listItem={item} />
-  ),
+export const ListWithCustomRenderer: Story = {
+  render: BasicTemplate,
+  args: {
+    items: serviceProviderListItems,
+    customRenderItem: (item: SPListItemProps) => (
+      <RenderServiceProviderList listItem={item} />
+    ),
+  },
 };
 
 interface ProductListItemProps extends BaseListItemProps {
@@ -255,20 +267,24 @@ function RenderProductList({
   );
 }
 
-export const SectionedListWithCustomItem = BasicTemplate.bind({});
-SectionedListWithCustomItem.args = {
-  items: productsList,
-  customRenderItem: (item: ProductListItemProps) => (
-    <RenderProductList listItem={item} />
-  ),
+export const SectionedListWithCustomItem: Story = {
+  render: BasicTemplate,
+  args: {
+    items: productsList,
+    customRenderItem: (item: ProductListItemProps) => (
+      <RenderProductList listItem={item} />
+    ),
+  },
 };
 
-export const SectionedListWithCustomSection = BasicTemplate.bind({});
-SectionedListWithCustomSection.args = {
-  items: sectionedListItems,
-  customRenderSection: (sectionHeading: string) => (
-    <RenderCustomSection sectionHeading={sectionHeading} />
-  ),
+export const SectionedListWithCustomSection: Story = {
+  render: BasicTemplate,
+  args: {
+    items: sectionedListItems,
+    customRenderSection: (sectionHeading: string) => (
+      <RenderCustomSection sectionHeading={sectionHeading} />
+    ),
+  },
 };
 
 function RenderCustomSection({
@@ -292,7 +308,6 @@ function RenderCustomSection({
   );
 }
 
-export const SimpleListWithCustomStyles = SimpleTemplate.bind({});
 const simpleListItems: ListItemProps[] = [
   {
     id: 1,
@@ -320,12 +335,15 @@ interface SimpleListItemProps extends BaseListItemProps {
   icon: IconNames;
 }
 
-SimpleListWithCustomStyles.args = {
-  items: simpleListItems,
-  customRenderItem: (item: SimpleListItemProps) => (
-    <RenderSimpleItem listItem={item} />
-  ),
-  customItemStyles: true,
+export const SimpleListWithCustomStyles: Story = {
+  render: SimpleTemplate,
+  args: {
+    items: simpleListItems,
+    customRenderItem: (item: SimpleListItemProps) => (
+      <RenderSimpleItem listItem={item} />
+    ),
+    customItemStyles: true,
+  },
 };
 
 function RenderSimpleItem({

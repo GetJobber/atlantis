@@ -1,21 +1,17 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { FormatTime } from "@jobber/components/FormatTime";
 
-export default {
-  title: "Components/Utilities/FormatTime/Web",
+const meta = {
+  title: "Components/Utilities/FormatTime",
   component: FormatTime,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
-  },
-} as ComponentMeta<typeof FormatTime>;
+} satisfies Meta<typeof FormatTime>;
+export default meta;
+type Story = StoryObj<
+  Pick<React.ComponentProps<typeof FormatTime>, "use24HourClock">
+>;
 
-const BasicTemplate: ComponentStory<typeof FormatTime> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const earlyTime = new Date();
   earlyTime.setHours(2, 35, 0, 0);
 
@@ -25,16 +21,31 @@ const BasicTemplate: ComponentStory<typeof FormatTime> = args => {
   return (
     <>
       <div>
-        <FormatTime {...args} time={earlyTime} use24HourClock={true} /> -{" "}
-        <FormatTime {...args} time={lateTime} use24HourClock={true} />
+        <FormatTime
+          time={earlyTime}
+          use24HourClock={args?.use24HourClock ?? true}
+        />{" "}
+        -{" "}
+        <FormatTime
+          time={lateTime}
+          use24HourClock={args?.use24HourClock ?? true}
+        />
       </div>
       <div>
-        <FormatTime {...args} time={earlyTime} use24HourClock={false} /> -{" "}
-        <FormatTime {...args} time={lateTime} use24HourClock={false} />
+        <FormatTime
+          time={earlyTime}
+          use24HourClock={args?.use24HourClock ?? false}
+        />{" "}
+        -{" "}
+        <FormatTime
+          time={lateTime}
+          use24HourClock={args?.use24HourClock ?? false}
+        />
       </div>
     </>
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};

@@ -1,23 +1,21 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { DataDump } from "@jobber/components/DataDump";
 
-export default {
-  title: "Components/Utilities/DataDump/Web",
+const meta = {
+  title: "Components/Utilities/DataDump",
   component: DataDump,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof DataDump>;
+} satisfies Meta<typeof DataDump>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof DataDump> = args => (
-  <DataDump {...args} />
-);
+const BasicTemplate = (args: Story["args"]) => <DataDump {...args} />;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  data: {
-    name: "Bob",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    data: {
+      name: "Bob",
+    },
   },
 };

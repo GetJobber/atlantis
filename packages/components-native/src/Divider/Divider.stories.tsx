@@ -1,20 +1,19 @@
 import React from "react";
 import { View } from "react-native";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Content } from "@jobber/components/Content";
-import { Divider, Heading, Text } from "@jobber/components-native";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Content, Divider, Heading, Text } from "@jobber/components-native";
 
-export default {
-  title: "Components/Layouts and Structure/Divider/Mobile",
+const meta = {
+  title: "Components/Layouts and Structure/Divider",
   component: Divider,
   parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof Divider>;
+} satisfies Meta<typeof Divider>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Divider>>>;
 
-const HorizontalTemplate: ComponentStory<typeof Divider> = args => (
+const HorizontalTemplate = (args: Story["args"]) => (
   <View
     style={{
       display: "flex",
@@ -27,7 +26,7 @@ const HorizontalTemplate: ComponentStory<typeof Divider> = args => (
   </View>
 );
 
-const VerticalTemplate: ComponentStory<typeof Divider> = args => (
+const VerticalTemplate = (args: Story["args"]) => (
   <View>
     <View style={{ marginBottom: 16 }}>
       <Heading>Summary</Heading>
@@ -58,14 +57,18 @@ const VerticalTemplate: ComponentStory<typeof Divider> = args => (
   </View>
 );
 
-export const Horizontal = HorizontalTemplate.bind({});
-Horizontal.args = {
-  size: "base",
-  direction: "horizontal",
+export const Horizontal: Story = {
+  render: HorizontalTemplate,
+  args: {
+    size: "base",
+    direction: "horizontal",
+  },
 };
 
-export const Vertical = VerticalTemplate.bind({});
-Vertical.args = {
-  size: "base",
-  direction: "vertical",
+export const Vertical: Story = {
+  render: VerticalTemplate,
+  args: {
+    size: "base",
+    direction: "vertical",
+  },
 };

@@ -1,21 +1,19 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 import { Text } from "@jobber/components/Text";
 import { Heading } from "@jobber/components/Heading";
 import { Card } from "@jobber/components/Card";
 
-export default {
-  title: "Components/Layouts and Structure/Divider/Web",
+const meta = {
+  title: "Components/Layouts and Structure/Divider",
   component: Divider,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Divider>;
+} satisfies Meta<typeof Divider>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Divider>>>;
 
-const HorizontalTemplate: ComponentStory<typeof Divider> = args => (
+const HorizontalTemplate = (args: Story["args"]) => (
   <div
     style={{
       display: "grid",
@@ -28,7 +26,7 @@ const HorizontalTemplate: ComponentStory<typeof Divider> = args => (
   </div>
 );
 
-const VerticalTemplate: ComponentStory<typeof Divider> = args => (
+const VerticalTemplate = (args: Story["args"]) => (
   <div style={{ width: "fit-content" }}>
     <Card>
       <Content>
@@ -54,12 +52,16 @@ const VerticalTemplate: ComponentStory<typeof Divider> = args => (
   </div>
 );
 
-export const Horizontal = HorizontalTemplate.bind({});
-Horizontal.args = {
-  direction: "horizontal",
+export const Horizontal: Story = {
+  render: HorizontalTemplate,
+  args: {
+    direction: "horizontal",
+  },
 };
 
-export const Vertical = VerticalTemplate.bind({});
-Vertical.args = {
-  direction: "vertical",
+export const Vertical: Story = {
+  render: VerticalTemplate,
+  args: {
+    direction: "vertical",
+  },
 };

@@ -1,29 +1,19 @@
 import React, { useRef, useState } from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useFormState } from "@jobber/hooks";
 import { Form, type FormRef } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 
-export default {
-  title: "Components/Forms and Inputs/Form/Web",
+const meta = {
+  title: "Components/Forms and Inputs/Form",
   component: Form,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/hooks": ["useFormState"],
-          "@jobber/components/Form": ["Form", "FormRef"],
-        },
-      },
-    },
-  },
-} as ComponentMeta<typeof Form>;
+} satisfies Meta<typeof Form>;
+export default meta;
+type Story = StoryObj<Partial<React.ComponentProps<typeof Form>>>;
 
-const BasicTemplate: ComponentStory<typeof Form> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   const [{ isDirty, isValid }, setFormState] = useFormState();
   const [first, setFirst] = useState("");
 
@@ -70,7 +60,7 @@ const BasicTemplate: ComponentStory<typeof Form> = args => {
   );
 };
 
-const OnStateChangeTemplate: ComponentStory<typeof Form> = args => {
+const OnStateChangeTemplate = (args: Story["args"]) => {
   const [formState, setFormState] = useFormState();
 
   return (
@@ -100,7 +90,7 @@ const OnStateChangeTemplate: ComponentStory<typeof Form> = args => {
   );
 };
 
-const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = args => {
+const TriggeringSubmissionTemplate = (args: Story["args"]) => {
   const formRef = useRef<FormRef>(null);
 
   return (
@@ -137,11 +127,14 @@ const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-export const OnStateChange = OnStateChangeTemplate.bind({});
-OnStateChange.args = {};
+export const OnStateChange: Story = {
+  render: OnStateChangeTemplate,
+};
 
-export const TriggeringSubmission = TriggeringSubmissionTemplate.bind({});
-TriggeringSubmission.args = {};
+export const TriggeringSubmission: Story = {
+  render: TriggeringSubmissionTemplate,
+};

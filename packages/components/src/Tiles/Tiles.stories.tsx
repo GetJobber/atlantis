@@ -1,21 +1,26 @@
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Tiles } from "@jobber/components/Tiles";
 import { Card } from "@jobber/components/Card";
 import { Text } from "@jobber/components/Text";
 import { Box } from "@jobber/components/Box";
 
-export default {
-  title: "Components/Layouts and Structure/Tiles/Web",
-  component: Tiles,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof Tiles>;
+type TilesStoryArgs = Pick<
+  React.ComponentProps<typeof Tiles>,
+  "gap" | "minSize"
+>;
 
-const BasicTemplate: ComponentStory<typeof Tiles> = args => (
-  <Tiles {...args}>
+const meta = {
+  title: "Components/Layouts and Structure/Tiles",
+  component: Tiles,
+} satisfies Meta<typeof Tiles>;
+
+export default meta;
+
+type Story = StoryObj<TilesStoryArgs>;
+
+const BasicTemplate = (args: Story["args"]) => (
+  <Tiles gap={args?.gap} minSize={args?.minSize}>
     <Card>
       <Box padding="base">
         <Text>First tile</Text>
@@ -39,26 +44,32 @@ const BasicTemplate: ComponentStory<typeof Tiles> = args => (
   </Tiles>
 );
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  gap: "base",
-  minSize: "30ch",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    gap: "base",
+    minSize: "30ch",
+  },
 };
 
-export const CustomSpace = BasicTemplate.bind({});
-CustomSpace.args = {
-  gap: "large",
-  minSize: "30ch",
+export const CustomSpace: Story = {
+  render: BasicTemplate,
+  args: {
+    gap: "large",
+    minSize: "30ch",
+  },
 };
 
-export const CustomMinSize = BasicTemplate.bind({});
-CustomMinSize.args = {
-  gap: "base",
-  minSize: "40ch",
+export const CustomMinSize: Story = {
+  render: BasicTemplate,
+  args: {
+    gap: "base",
+    minSize: "40ch",
+  },
 };
 
-const ContentTemplate: ComponentStory<typeof Tiles> = args => (
-  <Tiles {...args}>
+const ContentTemplate = (args: Story["args"]) => (
+  <Tiles gap={args?.gap} minSize={args?.minSize}>
     <Card>
       <Box padding="base">
         <Text>
@@ -91,7 +102,7 @@ const ContentTemplate: ComponentStory<typeof Tiles> = args => (
   </Tiles>
 );
 
-const AlignmentTemplate: ComponentStory<typeof Tiles> = () => (
+const AlignmentTemplate = () => (
   <Box border="base" borderColor="border">
     <Tiles gap="largest" align="center">
       <Card>
@@ -118,10 +129,14 @@ const AlignmentTemplate: ComponentStory<typeof Tiles> = () => (
   </Box>
 );
 
-export const Alignment = AlignmentTemplate.bind({});
+export const Alignment: Story = {
+  render: AlignmentTemplate,
+};
 
-export const WithContent = ContentTemplate.bind({});
-WithContent.args = {
-  gap: "base",
-  minSize: "30ch",
+export const WithContent: Story = {
+  render: ContentTemplate,
+  args: {
+    gap: "base",
+    minSize: "30ch",
+  },
 };

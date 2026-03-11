@@ -1,24 +1,16 @@
-import type { JSXElementConstructor } from "react";
 import React from "react";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { Button, Toast, showToast } from "@jobber/components-native";
 
-type ToastElement = JSXElementConstructor<Parameters<typeof showToast>[0]>;
+interface ToastStoryArgs {
+  message: string;
+}
 
-export default {
-  title: "Components/Status and Feedback/Toast/Mobile",
-  component: showToast as ToastElement,
+const meta = {
+  title: "Components/Status and Feedback/Toast",
   parameters: {
-    viewMode: "story",
     viewport: { defaultViewport: "mobile1" },
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components-native": ["Toast", "showToast"],
-        },
-      },
-    },
+    showNativeOnWebDisclaimer: true,
   },
   decorators: [
     Story => {
@@ -30,16 +22,30 @@ export default {
       );
     },
   ],
-} as ComponentMeta<ToastElement>;
+} satisfies Meta<ToastStoryArgs>;
 
-const Template: ComponentStory<ToastElement> = args => (
+export default meta;
+
+type Story = StoryObj<ToastStoryArgs>;
+
+const Template = (args: Story["args"]) => (
   <>
-    <Button label="Show toast" onPress={() => showToast(args)} />
+    <Button
+      label="Show toast"
+      onPress={() =>
+        showToast({
+          message: args?.message ?? "Showed toast",
+          bottomTabsVisible: false,
+        })
+      }
+    />
     <Toast />
   </>
 );
 
-export const Basic = Template.bind({});
-Basic.args = {
-  message: "Showed toast",
+export const Basic: Story = {
+  render: Template,
+  args: {
+    message: "Showed toast",
+  },
 };
