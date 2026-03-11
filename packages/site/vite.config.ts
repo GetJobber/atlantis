@@ -5,15 +5,6 @@ import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
 
-const rewriteLink = (item: string) => {
-  let newItem = item;
-
-  if (newItem.includes("../?path=/story")) {
-    newItem = newItem.replace("../", "https://atlantis.getjobber.com");
-  }
-
-  return newItem;
-};
 export default defineConfig({
   plugins: [
     react(),
@@ -29,15 +20,6 @@ export default defineConfig({
               properties: Record<string, string>;
               children?: Array<{ value: string }>;
             }) => {
-              if (
-                node.type === "element" &&
-                node.tagName === "a" &&
-                node.properties &&
-                node.properties.href
-              ) {
-                node.properties.href = rewriteLink(node.properties.href);
-              }
-
               // For any processed H2 Element, add an ID and a data-heading-link attribute
               // So we can link to it from the sidebar
               if (node.type === "element" && node.tagName === "h2") {
