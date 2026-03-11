@@ -1023,7 +1023,7 @@ const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export function useFakeQuery(searchTerm: string) {
+function useFakeQuery(searchTerm: string) {
   return useQuery<ListQueryType>(LIST_QUERY, {
     variables: {
       filter: { name: searchTerm },

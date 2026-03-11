@@ -112,7 +112,7 @@ export const Selection: Story = {
   },
 };
 
-export function useFakeOptionQuery() {
+function useFakeOptionQuery() {
   const [options, setOptions] = useState<string[]>([]);
   const initialDataGetUrl = "https://swapi.dev/api/people/?format=json";
   const [nextGet, setNextGet] = useState(initialDataGetUrl);
