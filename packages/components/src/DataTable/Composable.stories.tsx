@@ -19,7 +19,6 @@ import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { DataTable, SortDirection } from "@jobber/components/DataTable";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
-import { ChipDismissible } from "@jobber/components/Chips";
 import { Combobox, type ComboboxOption } from "@jobber/components/Combobox";
 import { Icon, type IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
@@ -1120,19 +1119,23 @@ const AdvancedFilteringTemplate = () => {
               />
             ))}
           </Combobox>
-
           {objectTypeOptions.map(option => {
             const isSelected = selectedObjectType === option.id;
 
             if (isSelected) {
               return (
-                <ChipDismissible
+                <Chip
                   key={option.id}
                   label={option.label}
                   onClick={() => handleObjectTypeSelect(option.id)}
-                  onRequestRemove={clearObjectTypeFilter}
-                  prefix={<Icon name={option.icon} size="large" />}
-                />
+                >
+                  <Chip.Prefix>
+                    <Icon name={option.icon} size="large" />
+                  </Chip.Prefix>
+                  <Chip.Suffix onClick={clearObjectTypeFilter}>
+                    <Icon name="cross" size="small" color="interactiveSubtle" />
+                  </Chip.Suffix>
+                </Chip>
               );
             }
 

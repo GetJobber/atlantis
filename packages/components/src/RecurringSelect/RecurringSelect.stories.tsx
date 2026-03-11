@@ -15,6 +15,13 @@ type RecurringSelectStoryArgs = Pick<
 const meta = {
   title: "Components/Deprecated/RecurringSelect",
   component: RecurringSelect,
+  parameters: {
+    docs: {
+      description: {
+        component: "RecurringSelect docs have moved to the new site.",
+      },
+    },
+  },
   decorators: [
     Story => (
       <div style={{ maxWidth: 400 }}>

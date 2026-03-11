@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import type { ChipProps } from "../Chip";
 import type { ChipDismissibleProps } from "../ChipsTypes";
 
