@@ -49,7 +49,6 @@ const DESIGN_TAB_INDEX = 0;
  * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?
  * @returns ReactNode
  */
-// eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const params = useParams({ strict: false });
   const search = useSearch({ strict: false });
