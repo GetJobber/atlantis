@@ -8,13 +8,6 @@ import { Divider } from "@jobber/components/Divider";
 const meta = {
   title: "Components/Deprecated/MultiSelect",
   component: MultiSelect,
-  parameters: {
-    docs: {
-      description: {
-        component: "MultiSelect docs have moved to the new site.",
-      },
-    },
-  },
 } satisfies Meta<typeof MultiSelect>;
 export default meta;
 type Story = StoryObj<
