@@ -204,6 +204,18 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     });
   });
 
+  test("multi: clearable button centered with wrapping selections", async ({
+    page,
+  }) => {
+    const section = page.getByTestId("multi-clearable-section");
+    await expect(section).toBeVisible();
+
+    await expect(section).toHaveScreenshot(
+      "17-multi-clearable-wrapping.png",
+      screenshotOptions,
+    );
+  });
+
   test("constrained space: open near bottom and verify layout", async ({
     page,
   }) => {
