@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { MultiSelect } from "@jobber/components/MultiSelect";
@@ -5,7 +6,7 @@ import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 
 export default {
-  title: "Components/Selections/MultiSelect/Web",
+  title: "Components/Deprecated/MultiSelect/Web",
   component: MultiSelect,
   parameters: {
     viewMode: "story",
