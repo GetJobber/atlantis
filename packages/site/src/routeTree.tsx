@@ -96,7 +96,10 @@ const componentsNameTabRoute = createRoute({
     const pageMeta = SiteContent[name];
 
     if (!pageMeta) {
-      throw redirect({ to: "/component-not-found" });
+      throw redirect({
+        to: "/components/$name",
+        params: { name },
+      });
     }
 
     const availablePlatforms = getAvailablePlatformTypes(pageMeta);

@@ -106,9 +106,11 @@ export const ComponentView = () => {
     };
   }, []);
 
-  const ComponentContent = getComponentContent(PageMeta, type);
+  const ComponentContent = PageMeta
+    ? getComponentContent(PageMeta, type)
+    : undefined;
 
-  const code = getComponentElement(PageMeta, type);
+  const code = PageMeta ? getComponentElement(PageMeta, type) : undefined;
 
   useEffect(() => {
     if (code) {
@@ -172,7 +174,9 @@ export const ComponentView = () => {
     });
 
     // Add Implement tab if notes are available
-    const currentNotes = getComponentNotes(PageMeta, type);
+    const currentNotes = PageMeta
+      ? getComponentNotes(PageMeta, type)
+      : undefined;
 
     if (currentNotes && typeof currentNotes === "function") {
       const NotesComponent = currentNotes;
@@ -262,7 +266,7 @@ export const ComponentView = () => {
       <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
-          links={getComponentLinks(PageMeta, type)}
+          links={PageMeta ? getComponentLinks(PageMeta, type) : undefined}
           toc={PageMeta.toc}
           availablePlatforms={availablePlatforms}
           availableVersionsForCurrentPlatform={
@@ -381,7 +385,7 @@ const useComponentViewTabs = ({
   tabFromUrl,
   isLegacy,
 }: {
-  PageMeta: ContentExport;
+  PageMeta: ContentExport | undefined;
 
   updateType: (type: ComponentType) => void;
   tabFromUrl: string;
@@ -391,35 +395,45 @@ const useComponentViewTabs = ({
   const { name = "" } = useParams({ strict: false });
   const { updateStyles } = useStyleUpdater();
   const defaultType = useMemo(
-    () => getDefaultComponentType(PageMeta),
+    () => (PageMeta ? getDefaultComponentType(PageMeta) : null),
     [PageMeta],
   );
   const currentPlatform = useMemo(
-    () => getPlatformForComponentType(defaultType),
+    () => (defaultType ? getPlatformForComponentType(defaultType) : null),
     [defaultType],
   );
   const availablePlatforms = useMemo(
-    () => getAvailablePlatformTypes(PageMeta),
+    () => (PageMeta ? getAvailablePlatformTypes(PageMeta) : []),
     [PageMeta],
   );
   const availableTypes = useMemo(
-    () => getAvailableComponentTypes(PageMeta),
+    () => (PageMeta ? getAvailableComponentTypes(PageMeta) : []),
     [PageMeta],
   );
 
-  const [tab, setTab] = useState(() =>
-    getTabFromUrl({
+  const [tab, setTab] = useState(() => {
+    if (!PageMeta) return DESIGN_TAB_INDEX;
+
+    const initialDefaultType = getDefaultComponentType(PageMeta);
+
+    return getTabFromUrl({
       tabFromUrl,
-      availablePlatforms,
-      availableTypes,
-      defaultType,
+      availablePlatforms: getAvailablePlatformTypes(PageMeta),
+      availableTypes: getAvailableComponentTypes(PageMeta),
+      defaultType: initialDefaultType,
       updateType,
       isLegacy,
-    }),
-  );
+    });
+  });
 
   // Reset tabs when the page meta changes for example when we switch to a different component
   useEffect(() => {
+    if (!PageMeta || !defaultType) {
+      setTab(DESIGN_TAB_INDEX);
+
+      return;
+    }
+
     setTab(
       getTabFromUrl({
         tabFromUrl,
@@ -437,6 +451,7 @@ const useComponentViewTabs = ({
     defaultType,
     updateType,
     isLegacy,
+    PageMeta,
   ]);
 
   const setAndNavigateTab = (tabIndex: number) => {
@@ -457,6 +472,8 @@ const useComponentViewTabs = ({
   };
 
   const handleTabChange = (tabIn: number) => {
+    if (!PageMeta || !defaultType || !currentPlatform) return;
+
     if (tabIn === 0) {
       setAndNavigateTab(0);
     } else if (tabIn <= availablePlatforms.length) {
