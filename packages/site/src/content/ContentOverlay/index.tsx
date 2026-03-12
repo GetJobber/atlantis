@@ -45,7 +45,7 @@ export default {
       label: "Mobile Storybook",
       type: "mobile",
       url: getStorybookUrl(
-        `?path=/story/components-overlays-contentoverlay--basic`,
+        "?path=/story/components-overlays-contentoverlay--basic",
         "mobile",
       ),
     },

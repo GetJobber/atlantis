@@ -61,9 +61,11 @@ export default {
   title: "Drawer",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-drawer--docs`,
+        "?path=/story/components-layouts-and-structure-drawer--basic",
+        "web",
       ),
     },
   ],

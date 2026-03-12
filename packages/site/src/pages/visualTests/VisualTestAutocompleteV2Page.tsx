@@ -53,11 +53,13 @@ function AutoV2MultiDemo({
   menu,
   initialValue = [],
   disabled,
+  clearable,
 }: {
   readonly placeholder: string;
   readonly menu: MultiMenuItemsV2;
   readonly initialValue?: OptionV2[];
   readonly disabled?: boolean;
+  readonly clearable?: "never" | "while-editing" | "always";
 }) {
   const [value, setValue] = useState<OptionV2[]>(initialValue);
   const [inputValue, setInputValue] = useState<string>("");
@@ -73,6 +75,7 @@ function AutoV2MultiDemo({
       onInputChange={setInputValue}
       menu={menu}
       disabled={disabled}
+      clearable={clearable}
     />
   );
 }
@@ -354,6 +357,27 @@ export const VisualTestAutocompleteV2Page = () => {
                   placeholder="Multi: with actions"
                   menu={flatWithActionsMenu}
                   initialValue={[{ label: "Drain Cleaning" }]}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          <section data-testid="multi-clearable-section">
+            <Text size="large">Multiple select with clearable (wrapping)</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <AutoV2MultiDemo
+                  placeholder="Search"
+                  menu={flatOnlyMenu}
+                  clearable="always"
+                  initialValue={[
+                    { label: "Drain Cleaning" },
+                    { label: "Pipe Replacement" },
+                    { label: "Sewer Line Repair" },
+                    { label: "Window Cleaning" },
+                    { label: "Electrical Work" },
+                    { label: "Plumbing Work" },
+                  ]}
                 />
               </Grid.Cell>
             </Grid>

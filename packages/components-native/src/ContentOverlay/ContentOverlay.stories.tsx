@@ -13,7 +13,16 @@ const meta = {
 } satisfies Meta<typeof ContentOverlay>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+// type Story = StoryObj<typeof meta>;
+
+interface ContentOverlayStoryArgs {
+  title: string;
+  onClose?: React.ComponentProps<typeof ContentOverlay>["onClose"];
+  onOpen?: React.ComponentProps<typeof ContentOverlay>["onOpen"];
+  fullScreen?: boolean;
+}
+
+type Story = StoryObj<ContentOverlayStoryArgs>;
 
 const BasicTemplate = () => {
   const contentOverlayRef = useRef<ContentOverlayRef>(null);
@@ -55,5 +64,10 @@ const BasicTemplate = () => {
 
 export const Basic: Story = {
   render: BasicTemplate,
-  args: {} as Story["args"],
+  args: {
+    title: "Overlay Title",
+    onClose: () => alert("Overlay Dismissed"),
+    onOpen: () => alert("Overlay opened"),
+    fullScreen: false,
+  },
 };

@@ -20,9 +20,11 @@ export default {
   title: "Stack",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-stack-web--basic",
+        "?path=/story/components-layouts-and-structure-stack--basic",
+        "web",
       ),
     },
   ],
