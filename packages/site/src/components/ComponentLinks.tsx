@@ -11,6 +11,7 @@ import {
   ComponentType,
   ContentExportLinks,
   PlatformType,
+  TocItem,
 } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { getComponentTypeConfig } from "../utils/componentTypeUtils";
@@ -22,30 +23,24 @@ import { getComponentTypeConfig } from "../utils/componentTypeUtils";
  */
 export const ComponentLinks = ({
   links,
+  toc,
   goToProps,
   goToUsage,
-  goToDesign,
   availablePlatforms,
-  currentType,
 }: {
   readonly links?: ContentExportLinks[];
+  readonly toc?: TocItem[];
   readonly goToProps: (type: ComponentType) => void;
   readonly goToUsage: (type: ComponentType) => void;
-  readonly goToDesign: () => void;
   readonly availablePlatforms: PlatformType[];
   readonly availableVersionsForCurrentPlatform: ComponentType[];
-  readonly currentType: ComponentType;
 }) => {
   const { isMinimal } = useAtlantisSite();
   if (isMinimal) return null;
 
   return (
     <Content spacing={"larger"}>
-      <AnchorLinks
-        id="design"
-        header="Design"
-        additionalOnClickAction={goToDesign}
-      />
+      <AnchorLinks header="Design" toc={toc} />
       {availablePlatforms.map(platform => {
         const config = getComponentTypeConfig(
           platform === "web" ? "web" : "mobile",
@@ -64,12 +59,12 @@ export const ComponentLinks = ({
             </Typography>
             <Content spacing="small">
               <Box>
-                <a onClick={() => goToUsage(currentType)} href={`#`}>
+                <a onClick={() => goToUsage(config.platform)} href={`#`}>
                   Usage
                 </a>
               </Box>
               <Box>
-                <a onClick={() => goToProps(currentType)} href={`#`}>
+                <a onClick={() => goToProps(config.platform)} href={`#`}>
                   Props
                 </a>
               </Box>

@@ -1,4 +1,4 @@
-import Content from "./Box.stories.mdx";
+import Content, { toc } from "./Box.stories.mdx";
 import Props from "./Box.props.json";
 import Notes from "./BoxNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Box padding="large" background="success--surface" radius="large" border="base">

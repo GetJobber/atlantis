@@ -1,4 +1,4 @@
-import IconContent from "./Icon.stories.mdx";
+import IconContent, { toc } from "./Icon.stories.mdx";
 import Props from "./Icon.props.json";
 import MobileProps from "./Icon.props-mobile.json";
 import Notes from "./IconNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <IconContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

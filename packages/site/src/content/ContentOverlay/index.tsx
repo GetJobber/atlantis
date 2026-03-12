@@ -1,4 +1,4 @@
-import Content from "./ContentOverlay.stories.mdx";
+import Content, { toc } from "./ContentOverlay.stories.mdx";
 import MobileProps from "./ContentOverlay.props-mobile.json";
 import Notes from "./ContentOverlayNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `const contentOverlayRef = useRef<ContentOverlayRef>(null);

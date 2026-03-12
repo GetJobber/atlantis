@@ -1,3 +1,4 @@
+<<<<<<< TAYLOR/update-footerlinks
 import {
   Link as AtlantisLink,
   Box,
@@ -5,6 +6,10 @@ import {
   Typography,
 } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
+=======
+import { Box, Button, Typography } from "@jobber/components";
+import { Link, useLocation } from "@tanstack/react-router";
+>>>>>>> master
 import { Fragment, PropsWithChildren, useRef } from "react";
 import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
@@ -119,6 +124,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
+<<<<<<< TAYLOR/update-footerlinks
       <div className={styles.navFooter}>
         <Typography size="small" textColor="textSecondary">
           View in Storybook:{" "}
@@ -131,6 +137,11 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           </AtlantisLink>
         </Typography>
       </div>
+=======
+      <Link to="/welcome-guide" className={styles.navFooterLink}>
+        Welcome guide
+      </Link>
+>>>>>>> master
     </nav>
   );
 
