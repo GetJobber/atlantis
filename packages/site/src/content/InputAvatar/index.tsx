@@ -1,10 +1,11 @@
-import Content from "./InputAvatar.stories.mdx";
+import Content, { toc } from "./InputAvatar.stories.mdx";
 import Props from "./InputAvatar.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [avatarUrl, setAvatarUrl] = useState("https://picsum.photos/250");

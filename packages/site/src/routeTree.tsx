@@ -1,0 +1,253 @@
+/**
+ * TanStack Router route tree - code-based routes for Atlantis site.
+ * Update this file when adding/removing routes.
+ */
+import { createRootRoute, createRoute, redirect } from "@tanstack/react-router";
+import { Layout } from "./layout/Layout";
+import { HomePage } from "./pages/HomePage";
+import { ComponentsPage } from "./pages/ComponentsPage";
+import { ContentLoader } from "./components/ContentLoader";
+import { ContentPage } from "./pages/ContentPage";
+import { DesignPage } from "./pages/DesignPage";
+import { PatternsPage } from "./pages/PatternsPage";
+import { ComponentView } from "./layout/ComponentView";
+import { ChangelogPage } from "./pages/ChangelogPage";
+import { HooksPage } from "./pages/HooksPage";
+import { GuidesPage } from "./pages/GuidesPage";
+import { PackagesPage } from "./pages/PackagesPage";
+import { ComponentNotFound } from "./components/ComponentNotFound";
+import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { VisualTestRouter } from "./pages/visualTests/VisualTestRouter";
+import { VisualTestCatchAll } from "./pages/visualTests/VisualTestCatchAll";
+import { SiteContent } from "./content";
+import { getAvailablePlatformTypes } from "./utils/componentTypeUtils";
+
+export interface RootSearchInput {
+  isLegacy?: boolean;
+  minimal?: boolean;
+  path?: string;
+  theme?: string;
+}
+
+export interface RootSearchOutput {
+  isLegacy?: boolean;
+  minimal?: boolean;
+  path?: string;
+  theme?: string;
+}
+
+const validateSearch = (search?: RootSearchInput): RootSearchOutput => ({
+  isLegacy:
+    search?.isLegacy === true ||
+    String(search?.isLegacy).toLowerCase() === "true",
+  minimal:
+    search?.minimal === true ||
+    String(search?.minimal).toLowerCase() === "true",
+  path: search?.path ? String(search.path) : undefined,
+  theme: search?.theme ? String(search.theme) : undefined,
+});
+
+const rootRoute = createRootRoute({
+  component: Layout,
+  notFoundComponent: NotFoundPage,
+  validateSearch,
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: HomePage,
+});
+
+const patternsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "patterns",
+  component: PatternsPage,
+});
+
+const patternsNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "patterns/$name",
+  component: ContentLoader,
+});
+
+const componentsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "components",
+  component: ComponentsPage,
+});
+
+const componentsNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "components/$name",
+  component: ComponentView,
+  validateSearch,
+});
+
+const componentsNameTabRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "components/$name/$tab",
+  component: ComponentView,
+  validateSearch,
+  beforeLoad: ({ params }) => {
+    const name = params.name;
+    const tab = params.tab?.toLowerCase().trim();
+    const pageMeta = SiteContent[name];
+
+    if (!pageMeta) {
+      throw redirect({
+        to: "/components/$name",
+        params: { name },
+      });
+    }
+
+    const availablePlatforms = getAvailablePlatformTypes(pageMeta);
+    const validTabs = new Set<string>(["implement", ...availablePlatforms]);
+
+    if (!tab || !validTabs.has(tab)) {
+      throw redirect({
+        to: "/components/$name",
+        params: { name },
+      });
+    }
+  },
+});
+
+const contentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "content",
+  component: ContentPage,
+});
+
+const contentNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "content/$name",
+  component: ContentLoader,
+});
+
+const designRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "design",
+  component: DesignPage,
+});
+
+const designNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "design/$name",
+  component: ContentLoader,
+});
+
+const hooksRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "hooks",
+  component: HooksPage,
+});
+
+const hooksNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "hooks/$name",
+  component: ContentLoader,
+});
+
+const guidesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "guides",
+  component: GuidesPage,
+});
+
+const guidesNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "guides/$name",
+  component: ContentLoader,
+});
+
+const packagesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "packages",
+  component: PackagesPage,
+});
+
+const packagesNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "packages/$name",
+  component: ContentLoader,
+});
+
+const changelogRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "changelog",
+  component: ChangelogPage,
+});
+
+const changelogNameRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "changelog/$name",
+  component: ContentLoader,
+});
+
+const componentNotFoundRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "component-not-found",
+  component: ComponentNotFound,
+});
+
+const welcomeGuideRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "welcome-guide",
+  component: WelcomeGuidePage,
+});
+
+const visualTestsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "visual-tests",
+  component: VisualTestCatchAll,
+});
+
+const visualTestsPathRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "visual-tests/$path",
+  component: VisualTestRouter,
+});
+
+/* prettier-ignore */
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  patternsRoute,
+  patternsNameRoute,
+  componentsRoute,
+  componentsNameTabRoute,
+  componentsNameRoute,
+  contentRoute,
+  contentNameRoute,
+  designRoute,
+  designNameRoute,
+  hooksRoute,
+  hooksNameRoute,
+  guidesRoute,
+  guidesNameRoute,
+  packagesRoute,
+  packagesNameRoute,
+  changelogRoute,
+  changelogNameRoute,
+  componentNotFoundRoute,
+  welcomeGuideRoute,
+  visualTestsRoute,
+  visualTestsPathRoute,
+]);
+
+export {
+  rootRoute,
+  routeTree,
+  indexRoute,
+  componentsNameRoute,
+  componentsNameTabRoute,
+  contentNameRoute,
+  designNameRoute,
+  hooksNameRoute,
+  guidesNameRoute,
+  packagesNameRoute,
+  changelogNameRoute,
+  patternsNameRoute,
+  visualTestsPathRoute,
+};

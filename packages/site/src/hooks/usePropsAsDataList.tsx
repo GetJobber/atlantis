@@ -8,10 +8,11 @@ import { getComponentProps } from "../utils/componentTypeUtils";
  *
  */
 export const usePropsAsDataList = (
-  meta: ContentExport,
+  meta: ContentExport | undefined,
   type: ComponentType,
 ) => {
   const stateValues = useMemo(() => {
+    if (!meta) return [];
     const props = getComponentProps(meta, type);
 
     return props?.map(propList => {
@@ -33,6 +34,6 @@ export const usePropsAsDataList = (
   }, [meta, type]);
 
   return {
-    stateValues,
+    stateValues: stateValues || [],
   };
 };

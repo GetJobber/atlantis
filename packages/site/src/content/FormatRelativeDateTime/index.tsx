@@ -1,10 +1,13 @@
-import FormatRelativeDateTimeContent from "./FormatRelativeDateTime.stories.mdx";
+import FormatRelativeDateTimeContent, {
+  toc,
+} from "./FormatRelativeDateTime.stories.mdx";
 import Props from "./FormatRelativeDateTime.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatRelativeDateTimeContent />,
+  toc,
   props: Props,
   component: {
     element: `<FormatRelativeDateTime
