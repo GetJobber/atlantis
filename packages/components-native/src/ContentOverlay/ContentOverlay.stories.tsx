@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { View } from "react-native";
+import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Button, Heading, Text } from "@jobber/components-native";
@@ -11,9 +11,7 @@ const meta = {
   title: "Components/Overlays/ContentOverlay",
   component: ContentOverlay,
 } satisfies Meta<typeof ContentOverlay>;
-
 export default meta;
-// type Story = StoryObj<typeof meta>;
 
 interface ContentOverlayStoryArgs {
   title: string;
