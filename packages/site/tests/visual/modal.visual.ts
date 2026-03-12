@@ -136,6 +136,31 @@ test.describe("Modal Visual Tests", () => {
         fullPage: true,
       });
     });
+
+    test("should test full screen composable modal", async ({ page }) => {
+      const fullScreenModalButton = page.getByRole("button", {
+        name: "Open Full Screen Modal (Composable)",
+        exact: true,
+      });
+      await fullScreenModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot(
+        "14-full-screen-composable-open.png",
+        {
+          fullPage: true,
+        },
+      );
+
+      const closeButton = page.getByRole("button", { name: "Close modal" });
+      await closeButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot(
+        "15-full-screen-composable-closed.png",
+        {
+          fullPage: true,
+        },
+      );
+    });
   });
 
   test.describe("form modal", () => {

@@ -188,6 +188,15 @@ provide an accessible name for the Modal.
 <Modal open ariaLabel="Payment Details">...</Modal>
 ```
 
+### Full Screen Modals
+
+Use `size="fullScreen"` for complex workflows or dense layouts that need more
+space without turning the task into a new route.
+
+For full screen modals, keep the dismiss button enabled (it will be shown by
+default). If you set `dismissible={false}`, the Escape key is the only way to
+exit the modal, unless you provide another explicit close action.
+
 ### Testing tip
 
 Use the accessible name in queries:

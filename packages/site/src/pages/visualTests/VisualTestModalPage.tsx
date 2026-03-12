@@ -21,6 +21,8 @@ export const VisualTestModalPage = () => {
   const [customModalOpen, setCustomModalOpen] = useState(false);
   const [largeModalOpen, setLargeModalOpen] = useState(false);
   const [fullScreenModalOpen, setFullScreenModalOpen] = useState(false);
+  const [fullScreenComposableOpen, setFullScreenComposableOpen] =
+    useState(false);
   const [smallModalOpen, setSmallModalOpen] = useState(false);
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [tabModalOpen, setTabModalOpen] = useState(false);
@@ -144,6 +146,10 @@ export const VisualTestModalPage = () => {
                   label="Open Full Screen Modal"
                   onClick={() => setFullScreenModalOpen(true)}
                 />
+                <Button
+                  label="Open Full Screen Modal (Composable)"
+                  onClick={() => setFullScreenComposableOpen(true)}
+                />
               </Cluster>
 
               {/* Small Modal */}
@@ -223,6 +229,23 @@ export const VisualTestModalPage = () => {
                   </Text>
                 </Box>
               </Modal>
+
+              {/* Full Screen Modal (Composable) */}
+              <Modal.Provider
+                open={fullScreenComposableOpen}
+                onRequestClose={() => setFullScreenComposableOpen(false)}
+                size="fullScreen"
+              >
+                <Modal.Content>
+                  <Modal.Header title="Full Screen Modal (Composable)" />
+                  <Box padding="large">
+                    <Text>
+                      This is a composable full screen modal. Close it using the
+                      dismiss button or pressing the ESC key.
+                    </Text>
+                  </Box>
+                </Modal.Content>
+              </Modal.Provider>
             </section>
 
             {/* Modal with Form */}
