@@ -113,7 +113,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
-      <Link to="/guides/welcome-guide" className={styles.navFooterLink}>
+      <Link to="/welcome-guide" className={styles.navFooterLink}>
         Welcome guide
       </Link>
     </nav>
