@@ -32,14 +32,14 @@ const onChangeMock = jest.fn();
 const onChangeSelectMock = jest.fn();
 const onChangeSwitchMock = jest.fn();
 
-const mockScrollToPosition = jest.fn();
+const mockScrollTo = jest.fn();
 const mockScrollToTop = jest.fn();
 
 jest.mock("./hooks/useFormViewRefs", () => ({
   useFormViewRefs: () => {
     return {
       scrollViewRef: {
-        current: { scrollToPosition: mockScrollToPosition },
+        current: { scrollTo: mockScrollTo },
       },
       bottomViewRef: { current: {} },
       scrollToTop: mockScrollToTop,

@@ -6,7 +6,7 @@ import type {
 } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import type { RefObject } from "react";
-import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { KeyboardAwareScrollViewRef } from "react-native-keyboard-controller";
 import { useAtlantisContext } from "../../AtlantisContext";
 import { useAtlantisFormContext } from "../context/AtlantisFormContext";
 import type { InternalFormProps } from "../types";
@@ -22,7 +22,7 @@ type UseInternalFormProps<T extends FieldValues, SubmitResponseType> = Pick<
   | "localCacheId"
   | "UNSAFE_allowDiscardLocalCacheWhenOffline"
 > & {
-  scrollViewRef?: RefObject<KeyboardAwareScrollView | null>;
+  scrollViewRef?: RefObject<KeyboardAwareScrollViewRef | null>;
   readonly saveButtonHeight: number;
   readonly messageBannerHeight: number;
 };
