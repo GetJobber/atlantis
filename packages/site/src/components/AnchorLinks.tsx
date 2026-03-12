@@ -1,6 +1,5 @@
 import { Box, Content, Typography } from "@jobber/components";
 import { Link, useMatches, useParams } from "@tanstack/react-router";
-import omit from "lodash/omit";
 import type { TocItem } from "../types/content";
 
 interface AnchorLinksProps {
@@ -23,7 +22,8 @@ export function AnchorLinks({ header, toc: tocProp }: AnchorLinksProps) {
   // Fix for typescript issues. Want to clean this up when we use file based routing.
   if (!currentRoute || currentRoute.routeId === "__root__") return null;
 
-  const newParams = omit(params, "tab");
+  const newParams = { ...params };
+  delete newParams.tab;
   // Remove the tab because the table of contents is not on a tab in the components route
   const newPath = currentRoute.routeId.replace("/$tab", "");
 
