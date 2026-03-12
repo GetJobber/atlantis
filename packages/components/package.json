@@ -496,8 +496,8 @@
   "devDependencies": {
     "@csstools/postcss-global-data": "^1.0.3",
     "@jobber/design": "*",
-    "@jobber/formatters": "^0.5.0",
-    "@jobber/hooks": ">=2",
+    "@jobber/formatters": "*",
+    "@jobber/hooks": "*",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
