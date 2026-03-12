@@ -116,6 +116,39 @@ export const ActionTypes: Story = {
   },
 };
 
+const LegacyFullScreenTemplate = (args: Story["args"]) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  return (
+    <>
+      <Modal
+        {...args}
+        open={modalOpen}
+        size="fullScreen"
+        onRequestClose={() => setModalOpen(false)}
+        primaryAction={{ label: "Close", onClick: () => setModalOpen(false) }}
+      >
+        <Content>
+          <Text>
+            This example uses the legacy Modal API with fullScreen sizing.
+          </Text>
+        </Content>
+      </Modal>
+      <Button
+        label="Open Full Screen Legacy Modal"
+        onClick={() => setModalOpen(true)}
+      />
+    </>
+  );
+};
+
+export const LegacyFullScreen: Story = {
+  render: LegacyFullScreenTemplate,
+  args: {
+    title: "Full Screen Legacy Modal",
+  },
+};
+
 function CustomHeader() {
   const { header } = useModalStyles();
   const { onRequestClose } = useModalContext();
@@ -272,7 +305,67 @@ export const ModalWithProviderExample: Story = {
   render: ModalWithProviderExampleTemplate,
 };
 
-const ModalWithDatePickerTestTemplate = () => {
+const ModalSizesTemplate = () => {
+  const [activeSize, setActiveSize] = useState<
+    "small" | "large" | "fullScreen" | "default" | undefined
+  >();
+
+  return (
+    <Content>
+      <Box padding={{ top: "base" }}>
+        <Flex
+          gap="small"
+          template={["shrink", "shrink", "shrink", "shrink", "shrink"]}
+        >
+          <Button label="Open Small" onClick={() => setActiveSize("small")} />
+          <Button
+            label="Open Default"
+            onClick={() => setActiveSize("default")}
+          />
+          <Button label="Open Large" onClick={() => setActiveSize("large")} />
+          <Button
+            label="Open Full Screen"
+            onClick={() => setActiveSize("fullScreen")}
+          />
+        </Flex>
+      </Box>
+
+      <Modal.Provider
+        open={activeSize != undefined}
+        onRequestClose={() => setActiveSize(undefined)}
+        {...(activeSize === "default" || activeSize == undefined
+          ? {}
+          : { size: activeSize })}
+      >
+        <Modal.Content>
+          <Modal.Header
+            title={`Composable Modal: ${activeSize ?? "default"}`}
+          />
+          <Content>
+            <Text>
+              This is the composable modal API. Use it for custom headers,
+              actions, and advanced layout control.
+            </Text>
+          </Content>
+          {activeSize !== "fullScreen" && (
+            <Modal.Actions
+              primary={{
+                label: "Close",
+                onClick: () => setActiveSize(undefined),
+              }}
+            />
+          )}
+        </Modal.Content>
+      </Modal.Provider>
+    </Content>
+  );
+};
+
+export const Sizes: Story = {
+  render: ModalSizesTemplate,
+};
+
+const ModalWithDatePickerTemplate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [inputDateValue, setInputDateValue] = useState<Date | undefined>();
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -333,8 +426,8 @@ const ModalWithDatePickerTestTemplate = () => {
     </Content>
   );
 };
-export const ModalWithDatePickerTest: Story = {
-  render: ModalWithDatePickerTestTemplate,
+export const ModalWithDatePicker: Story = {
+  render: ModalWithDatePickerTemplate,
 };
 
 const NestedExampleTemplate = (args: Story["args"]) => {

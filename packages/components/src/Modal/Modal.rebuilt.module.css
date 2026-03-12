@@ -48,6 +48,12 @@
   flex: 0 0 auto;
 }
 
+.fullScreen {
+  max-height: 100dvh;
+  margin: 0;
+  border-radius: 0;
+}
+
 .modal:focus-visible {
   box-shadow: var(--shadow-focus);
 }

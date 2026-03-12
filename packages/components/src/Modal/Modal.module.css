@@ -23,6 +23,10 @@
   overflow: auto;
 }
 
+.containerFullWidth {
+  padding: 0;
+}
+
 .container,
 .overlay {
   position: fixed;
