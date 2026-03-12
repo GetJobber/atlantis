@@ -21,8 +21,9 @@ function slugify(text: string): string {
 }
 
 /**
- * Remark plugin: extracts H2 headings and stores them in file.data.toc for the
- * recma plugin to inject as a named export (so the compiled MDX exports toc for the sidebar).
+ * Remark plugin: extracts H2 headings in the mdx file and stores them in file.data.toc. This data is then used by @recmaInjectToc to inject as a named export
+ * This is allows us to get the table of contents data when we import the MDX file with:
+ * import Docs, {  toc as docsToc, } from "someMDXFile.stories.mdx";
  */
 export function remarkExtractToc() {
   return (tree: Root, file: VFile) => {
@@ -45,6 +46,9 @@ export function remarkExtractToc() {
 /**
  * Recma plugin: injects `export const toc = [...]` from file.data.toc so the
  * compiled MDX module exports a TOC for the sidebar.
+ * Uses the mdx file that has been processed by remarkExtractToc to get the toc data.
+ * It will then generate a named export called "toc" that is an array of objects with the id and label of each heading.
+ * This is done by generating the estree nodes for the export declaration and adding it to the tree.
  */
 export function recmaInjectToc() {
   return (tree: Program, file: RecmaVFile) => {
