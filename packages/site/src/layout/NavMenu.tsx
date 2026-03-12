@@ -1,10 +1,16 @@
-import { Box, Button, Typography } from "@jobber/components";
+import {
+  Link as AtlantisLink,
+  Box,
+  Button,
+  Typography,
+} from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useRef } from "react";
 import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
 import { LeftDrawer } from "./LeftDrawer";
+import { getStorybookUrl } from "./getStorybookUrl";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -113,9 +119,18 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
-      <Link to="/guides/welcome-guide" className={styles.navFooterLink}>
-        Welcome guide
-      </Link>
+      <div className={styles.navFooter}>
+        <Typography size="small" textColor="textSecondary">
+          View in Storybook:{" "}
+          <AtlantisLink url={getStorybookUrl("?path=/docs", "web")} external>
+            Web
+          </AtlantisLink>{" "}
+          or{" "}
+          <AtlantisLink url={getStorybookUrl("?path=/docs", "mobile")} external>
+            Mobile
+          </AtlantisLink>
+        </Typography>
+      </div>
     </nav>
   );
 
