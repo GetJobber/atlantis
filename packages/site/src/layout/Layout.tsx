@@ -15,7 +15,6 @@ import { TritonSideDrawer } from "../components/TritonSideDrawer";
 import { AtlantisPreviewProvider } from "../preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "../providers/AtlantisSiteProvider";
 import { TritonProvider } from "../providers/TritonProvider";
-import { getStorybookRedirectTarget } from "../utils/storybook";
 import { RootSearchOutput } from "../routeTree";
 
 /**
@@ -35,7 +34,6 @@ export const Layout = () => {
   }, [location.pathname, scrollPane?.current]);
 
   useHookRedirect();
-  useStorybookRedirect();
 
   const minimalMode = search?.minimal === true;
 
@@ -103,31 +101,6 @@ const useHookRedirect = () => {
       navigate({ to: match.to });
     }
   }, [navigate, path]);
-};
-
-const useStorybookRedirect = () => {
-  const location = useLocation();
-  const search = useSearch({ strict: false }) as RootSearchOutput;
-
-  useEffect(() => {
-    const isLocalhost =
-      typeof window !== "undefined" &&
-      window.location.host.includes("localhost");
-    const redirectToNewSite =
-      typeof window !== "undefined" &&
-      Boolean(localStorage.getItem("nolikeynewsite"));
-
-    const target = getStorybookRedirectTarget({
-      isLocalhost,
-      pathname: location.pathname,
-      pathParam: search?.path,
-      redirectToNewSite,
-    });
-
-    if (target) {
-      window.location.assign(target);
-    }
-  }, [location.pathname, search?.path]);
 };
 
 export const LayoutWrapper = ({ children }: PropsWithChildren) => {

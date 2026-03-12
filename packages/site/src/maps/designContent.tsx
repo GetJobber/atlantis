@@ -1,30 +1,30 @@
 import AnimationDocs, {
   toc as animationToc,
-} from "@atlantis/docs/design/Animation.stories.mdx";
+} from "../content/design/Animation.stories.mdx";
 import BorderDocs, {
   toc as bordersToc,
-} from "@atlantis/docs/design/Borders.stories.mdx";
+} from "../content/design/Borders.stories.mdx";
 import ColorDocs, {
   toc as colorsToc,
-} from "@atlantis/docs/design/Colors.stories.mdx";
+} from "../content/design/Colors.stories.mdx";
 import ElevationDocs, {
   toc as elevationsToc,
-} from "@atlantis/docs/design/Elevations.stories.mdx";
+} from "../content/design/Elevations.stories.mdx";
 import OpacityDocs, {
   toc as opacityToc,
-} from "@atlantis/docs/design/Opacity.stories.mdx";
+} from "../content/design/Opacity.stories.mdx";
 import RadiiDocs, {
   toc as radiiToc,
-} from "@atlantis/docs/design/Radii.stories.mdx";
+} from "../content/design/Radii.stories.mdx";
 import ResponsiveBreakpointsDocs, {
   toc as responsiveBreakpointsToc,
-} from "@atlantis/docs/design/ResponsiveBreakpoint.stories.mdx";
+} from "../content/design/ResponsiveBreakpoint.stories.mdx";
 import SpacingDocs, {
   toc as spacingToc,
-} from "@atlantis/docs/design/Spacing.stories.mdx";
+} from "../content/design/Spacing.stories.mdx";
 import TypographyDocs, {
   toc as typographyToc,
-} from "@atlantis/docs/design/Typography.stories.mdx";
+} from "../content/design/Typography.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const designContentMap: ContentMapItems = {

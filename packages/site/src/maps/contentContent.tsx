@@ -1,12 +1,12 @@
 import FormattingDocs, {
   toc as formattingToc,
-} from "@atlantis/docs/content/formatting.stories.mdx";
+} from "../content/editorial/formatting.stories.mdx";
 import ProductVocabularyDocs, {
   toc as productVocabularyToc,
-} from "@atlantis/docs/content/product-vocabulary.stories.mdx";
+} from "../content/editorial/product-vocabulary.stories.mdx";
 import VoiceAndToneDocs, {
   toc as voiceAndToneToc,
-} from "@atlantis/docs/content/voice-and-tone.stories.mdx";
+} from "../content/editorial/voice-and-tone.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const contentContentMap: ContentMapItems = {
