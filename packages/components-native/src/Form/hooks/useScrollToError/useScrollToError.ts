@@ -5,24 +5,24 @@ import type {
   Path,
   UseFormSetFocus,
 } from "react-hook-form";
-import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import type { MeasureInWindowOnSuccessCallback } from "react-native";
+import type { KeyboardAwareScrollViewRef } from "react-native-keyboard-controller";
 import { Keyboard, Platform } from "react-native";
 import { useIsScreenReaderEnabled } from "../../../hooks";
 import { useErrorMessageContext } from "../../../ErrorMessageWrapper";
 
-interface UseScrollToErrorParams<T extends FieldValues> {
+export interface UseScrollToErrorParams<T extends FieldValues> {
   readonly formState: FormState<T>;
   readonly refNode: number | null;
   readonly setFocus: UseFormSetFocus<T>;
-  readonly scrollToPosition?: KeyboardAwareScrollView["scrollToPosition"];
+  readonly scrollTo?: KeyboardAwareScrollViewRef["scrollTo"];
 }
 
 export function useScrollToError<T extends FieldValues>({
   formState: { errors, isValid, submitCount },
   refNode,
   setFocus,
-  scrollToPosition,
+  scrollTo,
 }: UseScrollToErrorParams<T>): void {
   const [submitCounter, setSubmitCounter] = useState(submitCount);
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
@@ -66,7 +66,7 @@ export function useScrollToError<T extends FieldValues>({
       isScreenReaderEnabled && Platform.OS === "android";
     const shouldAnimateScroll = !isAndroidWithScreenReader;
 
-    scrollToPosition?.(x, y, shouldAnimateScroll);
+    scrollTo?.({ x, y, animated: shouldAnimateScroll });
   }
 }
 

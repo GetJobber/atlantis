@@ -1,4 +1,4 @@
-import Content from "./Avatar.stories.mdx";
+import Content, { toc } from "./Avatar.stories.mdx";
 import Props from "./Avatar.props.json";
 import Notes from "./AvatarNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Avatar

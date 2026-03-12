@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@jobber/components";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Fragment, PropsWithChildren, useRef } from "react";
 import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
@@ -113,7 +113,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
-      <Link to="/guides/welcome-guide" className={styles.navFooterLink}>
+      <Link to="/welcome-guide" className={styles.navFooterLink}>
         Welcome guide
       </Link>
     </nav>

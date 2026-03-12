@@ -5,7 +5,7 @@ import {
   Content,
   Heading,
 } from "@jobber/components";
-import { useHistory } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 interface HeaderBlockProps {
   readonly title: string;
@@ -30,7 +30,7 @@ export const HeaderBlock = ({
   to,
   imageURL = "/img_collage.jpg",
 }: HeaderBlockProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Box background="base-blue--900">
@@ -54,7 +54,7 @@ export const HeaderBlock = ({
               type="secondary"
               size="large"
               label={ctaLabel}
-              onClick={() => history.push(to)}
+              onClick={() => navigate({ to: to })}
             />
           )}
         </Content>

@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import {
   Banner,
   Box,
@@ -7,8 +8,9 @@ import {
   Tab,
   Tabs,
 } from "@jobber/components";
-import { useParams } from "react-router";
+import { useNavigate, useParams, useSearch } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import { MDXProvider } from "@mdx-js/react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
 import { NotFoundPage } from "../pages/NotFoundPage";
@@ -23,7 +25,7 @@ import usePageTitle from "../hooks/usePageTitle";
 import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
 import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
 import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
-import { ComponentType, PlatformType } from "../types/content";
+import { ComponentType, ContentExport, PlatformType } from "../types/content";
 import {
   getAvailableComponentTypes,
   getAvailablePlatformTypes,
@@ -35,34 +37,27 @@ import {
   getComponentTypeConfig,
   getDefaultComponentType,
   getPlatformForComponentType,
+  resolveComponentTypeFromRoute,
 } from "../utils/componentTypeUtils";
 import { VersionSelector } from "../components/VersionSelector";
+import { LinkableHeading } from "../components/LinkableHeading";
+
+const DESIGN_TAB_INDEX = 0;
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
  * This isn't really a Layout component, but it's not really a component component either. We could make a "Views" directory maybe, or a "Template" directory?
  * @returns ReactNode
  */
-// eslint-disable-next-line max-statements
 export const ComponentView = () => {
-  const { name = "" } = useParams<{ name: string }>();
+  const params = useParams({ strict: false });
+  const search = useSearch({ strict: false });
+  const isLegacy = search?.isLegacy === true;
+  const name = params.name ?? "";
   const { updateCode, type, updateType } = useAtlantisPreview();
+  const tabFromUrl = params.tab?.toLowerCase().trim() ?? "";
+
   const PageMeta = SiteContent[name];
-  useErrorCatcher();
-  const { updateStyles } = useStyleUpdater();
-  const [tab, setTab] = useState(0);
-  const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal, isMinimal } =
-    useAtlantisSite();
-
-  usePageTitle({ title: PageMeta?.title });
-
-  // Get available component types for this component
-  const availableTypes = useMemo(
-    () => (PageMeta ? getAvailableComponentTypes(PageMeta) : []),
-    [PageMeta],
-  );
-
   const availablePlatforms = useMemo(
     () => (PageMeta ? getAvailablePlatformTypes(PageMeta) : []),
     [PageMeta],
@@ -82,27 +77,24 @@ export const ComponentView = () => {
     [PageMeta, currentPlatform],
   );
 
-  // Set initial type based on what's available for this component
-  useEffect(() => {
-    if (PageMeta && availableTypes.length > 0) {
-      const defaultType = getDefaultComponentType(PageMeta);
+  const { tab, handleTabChange } = useComponentViewTabs({
+    PageMeta,
+    updateType,
+    tabFromUrl,
+    isLegacy,
+  });
 
-      if (!availableTypes.includes(type)) {
-        // Current type isn't available for this component, switch to default
-        updateType(defaultType);
-      } else {
-        // Current type is available, but we should prefer the default if URL doesn't specify otherwise
-        const params = new URLSearchParams(window.location.search);
-        const hasExplicitUrlParam =
-          params.has("webLegacy") || params.has("mobile");
+  useErrorCatcher();
+  const { stateValues } = usePropsAsDataList(PageMeta, type);
+  const {
+    enableMinimal,
+    minimal,
+    disableMinimal,
+    isMinimal,
+    setComponentTypeInUrl,
+  } = useAtlantisSite();
 
-        // If there's no explicit URL parameter and we're not on the default type, switch to default
-        if (!hasExplicitUrlParam && type !== defaultType) {
-          updateType(defaultType);
-        }
-      }
-    }
-  }, [PageMeta, availableTypes, type, updateType]);
+  usePageTitle({ title: PageMeta?.title });
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -114,9 +106,11 @@ export const ComponentView = () => {
     };
   }, []);
 
-  const ComponentContent = getComponentContent(PageMeta, type);
+  const ComponentContent = PageMeta
+    ? getComponentContent(PageMeta, type)
+    : undefined;
 
-  const code = getComponentElement(PageMeta, type);
+  const code = PageMeta ? getComponentElement(PageMeta, type) : undefined;
 
   useEffect(() => {
     if (code) {
@@ -124,47 +118,25 @@ export const ComponentView = () => {
     }
   }, [code, type, updateCode]);
 
-  const handleTabChange = (tabIn: number) => {
-    if (tabIn === 0) {
-      // Design tab - no type change needed
-      setTab(tabIn);
-    } else if (tabIn <= availablePlatforms.length) {
-      // Platform implementation tabs (Web, Mobile)
-      const platformTabIndex = tabIn - 1; // Adjust for design tab being first
-      const targetPlatform = availablePlatforms[platformTabIndex];
-
-      if (targetPlatform) {
-        // Only change the component type if we're switching to a different platform
-        if (currentPlatform !== targetPlatform) {
-          // Find the first available version for this platform
-          const versionsForPlatform = getAvailableVersionsForPlatform(
-            PageMeta,
-            targetPlatform,
-          );
-
-          if (versionsForPlatform.length > 0) {
-            updateType(versionsForPlatform[0]);
-          }
-        }
-        // Always set the tab regardless of whether we changed the type
-        setTab(tabIn);
-      }
-    } else {
-      // Implement tab or other tabs - just switch without changing type
-      setTab(tabIn);
-    }
-    updateStyles();
-  };
-
   // Create tabs dynamically based on available platforms (not individual component types)
   const tabs = useMemo(() => {
     const tabList = [
       {
         label: "Design",
         children: (
-          <Content spacing="large">
-            {ComponentContent && <ComponentContent />}
-          </Content>
+          <MDXProvider
+            components={{
+              h2: ({ children, ...props }) => (
+                <LinkableHeading element="h2" {...props}>
+                  {children}
+                </LinkableHeading>
+              ),
+            }}
+          >
+            <Content spacing="large">
+              {ComponentContent && <ComponentContent />}
+            </Content>
+          </MDXProvider>
         ),
       },
     ];
@@ -202,7 +174,9 @@ export const ComponentView = () => {
     });
 
     // Add Implement tab if notes are available
-    const currentNotes = getComponentNotes(PageMeta, type);
+    const currentNotes = PageMeta
+      ? getComponentNotes(PageMeta, type)
+      : undefined;
 
     if (currentNotes && typeof currentNotes === "function") {
       const NotesComponent = currentNotes;
@@ -249,10 +223,6 @@ export const ComponentView = () => {
     }
   };
 
-  const goToDesign = () => {
-    setTab(0);
-  };
-
   return PageMeta ? (
     <BaseView>
       <BaseView.Main>
@@ -264,7 +234,10 @@ export const ComponentView = () => {
               <VersionSelector
                 availableVersions={availableVersionsForCurrentPlatform}
                 currentVersion={type}
-                onVersionChange={updateType}
+                onVersionChange={newType => {
+                  updateType(newType);
+                  setComponentTypeInUrl(newType);
+                }}
               />
             </Box>
           }
@@ -289,16 +262,16 @@ export const ComponentView = () => {
           </Box>
         </Page>
       </BaseView.Main>
+
       <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
-          links={getComponentLinks(PageMeta, type)}
+          links={PageMeta ? getComponentLinks(PageMeta, type) : undefined}
+          toc={PageMeta.toc}
           availablePlatforms={availablePlatforms}
           availableVersionsForCurrentPlatform={
             availableVersionsForCurrentPlatform
           }
-          currentType={type}
-          goToDesign={goToDesign}
           goToProps={goToProps}
           goToUsage={goToUsage}
         />
@@ -307,4 +280,246 @@ export const ComponentView = () => {
   ) : (
     <NotFoundPage />
   );
+};
+
+/**
+ * Returns the URL path for a given tab index.
+ * Tab 0 = Design. Tabs 1..N = platform tabs. Tab N+1 = Implement (per current platform).
+ */
+const getComponentUrlForTab = ({
+  name,
+  availablePlatforms,
+  tabIndex,
+}: {
+  name: string;
+  availablePlatforms: PlatformType[];
+  tabIndex: number;
+}): string | null => {
+  if (!name) return null;
+
+  const basePath = `/components/${name}`;
+
+  if (tabIndex === 0) {
+    return basePath; // Design tab
+  }
+
+  if (tabIndex >= 1 && tabIndex <= availablePlatforms.length) {
+    const platform = availablePlatforms[tabIndex - 1];
+
+    return platform ? `${basePath}/${platform}` : basePath;
+  }
+
+  // Implement tab (single tab): /components/name/implement
+  if (tabIndex === availablePlatforms.length + 1) {
+    return `${basePath}/implement`;
+  }
+
+  return null;
+};
+
+/**
+ * Derives the active tab index and resolved editor type from the URL tab param.
+ * Returns both the tab index and the resolved type (if any).
+ */
+const getTabAndTypeFromUrl = ({
+  tabFromUrl,
+  availablePlatforms,
+  availableTypes,
+  defaultType,
+  isLegacy,
+}: {
+  tabFromUrl: string;
+  availablePlatforms: PlatformType[];
+  availableTypes: ComponentType[];
+  defaultType: ComponentType;
+  isLegacy: boolean;
+}): { tabIndex: number; resolvedType: ComponentType | null } => {
+  let resolvedType: ComponentType | null = null;
+
+  if (!tabFromUrl || tabFromUrl.trim() === "") {
+    const resolved = resolveComponentTypeFromRoute({
+      tab: tabFromUrl,
+      isLegacy,
+      availableTypes,
+      defaultType,
+    });
+
+    resolvedType = resolved;
+
+    return { tabIndex: DESIGN_TAB_INDEX, resolvedType };
+  }
+  const platformIndex = availablePlatforms.indexOf(tabFromUrl as PlatformType);
+
+  if (tabFromUrl === "implement") {
+    const resolved = resolveComponentTypeFromRoute({
+      tab: tabFromUrl,
+      isLegacy,
+      availableTypes,
+      defaultType,
+    });
+
+    resolvedType = resolved;
+
+    return { tabIndex: availablePlatforms.length + 1, resolvedType };
+  } else if (platformIndex !== -1) {
+    const resolved = resolveComponentTypeFromRoute({
+      tab: tabFromUrl,
+      isLegacy,
+      availableTypes,
+      defaultType,
+    });
+
+    resolvedType = resolved;
+
+    return { tabIndex: platformIndex + 1, resolvedType };
+  } else {
+    return { tabIndex: DESIGN_TAB_INDEX, resolvedType };
+  }
+};
+
+const useComponentViewTabs = ({
+  PageMeta,
+  updateType,
+  tabFromUrl,
+  isLegacy,
+}: {
+  PageMeta: ContentExport | undefined;
+
+  updateType: (type: ComponentType) => void;
+  tabFromUrl: string;
+  isLegacy: boolean;
+}) => {
+  const navigate = useNavigate();
+  const { name = "" } = useParams({ strict: false });
+  const { updateStyles } = useStyleUpdater();
+  const defaultType = useMemo(
+    () => (PageMeta ? getDefaultComponentType(PageMeta) : null),
+    [PageMeta],
+  );
+  const currentPlatform = useMemo(
+    () => (defaultType ? getPlatformForComponentType(defaultType) : null),
+    [defaultType],
+  );
+  const availablePlatforms = useMemo(
+    () => (PageMeta ? getAvailablePlatformTypes(PageMeta) : []),
+    [PageMeta],
+  );
+  const availableTypes = useMemo(
+    () => (PageMeta ? getAvailableComponentTypes(PageMeta) : []),
+    [PageMeta],
+  );
+
+  const [tab, setTab] = useState(() => {
+    if (!PageMeta) return DESIGN_TAB_INDEX;
+
+    const initialDefaultType = getDefaultComponentType(PageMeta);
+
+    const initial = getTabAndTypeFromUrl({
+      tabFromUrl,
+      availablePlatforms: getAvailablePlatformTypes(PageMeta),
+      availableTypes: getAvailableComponentTypes(PageMeta),
+      defaultType: initialDefaultType,
+      isLegacy,
+    });
+
+    return initial.tabIndex;
+  });
+
+  // Reset tabs when the page meta changes for example when we switch to a different component
+  useEffect(() => {
+    if (!PageMeta || !defaultType) {
+      setTab(DESIGN_TAB_INDEX);
+
+      return;
+    }
+
+    const nextTab = getTabAndTypeFromUrl({
+      tabFromUrl,
+      availablePlatforms,
+      availableTypes,
+      defaultType,
+      isLegacy,
+    });
+
+    setTab(nextTab.tabIndex);
+  }, [
+    tabFromUrl,
+    availablePlatforms,
+    availableTypes,
+    defaultType,
+    updateType,
+    isLegacy,
+    PageMeta,
+  ]);
+
+  useEffect(() => {
+    if (!PageMeta || !defaultType) return;
+
+    const nextTab = getTabAndTypeFromUrl({
+      tabFromUrl,
+      availablePlatforms,
+      availableTypes,
+      defaultType,
+      isLegacy,
+    });
+
+    if (nextTab.resolvedType) {
+      updateType(nextTab.resolvedType);
+    }
+  }, [
+    PageMeta,
+    tabFromUrl,
+    availablePlatforms,
+    availableTypes,
+    defaultType,
+    isLegacy,
+    updateType,
+  ]);
+
+  const setAndNavigateTab = (tabIndex: number) => {
+    setTab(tabIndex);
+    const urlForTab = getComponentUrlForTab({
+      name,
+      availablePlatforms,
+      tabIndex,
+    });
+
+    if (urlForTab) {
+      navigate({
+        to: urlForTab,
+        ...(isLegacy && { search: { isLegacy: true } }),
+      });
+    }
+    updateStyles();
+  };
+
+  const handleTabChange = (tabIn: number) => {
+    if (!PageMeta || !defaultType || !currentPlatform) return;
+
+    if (tabIn === 0) {
+      setAndNavigateTab(0);
+    } else if (tabIn <= availablePlatforms.length) {
+      const platformTabIndex = tabIn - 1;
+      const targetPlatform = availablePlatforms[platformTabIndex];
+
+      if (targetPlatform && currentPlatform !== targetPlatform) {
+        const versionsForPlatform = getAvailableVersionsForPlatform(
+          PageMeta,
+          targetPlatform,
+        );
+
+        if (versionsForPlatform.length > 0) {
+          updateType(versionsForPlatform[0]);
+        }
+      }
+      setAndNavigateTab(tabIn);
+    } else {
+      setAndNavigateTab(tabIn);
+    }
+  };
+
+  return {
+    tab,
+    handleTabChange,
+  };
 };
