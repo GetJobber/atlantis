@@ -1,4 +1,4 @@
-import Content from "./Typography.stories.mdx";
+import Content, { toc } from "./Typography.stories.mdx";
 import Props from "./Typography.props.json";
 import MobileProps from "./Typography.props-mobile.json";
 import Notes from "./TypographyNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

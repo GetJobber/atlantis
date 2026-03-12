@@ -1,10 +1,11 @@
-import FormatEmailContent from "./FormatEmail.stories.mdx";
+import FormatEmailContent, { toc } from "./FormatEmail.stories.mdx";
 import Props from "./FormatEmail.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatEmailContent />,
+  toc,
   props: Props,
   component: {
     element: `<FormatEmail email={"myemail@address.me"} />`,

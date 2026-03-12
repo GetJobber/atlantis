@@ -1,4 +1,4 @@
-import Content from "./FormField.stories.mdx";
+import Content, { toc } from "./FormField.stories.mdx";
 import Props from "./FormField.props.json";
 import MobileProps from "./FormField.props-mobile.json";
 import Notes from "./FormFieldNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

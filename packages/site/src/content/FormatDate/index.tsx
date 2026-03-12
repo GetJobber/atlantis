@@ -1,10 +1,11 @@
-import FormatDateContent from "./FormatDate.stories.mdx";
+import FormatDateContent, { toc } from "./FormatDate.stories.mdx";
 import Props from "./FormatDate.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatDateContent />,
+  toc,
   props: Props,
   component: {
     element: `<FormatDate date={new Date()} />`,
