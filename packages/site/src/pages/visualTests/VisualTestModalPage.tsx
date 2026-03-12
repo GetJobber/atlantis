@@ -20,6 +20,8 @@ export const VisualTestModalPage = () => {
   const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [customModalOpen, setCustomModalOpen] = useState(false);
   const [largeModalOpen, setLargeModalOpen] = useState(false);
+  const [fullScreenModalOpen, setFullScreenModalOpen] = useState(false);
+  const [smallModalOpen, setSmallModalOpen] = useState(false);
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [tabModalOpen, setTabModalOpen] = useState(false);
   const [narrowContentModalOpen, setNarrowContentModalOpen] = useState(false);
@@ -131,10 +133,40 @@ export const VisualTestModalPage = () => {
               <Text size="large">Modal Sizes</Text>
               <Cluster>
                 <Button
+                  label="Open Small Modal"
+                  onClick={() => setSmallModalOpen(true)}
+                />
+                <Button
                   label="Open Large Modal"
                   onClick={() => setLargeModalOpen(true)}
                 />
+                <Button
+                  label="Open Full Screen Modal"
+                  onClick={() => setFullScreenModalOpen(true)}
+                />
               </Cluster>
+
+              {/* Small Modal */}
+              <Modal
+                title="Small Modal"
+                open={smallModalOpen}
+                onRequestClose={() => setSmallModalOpen(false)}
+                primaryAction={{
+                  label: "Save",
+                  onClick: () => setSmallModalOpen(false),
+                }}
+                secondaryAction={{
+                  label: "Cancel",
+                  onClick: () => setSmallModalOpen(false),
+                }}
+                size="small"
+              >
+                <Box padding="large">
+                  <Text>
+                    This is a small modal for compact content and short tasks.
+                  </Text>
+                </Box>
+              </Modal>
 
               {/* Large Modal */}
               <Modal
@@ -174,6 +206,21 @@ export const VisualTestModalPage = () => {
                       <Text>• Still maintains focus on a specific task</Text>
                     </Stack>
                   </Stack>
+                </Box>
+              </Modal>
+
+              {/* Full Screen Modal */}
+              <Modal
+                title="Full Screen Modal"
+                open={fullScreenModalOpen}
+                onRequestClose={() => setFullScreenModalOpen(false)}
+                size="fullScreen"
+              >
+                <Box padding="large">
+                  <Text>
+                    This is a full screen modal. Close it using the dismiss
+                    button or pressing the ESC key.
+                  </Text>
                 </Box>
               </Modal>
             </section>
