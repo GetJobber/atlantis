@@ -27,7 +27,6 @@ export const ComponentLinks = ({
   goToProps,
   goToUsage,
   availablePlatforms,
-  currentType,
 }: {
   readonly links?: ContentExportLinks[];
   readonly toc?: TocItem[];
@@ -35,7 +34,6 @@ export const ComponentLinks = ({
   readonly goToUsage: (type: ComponentType) => void;
   readonly availablePlatforms: PlatformType[];
   readonly availableVersionsForCurrentPlatform: ComponentType[];
-  readonly currentType: ComponentType;
 }) => {
   const { isMinimal } = useAtlantisSite();
   if (isMinimal) return null;
@@ -61,12 +59,12 @@ export const ComponentLinks = ({
             </Typography>
             <Content spacing="small">
               <Box>
-                <a onClick={() => goToUsage(currentType)} href={`#`}>
+                <a onClick={() => goToUsage(config.platform)} href={`#`}>
                   Usage
                 </a>
               </Box>
               <Box>
-                <a onClick={() => goToProps(currentType)} href={`#`}>
+                <a onClick={() => goToProps(config.platform)} href={`#`}>
                   Props
                 </a>
               </Box>

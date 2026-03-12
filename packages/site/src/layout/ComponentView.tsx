@@ -272,7 +272,6 @@ export const ComponentView = () => {
           availableVersionsForCurrentPlatform={
             availableVersionsForCurrentPlatform
           }
-          currentType={type}
           goToProps={goToProps}
           goToUsage={goToUsage}
         />
