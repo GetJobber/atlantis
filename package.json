@@ -40,7 +40,9 @@
     "release:unpublished-package": "npm ci && lerna publish from-package",
     "start": "npm run storybook",
     "storybook": "cd packages/storybook-v7 && npm run storybook",
-    "test": "jest"
+    "test": "jest",
+    "dev:link:web": "concurrently -k -n design,fmt,hooks,comp -c blue,green,yellow,magenta \"npm run watch -w @jobber/design\" \"npm run watch -w @jobber/formatters\" \"npm run watch -w @jobber/hooks\" \"npm run watch -w @jobber/components\"",
+    "dev:link:native": "concurrently -k -n design,fmt,hooks,comp-native -c blue,green,yellow,magenta \"npm run watch -w @jobber/design\" \"npm run watch -w @jobber/formatters\" \"npm run watch -w @jobber/hooks\" \"npm run watch -w @jobber/components-native\""
   },
   "repository": {
     "type": "git",
@@ -78,6 +80,7 @@
     "axios": "^1.11.0",
     "babel-plugin-react-native-web": "^0.20.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
+    "concurrently": "^9.1.2",
     "chalk": "^4.1.2",
     "eslint": "^8.36.0",
     "eslint-formatter-codeframe": "^7.32.1",

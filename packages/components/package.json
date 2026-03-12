@@ -461,6 +461,7 @@
     "entryPoints:clean": "npm run entryPoints:build clean",
     "prepack": "npm run entryPoints:build",
     "postpack": "npm run entryPoints:clean",
+    "watch": "rollup --config --watch",
     "storybook": "storybook dev -p 6007 --disable-telemetry",
     "storybook:build": "storybook build --disable-telemetry"
   },
