@@ -12,6 +12,9 @@ interface ChipDismissibleProps
   onRequestRemove(event: MouseEvent<HTMLDivElement>): void;
 }
 
+/**
+ * @deprecated Use Autocomplete with the "multiple" prop instead of ChipDismissible.
+ */
 export function ChipDismissible({
   label,
   disabled,

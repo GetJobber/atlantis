@@ -20,9 +20,11 @@ export default {
   title: "InputSearch",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputsearch--docs`,
+        "?path=/story/components-forms-and-inputs-inputsearch--basic",
+        "mobile",
       ),
     },
   ],

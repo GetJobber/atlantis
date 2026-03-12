@@ -27,9 +27,19 @@ export default {
   title: "Divider",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-divider--docs`,
+        "?path=/story/components-layouts-and-structure-divider--horizontal",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-divider--horizontal",
+        "mobile",
       ),
     },
   ],

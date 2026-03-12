@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.92.0...@jobber/design@0.93.0) (2026-03-11)
+
+
+### Features
+
+* **design:** add Sidebar icon ([#2974](https://github.com/GetJobber/atlantis/issues/2974)) ([ecce743](https://github.com/GetJobber/atlantis/commit/ecce7433889f76c4ebc91cb3d9c3b3ea4d661342))
+
+
+
+
+
+# [0.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.91.0...@jobber/design@0.92.0) (2026-03-09)
+
+
+### Features
+
+* **design:** add Franchise icons ([#2959](https://github.com/GetJobber/atlantis/issues/2959)) ([2d736b1](https://github.com/GetJobber/atlantis/commit/2d736b167abb6dbcccc76f3db0c6f9713e011edb))
+
+
+
+
+
+# [0.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.90.1...@jobber/design@0.91.0) (2026-03-02)
+
+
+### Features
+
+* **components:** Add New Schedule UserConfirmed Status Icon ([#2932](https://github.com/GetJobber/atlantis/issues/2932)) ([1d129cb](https://github.com/GetJobber/atlantis/commit/1d129cb75c8ebdbc4ec57da3e412ec1e70745083))
+
+
+
+
+
+## [0.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.90.0...@jobber/design@0.90.1) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Update SegmentedControl visual styling and add hover state ([#2919](https://github.com/GetJobber/atlantis/issues/2919)) ([d57b082](https://github.com/GetJobber/atlantis/commit/d57b082b21241c05a77a5e65766c786a2609b82f))
+
+
+
+
+
 # [0.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.89.1...@jobber/design@0.90.0) (2026-02-12)
 
 

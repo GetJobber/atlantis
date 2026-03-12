@@ -1,4 +1,4 @@
-import WelcomeGuide from "@atlantis/docs/README.md";
+import WelcomeGuide from "../content/guides/welcome-guide.stories.mdx";
 import { ContentView } from "../layout/ContentView";
 
 export const WelcomeGuidePage = () => {

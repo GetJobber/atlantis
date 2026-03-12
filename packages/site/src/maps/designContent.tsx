@@ -1,12 +1,12 @@
-import AnimationDocs from "@atlantis/docs/design/Animation.stories.mdx";
-import BorderDocs from "@atlantis/docs/design/Borders.stories.mdx";
-import ColorDocs from "@atlantis/docs/design/Colors.stories.mdx";
-import ElevationDocs from "@atlantis/docs/design/Elevations.stories.mdx";
-import OpacityDocs from "@atlantis/docs/design/Opacity.stories.mdx";
-import RadiiDocs from "@atlantis/docs/design/Radii.stories.mdx";
-import ResponsiveBreakpointsDocs from "@atlantis/docs/design/ResponsiveBreakpoint.stories.mdx";
-import SpacingDocs from "@atlantis/docs/design/Spacing.stories.mdx";
-import TypographyDocs from "@atlantis/docs/design/Typography.stories.mdx";
+import AnimationDocs from "../content/design/Animation.stories.mdx";
+import BorderDocs from "../content/design/Borders.stories.mdx";
+import ColorDocs from "../content/design/Colors.stories.mdx";
+import ElevationDocs from "../content/design/Elevations.stories.mdx";
+import OpacityDocs from "../content/design/Opacity.stories.mdx";
+import RadiiDocs from "../content/design/Radii.stories.mdx";
+import ResponsiveBreakpointsDocs from "../content/design/ResponsiveBreakpoint.stories.mdx";
+import SpacingDocs from "../content/design/Spacing.stories.mdx";
+import TypographyDocs from "../content/design/Typography.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const designContentMap: ContentMapItems = {
