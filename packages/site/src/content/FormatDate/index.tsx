@@ -13,8 +13,12 @@ export default {
   title: "FormatDate",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-formatdate--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-utilities-formatdate--basic",
+        "web",
+      ),
     },
   ],
 } as const satisfies ContentExport;

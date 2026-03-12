@@ -44,9 +44,19 @@ export default {
   title: "FormatFile",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-formatfile--docs`,
+        "?path=/story/components-images-and-icons-formatfile--expanded",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-images-and-icons-formatfile--image",
+        "mobile",
       ),
     },
   ],

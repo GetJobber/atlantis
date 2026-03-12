@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.115.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.115.1...@jobber/components@6.115.2) (2026-03-11)
+
+
+### Bug Fixes
+
+* **components:** Fix Multiselect Autocomplete Clearable Positioning ([#2967](https://github.com/GetJobber/atlantis/issues/2967)) ([dba2670](https://github.com/GetJobber/atlantis/commit/dba2670b2f293239df5c79e81631c349e84b0b44))
+
+
+
+
+
+## [6.115.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.115.0...@jobber/components@6.115.1) (2026-03-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [6.115.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.6...@jobber/components@6.115.0) (2026-03-10)
 
 

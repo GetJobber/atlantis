@@ -26,9 +26,11 @@ export default {
   title: "RadioGroup",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-radiogroup--docs`,
+        "?path=/story/components-forms-and-inputs-radiogroup--basic",
+        "web",
       ),
     },
   ],

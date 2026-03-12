@@ -7,7 +7,6 @@ cd ../..
 if [[ " $* " == *" --clean "* ]]; then
     echo "Cleaning up docker volumes for a fresh install..."
     docker volume rm --force atlantis_site_node_modules
-    docker volume rm --force atlantis_storybook_v7_node_modules
 fi
 
 # NOTES:
@@ -32,7 +31,6 @@ echo "Running e2e tests inside a docker container..."
 docker run --rm -it \
     -v $(pwd):/atlantis \
     -v atlantis_site_node_modules:/atlantis/packages/site/node_modules \
-    -v atlantis_storybook_v7_node_modules:/atlantis/packages/storybook-v7/node_modules \
     -w /atlantis/packages/site \
     mcr.microsoft.com/playwright:v1.52.0-noble \
-    bash -c 'npm install --ignore-scripts && (cd ../storybook-v7 && npm install) && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx "$@"' _ "${ARGS[@]}"
+    bash -c 'npm install --ignore-scripts && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx "$@"' _ "${ARGS[@]}"

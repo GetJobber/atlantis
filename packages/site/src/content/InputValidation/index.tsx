@@ -39,9 +39,11 @@ export default {
   title: "InputValidation",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputvalidation--docs`,
+        "?path=/story/components-forms-and-inputs-inputvalidation--basic",
+        "web",
       ),
     },
   ],

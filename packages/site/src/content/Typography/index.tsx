@@ -17,9 +17,19 @@ export default {
   title: "Typography",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-typography--docs`,
+        "?path=/story/components-text-and-typography-typography--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-text-and-typography-typography--basic",
+        "mobile",
       ),
     },
   ],

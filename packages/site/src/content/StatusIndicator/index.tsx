@@ -21,9 +21,11 @@ export default {
   title: "StatusIndicator",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-statusindicator--docs`,
+        "?path=/story/components-status-and-feedback-statusindicator--basic",
+        "web",
       ),
     },
   ],

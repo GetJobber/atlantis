@@ -18,17 +18,21 @@ export default {
   title: "InputPhoneNumber",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputphonenumber--docs`,
+        "?path=/story/components-forms-and-inputs-inputphonenumber--basic",
+        "web",
       ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-inputphonenumber-web-v2--basic",
+        "?path=/story/components-forms-and-inputs-inputphonenumber-v2--basic",
+        "web",
       ),
     },
   ],

@@ -30,8 +30,12 @@ export default {
   title: "ButtonGroup",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-actions-buttongroup--docs`),
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-buttongroup--basic",
+        "mobile",
+      ),
     },
   ],
 } as const satisfies ContentExport;

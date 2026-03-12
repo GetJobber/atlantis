@@ -71,8 +71,20 @@ export default {
   title: "Menu",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-navigation-menu--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-navigation-menu--horizontal",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-navigation-menu--basic",
+        "mobile",
+      ),
     },
   ],
   notes: () => <Notes />,

@@ -24,8 +24,20 @@ export default {
   title: "Chip",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-chip--docs"),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-chip--base",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-chip--basic",
+        "mobile",
+      ),
     },
   ],
   notes: () => <Notes />,

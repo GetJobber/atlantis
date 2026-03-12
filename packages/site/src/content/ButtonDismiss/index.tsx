@@ -8,16 +8,18 @@ export default {
   toc,
   props: Props,
   component: {
-    element: `<ButtonDismiss onClick={function onClick() {
+    element: `<ButtonDismiss ariaLabel="Dismiss" onClick={function onClick() {
         alert("Dismissed!");
       }} />`,
   },
   title: "ButtonDismiss",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-private-buttondismiss--docs`,
+        "?path=/story/components-private-buttondismiss--basic",
+        "web",
       ),
     },
   ],

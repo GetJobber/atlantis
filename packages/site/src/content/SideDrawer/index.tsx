@@ -108,8 +108,12 @@ export default {
   title: "SideDrawer",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-sidedrawer--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-overlays-sidedrawer--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

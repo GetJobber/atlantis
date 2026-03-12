@@ -18,9 +18,19 @@ export default {
   description: "",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-heading--docs`,
+        "?path=/story/components-text-and-typography-heading--levels",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-text-and-typography-heading--levels",
+        "mobile",
       ),
     },
   ],

@@ -29,9 +29,19 @@ export default {
   title: "Banner",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-banner--docs`,
+        "?path=/story/components-status-and-feedback-banner--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-status-and-feedback-banner--basic",
+        "mobile",
       ),
     },
   ],

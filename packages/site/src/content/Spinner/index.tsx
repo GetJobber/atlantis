@@ -14,9 +14,11 @@ export default {
   title: "Spinner",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-spinner--docs`,
+        "?path=/story/components-status-and-feedback-spinner--basic",
+        "web",
       ),
     },
   ],

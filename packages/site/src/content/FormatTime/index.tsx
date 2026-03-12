@@ -24,8 +24,12 @@ export default {
   title: "FormatTime",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-formattime--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-utilities-formattime--basic",
+        "web",
+      ),
     },
   ],
 } as const satisfies ContentExport;

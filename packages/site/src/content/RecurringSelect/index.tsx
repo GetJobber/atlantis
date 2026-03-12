@@ -20,9 +20,11 @@ export default {
   title: "RecurringSelect",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-recurringselect--docs`,
+        "?path=/story/components-deprecated-recurringselect--basic",
+        "web",
       ),
     },
   ],

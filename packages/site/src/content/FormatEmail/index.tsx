@@ -13,9 +13,11 @@ export default {
   title: "FormatEmail",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-utilities-formatemail--docs`,
+        "?path=/story/components-utilities-formatemail--basic",
+        "web",
       ),
     },
   ],

@@ -17,9 +17,11 @@ export default {
   description: "",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-emphasis--docs`,
+        "?path=/story/components-text-and-typography-emphasis--basic",
+        "web",
       ),
     },
   ],

@@ -18,9 +18,11 @@ export default {
   title: "DescriptionList",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-descriptionlist--docs`,
+        "?path=/story/components-lists-and-tables-descriptionlist--basic",
+        "web",
       ),
     },
   ],

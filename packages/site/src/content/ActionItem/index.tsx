@@ -20,9 +20,11 @@ export default {
   title: "ActionItem",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-actionitem--docs`,
+        "?path=/story/components-layouts-and-structure-actionitem--basic",
+        "mobile",
       ),
     },
   ],

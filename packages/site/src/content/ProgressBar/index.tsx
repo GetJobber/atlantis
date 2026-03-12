@@ -16,9 +16,19 @@ export default {
   title: "ProgressBar",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-progressbar--docs`,
+        "?path=/story/components-status-and-feedback-progressbar--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-status-and-feedback-progressbar--basic",
+        "mobile",
       ),
     },
   ],

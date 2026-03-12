@@ -19,8 +19,20 @@ export default {
   title: "FormField",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-private-formfield--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-private-formfield--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-private-formfield--basic",
+        "mobile",
+      ),
     },
   ],
   notes: () => <Notes />,

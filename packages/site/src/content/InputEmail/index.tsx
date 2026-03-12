@@ -21,17 +21,29 @@ export default {
   title: "InputEmail",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputemail--docs`,
+        "?path=/story/components-forms-and-inputs-inputemail--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputemail--basic",
+        "mobile",
       ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-inputemail-web-v2--basic",
+        "?path=/story/components-forms-and-inputs-inputemail-v2--basic",
+        "web",
       ),
     },
   ],

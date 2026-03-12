@@ -38,6 +38,15 @@ import { ContentMapItems } from "../types/maps";
 import ComponentSupportLevelsComponent, {
   toc as componentSupportLevelsToc,
 } from "../content/guides/component-support-levels.stories.mdx";
+import WelcomeGuideComponent, {
+  toc as welcomeGuideToc,
+} from "../content/guides/welcome-guide.stories.mdx";
+import RepositoryContributingComponent, {
+  toc as repositoryContributingToc,
+} from "../content/guides/repository-contributing.stories.mdx";
+import CharterComponent, {
+  toc as charterToc,
+} from "../content/guides/charter.md";
 
 export const guidesContentMap: ContentMapItems = {
   "atlantis-overview": {
@@ -46,11 +55,29 @@ export const guidesContentMap: ContentMapItems = {
     content: () => <AtlantisOverviewComponent />,
     toc: atlantisOverviewToc,
   },
+  "welcome-guide": {
+    intro: "Welcome guide",
+    title: "Welcome guide",
+    content: () => <WelcomeGuideComponent />,
+    toc: welcomeGuideToc,
+  },
   contributing: {
     intro: "Contributing",
     title: "Contributing",
     content: () => <ContributingComponent />,
     toc: contributingToc,
+  },
+  "repository-contributing": {
+    intro: "Repository contributing",
+    title: "Repository contributing",
+    content: () => <RepositoryContributingComponent />,
+    toc: repositoryContributingToc,
+  },
+  charter: {
+    intro: "Atlantis charter",
+    title: "Atlantis charter",
+    content: () => <CharterComponent />,
+    toc: charterToc,
   },
   "create-a-react-component": {
     intro: "Create a react component",

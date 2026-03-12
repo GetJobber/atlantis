@@ -115,9 +115,11 @@ export default {
   title: "DataTable",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-datatable--docs`,
+        "?path=/story/components-lists-and-tables-datatable-composable--basic",
+        "web",
       ),
     },
   ],

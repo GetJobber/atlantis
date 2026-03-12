@@ -1,19 +1,16 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { {{name}} } from "@jobber/components/{{name}}";
 
-export default {
+const meta = {
   title: "Components/Category/{{name}}/Web",
   component: {{name}},
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-} as ComponentMeta<typeof {{name}}>;
+} satisfies Meta<typeof {{name}}>;
 
-const BasicTemplate: ComponentStory<typeof {{name}}> = args => (
-  <{{name}} {...args} />
-);
+export default meta;
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {},
+};

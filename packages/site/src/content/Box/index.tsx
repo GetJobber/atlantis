@@ -17,9 +17,11 @@ export default {
   title: "Box",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-box--docs`,
+        "?path=/story/components-layouts-and-structure-box--basic",
+        "web",
       ),
     },
   ],

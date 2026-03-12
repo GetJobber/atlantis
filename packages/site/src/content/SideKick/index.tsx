@@ -20,9 +20,11 @@ export default {
   title: "SideKick",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-sidekick-web--basic",
+        "?path=/story/components-layouts-and-structure-sidekick--basic",
+        "web",
       ),
     },
   ],

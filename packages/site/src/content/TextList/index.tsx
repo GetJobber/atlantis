@@ -13,9 +13,11 @@ export default {
   title: "TextList",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-textlist--docs`,
+        "?path=/story/components-lists-and-tables-textlist--basic",
+        "mobile",
       ),
     },
   ],

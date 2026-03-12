@@ -13,9 +13,11 @@ export default {
   title: "ActionLabel",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-activityindicator--docs`,
+        "?path=/story/components-actions-actionlabel--basic",
+        "mobile",
       ),
     },
   ],

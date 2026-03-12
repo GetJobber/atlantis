@@ -17,9 +17,19 @@ export default {
   title: "Icon",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-icon--docs`,
+        "?path=/story/components-images-and-icons-icon--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-images-and-icons-icon--basic",
+        "mobile",
       ),
     },
   ],

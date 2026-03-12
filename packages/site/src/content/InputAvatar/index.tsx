@@ -33,9 +33,11 @@ async function handleChange(newAvatar: unknown) {
   title: "InputAvatar",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputavatar--docs`,
+        "?path=/story/components-forms-and-inputs-inputavatar--basic",
+        "web",
       ),
     },
   ],

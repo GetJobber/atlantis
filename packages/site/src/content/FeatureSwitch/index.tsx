@@ -33,9 +33,11 @@ export default {
   title: "FeatureSwitch",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-featureswitch--docs`,
+        "?path=/story/components-selections-featureswitch--basic",
+        "web",
       ),
     },
   ],

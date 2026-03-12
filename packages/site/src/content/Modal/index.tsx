@@ -30,8 +30,12 @@ export default {
   title: "Modal",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-modal--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-overlays-modal--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

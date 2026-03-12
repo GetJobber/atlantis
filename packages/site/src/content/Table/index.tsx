@@ -48,9 +48,11 @@ export default {
   title: "Table",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-table--docs`,
+        "?path=/story/components-lists-and-tables-table--basic",
+        "web",
       ),
     },
   ],

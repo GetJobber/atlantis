@@ -18,9 +18,11 @@ export default {
   title: "Cluster",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-cluster-web--basic",
+        "?path=/story/components-layouts-and-structure-cluster--basic",
+        "web",
       ),
     },
   ],
