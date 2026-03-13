@@ -145,6 +145,9 @@ export function useAutocomplete<
   useEffect(() => {
     // Skip debounce when clearing input for immediate feedback, preventing flickering of last selected item
     if (debounceMs === 0 || inputValue === "") {
+      // Cancel any pending debounced call so a stale intermediate value
+      // (e.g. "P" while deleting "Pipe…") doesn't overwrite the immediate set.
+      debouncedSetter.cancel();
       setDebouncedInputValue(inputValue);
       // Cancel any pending debounced call so a stale intermediate value
       // (e.g. "P" while deleting "Pipe…") doesn't overwrite the immediate set.
