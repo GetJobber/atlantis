@@ -32,6 +32,7 @@
     "build": "npm run build:clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
+    "watch": "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
     "compile": "tsc -p tsconfig.build.json",
     "build:clean": "rm -rf ./dist",
     "storybook": "storybook dev -p 6008 --disable-telemetry",

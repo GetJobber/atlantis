@@ -40,7 +40,9 @@
     "release:unpublished-package": "npm ci && lerna publish from-package",
     "start": "node scripts/start-dev.mjs --site",
     "storybook": "node scripts/start-dev.mjs",
-    "test": "jest"
+    "test": "jest",
+    "dev:link:web": "./scripts/dev-link.sh web",
+    "dev:link:native": "./scripts/dev-link.sh native"
   },
   "repository": {
     "type": "git",
@@ -78,6 +80,7 @@
     "axios": "^1.11.0",
     "babel-plugin-react-native-web": "^0.20.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
+    "concurrently": "^9.1.2",
     "chalk": "^4.1.2",
     "eslint": "^8.36.0",
     "eslint-formatter-codeframe": "^7.32.1",
