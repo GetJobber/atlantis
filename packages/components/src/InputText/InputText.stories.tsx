@@ -6,6 +6,7 @@ import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Box } from "@jobber/components/Box";
+import { Form } from "@jobber/components/Form";
 import { FormFieldLabel } from "@jobber/components/FormField";
 
 const meta = {
@@ -459,4 +460,43 @@ export const Controlled: Story = {
   args: {
     placeholder: "Hakunamatata",
   },
+};
+
+const ValidationMessageTemplate = () => {
+  const [age, setAge] = useState("");
+
+  return (
+    <Form onSubmit={() => undefined}>
+      <Content>
+        <InputText
+          value={age}
+          onChange={setAge}
+          name="age"
+          placeholder="What's your age"
+          validations={{
+            required: {
+              value: true,
+              message: "You have to tell us your age",
+            },
+            validate: val => {
+              if (val.length > 0 && !isNaN(Number(val))) {
+                return "Type your age in words please.";
+              }
+
+              if (val.length >= 10) {
+                return "That seems too old.";
+              }
+
+              return true;
+            },
+          }}
+        />
+        <Button label="Show Validation Message" submit />
+      </Content>
+    </Form>
+  );
+};
+
+export const ValidationMessage: Story = {
+  render: ValidationMessageTemplate,
 };
