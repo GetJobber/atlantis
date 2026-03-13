@@ -9,3 +9,12 @@
   --modal--width: 940px;
   max-width: 940px;
 }
+
+.fullScreen {
+  --modal--width: 100vw;
+  --modal--max-height: 100dvh;
+  --modal--margin: 0;
+  --modal--border-radius: 0;
+  height: 100dvh;
+  max-width: 100vw;
+}
