@@ -240,6 +240,117 @@ compatibility, but it is not the direction for the new composable surface.
 3. Use `trigger={...}` for the convenience API, or drop down to their explicit
    compound triggers and content components when needed
 
+## Guidance for LLM-assisted migrations
+
+If an LLM is helping with this migration, use these rules to keep the final API
+aligned with Atlantis' current direction.
+
+### Legacy `items` -> composable `Menu`
+
+When converting from:
+
+```tsx
+<Menu activator={...} items={[...]} />
+```
+
+Target:
+
+```tsx
+<Menu ariaLabel="..." trigger={...}>
+  ...
+</Menu>
+```
+
+Rules:
+
+1. Convert each legacy section into `Menu.Section`
+2. Convert each legacy `header` string into `Menu.Header` plus
+   `Menu.HeaderLabel`
+3. Convert each action into `Menu.Item`
+4. Map `label` to both visible item content and `textValue`
+5. Map `icon` to `Menu.ItemIcon`
+6. Map `destructive: true` to `variation="destructive"`
+7. Map the legacy `activator` to `trigger={...}` on the root
+8. Add `ariaLabel` to the root when the trigger content does not already expose
+   an accessible name clearly
+9. Prefer `Menu` unless the source code clearly wants a fixed surface
+10. Do not recreate the `items` data shape once migrated
+
+What not to do:
+
+- do not migrate legacy `items` to `Menu.Popover` by default
+- do not introduce top-level `Menu.Trigger` or `Menu.Content`
+- do not preserve legacy `UNSAFE_*` styling patterns on the new composable API
+- do not use `cloneElement`, child rewriting, or compatibility wrappers in
+  product code
+
+### Old composable -> new composable
+
+When converting from:
+
+```tsx
+<Menu>
+  <Menu.Trigger>...</Menu.Trigger>
+  <Menu.Content>...</Menu.Content>
+</Menu>
+```
+
+Target:
+
+```tsx
+<Menu ariaLabel="..." trigger={...}>
+  ...
+</Menu>
+```
+
+Rules:
+
+1. Move the trigger element into `trigger={...}` on the `Menu` root
+2. Move any trigger accessibility label to `ariaLabel` on the root
+3. Remove top-level `Menu.Trigger`
+4. Remove top-level `Menu.Content`
+5. Keep `Menu.Section`, `Menu.Header`, `Menu.HeaderLabel`, `Menu.Item`,
+   `Menu.ItemLabel`, `Menu.ItemIcon`, and `Menu.Separator` as children
+6. Replace `UNSAFE_className` with `className` on composable compounds
+7. Replace `UNSAFE_style` with `style` on composable compounds
+8. If the code explicitly needs popover-only behavior, migrate to `Menu.Popover`
+9. If the code explicitly needs sheet-only behavior, migrate to `BottomSheet`
+10. If using `Menu.Popover` or `BottomSheet`, prefer their `trigger={...}`
+    convenience prop first, and only keep explicit `.Trigger` / `.Content` when
+    lower-level control is actually needed
+
+What not to do:
+
+- do not keep using top-level `Menu.Trigger` and `Menu.Content`
+- do not move responsive `Menu` code to `Menu.Popover` unless behavior should
+  stop being responsive
+- do not move styling back to the top-level root
+- do not introduce new `UNSAFE_*` usage on the composable path
+
+### Preferred decision order for LLMs
+
+When choosing a final API shape, follow this order:
+
+1. If the code is legacy `items`, migrate to top-level responsive `Menu`
+2. If the code is already composable and should remain responsive, use top-level
+   `Menu`
+3. If the code must always be a popover, use `Menu.Popover`
+4. If the code must always be a bottom sheet, use `BottomSheet`
+5. Apply styling on compound components, not on the opinionated root
+
+### Definition of done for LLM migrations
+
+An LLM-assisted migration is only complete when:
+
+1. the final code no longer uses top-level `Menu.Trigger` / `Menu.Content`
+2. the final code no longer uses legacy `items` unless intentionally left for
+   compatibility
+3. composable styling uses `className` / `style` on compounds
+4. the chosen surface matches the intended behavior: responsive `Menu`, explicit
+   `Menu.Popover`, or explicit `BottomSheet`
+5. examples, stories, and docs are updated if the migration changes public
+   guidance
+
 ## Summary
 
 - Legacy `items` usage is still supported, but composable `Menu` is the
