@@ -47,6 +47,9 @@ import RepositoryContributingComponent, {
 import CharterComponent, {
   toc as charterToc,
 } from "../content/guides/charter.md";
+import MenuMigrationComponent, {
+  toc as menuMigrationToc,
+} from "../content/guides/menu-migration.stories.mdx";
 
 export const guidesContentMap: ContentMapItems = {
   "atlantis-overview": {
@@ -145,5 +148,11 @@ export const guidesContentMap: ContentMapItems = {
     title: "Component support levels",
     content: () => <ComponentSupportLevelsComponent />,
     toc: componentSupportLevelsToc,
+  },
+  "menu-migration": {
+    intro: "Menu migration guide",
+    title: "Menu migration guide",
+    content: () => <MenuMigrationComponent />,
+    toc: menuMigrationToc,
   },
 };

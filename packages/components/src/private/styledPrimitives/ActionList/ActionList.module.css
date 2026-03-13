@@ -1,22 +1,9 @@
-.wrapper * {
-  box-sizing: border-box;
-}
-
-.wrapper {
-  position: relative;
-}
-
-.floatingContainer {
-  z-index: var(--elevation-modal);
-}
-
 .positioner {
   z-index: var(--elevation-modal);
 }
 
 .menu {
   --menu-space: var(--space-small);
-  --menu-offset: var(--space-smallest);
   z-index: var(--elevation-modal);
   box-shadow: var(--shadow-base);
   box-sizing: border-box;
@@ -29,14 +16,6 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.sheetMenu {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  max-height: 70vh;
-}
-
 .popoverMenu {
   position: relative;
   inset: auto;
@@ -46,29 +25,6 @@
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   overflow: auto;
-}
-
-.legacySection {
-  padding: var(--menu-space) 0;
-}
-
-.legacySection,
-.separator {
-  border-bottom: var(--border-base) solid var(--color-border);
-}
-
-.legacySection:last-of-type {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.legacySection:first-of-type {
-  padding-top: 0;
-}
-
-.separator {
-  margin: var(--space-small) 0;
-  grid-column: 1 / -1;
 }
 
 .triggerWrapper {
@@ -110,9 +66,6 @@
   margin-top: var(--space-small);
 }
 
-/* When a section follows a separator, avoid doubling vertical spacing.
-   Grid items don't collapse margins, so the section's top margin would add
-   to the separator's bottom margin. Remove the section margin in this case. */
 .ariaMenu .separator + .ariaSection {
   margin-top: 0;
 }
@@ -126,19 +79,6 @@
   display: flex;
   align-items: center;
   padding: calc(var(--menu-space) * 1.5) var(--menu-space);
-}
-
-.legacyAction {
-  display: flex;
-  gap: var(--menu-space);
-  align-items: center;
-  width: 100%;
-}
-
-/* Legacy variant focus-visible styling */
-.legacyAction:focus-visible {
-  box-shadow: var(--shadow-focus);
-  background-color: var(--color-surface--hover);
 }
 
 .action {
@@ -160,7 +100,6 @@
   background-color: var(--color-surface--hover);
 }
 
-/* Background on both legacy (:focus-visible) and RAC ([data-focused]) */
 .action[data-focused] {
   background-color: var(--color-surface--hover);
 }
@@ -169,49 +108,48 @@
   background-color: var(--color-surface--hover);
 }
 
-/* Focus ring for legacy and RAC keyboard focus */
 .action[data-focus-visible] {
   box-shadow: var(--shadow-focus);
 }
 
-/* Do not show focus ring when item is hovered (pointer interaction) */
 .action[data-hovered][data-focus-visible] {
   box-shadow: none;
 }
 
 .action span {
-  /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
 }
 
-.action.destructive > span {
+.action[data-variation="destructive"] [data-menu-slot="label"] span {
   color: var(--color-destructive);
+}
+
+.action[data-variation="destructive"] [data-menu-slot="icon"] svg * {
+  fill: var(--color-destructive) !important;
+}
+
+.separator {
+  margin: var(--space-small) 0;
+  grid-column: 1 / -1;
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .overlay {
   position: fixed;
-  top: 0;
+  inset: 0;
+  z-index: var(--elevation-modal);
+  background-color: var(--color-overlay);
+}
+
+.popup {
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: var(--elevation-modal);
-  background-color: var(--color-overlay);
-
-  @media (--small-screens-and-up) {
-    background-color: transparent;
-  }
 }
 
-.fullWidth {
-  width: 100%;
-}
-
-.screenReaderOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
+.content {
+  max-height: 70vh;
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
 }

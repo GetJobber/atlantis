@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import type { SectionProps } from "@jobber/components/Menu";
-import { Menu } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { Icon, type IconNames } from "@jobber/components/Icon";
@@ -15,6 +14,8 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Typography } from "@jobber/components/Typography";
 import { StatusIndicator } from "@jobber/components/StatusIndicator";
 import { Heading } from "@jobber/components/Heading";
+import { Menu } from ".";
+import { BottomSheet } from "../BottomSheet";
 
 const meta = {
   title: "Components/Navigation/Menu",
@@ -211,13 +212,13 @@ export const Composable: Story = {
               <Text>Click here for new features!</Text>
             </Content>
           </Popover>
-          <Menu>
-            <Menu.Trigger ref={divRef}>
+          <Menu.Popover>
+            <Menu.Popover.Trigger ariaLabel="I have a popover" ref={divRef}>
               <Button>
                 <Button.Label>I have a popover</Button.Label>
               </Button>
-            </Menu.Trigger>
-            <Menu.Content>
+            </Menu.Popover.Trigger>
+            <Menu.Popover.Content>
               <Menu.Section>
                 <Menu.Header>
                   <Menu.HeaderLabel>Nav</Menu.HeaderLabel>
@@ -244,49 +245,46 @@ export const Composable: Story = {
                   <Menu.ItemIcon name="sun" />
                 </Menu.Item>
               </Menu.Section>
-            </Menu.Content>
-          </Menu>
+            </Menu.Popover.Content>
+          </Menu.Popover>
         </section>
         <section>
           <h1>Composable flat (controlled)</h1>
-          <Menu open={controlledOpen} onOpenChange={setControlledOpen}>
-            <Tooltip message="Menu Tooltip">
-              <Menu.Trigger>
+          <Menu
+            ariaLabel="I have a tooltip"
+            open={controlledOpen}
+            onOpenChange={setControlledOpen}
+            trigger={
+              <Tooltip message="Menu Tooltip">
                 <Button>
                   <Button.Label>I have a tooltip</Button.Label>
                 </Button>
-              </Menu.Trigger>
-            </Tooltip>
-            <Menu.Content>
-              <Menu.Item onClick={() => alert("")} textValue="Email">
-                <Menu.ItemLabel>Email</Menu.ItemLabel>
-              </Menu.Item>
-              <Menu.Separator />
-              <Menu.Item onClick={() => alert("🔋")} textValue="Text Message">
-                <Menu.ItemLabel>Text Message</Menu.ItemLabel>
-              </Menu.Item>
-            </Menu.Content>
+              </Tooltip>
+            }
+          >
+            <Menu.Item onClick={() => alert("")} textValue="Email">
+              <Menu.ItemLabel>Email</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Separator />
+            <Menu.Item onClick={() => alert("🔋")} textValue="Text Message">
+              <Menu.ItemLabel>Text Message</Menu.ItemLabel>
+            </Menu.Item>
           </Menu>
         </section>
 
         <section>
           <h1>Composable with iteration</h1>
-          <Menu>
-            <Menu.Trigger>
-              <Chip label="Press me" />
-            </Menu.Trigger>
-            <Menu.Content>
-              {items.map(item => (
-                <Menu.Item
-                  key={item.label}
-                  onClick={item.onClick}
-                  textValue={item.label}
-                >
-                  <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
-                  <Menu.ItemIcon name={item.icon} />
-                </Menu.Item>
-              ))}
-            </Menu.Content>
+          <Menu ariaLabel="Press me" trigger={<Chip label="Press me" />}>
+            {items.map(item => (
+              <Menu.Item
+                key={item.label}
+                onClick={item.onClick}
+                textValue={item.label}
+              >
+                <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
+                <Menu.ItemIcon name={item.icon} />
+              </Menu.Item>
+            ))}
           </Menu>
         </section>
 
@@ -294,37 +292,37 @@ export const Composable: Story = {
           <h1>Composable Implementing Default</h1>
           <Grid>
             <Grid.Cell size={{ xs: 6 }}>
-              <Menu>
-                <Menu.Trigger>
+              <Menu
+                ariaLabel="Composable"
+                trigger={
                   <Button>
                     <Button.Label>Composable</Button.Label>
                   </Button>
-                </Menu.Trigger>
-                <Menu.Content>
-                  <Menu.Section>
-                    <Menu.Item onClick={() => alert("✏️")} textValue="Edit">
-                      <Menu.ItemLabel>Edit</Menu.ItemLabel>
-                      <Menu.ItemIcon name="edit" />
+                }
+              >
+                <Menu.Section>
+                  <Menu.Item onClick={() => alert("✏️")} textValue="Edit">
+                    <Menu.ItemLabel>Edit</Menu.ItemLabel>
+                    <Menu.ItemIcon name="edit" />
+                  </Menu.Item>
+                </Menu.Section>
+                <Menu.Separator />
+                <Menu.Section>
+                  <Menu.Header>
+                    <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+                  </Menu.Header>
+                  {items.map(item => (
+                    <Menu.Item
+                      key={item.label}
+                      onClick={item.onClick}
+                      variation={item.destructive ? "destructive" : undefined}
+                      textValue={item.label}
+                    >
+                      <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
+                      <Menu.ItemIcon name={item.icon} />
                     </Menu.Item>
-                  </Menu.Section>
-                  <Menu.Separator />
-                  <Menu.Section>
-                    <Menu.Header>
-                      <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
-                    </Menu.Header>
-                    {items.map(item => (
-                      <Menu.Item
-                        key={item.label}
-                        onClick={item.onClick}
-                        variation={item.destructive ? "destructive" : undefined}
-                        textValue={item.label}
-                      >
-                        <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
-                        <Menu.ItemIcon name={item.icon} />
-                      </Menu.Item>
-                    ))}
-                  </Menu.Section>
-                </Menu.Content>
+                  ))}
+                </Menu.Section>
               </Menu>
             </Grid.Cell>
             <Grid.Cell size={{ xs: 6 }}>
@@ -354,133 +352,128 @@ export const Composable: Story = {
               checked={canView}
               onChange={() => setCanView(!canView)}
             />
-            <Menu>
-              <Menu.Trigger>
+            <Menu
+              ariaLabel="Conditional Menu Items"
+              trigger={
                 <Button>
                   <Button.Label>Conditonal Menu Items</Button.Label>
                 </Button>
-              </Menu.Trigger>
-              <Menu.Content>
-                <Menu.Item
-                  onClick={() => alert("Timesheets")}
-                  textValue="Timesheets"
-                >
-                  <Menu.ItemLabel>Timesheets</Menu.ItemLabel>
-                  <Menu.ItemIcon name="timer" />
+              }
+            >
+              <Menu.Item
+                onClick={() => alert("Timesheets")}
+                textValue="Timesheets"
+              >
+                <Menu.ItemLabel>Timesheets</Menu.ItemLabel>
+                <Menu.ItemIcon name="timer" />
+              </Menu.Item>
+              <Menu.Item onClick={() => alert("Invoices")} textValue="Invoices">
+                <Menu.ItemLabel>Invoices</Menu.ItemLabel>
+                <Menu.ItemIcon name="invoice" />
+              </Menu.Item>
+              <PermissionCheck canView={canView}>
+                <Menu.Item onClick={() => alert("Admin")} textValue="Admin">
+                  <Menu.ItemLabel>Admin</Menu.ItemLabel>
+                  <Menu.ItemIcon name="lock" />
                 </Menu.Item>
-                <Menu.Item
-                  onClick={() => alert("Invoices")}
-                  textValue="Invoices"
-                >
-                  <Menu.ItemLabel>Invoices</Menu.ItemLabel>
-                  <Menu.ItemIcon name="invoice" />
-                </Menu.Item>
-                <PermissionCheck canView={canView}>
-                  <Menu.Item onClick={() => alert("Admin")} textValue="Admin">
-                    <Menu.ItemLabel>Admin</Menu.ItemLabel>
-                    <Menu.ItemIcon name="lock" />
-                  </Menu.Item>
-                </PermissionCheck>
-              </Menu.Content>
+              </PermissionCheck>
             </Menu>
           </div>
         </section>
         <section>
           <h1>Composable with Custom Content</h1>
-          <Menu>
-            <Menu.Trigger>
+          <Menu
+            ariaLabel="Custom"
+            trigger={
               <Button>
                 <Button.Label>Custom</Button.Label>
               </Button>
-            </Menu.Trigger>
-            <Menu.Content>
-              <Menu.Section>
-                <Menu.Header>
-                  <Typography
-                    element="span"
-                    size="large"
-                    fontWeight="bold"
-                    textColor="invoice"
-                  >
-                    Communications
-                  </Typography>
-                </Menu.Header>
-                <Menu.Item
-                  onClick={() => alert("Email")}
-                  textValue="Email"
-                  UNSAFE_className="custom-styles"
+            }
+          >
+            <Menu.Section>
+              <Menu.Header>
+                <Typography
+                  element="span"
+                  size="large"
+                  fontWeight="bold"
+                  textColor="invoice"
                 >
-                  <Typography element="span" fontWeight="semiBold">
-                    Email (Right)
-                  </Typography>
-                  <Icon name="email" />
-                </Menu.Item>
-                <Menu.Item
-                  onClick={() => alert("Text message")}
-                  textValue="Text Message"
-                  UNSAFE_className="custom-styles"
-                >
-                  <Typography element="span" fontWeight="semiBold">
-                    Text Message (Right)
-                  </Typography>
-                  <Icon name="sms" />
-                </Menu.Item>
-              </Menu.Section>
-              <Menu.Separator />
-              <Menu.Section>
-                <Menu.Header>
-                  <Emphasis variation="highlight">Featured Items</Emphasis>
-                </Menu.Header>
-                <Menu.Item
-                  onClick={() => alert("New")}
-                  textValue="Line Items"
-                  UNSAFE_className="custom-styles"
-                >
-                  <Typography element="span" fontWeight="bold">
-                    Line Items
-                  </Typography>
-                  <StatusIndicator status="critical" />
-                </Menu.Item>
+                  Communications
+                </Typography>
+              </Menu.Header>
+              <Menu.Item
+                className="custom-styles"
+                onClick={() => alert("Email")}
+                textValue="Email"
+              >
+                <Typography element="span" fontWeight="semiBold">
+                  Email (Right)
+                </Typography>
+                <Icon name="email" />
+              </Menu.Item>
+              <Menu.Item
+                className="custom-styles"
+                onClick={() => alert("Text message")}
+                textValue="Text Message"
+              >
+                <Typography element="span" fontWeight="semiBold">
+                  Text Message (Right)
+                </Typography>
+                <Icon name="sms" />
+              </Menu.Item>
+            </Menu.Section>
+            <Menu.Separator />
+            <Menu.Section>
+              <Menu.Header>
+                <Emphasis variation="highlight">Featured Items</Emphasis>
+              </Menu.Header>
+              <Menu.Item
+                className="custom-styles"
+                onClick={() => alert("New")}
+                textValue="Line Items"
+              >
+                <Typography element="span" fontWeight="bold">
+                  Line Items
+                </Typography>
+                <StatusIndicator status="critical" />
+              </Menu.Item>
 
-                <Menu.Item
-                  onClick={() => alert("Job Forms")}
-                  textValue="Job Forms"
-                  UNSAFE_className="custom-styles"
-                >
-                  <Typography element="span" fontWeight="bold">
-                    Job Forms
-                  </Typography>
-                  <StatusIndicator status="critical" />
-                </Menu.Item>
-              </Menu.Section>
-              <Menu.Separator />
-              <Menu.Section>
-                <Menu.Header>
-                  <Heading level={6}>Links</Heading>
-                </Menu.Header>
-                <Menu.Item
-                  href="https://getjobber.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  textValue="Jobber"
-                  UNSAFE_className="custom-styles"
-                >
-                  <Typography element="span">Jobber</Typography>
-                </Menu.Item>
-                <Menu.Item
-                  href="https://help.getjobber.com/hc/en-us"
-                  target="_blank"
-                  rel="noreferrer"
-                  textValue="Jobber Docs"
-                  UNSAFE_className="custom-styles"
-                >
-                  <span style={{ textDecoration: "underline" }}>
-                    Jobber Docs
-                  </span>
-                  <span aria-hidden>↗</span>
-                </Menu.Item>
-              </Menu.Section>
-            </Menu.Content>
+              <Menu.Item
+                className="custom-styles"
+                onClick={() => alert("Job Forms")}
+                textValue="Job Forms"
+              >
+                <Typography element="span" fontWeight="bold">
+                  Job Forms
+                </Typography>
+                <StatusIndicator status="critical" />
+              </Menu.Item>
+            </Menu.Section>
+            <Menu.Separator />
+            <Menu.Section>
+              <Menu.Header>
+                <Heading level={6}>Links</Heading>
+              </Menu.Header>
+              <Menu.Item
+                className="custom-styles"
+                href="https://getjobber.com"
+                rel="noreferrer"
+                target="_blank"
+                textValue="Jobber"
+              >
+                <Typography element="span">Jobber</Typography>
+              </Menu.Item>
+              <Menu.Item
+                className="custom-styles"
+                href="https://help.getjobber.com/hc/en-us"
+                rel="noreferrer"
+                target="_blank"
+                textValue="Jobber Docs"
+              >
+                <span style={{ textDecoration: "underline" }}>Jobber Docs</span>
+                <span aria-hidden>↗</span>
+              </Menu.Item>
+            </Menu.Section>
           </Menu>
         </section>
 
@@ -496,16 +489,17 @@ export const Composable: Story = {
               <Text>Centered on the trigger</Text>
             </Content>
           </Popover>
-          <Menu>
-            <Menu.Trigger
+          <Menu.Popover>
+            <Menu.Popover.Trigger
+              ariaLabel="I am full width and have a popover"
               ref={fullWidthTriggerRef}
-              UNSAFE_style={{ display: "block" }}
+              style={{ display: "block" }}
             >
               <Button fullWidth={true}>
                 <Button.Label>I am full width and have a popover</Button.Label>
               </Button>
-            </Menu.Trigger>
-            <Menu.Content>
+            </Menu.Popover.Trigger>
+            <Menu.Popover.Content>
               <Menu.Section>
                 <Menu.Header>
                   <Menu.HeaderLabel>Nav</Menu.HeaderLabel>
@@ -532,12 +526,73 @@ export const Composable: Story = {
                   <Menu.ItemIcon name="sun" />
                 </Menu.Item>
               </Menu.Section>
-            </Menu.Content>
-          </Menu>
+            </Menu.Popover.Content>
+          </Menu.Popover>
         </section>
       </div>
     );
   },
+};
+
+export const ExplicitRoots: Story = {
+  render: () => (
+    <div>
+      <Heading level={3}>Responsive default</Heading>
+      <Menu
+        ariaLabel="Responsive Menu"
+        trigger={<Button label="Responsive Menu" />}
+      >
+        <Menu.Section>
+          <Menu.Header>
+            <Menu.HeaderLabel>Actions</Menu.HeaderLabel>
+          </Menu.Header>
+          <Menu.Item onClick={() => alert("Edit")} textValue="Edit">
+            <Menu.ItemLabel>Edit</Menu.ItemLabel>
+            <Menu.ItemIcon name="edit" />
+          </Menu.Item>
+        </Menu.Section>
+      </Menu>
+
+      <Heading level={3}>Explicit popover surface</Heading>
+      <Menu.Popover
+        ariaLabel="Popover Menu"
+        trigger={<Button label="Popover Menu" />}
+      >
+        <Menu.Popover.Section>
+          <Menu.Popover.Header>
+            <Menu.Popover.HeaderLabel>Actions</Menu.Popover.HeaderLabel>
+          </Menu.Popover.Header>
+          <Menu.Popover.Item
+            onClick={() => alert("Archive")}
+            textValue="Archive"
+          >
+            <Menu.Popover.ItemLabel>Archive</Menu.Popover.ItemLabel>
+            <Menu.Popover.ItemIcon name="archive" />
+          </Menu.Popover.Item>
+        </Menu.Popover.Section>
+      </Menu.Popover>
+
+      <Heading level={3}>Explicit bottom sheet surface</Heading>
+      <BottomSheet
+        ariaLabel="Bottom Sheet"
+        trigger={<Button label="Bottom Sheet" />}
+      >
+        <BottomSheet.Section>
+          <BottomSheet.Header>
+            <BottomSheet.HeaderLabel>Actions</BottomSheet.HeaderLabel>
+          </BottomSheet.Header>
+          <BottomSheet.Item
+            onClick={() => alert("Delete")}
+            textValue="Delete"
+            variation="destructive"
+          >
+            <BottomSheet.ItemLabel>Delete</BottomSheet.ItemLabel>
+            <BottomSheet.ItemIcon name="trash" />
+          </BottomSheet.Item>
+        </BottomSheet.Section>
+      </BottomSheet>
+    </div>
+  ),
 };
 
 function PermissionCheck({

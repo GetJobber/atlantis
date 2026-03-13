@@ -27,7 +27,7 @@ html,body,#root {
   width: 99%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   min-height: 200px;
   }

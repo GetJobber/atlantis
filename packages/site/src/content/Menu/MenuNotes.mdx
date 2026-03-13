@@ -1,67 +1,85 @@
 import { Banner, Text } from "@jobber/components";
 
+<Banner type="notice">
+  <Text>
+    Migrating from the older composable or legacy Menu API? See the [Menu
+    migration guide](/guides/menu-migration).
+  </Text>
+</Banner>
+
 ## Composable Version (Web Only)
 
 The Menu may be invoked with a subcomponent structure enabling a declarative
 style, greater customization and composability with other components.
 
 ```
-<Menu>
-  <Menu.Trigger>
-    <Button>Trigger</Button>
-  </Menu.Trigger>
-  <Menu.Content>
-    <Menu.Item onClick={clickHandler("email")} textValue="Email">
-      <Menu.ItemLabel>Email</Menu.ItemLabel>
-      <Menu.ItemIcon name="email" />
+<Menu
+  ariaLabel="More Actions"
+  trigger={<Button>Trigger</Button>}
+>
+  <Menu.Item onClick={clickHandler("email")} textValue="Email">
+    <Menu.ItemLabel>Email</Menu.ItemLabel>
+    <Menu.ItemIcon name="email" />
+  </Menu.Item>
+
+  <PrivacyMask>
+    <Menu.Item onClick={clickHandler("sensitive")} textValue="Sensitive">
+      <Menu.ItemLabel>Sensitive</Menu.ItemLabel>
     </Menu.Item>
+  </PrivacyMask>
 
-    <PrivacyMask>
-      <Menu.Item onClick={clickHandler("sensitive")} textValue="Sensitive">
-        <Menu.ItemLabel>Sensitive</Menu.ItemLabel>
-      </Menu.Item>
-    </PrivacyMask>
-
-    <AuthCheck can="viewAdmin">
-      <Menu.Item onClick={clickHandler("admin")} textValue="Admin">
-        <Menu.ItemLabel>Admin</Menu.ItemLabel>
-        <Menu.ItemIcon name="lock" />
-      </Menu.Item>
-    </AuthCheck>
-  </Menu.Content>
+  <AuthCheck can="viewAdmin">
+    <Menu.Item onClick={clickHandler("admin")} textValue="Admin">
+      <Menu.ItemLabel>Admin</Menu.ItemLabel>
+      <Menu.ItemIcon name="lock" />
+    </Menu.Item>
+  </AuthCheck>
 </Menu>
 ```
 
 #### Sub Components
 
-**_Menu.Trigger (Required)_**
+**_trigger (Required)_**
 
-An interactive element that will cause the Menu to open when clicked or
-interacted with via keyboard. The open behavior is handled internally, and no
-`onClick` is required on the provided component. A provided `Button` is purely
-for appearance, however there is still a requirement that whatever is given to
-Menu.Trigger must be an element with an interactive role.
+An interactive element passed to the top-level `Menu` root. The open behavior is
+handled internally, and no `onClick` is required on the provided component. A
+provided `Button` is purely for appearance.
 
 Clicking the trigger again, or clicking anywhere outside the Menu at all will
 close the Menu.
 
 <Banner type="notice">
   <Text>
-    To achieve a full-width Trigger, such as a Button please use UNSAFE_style or
-    UNSAFE_className to set the desired display. See example below.
+    For lower-level trigger control, use `Menu.Popover` directly and style
+    `Menu.Popover.Trigger`.
   </Text>
 </Banner>
 
 ```
-<Menu.Trigger UNSAFE_style={{ display: "block" }}>
+<Menu.Popover.Trigger style={{ display: "block" }}>
   <Button fullWidth />
-</Menu.Trigger>
+</Menu.Popover.Trigger>
 ```
 
-**_Menu.Content (Required)_**
+**_children (Required)_**
 
-A structural container element for the Menu's content which should consist of
-one or more `Menu.Item`s, and optional additional content.
+The content passed to the Menu root. This should consist of one or more
+`Menu.Item`s, and optional additional content such as sections, headers, and
+separators.
+
+### Styling philosophy
+
+In the composable Menu API, styling responsibility moves down to the compound
+pieces instead of living on the top-level opinionated root.
+
+- top-level roots such as `Menu`, `Menu.Popover`, and `BottomSheet` are intended
+  to own behavior and layout decisions
+- compound components such as `Menu.Item`, `Menu.Section`, `Menu.Header`, and
+  `Menu.Separator` are where direct `className` and `style` overrides belong
+
+This is a deliberate shift away from broad root-level customization. It keeps
+the opinionated surface more stable, while still allowing targeted overrides on
+the parts consumers are actually composing.
 
 **_Menu.Item (Strongly recommended)_**
 
@@ -83,9 +101,9 @@ These defaults are placed in a strict order and align automatically via the
 Menu's parent grid (see “Layout and spacing” below). Using them is the easiest
 way to get correct spacing and alignment.
 
-If it is necessary to also adjust the _styles of the container_, `UNSAFE` props
-apply to the _container_ element. No access is provided to internal markup due
-to accessibility and behavior requirements.
+If it is necessary to also adjust the _styles of the container_, use `className`
+or `style` on `Menu.Item`. No access is provided to internal markup due to
+accessibility and behavior requirements.
 
 \*If being used for client side navigation such as TanStack Router, please
 consult with us first.
@@ -93,7 +111,7 @@ consult with us first.
 **_Menu.Section (Optional)_**
 
 A structural/conceptual element to group your related Items together. Provides
-some default spacing that can be overriden with `UNSAFE`.
+some default spacing that can be overridden with `className` or `style`.
 
 **_Menu.Header (Optional)_**
 
@@ -107,13 +125,14 @@ header text with our standard menu heading typography.
 A presentational element primarily used to create visual separation between the
 groups. Can be used with sections, or with a "flat" Menu.
 
-Comes with a default appearance that can be overriden with `UNSAFE`.
+Comes with a default appearance that can be overridden with `className` or
+`style`.
 
 ### Layout and spacing (subgrid)
 
-The Menu uses CSS Grid with `subgrid` on `Menu.Content` to control alignment
-across all rows. This allows us to reserve a leading column for icons only when
-**any item** includes an icon:
+The Menu surface uses CSS Grid with `subgrid` on its content container to
+control alignment across all rows. This allows us to reserve a leading column
+for icons only when **any item** includes an icon:
 
 - If at least one `Menu.Item` uses `Menu.ItemIcon`, the grid creates and aligns
   a leading icon column for every item.
@@ -137,13 +156,13 @@ subcomponents. There are two recommended approaches depending on scope:
   `Menu.ItemLabel`.
 - Use `Icon` directly instead of `Menu.ItemIcon` (e.g., to place an icon on the
   right).
-- Apply your layout to the item container using `UNSAFE_style` or
-  `UNSAFE_className`. A simple, high‑success recipe is flex:
+- Apply your layout to the item container using `style` or `className`. A
+  simple, high-success recipe is flex:
 
 ```
 <Menu.Item
   textValue="Email"
-  UNSAFE_style={{
+  style={{
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -160,13 +179,14 @@ desired.
 
 2. Whole‑menu custom layout (advanced)
 
-If every item is custom, override the grid on `Menu.Content` and provide your
-own columns. For example, a simple single‑column stack:
+If every item is custom and you need lower-level layout control, use
+`Menu.Popover.Content` and provide your own columns. For example, a simple
+single-column stack:
 
 ```
-<Menu.Content UNSAFE_style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+<Menu.Popover.Content style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
   {/* all items use custom content; avoid Menu.ItemLabel/Menu.ItemIcon */}
-</Menu.Content>
+</Menu.Popover.Content>
 ```
 
 Notes and caveats
@@ -223,6 +243,9 @@ test custom layouts on small screens.
 ```
 
 ### Component customization
+
+For the composable API, prefer styling the compound pieces directly rather than
+trying to customize the top-level root.
 
 ### UNSAFE\_ props (advanced usage)
 
