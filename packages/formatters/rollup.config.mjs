@@ -29,7 +29,9 @@ export default {
       tsconfig: "./tsconfig.rollup.json",
       noEmitOnError: true,
       outputToFilesystem: true,
-      ...(process.env.ATLANTIS_DIST_DIR && { outDir: process.env.ATLANTIS_DIST_DIR }),
+      ...(process.env.ATLANTIS_DIST_DIR && {
+        outDir: process.env.ATLANTIS_DIST_DIR,
+      }),
     }),
   ],
 };
