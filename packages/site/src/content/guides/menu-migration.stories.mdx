@@ -1,0 +1,250 @@
+import { Banner, Text } from "@jobber/components";
+
+# Menu migration guide
+
+This guide covers the current `Menu` migration path as Atlantis moves toward
+Base UI under the hood.
+
+## Who needs to migrate
+
+There are two different stories right now:
+
+1. Consumers using the legacy `items` API
+2. Consumers using the composable `Menu` API
+
+## Legacy `items` API
+
+If you are using `Menu` like this:
+
+```tsx
+<Menu
+  activator={<Button label="More Actions" />}
+  items={[
+    {
+      actions: [
+        {
+          label: "Edit",
+          icon: "edit",
+          onClick: () => {},
+        },
+      ],
+    },
+  ]}
+/>
+```
+
+We recommend migrating off the legacy `items` API and onto the composable
+surface.
+
+The legacy `items` API is still supported as a compatibility path while the new
+composable API settles, but it should be treated as transitional rather than the
+preferred long-term direction.
+
+<Banner type="notice">
+  <Text>
+    If you are starting new work, prefer the composable API instead of `items`.
+    If you are already on `items`, you do not need to migrate urgently, but new
+    adoption should move toward the composable surface.
+  </Text>
+</Banner>
+
+### Why move off `items`
+
+The composable API is now the recommended direction because it gives you:
+
+- clearer composition and customization
+- a better fit for the Base UI-backed implementation
+- explicit access to `Menu`, `Menu.Popover`, and `BottomSheet`
+- a more future-friendly API surface than a nested data structure
+
+### Legacy to composable example
+
+Before:
+
+```tsx
+<Menu
+  activator={<Button label="More Actions" />}
+  items={[
+    {
+      header: "Actions",
+      actions: [
+        {
+          label: "Edit",
+          icon: "edit",
+          onClick: () => {},
+        },
+        {
+          label: "Delete",
+          icon: "trash",
+          destructive: true,
+          onClick: () => {},
+        },
+      ],
+    },
+  ]}
+/>
+```
+
+After:
+
+```tsx
+<Menu ariaLabel="More Actions" trigger={<Button label="More Actions" />}>
+  <Menu.Section>
+    <Menu.Header>
+      <Menu.HeaderLabel>Actions</Menu.HeaderLabel>
+    </Menu.Header>
+    <Menu.Item onClick={() => {}} textValue="Edit">
+      <Menu.ItemLabel>Edit</Menu.ItemLabel>
+      <Menu.ItemIcon name="edit" />
+    </Menu.Item>
+    <Menu.Item onClick={() => {}} textValue="Delete" variation="destructive">
+      <Menu.ItemLabel>Delete</Menu.ItemLabel>
+      <Menu.ItemIcon name="trash" />
+    </Menu.Item>
+  </Menu.Section>
+</Menu>
+```
+
+## Composable `Menu`
+
+This is where the main migration work happens.
+
+### What changed
+
+Top-level responsive `Menu` now owns the trigger through a root prop:
+
+```tsx
+<Menu ariaLabel="More Actions" trigger={<Button label="More Actions" />}>
+  <Menu.Item onClick={() => {}} textValue="Edit">
+    <Menu.ItemLabel>Edit</Menu.ItemLabel>
+    <Menu.ItemIcon name="edit" />
+  </Menu.Item>
+</Menu>
+```
+
+Instead of the older pattern:
+
+```tsx
+<Menu>
+  <Menu.Trigger>
+    <Button label="More Actions" />
+  </Menu.Trigger>
+  <Menu.Content>
+    <Menu.Item onClick={() => {}} textValue="Edit">
+      <Menu.ItemLabel>Edit</Menu.ItemLabel>
+      <Menu.ItemIcon name="edit" />
+    </Menu.Item>
+  </Menu.Content>
+</Menu>
+```
+
+### Top-level `Menu`
+
+Use top-level `Menu` when you want the responsive Atlantis opinion:
+
+- desktop renders the popover menu surface
+- small screens render the bottom sheet surface
+
+Use this shape:
+
+```tsx
+<Menu ariaLabel="More Actions" trigger={<Button label="More Actions" />}>
+  <Menu.Section>
+    <Menu.Header>
+      <Menu.HeaderLabel>Actions</Menu.HeaderLabel>
+    </Menu.Header>
+    <Menu.Item onClick={() => {}} textValue="Edit">
+      <Menu.ItemLabel>Edit</Menu.ItemLabel>
+      <Menu.ItemIcon name="edit" />
+    </Menu.Item>
+  </Menu.Section>
+</Menu>
+```
+
+### Explicit popover surface
+
+If you do not want the responsive swap, use `Menu.Popover` directly:
+
+```tsx
+<Menu.Popover
+  ariaLabel="More Actions"
+  trigger={<Button label="More Actions" />}
+>
+  <Menu.Popover.Item onClick={() => {}} textValue="Edit">
+    <Menu.Popover.ItemLabel>Edit</Menu.Popover.ItemLabel>
+    <Menu.Popover.ItemIcon name="edit" />
+  </Menu.Popover.Item>
+</Menu.Popover>
+```
+
+### Explicit bottom sheet surface
+
+If you want the sheet directly, use `BottomSheet`:
+
+```tsx
+<BottomSheet ariaLabel="More Actions" trigger={<Button label="More Actions" />}>
+  <BottomSheet.Item onClick={() => {}} textValue="Edit">
+    <BottomSheet.ItemLabel>Edit</BottomSheet.ItemLabel>
+    <BottomSheet.ItemIcon name="edit" />
+  </BottomSheet.Item>
+</BottomSheet>
+```
+
+## Styling changes on the composable path
+
+For the new composable primitives, prefer `className` and `style`.
+
+This is also a philosophical change in where customization lives:
+
+- top-level opinionated roots such as `Menu`, `Menu.Popover`, and `BottomSheet`
+  are no longer the main customization seam
+- compound pieces such as `Item`, `Section`, `Header`, `Separator`, and
+  surface-specific trigger/content compounds are the intended override points
+
+The goal is to keep behavioral roots stable and opinionated, while making the
+pieces consumers actually compose easier to style directly.
+
+Before:
+
+```tsx
+<Menu.Item UNSAFE_className="custom-item" textValue="Edit">
+  <Menu.ItemLabel>Edit</Menu.ItemLabel>
+</Menu.Item>
+```
+
+After:
+
+```tsx
+<Menu.Item className="custom-item" textValue="Edit">
+  <Menu.ItemLabel>Edit</Menu.ItemLabel>
+</Menu.Item>
+```
+
+The older `UNSAFE_*` pattern still exists on the legacy `items` API for
+compatibility, but it is not the direction for the new composable surface.
+
+## Quick reference
+
+### If you were using top-level composable `Menu`
+
+1. Move the trigger into `trigger={...}`
+2. Move `ariaLabel` to the `Menu` root
+3. Remove top-level `Menu.Trigger`
+4. Remove top-level `Menu.Content`
+5. Keep `Menu.Item`, `Menu.Section`, `Menu.Header`, and `Menu.Separator`
+
+### If you need explicit control over the surface
+
+1. Use `Menu.Popover` for popover-only behavior
+2. Use `BottomSheet` for sheet-only behavior
+3. Use `trigger={...}` for the convenience API, or drop down to their explicit
+   compound triggers and content components when needed
+
+## Summary
+
+- Legacy `items` usage is still supported, but composable `Menu` is the
+  recommended direction
+- Top-level composable `Menu` now uses `trigger`
+- `Menu.Popover` is the explicit non-responsive popover surface
+- `BottomSheet` is the explicit sheet surface
+- New composable styling should use `className` and `style`

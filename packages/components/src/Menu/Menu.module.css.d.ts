@@ -1,7 +1,10 @@
 declare const styles: {
   readonly "wrapper": string;
   readonly "floatingContainer": string;
+  readonly "positioner": string;
   readonly "menu": string;
+  readonly "sheetMenu": string;
+  readonly "popoverMenu": string;
   readonly "legacySection": string;
   readonly "separator": string;
   readonly "triggerWrapper": string;
@@ -18,4 +21,3 @@ declare const styles: {
   readonly "screenReaderOnly": string;
 };
 export = styles;
-

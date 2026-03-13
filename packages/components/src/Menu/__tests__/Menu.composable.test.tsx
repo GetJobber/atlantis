@@ -5,13 +5,60 @@ import { Chip } from "@jobber/components/Chip";
 import * as POM from "../Menu.pom";
 import { Menu } from "..";
 import { Button } from "../../Button";
+import { withMockedViewport } from "../../testUtils/viewport";
+import { SMALL_SCREEN_BREAKPOINT } from "../constants";
 
 // eslint-disable-next-line max-statements
 describe("Menu (composable API)", () => {
+  it("supports the trigger slot API", async () => {
+    render(<TestSlottedMenu />);
+    await POM.openWithClick("Menu");
+    expect(screen.getAllByRole("menuitem")).toHaveLength(2);
+  });
+
   it("opens via mouse click and renders items", async () => {
     render(<TestSectionMenu />);
     await POM.openWithClick("Menu");
     expect(screen.getAllByRole("menuitem")).toHaveLength(2);
+  });
+
+  it("uses the bottom sheet surface on small screens", async () => {
+    await withMockedViewport(
+      { width: SMALL_SCREEN_BREAKPOINT - 1 },
+      async () => {
+        render(<TestSectionMenu />);
+
+        await userEvent.click(screen.getByLabelText("Menu"));
+
+        await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+        expect(
+          screen.getByRole("button", { name: "Open" }),
+        ).toBeInTheDocument();
+      },
+    );
+  });
+
+  it("supports the trigger prop API on Menu.Popover", async () => {
+    render(<TestExplicitPopoverMenu />);
+
+    await POM.openWithClick("Menu");
+    expect(screen.getAllByRole("menuitem")).toHaveLength(2);
+  });
+
+  it("uses the bottom sheet surface with the trigger slot API on small screens", async () => {
+    await withMockedViewport(
+      { width: SMALL_SCREEN_BREAKPOINT - 1 },
+      async () => {
+        render(<TestSlottedMenu />);
+
+        await userEvent.click(screen.getByLabelText("Menu"));
+
+        await waitFor(() => expect(screen.getByRole("dialog")).toBeVisible());
+        expect(
+          screen.getByRole("button", { name: "Open" }),
+        ).toBeInTheDocument();
+      },
+    );
   });
 
   it("opens via Enter and focuses first item", async () => {
@@ -140,17 +187,8 @@ describe("Menu (composable API)", () => {
     });
   });
 
-  describe("UNSAFE_className and UNSAFE_style", () => {
-    it("applies UNSAFE props on Menu.Content", async () => {
-      render(<TestUnsafePropsMenu />);
-      await POM.openWithClick("Menu");
-
-      const menu = screen.getByRole("menu");
-      expect(menu).toHaveClass("unsafe-menu");
-      expect(menu).toHaveStyle("border: 1px solid red");
-    });
-
-    it("applies UNSAFE props on Menu.Section", async () => {
+  describe("className and style", () => {
+    it("applies className and style on Menu.Section", async () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
@@ -162,7 +200,7 @@ describe("Menu (composable API)", () => {
       expect(sectionContainer).toHaveStyle("padding: 13px");
     });
 
-    it("applies UNSAFE props on Menu.Header", async () => {
+    it("applies className and style on Menu.Header", async () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
@@ -173,7 +211,7 @@ describe("Menu (composable API)", () => {
       expect(headerContainer).toHaveStyle("color: rgb(10, 20, 30)");
     });
 
-    it("applies UNSAFE props on Menu.Item", async () => {
+    it("applies className and style on Menu.Item", async () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
@@ -182,23 +220,13 @@ describe("Menu (composable API)", () => {
       expect(item).toHaveStyle("margin: 11px");
     });
 
-    it("applies UNSAFE props on Menu.Separator", async () => {
+    it("applies className and style on Menu.Separator", async () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
       const separator = screen.getByTestId("ATL-Menu-Separator");
       expect(separator).toHaveClass("unsafe-sep");
       expect(separator).toHaveStyle("height: 7px");
-    });
-
-    it("applies UNSAFE props on Menu.Trigger", async () => {
-      render(<TestUnsafePropsMenu />);
-
-      const triggerWrapper = POM.getTriggerUnsafeElement("Menu");
-
-      expect(triggerWrapper).toBeInTheDocument();
-      expect(triggerWrapper).toHaveClass("full-width-trigger");
-      expect(triggerWrapper).toHaveStyle("display: block");
     });
   });
 
@@ -230,15 +258,10 @@ describe("Menu (composable API)", () => {
     it("calls onClick without an event for non-link items", async () => {
       const onItem = jest.fn();
       render(
-        <Menu>
-          <Menu.Trigger ariaLabel="Menu">
-            <Button label="Menu" />
-          </Menu.Trigger>
-          <Menu.Content>
-            <Menu.Item onClick={onItem} textValue="Open">
-              <Menu.ItemLabel>Open</Menu.ItemLabel>
-            </Menu.Item>
-          </Menu.Content>
+        <Menu ariaLabel="Menu" trigger={<Button label="Menu" />}>
+          <Menu.Item onClick={onItem} textValue="Open">
+            <Menu.ItemLabel>Open</Menu.ItemLabel>
+          </Menu.Item>
         </Menu>,
       );
 
@@ -300,22 +323,17 @@ function TestLinkMenu(props: {
   readonly withRef?: React.Ref<HTMLElement>;
 }) {
   return (
-    <Menu>
-      <Menu.Trigger ariaLabel="Menu">
-        <Button label="Menu" />
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Item
-          href="/jobs"
-          textValue="Jobs"
-          onClick={
-            props.onItemClick as ((e?: React.MouseEvent) => void) | undefined
-          }
-          ref={props.withRef}
-        >
-          <Menu.ItemLabel>Jobs</Menu.ItemLabel>
-        </Menu.Item>
-      </Menu.Content>
+    <Menu ariaLabel="Menu" trigger={<Button label="Menu" />}>
+      <Menu.Item
+        href="/jobs"
+        textValue="Jobs"
+        onClick={
+          props.onItemClick as ((e?: React.MouseEvent) => void) | undefined
+        }
+        ref={props.withRef}
+      >
+        <Menu.ItemLabel>Jobs</Menu.ItemLabel>
+      </Menu.Item>
     </Menu>
   );
 }
@@ -328,29 +346,93 @@ function TestSectionMenu(props: {
 }) {
   return (
     <Menu
+      ariaLabel="Menu"
       onOpenChange={props.onOpenChange}
       open={props.open}
       defaultOpen={props.defaultOpen}
+      trigger={<Button label="Menu" />}
     >
-      <Menu.Trigger ariaLabel="Menu">
-        <Button label="Menu" />
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header>
-            <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
-          </Menu.Header>
-          <Menu.Item onClick={props.onItem} textValue="Open">
-            <Menu.ItemLabel>Open</Menu.ItemLabel>
-          </Menu.Item>
-        </Menu.Section>
-        <Menu.Separator />
-        <Menu.Section>
-          <Menu.Item textValue="Two">
-            <Menu.ItemLabel>Two</Menu.ItemLabel>
-          </Menu.Item>
-        </Menu.Section>
-      </Menu.Content>
+      <Menu.Section>
+        <Menu.Header>
+          <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
+        </Menu.Header>
+        <Menu.Item onClick={props.onItem} textValue="Open">
+          <Menu.ItemLabel>Open</Menu.ItemLabel>
+        </Menu.Item>
+      </Menu.Section>
+      <Menu.Separator />
+      <Menu.Section>
+        <Menu.Item textValue="Two">
+          <Menu.ItemLabel>Two</Menu.ItemLabel>
+        </Menu.Item>
+      </Menu.Section>
+    </Menu>
+  );
+}
+
+function TestExplicitPopoverMenu(props: {
+  readonly onOpenChange?: (isOpen: boolean) => void;
+  readonly open?: boolean;
+  readonly defaultOpen?: boolean;
+}) {
+  return (
+    <Menu.Popover
+      ariaLabel="Menu"
+      defaultOpen={props.defaultOpen}
+      onOpenChange={props.onOpenChange}
+      open={props.open}
+      trigger={<Button label="Menu" />}
+    >
+      <Menu.Popover.Section>
+        <Menu.Popover.Header>
+          <Menu.Popover.HeaderLabel>Section Header</Menu.Popover.HeaderLabel>
+        </Menu.Popover.Header>
+        <Menu.Popover.Item textValue="Open">
+          <Menu.Popover.ItemLabel>Open</Menu.Popover.ItemLabel>
+        </Menu.Popover.Item>
+      </Menu.Popover.Section>
+      <Menu.Popover.Separator />
+      <Menu.Popover.Section>
+        <Menu.Popover.Item textValue="Two">
+          <Menu.Popover.ItemLabel>Two</Menu.Popover.ItemLabel>
+        </Menu.Popover.Item>
+      </Menu.Popover.Section>
+    </Menu.Popover>
+  );
+}
+
+function SlottedTrigger() {
+  return <Button label="Menu" />;
+}
+
+function TestSlottedMenu(props: {
+  readonly onItem?: () => void;
+  readonly onOpenChange?: (isOpen: boolean) => void;
+  readonly open?: boolean;
+  readonly defaultOpen?: boolean;
+}) {
+  return (
+    <Menu
+      ariaLabel="Menu"
+      defaultOpen={props.defaultOpen}
+      onOpenChange={props.onOpenChange}
+      open={props.open}
+      trigger={<SlottedTrigger />}
+    >
+      <Menu.Section>
+        <Menu.Header>
+          <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
+        </Menu.Header>
+        <Menu.Item onClick={props.onItem} textValue="Open">
+          <Menu.ItemLabel>Open</Menu.ItemLabel>
+        </Menu.Item>
+      </Menu.Section>
+      <Menu.Separator />
+      <Menu.Section>
+        <Menu.Item textValue="Two">
+          <Menu.ItemLabel>Two</Menu.ItemLabel>
+        </Menu.Item>
+      </Menu.Section>
     </Menu>
   );
 }
@@ -373,19 +455,19 @@ function ControlledMenuHarness(props: {
 
 function TestIconTriggerMenu() {
   return (
-    <Menu>
-      <Menu.Trigger ariaLabel="menu">
+    <Menu
+      ariaLabel="menu"
+      trigger={
         <Button>
           <Button.Icon name="menu" />
         </Button>
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Item textValue="One">
-            <Menu.ItemLabel>One</Menu.ItemLabel>
-          </Menu.Item>
-        </Menu.Section>
-      </Menu.Content>
+      }
+    >
+      <Menu.Section>
+        <Menu.Item textValue="One">
+          <Menu.ItemLabel>One</Menu.ItemLabel>
+        </Menu.Item>
+      </Menu.Section>
     </Menu>
   );
 }
@@ -394,142 +476,108 @@ function TestChipTriggerMenu(props: {
   readonly onOpenChange?: (isOpen: boolean) => void;
 }) {
   return (
-    <Menu onOpenChange={props.onOpenChange}>
-      <Menu.Trigger ariaLabel="ChipMenu">
-        <Chip label="Menu" />
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Item textValue="One">
-          <Menu.ItemLabel>One</Menu.ItemLabel>
-        </Menu.Item>
-      </Menu.Content>
+    <Menu
+      ariaLabel="ChipMenu"
+      onOpenChange={props.onOpenChange}
+      trigger={<Chip label="Menu" />}
+    >
+      <Menu.Item textValue="One">
+        <Menu.ItemLabel>One</Menu.ItemLabel>
+      </Menu.Item>
     </Menu>
   );
 }
 
 function TestUnsafePropsMenu() {
   return (
-    <Menu>
-      <Menu.Trigger
-        ariaLabel="Menu"
-        UNSAFE_style={{ display: "block" }}
-        UNSAFE_className="full-width-trigger"
-      >
-        <Button label="Menu" fullWidth />
-      </Menu.Trigger>
-      <Menu.Content
-        UNSAFE_className="unsafe-menu"
-        UNSAFE_style={{ border: "1px solid red" }}
-      >
-        <Menu.Section
-          UNSAFE_className="unsafe-section"
-          UNSAFE_style={{ padding: "13px" }}
+    <Menu ariaLabel="Menu" trigger={<Button label="Menu" fullWidth />}>
+      <Menu.Section className="unsafe-section" style={{ padding: "13px" }}>
+        <Menu.Header
+          className="unsafe-header"
+          style={{ color: "rgb(10, 20, 30)" }}
         >
-          <Menu.Header
-            UNSAFE_className="unsafe-header"
-            UNSAFE_style={{ color: "rgb(10, 20, 30)" }}
-          >
-            <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
-          </Menu.Header>
-          <Menu.Item
-            UNSAFE_className="unsafe-item"
-            UNSAFE_style={{ margin: "11px" }}
-            textValue="Open"
-          >
-            <Menu.ItemLabel>Open</Menu.ItemLabel>
-          </Menu.Item>
-        </Menu.Section>
-        <Menu.Separator
-          UNSAFE_className="unsafe-sep"
-          UNSAFE_style={{ height: "7px" }}
-        />
-      </Menu.Content>
+          <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
+        </Menu.Header>
+        <Menu.Item
+          className="unsafe-item"
+          style={{ margin: "11px" }}
+          textValue="Open"
+        >
+          <Menu.ItemLabel>Open</Menu.ItemLabel>
+        </Menu.Item>
+      </Menu.Section>
+      <Menu.Separator className="unsafe-sep" style={{ height: "7px" }} />
     </Menu>
   );
 }
 
 function TextCustomContentMenu() {
   return (
-    <Menu>
-      <Menu.Trigger ariaLabel="Menu">
-        <Button label="Menu" />
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header>
-            <div data-testid="custom-header">Header</div>
-          </Menu.Header>
-          <Menu.Item textValue="Email">
-            <div data-testid="custom-item">Email</div>
-          </Menu.Item>
-          <Menu.Item textValue="Text message">
-            <div>Text message</div>
-          </Menu.Item>
-          <Menu.Item textValue="Phone">
-            <div>Phone</div>
-          </Menu.Item>
-        </Menu.Section>
-      </Menu.Content>
+    <Menu ariaLabel="Menu" trigger={<Button label="Menu" />}>
+      <Menu.Section>
+        <Menu.Header>
+          <div data-testid="custom-header">Header</div>
+        </Menu.Header>
+        <Menu.Item textValue="Email">
+          <div data-testid="custom-item">Email</div>
+        </Menu.Item>
+        <Menu.Item textValue="Text message">
+          <div>Text message</div>
+        </Menu.Item>
+        <Menu.Item textValue="Phone">
+          <div>Phone</div>
+        </Menu.Item>
+      </Menu.Section>
     </Menu>
   );
 }
 
 function TestDefaultMenuWithIcons() {
   return (
-    <Menu>
-      <Menu.Trigger ariaLabel="Menu">
-        <Button label="Menu" />
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header>
-            <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
-          </Menu.Header>
-          <Menu.Item textValue="Email">
-            <Menu.ItemLabel>Email</Menu.ItemLabel>
-            <Menu.ItemIcon name="email" />
-          </Menu.Item>
-        </Menu.Section>
-        <Menu.Separator />
-        <Menu.Section>
-          <Menu.Item variation="destructive" textValue="Delete">
-            <Menu.ItemLabel>Delete</Menu.ItemLabel>
-            <Menu.ItemIcon name="trash" />
-          </Menu.Item>
-        </Menu.Section>
-      </Menu.Content>
+    <Menu ariaLabel="Menu" trigger={<Button label="Menu" />}>
+      <Menu.Section>
+        <Menu.Header>
+          <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+        </Menu.Header>
+        <Menu.Item textValue="Email">
+          <Menu.ItemLabel>Email</Menu.ItemLabel>
+          <Menu.ItemIcon name="email" />
+        </Menu.Item>
+      </Menu.Section>
+      <Menu.Separator />
+      <Menu.Section>
+        <Menu.Item variation="destructive" textValue="Delete">
+          <Menu.ItemLabel>Delete</Menu.ItemLabel>
+          <Menu.ItemIcon name="trash" />
+        </Menu.Item>
+      </Menu.Section>
     </Menu>
   );
 }
 
 function TestMenuWithReactNodeItemLabel() {
   return (
-    <Menu>
-      <Menu.Trigger ariaLabel="Menu">
-        <Button label="Menu" />
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header>
-            <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
-          </Menu.Header>
-          <Menu.Item textValue="Email">
-            <Menu.ItemLabel>
-              <ExampleUtilityComponent>Email</ExampleUtilityComponent>
-            </Menu.ItemLabel>
-            <Menu.ItemIcon name="email" />
-          </Menu.Item>
-        </Menu.Section>
-        <Menu.Separator />
-        <Menu.Section>
-          <Menu.Item variation="destructive" textValue="Delete">
-            <Menu.ItemLabel>
-              <ExampleUtilityComponent>Delete</ExampleUtilityComponent>
-            </Menu.ItemLabel>
-            <Menu.ItemIcon name="trash" />
-          </Menu.Item>
-        </Menu.Section>
-      </Menu.Content>
+    <Menu ariaLabel="Menu" trigger={<Button label="Menu" />}>
+      <Menu.Section>
+        <Menu.Header>
+          <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+        </Menu.Header>
+        <Menu.Item textValue="Email">
+          <Menu.ItemLabel>
+            <ExampleUtilityComponent>Email</ExampleUtilityComponent>
+          </Menu.ItemLabel>
+          <Menu.ItemIcon name="email" />
+        </Menu.Item>
+      </Menu.Section>
+      <Menu.Separator />
+      <Menu.Section>
+        <Menu.Item variation="destructive" textValue="Delete">
+          <Menu.ItemLabel>
+            <ExampleUtilityComponent>Delete</ExampleUtilityComponent>
+          </Menu.ItemLabel>
+          <Menu.ItemIcon name="trash" />
+        </Menu.Item>
+      </Menu.Section>
     </Menu>
   );
 }
