@@ -1,4 +1,4 @@
-import Content from "./LightBox.stories.mdx";
+import Content, { toc } from "./LightBox.stories.mdx";
 import Props from "./LightBox.props.json";
 import Notes from "./LightBoxNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [isOpen, setIsOpen] = useState(false);

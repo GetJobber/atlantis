@@ -1,4 +1,4 @@
-import Content from "./Select.stories.mdx";
+import Content, { toc } from "./Select.stories.mdx";
 import Notes from "./SelectNotes.mdx";
 import Props from "./Select.props.json";
 import MobileProps from "./Select.props-mobile.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,

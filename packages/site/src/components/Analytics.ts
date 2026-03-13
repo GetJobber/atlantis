@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation } from "@tanstack/react-router";
 import { useOnMount } from "@jobber/hooks";
 import ReactGA from "react-ga4";
 
@@ -22,7 +22,7 @@ export function Analytics() {
       hitType: "pageview",
       page: location.pathname,
     });
-  }, [location]);
+  }, [location.pathname]);
 
   return null;
 }

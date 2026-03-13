@@ -1,10 +1,11 @@
-import DataDumpContent from "./DataDump.stories.mdx";
+import DataDumpContent, { toc } from "./DataDump.stories.mdx";
 import Props from "./DataDump.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <DataDumpContent />,
+  toc,
   props: Props,
   component: {
     element: `<DataDump data={{ name: "Bob" }}></DataDump>`,

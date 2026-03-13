@@ -1,4 +1,4 @@
-import Content from "./Divider.stories.mdx";
+import Content, { toc } from "./Divider.stories.mdx";
 import Props from "./Divider.props.json";
 import MobileProps from "./Divider.props-mobile.json";
 import Notes from "./DividerNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
