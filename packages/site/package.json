@@ -16,6 +16,7 @@
     "test:visual:reload": "cd .. && npm run bootstrap && cd - && npm run test:visual",
     "test:visual": "../../scripts/e2e.sh playwright test --config=playwright.config.ts --project=chromium tests/visual/",
     "test:visual:update": "../../scripts/e2e.sh playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots",
+    "test:component-links": "../../scripts/e2e-component-links.sh playwright test --config=playwright.config.ts --project=chromium tests/site.component-links.manual.e2e.ts",
     "visual:update:single": "node scripts/visualTestHelper.mjs update",
     "visual:test:single": "node scripts/visualTestHelper.mjs test"
   },
