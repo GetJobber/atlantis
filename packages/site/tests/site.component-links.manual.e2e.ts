@@ -7,9 +7,18 @@ import {
 
 /**
  *
- * This is vibe coded.
+ * This was originally vibe coded, but I have reviewed it.
  *
- * Because it's not part of any of our default execuation paths, I'm inclined to leave it.
+ * It works, but it's overly complicated, internally facing and not extensible.
+ *
+ * I would rather us create a POM to allow for generic page access, and then build a
+ * declarative test suite on top of it that is easier to read and maintain.
+ *
+ * This is a very imperative style test suite that is tough to grok.
+ *
+ * If we ever move this into CI, reconsider this test suite.
+ *
+ * Because it's not part of any of our default execuation paths right now, I'm inclined to leave it as overly complicated for now.
  *
  * Ideally we revisit "link checking" as a topic holistically at some point and come up with a clean solution.
  */
