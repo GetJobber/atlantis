@@ -116,39 +116,6 @@ export const ActionTypes: Story = {
   },
 };
 
-const LegacyFullScreenTemplate = (args: Story["args"]) => {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  return (
-    <>
-      <Modal
-        {...args}
-        open={modalOpen}
-        size="fullScreen"
-        onRequestClose={() => setModalOpen(false)}
-        primaryAction={{ label: "Close", onClick: () => setModalOpen(false) }}
-      >
-        <Content>
-          <Text>
-            This example uses the legacy Modal API with fullScreen sizing.
-          </Text>
-        </Content>
-      </Modal>
-      <Button
-        label="Open Full Screen Legacy Modal"
-        onClick={() => setModalOpen(true)}
-      />
-    </>
-  );
-};
-
-export const LegacyFullScreen: Story = {
-  render: LegacyFullScreenTemplate,
-  args: {
-    title: "Full Screen Legacy Modal",
-  },
-};
-
 function CustomHeader() {
   const { header } = useModalStyles();
   const { onRequestClose } = useModalContext();
