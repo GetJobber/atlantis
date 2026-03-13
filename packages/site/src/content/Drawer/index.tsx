@@ -1,10 +1,11 @@
-import Content from "./Drawer.stories.mdx";
+import Content, { toc } from "./Drawer.stories.mdx";
 import Props from "./Drawer.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [drawerOpen, setDrawerOpen] = useState(true);
@@ -61,9 +62,11 @@ export default {
   title: "Drawer",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-drawer--docs`,
+        "?path=/story/components-layouts-and-structure-drawer--basic",
+        "web",
       ),
     },
   ],

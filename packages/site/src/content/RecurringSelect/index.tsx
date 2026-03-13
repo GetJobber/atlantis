@@ -1,10 +1,11 @@
-import Content from "./RecurringSelect.stories.mdx";
+import Content, { toc } from "./RecurringSelect.stories.mdx";
 import Props from "./RecurringSelect.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [rule, setRule] = useState<RecurrenceRule>({
@@ -19,9 +20,11 @@ export default {
   title: "RecurringSelect",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-recurringselect--docs`,
+        "?path=/story/components-deprecated-recurringselect--basic",
+        "web",
       ),
     },
   ],

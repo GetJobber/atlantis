@@ -1,4 +1,4 @@
-import InputDateContent from "./InputDate.stories.mdx";
+import InputDateContent, { toc } from "./InputDate.stories.mdx";
 import Props from "./InputDate.props.json";
 import MobileProps from "./InputDate.props-mobile.json";
 import RebuiltProps from "./InputDateV2.props.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputDateContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,
@@ -24,17 +25,29 @@ export default {
   title: "InputDate",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputdate--docs`,
+        "?path=/story/components-forms-and-inputs-inputdate--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputdate--basic",
+        "mobile",
       ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-inputdate-web-v2--basic",
+        "?path=/story/components-forms-and-inputs-inputdate-v2--basic",
+        "web",
       ),
     },
   ],

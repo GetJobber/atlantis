@@ -1,4 +1,4 @@
-import Content from "./Divider.stories.mdx";
+import Content, { toc } from "./Divider.stories.mdx";
 import Props from "./Divider.props.json";
 import MobileProps from "./Divider.props-mobile.json";
 import Notes from "./DividerNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -27,9 +28,19 @@ export default {
   title: "Divider",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-divider--docs`,
+        "?path=/story/components-layouts-and-structure-divider--horizontal",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-divider--horizontal",
+        "mobile",
       ),
     },
   ],

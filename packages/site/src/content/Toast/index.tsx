@@ -1,4 +1,4 @@
-import Content from "./Toast.stories.mdx";
+import Content, { toc } from "./Toast.stories.mdx";
 import Props from "./Toast.props.json";
 import MobileProps from "./Toast.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -27,9 +28,19 @@ export default {
   title: "Toast",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-toast--docs`,
+        "?path=/story/components-status-and-feedback-toast--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-status-and-feedback-toast--basic",
+        "mobile",
       ),
     },
   ],

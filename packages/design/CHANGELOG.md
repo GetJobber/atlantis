@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.92.0...@jobber/design@0.93.0) (2026-03-11)
+
+
+### Features
+
+* **design:** add Sidebar icon ([#2974](https://github.com/GetJobber/atlantis/issues/2974)) ([ecce743](https://github.com/GetJobber/atlantis/commit/ecce7433889f76c4ebc91cb3d9c3b3ea4d661342))
+
+
+
+
+
 # [0.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.91.0...@jobber/design@0.92.0) (2026-03-09)
 
 

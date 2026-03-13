@@ -1,10 +1,11 @@
-import LinkContent from "./Link.stories.mdx";
+import LinkContent, { toc } from "./Link.stories.mdx";
 import Props from "./Link.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <LinkContent />,
+  toc,
   props: Props,
   component: {
     element: `<Link url="https://en.wikipedia.org/wiki/Hyperlink" external={true}>What is a link anyway?</Link>`,
@@ -13,9 +14,11 @@ export default {
   description: "",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-link--docs`,
+        "?path=/story/components-text-and-typography-link--basic",
+        "web",
       ),
     },
   ],

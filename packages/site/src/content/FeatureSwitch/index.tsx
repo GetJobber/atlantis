@@ -1,10 +1,11 @@
-import Content from "./FeatureSwitch.stories.mdx";
+import Content, { toc } from "./FeatureSwitch.stories.mdx";
 import Props from "./FeatureSwitch.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [featureEnabled, setFeatureEnabled] = useState(true);
@@ -32,9 +33,11 @@ export default {
   title: "FeatureSwitch",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-featureswitch--docs`,
+        "?path=/story/components-selections-featureswitch--basic",
+        "web",
       ),
     },
   ],

@@ -1,10 +1,11 @@
-import FormatTimeContent from "./FormatTime.stories.mdx";
+import FormatTimeContent, { toc } from "./FormatTime.stories.mdx";
 import Props from "./FormatTime.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <FormatTimeContent />,
+  toc,
   props: Props,
   component: {
     element: `const earlyTime = new Date();
@@ -23,8 +24,12 @@ export default {
   title: "FormatTime",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-formattime--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-utilities-formattime--basic",
+        "web",
+      ),
     },
   ],
 } as const satisfies ContentExport;

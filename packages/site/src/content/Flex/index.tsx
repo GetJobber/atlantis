@@ -1,4 +1,4 @@
-import Content from "./Flex.stories.mdx";
+import Content, { toc } from "./Flex.stories.mdx";
 import Props from "./Flex.props.json";
 import MobileProps from "./Flex.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -37,9 +38,19 @@ export default {
   title: "Flex",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-flex--docs`,
+        "?path=/story/components-layouts-and-structure-flex--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-flex--nested",
+        "mobile",
       ),
     },
   ],

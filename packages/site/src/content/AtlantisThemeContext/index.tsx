@@ -1,4 +1,6 @@
-import AtlantisThemeContextContent from "./AtlantisThemeContext.stories.mdx";
+import AtlantisThemeContextContent, {
+  toc,
+} from "./AtlantisThemeContext.stories.mdx";
 import Props from "./AtlantisThemeContext.props.json";
 import MobileProps from "./AtlantisThemeContext.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +8,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AtlantisThemeContextContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -42,9 +45,19 @@ return (
   title: "AtlantisThemeContext",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-themes-atlantisthemecontext--docs`,
+        "?path=/story/components-themes-atlantisthemecontext--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-themes-atlantisthemecontext--basic",
+        "mobile",
       ),
     },
   ],

@@ -1,10 +1,11 @@
-import Content from "./TextList.stories.mdx";
+import Content, { toc } from "./TextList.stories.mdx";
 import MobileProps from "./TextList.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `<TextList items={["Item uno", "Item dos", "Item tres"]} />`,
@@ -12,9 +13,11 @@ export default {
   title: "TextList",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-textlist--docs`,
+        "?path=/story/components-lists-and-tables-textlist--basic",
+        "mobile",
       ),
     },
   ],

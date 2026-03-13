@@ -1,10 +1,11 @@
-import ConfirmationModalContent from "./ConfirmationModal.stories.mdx";
+import ConfirmationModalContent, { toc } from "./ConfirmationModal.stories.mdx";
 import Props from "./ConfirmationModal.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ConfirmationModalContent />,
+  toc,
   props: Props,
   component: {
     element: `const [open, setOpen] = useState(false);
@@ -28,9 +29,11 @@ export default {
   title: "ConfirmationModal",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-overlays-confirmationmodal--docs`,
+        "?path=/story/components-overlays-confirmationmodal--basic",
+        "web",
       ),
     },
   ],

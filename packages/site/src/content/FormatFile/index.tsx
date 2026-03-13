@@ -1,4 +1,4 @@
-import Content from "./FormatFile.stories.mdx";
+import Content, { toc } from "./FormatFile.stories.mdx";
 import Props from "./FormatFile.props.json";
 import MobileProps from "./FormatFile.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -43,9 +44,19 @@ export default {
   title: "FormatFile",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-formatfile--docs`,
+        "?path=/story/components-images-and-icons-formatfile--expanded",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-images-and-icons-formatfile--image",
+        "mobile",
       ),
     },
   ],

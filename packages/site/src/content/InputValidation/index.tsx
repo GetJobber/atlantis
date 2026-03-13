@@ -1,10 +1,11 @@
-import Content from "./InputValidation.stories.mdx";
+import Content, { toc } from "./InputValidation.stories.mdx";
 import Props from "./InputValidation.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [validationMessages, setValidationMessages] = useState("");
@@ -38,9 +39,11 @@ export default {
   title: "InputValidation",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputvalidation--docs`,
+        "?path=/story/components-forms-and-inputs-inputvalidation--basic",
+        "web",
       ),
     },
   ],

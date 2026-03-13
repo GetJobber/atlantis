@@ -1,10 +1,11 @@
-import Content from "./Gallery.stories.mdx";
+import Content, { toc } from "./Gallery.stories.mdx";
 import Props from "./Gallery.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Gallery
@@ -96,9 +97,11 @@ export default {
   title: "Gallery",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-gallery--docs`,
+        "?path=/story/components-images-and-icons-gallery--basic",
+        "web",
       ),
     },
   ],

@@ -1,10 +1,11 @@
-import Content from "./Tooltip.stories.mdx";
+import Content, { toc } from "./Tooltip.stories.mdx";
 import Props from "./Tooltip.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Flex gap="large" template={["shrink", "shrink"]}>
@@ -20,8 +21,12 @@ export default {
   title: "Tooltip",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-tooltip--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-overlays-tooltip--basic",
+        "web",
+      ),
     },
   ],
 } as const satisfies ContentExport;

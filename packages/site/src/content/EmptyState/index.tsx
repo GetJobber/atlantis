@@ -1,10 +1,11 @@
-import Content from "./EmptyState.stories.mdx";
+import Content, { toc } from "./EmptyState.stories.mdx";
 import MobileProps from "./EmptyState.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `<EmptyState
@@ -28,9 +29,11 @@ export default {
   title: "EmptyState",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-emptystate--docs`,
+        "?path=/story/components-status-and-feedback-emptystate--basic",
+        "mobile",
       ),
     },
   ],

@@ -1,4 +1,4 @@
-import InputPasswordContent from "./InputPassword.stories.mdx";
+import InputPasswordContent, { toc } from "./InputPassword.stories.mdx";
 import Props from "./InputPassword.props.json";
 import MobileProps from "./InputPassword.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputPasswordContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -15,9 +16,19 @@ export default {
   title: "InputPassword",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputphonenumber--docs`,
+        "?path=/story/components-forms-and-inputs-inputpassword--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputpassword--basic",
+        "mobile",
       ),
     },
   ],

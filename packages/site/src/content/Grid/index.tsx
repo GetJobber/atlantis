@@ -1,4 +1,4 @@
-import Content from "./Grid.stories.mdx";
+import Content, { toc } from "./Grid.stories.mdx";
 import Props from "./Grid.props.json";
 import Notes from "./GridNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
@@ -100,9 +101,11 @@ export default {
   title: "Grid",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-grid--docs`,
+        "?path=/story/components-layouts-and-structure-grid--basic",
+        "web",
       ),
     },
   ],

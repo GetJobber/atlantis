@@ -1,4 +1,4 @@
-import Content from "./InputPressable.stories.mdx";
+import Content, { toc } from "./InputPressable.stories.mdx";
 import MobileProps from "./InputPressable.props-mobile.json";
 import Notes from "./InputPressableNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `<InputPressable
@@ -19,9 +20,11 @@ export default {
   title: "InputPressable",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputpressable--docs`,
+        "?path=/story/components-forms-and-inputs-inputpressable--basic",
+        "mobile",
       ),
     },
   ],

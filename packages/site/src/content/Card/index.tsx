@@ -1,4 +1,4 @@
-import CardContent from "./Card.stories.mdx";
+import CardContent, { toc } from "./Card.stories.mdx";
 import Props from "./Card.props.json";
 import MobileProps from "./Card.props-mobile.json";
 import Notes from "./CardNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <CardContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -37,9 +38,19 @@ export default {
   title: "Card",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-card--docs`,
+        "?path=/story/components-layouts-and-structure-card--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-card--basic",
+        "mobile",
       ),
     },
   ],

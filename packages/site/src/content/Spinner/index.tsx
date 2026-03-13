@@ -1,10 +1,11 @@
-import Content from "./Spinner.stories.mdx";
+import Content, { toc } from "./Spinner.stories.mdx";
 import Props from "./Spinner.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Spinner />`,
@@ -13,9 +14,11 @@ export default {
   title: "Spinner",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-spinner--docs`,
+        "?path=/story/components-status-and-feedback-spinner--basic",
+        "web",
       ),
     },
   ],

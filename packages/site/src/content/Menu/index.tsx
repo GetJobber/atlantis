@@ -1,4 +1,4 @@
-import Content from "./Menu.stories.mdx";
+import Content, { toc } from "./Menu.stories.mdx";
 import Props from "./Menu.props.json";
 import MobileProps from "./Menu.props-mobile.json";
 import Notes from "./MenuNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -70,8 +71,20 @@ export default {
   title: "Menu",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-navigation-menu--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-navigation-menu--horizontal",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-navigation-menu--basic",
+        "mobile",
+      ),
     },
   ],
   notes: () => <Notes />,

@@ -63,6 +63,9 @@ export interface ChipMultiSelectProps extends ChipFoundationProps {
   onChange(value: string[]): void;
 }
 
+/**
+ * @deprecated Use Autocomplete with the "multiple" prop instead of dismissible Chips.
+ */
 export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly type: "dismissible";
   readonly selected: string[];

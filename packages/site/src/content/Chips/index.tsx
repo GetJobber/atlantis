@@ -1,4 +1,4 @@
-import ChipsContent from "./Chips.stories.mdx";
+import ChipsContent, { toc } from "./Chips.stories.mdx";
 import Props from "./Chips.props.json";
 import Notes from "./ChipsNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ChipsContent />,
+  toc,
   props: Props,
   component: {
     element: `const [selected, setSelected] = useState();
@@ -28,8 +29,12 @@ export default {
   title: "Chips",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-chips--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-chips--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

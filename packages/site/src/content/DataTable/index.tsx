@@ -1,4 +1,4 @@
-import Content from "./DataTable.stories.mdx";
+import Content, { toc } from "./DataTable.stories.mdx";
 import Props from "./DataTable.props.json";
 import Notes from "./DataTableNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<DataTable
@@ -114,9 +115,11 @@ export default {
   title: "DataTable",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-datatable--docs`,
+        "?path=/story/components-lists-and-tables-datatable-composable--basic",
+        "web",
       ),
     },
   ],

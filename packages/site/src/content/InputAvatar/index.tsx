@@ -1,10 +1,11 @@
-import Content from "./InputAvatar.stories.mdx";
+import Content, { toc } from "./InputAvatar.stories.mdx";
 import Props from "./InputAvatar.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [avatarUrl, setAvatarUrl] = useState("https://picsum.photos/250");
@@ -32,9 +33,11 @@ async function handleChange(newAvatar: unknown) {
   title: "InputAvatar",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputavatar--docs`,
+        "?path=/story/components-forms-and-inputs-inputavatar--basic",
+        "web",
       ),
     },
   ],

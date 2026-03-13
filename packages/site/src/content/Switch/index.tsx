@@ -1,4 +1,4 @@
-import SwitchContent from "./Switch.stories.mdx";
+import SwitchContent, { toc } from "./Switch.stories.mdx";
 import Props from "./Switch.props.json";
 import MobileProps from "./Switch.props-mobile.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
@@ -6,6 +6,7 @@ import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <SwitchContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -24,7 +25,11 @@ export default {
     },
     {
       label: "Mobile Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-switch--docs"),
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-switch--basic",
+        "mobile",
+      ),
     },
   ],
 } as const satisfies ContentExport;

@@ -1,4 +1,4 @@
-import Content from "./SideDrawer.stories.mdx";
+import Content, { toc } from "./SideDrawer.stories.mdx";
 import Props from "./SideDrawer.props.json";
 import Notes from "./SideDrawerNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `
@@ -107,8 +108,12 @@ export default {
   title: "SideDrawer",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-sidedrawer--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-overlays-sidedrawer--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

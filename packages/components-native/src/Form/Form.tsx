@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import { FormProvider } from "react-hook-form";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {
+  KeyboardAwareScrollView,
+  KeyboardEvents,
+} from "react-native-keyboard-controller";
+import type { KeyboardEventData } from "react-native-keyboard-controller";
 import type { LayoutChangeEvent } from "react-native";
 import { Keyboard, Platform, View, findNodeHandle } from "react-native";
 import { useStyles } from "./Form.style";
 import { FormErrorBanner } from "./components/FormErrorBanner";
-import { KEYBOARD_SAVE_BUTTON_DISTANCE } from "./constants";
+import {
+  KEYBOARD_SAVE_BUTTON_DISTANCE,
+  KEYBOARD_TOP_PADDING_AUTO_SCROLL,
+} from "./constants";
 import { FormMessageBanner } from "./components/FormMessageBanner";
 import type {
   FormErrors,
@@ -92,7 +99,7 @@ function InternalForm<T extends FieldValues, S>({
     messageBannerHeight,
     UNSAFE_allowDiscardLocalCacheWhenOffline,
   });
-  const { windowHeight, headerHeight } = useScreenInformation();
+  const { windowHeight } = useScreenInformation();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [keyboardScreenY, setKeyboardScreenY] = useState(0);
   const [formContentHeight, setFormContentHeight] = useState(0);
@@ -117,21 +124,54 @@ function InternalForm<T extends FieldValues, S>({
     formState: formMethods.formState,
     refNode: findNodeHandle(scrollViewRef.current),
     setFocus: formMethods.setFocus,
-    scrollToPosition: scrollViewRef.current?.scrollToPosition,
+    scrollTo: scrollViewRef.current?.scrollTo,
   });
 
   const handleOfflineSubmit = useOfflineHandler();
 
-  const keyboardProps = Platform.select({
-    ios: {
-      onKeyboardWillHide: handleKeyboardHide,
-      onKeyboardWillShow: handleKeyboardShow,
+  const handleKeyboardShow = useCallback(
+    (event: KeyboardEventData) => {
+      setKeyboardHeight(event.height);
+      setKeyboardScreenY(windowHeight - event.height);
     },
-    android: {
-      onKeyboardDidHide: handleKeyboardHide,
-      onKeyboardDidShow: handleKeyboardShow,
-    },
-  });
+    [windowHeight],
+  );
+
+  const handleKeyboardHide = useCallback(() => {
+    bottomViewRef?.current?.measureInWindow(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      (_x: number, y: number, _width: number, _height: number) => {
+        // This fixes extra whitespace below the form if it was scrolled down while the keyboard was open
+        // i.e. a View below the form is higher than the bottom of the window
+        if (y < windowHeight) {
+          scrollViewRef?.current?.scrollToEnd();
+        }
+      },
+    );
+    setKeyboardHeight(0);
+    setKeyboardScreenY(0);
+  }, [bottomViewRef, scrollViewRef, windowHeight]);
+
+  useEffect(() => {
+    const showEvent =
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvent =
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+
+    const showListener = KeyboardEvents.addListener(
+      showEvent,
+      handleKeyboardShow,
+    );
+    const hideListener = KeyboardEvents.addListener(
+      hideEvent,
+      handleKeyboardHide,
+    );
+
+    return () => {
+      showListener.remove();
+      hideListener.remove();
+    };
+  }, [handleKeyboardHide, handleKeyboardShow]);
 
   const onLayout = (event: LayoutChangeEvent) => {
     setMessageBannerHeight(event.nativeEvent.layout.height);
@@ -166,17 +206,12 @@ function InternalForm<T extends FieldValues, S>({
           saveButtonOffset={saveButtonOffset}
         >
           <KeyboardAwareScrollView
-            enableResetScrollToCoords={false}
-            enableAutomaticScroll={!disableKeyboardAwareScroll}
-            enableOnAndroid={edgeToEdgeEnabled}
-            keyboardOpeningTime={
-              Platform.OS === "ios" ? tokens["timing-slowest"] : 0
-            }
+            disableScrollOnKeyboardHide={true}
+            enabled={!disableKeyboardAwareScroll}
             keyboardShouldPersistTaps={"handled"}
             ref={scrollViewRef}
-            {...keyboardProps}
-            extraHeight={headerHeight}
-            extraScrollHeight={edgeToEdgeEnabled ? tokens["space-large"] : 0}
+            bottomOffset={KEYBOARD_TOP_PADDING_AUTO_SCROLL}
+            extraKeyboardSpace={edgeToEdgeEnabled ? tokens["space-large"] : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
@@ -233,27 +268,6 @@ function InternalForm<T extends FieldValues, S>({
       <FormMessage />
     </FormProvider>
   );
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleKeyboardShow(frames: Record<string, any>) {
-    setKeyboardScreenY(frames.endCoordinates.screenY);
-    setKeyboardHeight(frames.endCoordinates.height);
-  }
-
-  function handleKeyboardHide() {
-    bottomViewRef?.current?.measureInWindow(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (_x: number, y: number, _width: number, _height: number) => {
-        // This fixes extra whitespace below the form if it was scrolled down while the keyboard was open
-        // i.e. a View below the form is higher than the bottom of the window
-        if (y < windowHeight) {
-          scrollViewRef?.current?.scrollToEnd();
-        }
-      },
-    );
-    setKeyboardHeight(0);
-    setKeyboardScreenY(0);
-  }
 
   async function internalSubmit(data: FormValues<T>) {
     let performSubmit = true;

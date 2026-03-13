@@ -1,10 +1,11 @@
-import Content from "./ActionItemGroup.stories.mdx";
+import Content, { toc } from "./ActionItemGroup.stories.mdx";
 import MobileProps from "./ActionItemGroup.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `<ActionItemGroup>
@@ -37,9 +38,11 @@ export default {
   title: "ActionItemGroup",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-actionitemgroup--docs`,
+        "?path=/story/components-layouts-and-structure-actionitemgroup--basic",
+        "mobile",
       ),
     },
   ],

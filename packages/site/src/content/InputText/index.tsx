@@ -1,4 +1,4 @@
-import Content from "./InputText.stories.mdx";
+import Content, { toc } from "./InputText.stories.mdx";
 import Props from "./InputText.props.json";
 import MobileProps from "./InputText.props-mobile.json";
 import RebuiltProps from "./InputTextV2.props.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,
@@ -21,17 +22,29 @@ export default {
   title: "InputText",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputtext--docs`,
+        "?path=/story/components-forms-and-inputs-inputtext--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputtext--basic",
+        "mobile",
       ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-inputtext-web-v2--basic",
+        "?path=/story/components-forms-and-inputs-inputtext-v2--basic",
+        "web",
       ),
     },
   ],

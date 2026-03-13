@@ -1,4 +1,4 @@
-import Content from "./Tabs.stories.mdx";
+import Content, { toc } from "./Tabs.stories.mdx";
 import Props from "./Tabs.props.json";
 import Notes from "./TabsNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Tabs>
@@ -30,8 +31,12 @@ export default {
   title: "Tabs",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-navigation-tabs--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-navigation-tabs--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

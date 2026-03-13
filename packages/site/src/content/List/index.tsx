@@ -1,4 +1,4 @@
-import Content from "./List.stories.mdx";
+import Content, { toc } from "./List.stories.mdx";
 import Props from "./List.props.json";
 import Notes from "./ListNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Card>
@@ -37,9 +38,11 @@ export default {
   title: "List",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-list--docs`,
+        "?path=/story/components-lists-and-tables-list--basic",
+        "web",
       ),
     },
   ],

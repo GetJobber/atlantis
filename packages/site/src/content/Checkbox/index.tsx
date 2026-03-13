@@ -1,4 +1,4 @@
-import CheckboxContent from "./Checkbox.stories.mdx";
+import CheckboxContent, { toc } from "./Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import MobileProps from "./Checkbox.props-mobile.json";
 import RebuiltProps from "./CheckboxV2.props.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <CheckboxContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,
@@ -21,15 +22,29 @@ export default {
   title: "Checkbox",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-checkbox--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-checkbox--basic",
+        "mobile",
+      ),
     },
   ],
   webSupportedLinks: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
         "?path=/story/components-selections-checkbox-web-v2--basic",
+        "web",
       ),
     },
   ],

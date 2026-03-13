@@ -1,10 +1,11 @@
-import InlineLabelContent from "./InlineLabel.stories.mdx";
+import InlineLabelContent, { toc } from "./InlineLabel.stories.mdx";
 import Props from "./InlineLabel.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InlineLabelContent />,
+  toc,
   props: Props,
   component: {
     element: `<InlineLabel>Default</InlineLabel>`,
@@ -12,9 +13,11 @@ export default {
   title: "InlineLabel",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-inlinelabel--docs`,
+        "?path=/story/components-status-and-feedback-inlinelabel--basic",
+        "web",
       ),
     },
   ],

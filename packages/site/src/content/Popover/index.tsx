@@ -1,4 +1,4 @@
-import Content from "./Popover.stories.mdx";
+import Content, { toc } from "./Popover.stories.mdx";
 import Props from "./Popover.props.json";
 import Notes from "./PopoverNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const divRef = useRef<HTMLSpanElement>(null);
@@ -33,8 +34,12 @@ export default {
   title: "Popover",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-popover--docs`),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-overlays-popover--basic",
+        "web",
+      ),
     },
   ],
   notes: () => <Notes />,

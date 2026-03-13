@@ -1,4 +1,4 @@
-import AnimatedSwitcherContent from "./AnimatedSwitcher.stories.mdx";
+import AnimatedSwitcherContent, { toc } from "./AnimatedSwitcher.stories.mdx";
 import MobileProps from "./AnimatedSwitcher.props.json";
 import Notes from "./AnimatedSwitcherNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,7 +6,8 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AnimatedSwitcherContent />,
-  mobileProps: MobileProps,
+  toc,
+  props: MobileProps,
   component: {
     element: `
 
@@ -33,9 +34,11 @@ export default {
   title: "AnimatedSwitcher",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/docs/components-utilities-animatedswitcher--docs",
+        "?path=/story/components-utilities-animatedswitcher--basic",
+        "web",
       ),
     },
   ],

@@ -1,10 +1,11 @@
-import Content from "./ActivityIndicator.stories.mdx";
+import Content, { toc } from "./ActivityIndicator.stories.mdx";
 import MobileProps from "./ActivityIndicator.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `<ActivityIndicator size="small" />`,
@@ -12,9 +13,11 @@ export default {
   title: "ActivityIndicator",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-activityindicator--docs`,
+        "?path=/story/components-status-and-feedback-activityindicator--basic",
+        "mobile",
       ),
     },
   ],

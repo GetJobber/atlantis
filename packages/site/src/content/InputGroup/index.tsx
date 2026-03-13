@@ -1,10 +1,11 @@
-import Content from "./InputGroup.stories.mdx";
+import Content, { toc } from "./InputGroup.stories.mdx";
 import Props from "./InputGroup.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const startTime = new Date();
@@ -24,9 +25,11 @@ export default {
   title: "InputGroup",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputgroup--docs`,
+        "?path=/story/components-forms-and-inputs-inputgroup--basic",
+        "web",
       ),
     },
   ],

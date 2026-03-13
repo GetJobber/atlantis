@@ -1,10 +1,11 @@
-import StatusIndicatorContent from "./StatusIndicator.stories.mdx";
+import StatusIndicatorContent, { toc } from "./StatusIndicator.stories.mdx";
 import Props from "./StatusIndicator.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <StatusIndicatorContent />,
+  toc,
   props: Props,
   component: {
     element: `<Box direction="row" gap="base">
@@ -20,9 +21,11 @@ export default {
   title: "StatusIndicator",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-statusindicator--docs`,
+        "?path=/story/components-status-and-feedback-statusindicator--basic",
+        "web",
       ),
     },
   ],

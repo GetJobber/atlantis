@@ -1,4 +1,4 @@
-import Content from "./Content.stories.mdx";
+import Content, { toc } from "./Content.stories.mdx";
 import Props from "./Content.props.json";
 import MobileProps from "./Content.props-mobile.json";
 import Notes from "./ContentNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -55,9 +56,19 @@ export default {
   title: "Content",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-content--docs`,
+        "?path=/story/components-layouts-and-structure-content--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-layouts-and-structure-content--vertical",
+        "mobile",
       ),
     },
   ],

@@ -1,4 +1,4 @@
-import Content from "./Form.stories.mdx";
+import Content, { toc } from "./Form.stories.mdx";
 import Props from "./Form.props.json";
 import MobileProps from "./Form.props-mobile.json";
 import Notes from "./FormNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -82,9 +83,19 @@ export default {
   title: "Form",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-form--docs`,
+        "?path=/story/components-forms-and-inputs-form--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-form--basic",
+        "mobile",
       ),
     },
   ],

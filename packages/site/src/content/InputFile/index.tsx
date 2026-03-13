@@ -1,4 +1,4 @@
-import Content from "./InputFile.stories.mdx";
+import Content, { toc } from "./InputFile.stories.mdx";
 import Props from "./InputFile.props.json";
 import Notes from "./InputFileNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<InputFile />`,
@@ -14,9 +15,11 @@ export default {
   title: "InputFile",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputfile--docs`,
+        "?path=/story/components-forms-and-inputs-inputfile--variations-and-sizes",
+        "web",
       ),
     },
   ],

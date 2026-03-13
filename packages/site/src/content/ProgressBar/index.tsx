@@ -1,4 +1,4 @@
-import ProgressBarContent from "./ProgressBar.stories.mdx";
+import ProgressBarContent, { toc } from "./ProgressBar.stories.mdx";
 import Props from "./ProgressBar.props.json";
 import MobileProps from "./ProgressBar.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ProgressBarContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -15,9 +16,19 @@ export default {
   title: "ProgressBar",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-progressbar--docs`,
+        "?path=/story/components-status-and-feedback-progressbar--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-status-and-feedback-progressbar--basic",
+        "mobile",
       ),
     },
   ],

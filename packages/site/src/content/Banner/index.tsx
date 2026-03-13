@@ -1,4 +1,4 @@
-import BannerContent from "./Banner.stories.mdx";
+import BannerContent, { toc } from "./Banner.stories.mdx";
 import Props from "./Banner.props.json";
 import MobileProps from "./Banner.props-mobile.json";
 import Notes from "./BannerNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <BannerContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
@@ -28,9 +29,19 @@ export default {
   title: "Banner",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-banner--docs`,
+        "?path=/story/components-status-and-feedback-banner--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-status-and-feedback-banner--basic",
+        "mobile",
       ),
     },
   ],

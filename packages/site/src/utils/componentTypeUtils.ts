@@ -192,3 +192,72 @@ export function isComponentTypeAvailable(
 ): boolean {
   return getAvailableComponentTypes(content).includes(type);
 }
+
+interface ResolveComponentTypeFromRouteOptions {
+  tab?: string;
+  isLegacy: boolean;
+  availableTypes?: ComponentType[];
+  defaultType?: ComponentType;
+  allowNullWhenNoTab?: boolean;
+}
+
+/**
+ * Resolve a component type from a route tab + legacy flag, with optional
+ * awareness of available types and a default type.
+ */
+// eslint-disable-next-line max-statements
+export function resolveComponentTypeFromRoute({
+  tab,
+  isLegacy,
+  availableTypes,
+  defaultType,
+  allowNullWhenNoTab = false,
+}: ResolveComponentTypeFromRouteOptions): ComponentType | null {
+  const normalizedTab = tab?.toLowerCase().trim();
+
+  const hasType = (type: ComponentType) =>
+    !availableTypes || availableTypes.includes(type);
+
+  const fallbackType = (): ComponentType => {
+    if (defaultType && hasType(defaultType)) {
+      if (defaultType === "webSupported" && isLegacy && hasType("web")) {
+        return "web";
+      }
+
+      return defaultType;
+    }
+
+    if (isLegacy && hasType("web")) return "web";
+    if (hasType("webSupported")) return "webSupported";
+    if (hasType("web")) return "web";
+    if (hasType("mobile")) return "mobile";
+
+    return "webSupported";
+  };
+
+  if (!normalizedTab) {
+    return allowNullWhenNoTab ? null : fallbackType();
+  }
+
+  if (normalizedTab === "implement") {
+    return defaultType
+      ? fallbackType()
+      : allowNullWhenNoTab
+      ? null
+      : "webSupported";
+  }
+
+  if (normalizedTab === "mobile") {
+    return hasType("mobile") ? "mobile" : fallbackType();
+  }
+
+  if (normalizedTab === "web") {
+    if (isLegacy && hasType("web")) return "web";
+    if (hasType("webSupported")) return "webSupported";
+    if (hasType("web")) return "web";
+
+    return fallbackType();
+  }
+
+  return allowNullWhenNoTab ? null : fallbackType();
+}
