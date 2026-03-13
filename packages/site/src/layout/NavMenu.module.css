@@ -129,11 +129,12 @@
   mix-blend-mode: screen;
 }
 
-a.navFooterLink {
-  margin: 0;
+.navFooter {
   margin-top: auto;
-  font-size: var(--typography--fontSize-small);
-  color: var(--color-text--secondary);
+}
+
+.navFooter a {
+  color: inherit;
 }
 
 .desktopNavContainer {

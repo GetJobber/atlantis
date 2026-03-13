@@ -1,10 +1,11 @@
-import Content from "./ContentBlock.stories.mdx";
+import Content, { toc } from "./ContentBlock.stories.mdx";
 import Props from "./ContentBlock.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<Box width="100%" background="surface">

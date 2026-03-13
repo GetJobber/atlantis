@@ -5,7 +5,7 @@ import {
   Heading,
   useAtlantisTheme,
 } from "@jobber/components";
-import { useHistory } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { ComponentWrapper } from "./ComponentWrapper";
 import { ContentCardProps } from "../types/components";
 
@@ -22,14 +22,14 @@ export const ContentCard = ({
   imageURL,
   onClick,
 }: ContentCardProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { theme } = useAtlantisTheme();
 
   return (
     <Card
       elevation={theme === "dark" ? "none" : "low"}
       onClick={() => {
-        history.push(to);
+        navigate({ to });
         onClick?.();
       }}
     >

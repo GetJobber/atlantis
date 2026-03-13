@@ -1,4 +1,4 @@
-import Content from "./InputFile.stories.mdx";
+import Content, { toc } from "./InputFile.stories.mdx";
 import Props from "./InputFile.props.json";
 import Notes from "./InputFileNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<InputFile />`,

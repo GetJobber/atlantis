@@ -1,7 +1,7 @@
 import { Box, Content, Heading, Icon, Text } from "@jobber/components";
 import ReactMarkdown from "react-markdown";
 import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import styles from "./TritonConversation.module.css";
 import { CopyCodeButton } from "./CodeCopyButton";
 import { componentMap, getComponentPath } from "../utils/TritonLinks";
