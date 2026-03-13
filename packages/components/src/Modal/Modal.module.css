@@ -1,5 +1,8 @@
 :root {
   --modal--width: 600px;
+  --modal--max-height: calc(100dvh - 2 * var(--space-base));
+  --modal--margin: auto;
+  --modal--border-radius: var(--radius-base);
   --modal--padding-horizontal: var(--space-base);
   --modal--padding-vertical: var(--space-base);
   --modal--padding: var(--modal--padding-vertical)
@@ -23,7 +26,7 @@
   overflow: auto;
 }
 
-.containerFullWidth {
+.containerFullScreen {
   padding: 0;
 }
 
@@ -45,9 +48,9 @@
   width: 100%;
   max-width: var(--modal--width);
   box-shadow: var(--modal--shadow);
-  margin: auto;
+  margin: var(--modal--margin);
   border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-base);
+  border-radius: var(--modal--border-radius);
   background-color: var(--color-surface);
   flex: 0 0 auto;
   outline-color: var(--color-focus);

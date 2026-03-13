@@ -31,7 +31,7 @@ export function ModalLegacy({
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   const containerClassName = classnames(
     styles.container,
-    size === "fullScreen" && styles.containerFullWidth,
+    size === "fullScreen" && styles.containerFullScreen,
   );
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
