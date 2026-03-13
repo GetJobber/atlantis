@@ -120,7 +120,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
         </MenuList>
       </div>
       <div className={styles.navFooter}>
-        <Typography size="small" textColor="textSecondary">
+        <Typography size="small" textColor="interactiveSubtle">
           View in Storybook:{" "}
           <AtlantisLink url={getStorybookUrl("?path=/docs", "web")} external>
             Web
