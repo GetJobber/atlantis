@@ -3,15 +3,17 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import pluginjson from "@rollup/plugin-json";
 
+const outputDir = process.env.ATLANTIS_DIST_DIR || "dist";
+
 export default {
   input: "src/index.ts",
   output: [
     {
-      file: "dist/index.mjs",
+      file: `${outputDir}/index.mjs`,
       format: "es",
     },
     {
-      file: "dist/index.cjs",
+      file: `${outputDir}/index.cjs`,
       format: "cjs",
     },
   ],
