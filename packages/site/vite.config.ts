@@ -40,6 +40,18 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    proxy: {
+      "/storybook/web": {
+        target: "http://localhost:6007",
+        changeOrigin: true,
+        rewrite: requestPath => requestPath.replace(/^\/storybook\/web/, ""),
+      },
+      "/storybook/mobile": {
+        target: "http://localhost:6008",
+        changeOrigin: true,
+        rewrite: requestPath => requestPath.replace(/^\/storybook\/mobile/, ""),
+      },
+    },
   },
   build: {
     minify: false,
