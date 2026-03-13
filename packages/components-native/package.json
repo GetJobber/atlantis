@@ -28,7 +28,7 @@
     "./jestSetup.js"
   ],
   "scripts": {
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "clean": "rm -rf dist/* tsconfig.build.tsbuildinfo",
     "build": "npm run build:clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
