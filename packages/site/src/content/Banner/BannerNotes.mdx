@@ -7,7 +7,7 @@ Banner. If you require an action, use the `primaryActions` prop. The
 `primaryAction` accepts the same props as the Button component.
 
 See
-[Actions in Banners](../?path=/story/components-status-and-feedback-banner-web--actions-in-banners)
+[Actions in Banners](/storybook/web/?path=/story/components-status-and-feedback-banner--actions-in-banners)
 for some examples.
 
 ### Actions (mobile)
@@ -16,26 +16,25 @@ Use the `action` prop to specify an `onPress` callback and a `label`. Banner
 will render the action using an [ActionLabel](/components/ActionLabel).
 
 See
-[Actions in Banners](../?path=/story/components-status-and-feedback-banner-mobile--actions-in-banners)
+[Actions in Banners](/storybook/mobile/?path=/story/components-status-and-feedback-banner--actions-in-banners)
 for an example.
 
 ## Component customization
 
 ### Composable usage
 
-Banner exposes its internal building blocks as subcomponents: `Banner.Provider`, `Banner.Content`,
-`Banner.DismissButton`, `Banner.Icon`, and `Banner.Action`. This gives you more control over the Banner's
-appearance and behaviour.
+Banner exposes its internal building blocks as subcomponents: `Banner.Provider`,
+`Banner.Content`, `Banner.DismissButton`, `Banner.Icon`, and `Banner.Action`.
+This gives you more control over the Banner's appearance and behaviour.
 
 Here's a basic example of how our current non-composable Banner is used:
 
 ```tsx
-<Banner type="success">
-  Your account was upgraded successfully
-</Banner>
+<Banner type="success">Your account was upgraded successfully</Banner>
 ```
 
-Using Banner's built-in subcomponents, this UI can alternatively be expressed as:
+Using Banner's built-in subcomponents, this UI can alternatively be expressed
+as:
 
 ```tsx
 <Banner.Provider type="success">
@@ -43,7 +42,8 @@ Using Banner's built-in subcomponents, this UI can alternatively be expressed as
 </Banner.Provider>
 ```
 
-If you want to completely disable the icon or dismiss button, you can set them to false:
+If you want to completely disable the icon or dismiss button, you can set them
+to false:
 
 ```tsx
 <Banner.Provider type="success" icon={false} dismissButton={false}>
@@ -51,7 +51,8 @@ If you want to completely disable the icon or dismiss button, you can set them t
 </Banner.Provider>
 ```
 
-If you need a custom icon, you can either configure `Banner.Icon` or pass in your own element:
+If you need a custom icon, you can either configure `Banner.Icon` or pass in
+your own element:
 
 ```tsx
 <Banner.Provider
@@ -68,14 +69,13 @@ If you need a custom icon, you can either configure `Banner.Icon` or pass in you
 </Banner.Provider>
 ```
 
-If you need to customize the dismiss button, you can either configure `Banner.DismissButton` or pass in your own element:
+If you need to customize the dismiss button, you can either configure
+`Banner.DismissButton` or pass in your own element:
 
 ```tsx
 <Banner.Provider
   type="success"
-  dismissButton={
-    <Banner.DismissButton onClick={() => alert("Dismissed")} />
-  }
+  dismissButton={<Banner.DismissButton onClick={() => alert("Dismissed")} />}
 >
   <Banner.Content>Your account was upgraded successfully</Banner.Content>
 </Banner.Provider>
@@ -85,11 +85,10 @@ For action buttons, you should use `Banner.Action`:
 
 ```tsx
 <Banner.Provider type="warning">
-  <Banner.Content>Changes to this visit will not be applied to future visits</Banner.Content>
-  <Banner.Action
-    label="More info"
-    onClick={() => alert("More info...")}
-  />
+  <Banner.Content>
+    Changes to this visit will not be applied to future visits
+  </Banner.Content>
+  <Banner.Action label="More info" onClick={() => alert("More info...")} />
 </Banner.Provider>
 ```
 
@@ -98,8 +97,9 @@ For action buttons, you should use `Banner.Action`:
 General information for using `UNSAFE_` props can be found
 [here](/guides/customizing-components).
 
-Banner has a few elements that can be targeted with classes or styles: `Banner.Provider`,
-`Banner.Content`, `Banner.Icon`, `Banner.Action`, and `Banner.DismissButton`.
+Banner has a few elements that can be targeted with classes or styles:
+`Banner.Provider`, `Banner.Content`, `Banner.Icon`, `Banner.Action`, and
+`Banner.DismissButton`.
 
 **Note**: Use of `UNSAFE_` props is **at your own risk** and should be
 considered a **last resort**. Future Popover updates may lead to unintended
@@ -107,8 +107,8 @@ breakages.
 
 #### UNSAFE_className
 
-Use `UNSAFE_className` to apply custom classes to the Banner. This can be
-useful for applying styles via CSS Modules.
+Use `UNSAFE_className` to apply custom classes to the Banner. This can be useful
+for applying styles via CSS Modules.
 
 ```tsx
 // YourComponent.module.css

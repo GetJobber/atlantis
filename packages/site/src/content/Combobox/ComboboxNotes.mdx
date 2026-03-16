@@ -13,9 +13,9 @@ To use the default activator simply omit any kind of `Combobox.Activator`
 subcomponent in your instance.
 
 Examples of using a default activator can be found in the
-[single-select](../?path=/story/components-selections-combobox-web--single-select)
+[single-select](/storybook/web/?path=/story/components-selections-combobox--single-select)
 and
-[multi-select](../?path=/story/components-selections-combobox-web--multi-select)
+[multi-select](/storybook/web/?path=/story/components-selections-combobox--multi-select)
 stories. The label of the default activator can be customized by adding the
 optional `label` prop to Combobox, to better reflect the type of data being
 selected. Otherwise, the default activator label will read "Select".
@@ -31,7 +31,7 @@ is not suitable.
 **Child React Component:** To use a customized `Chip` or `Button` your custom
 activator should be a child of `<Combobox.Activator />`. An example of using a
 custom activator can be found in the
-[custom activator](../?path=/story/components-selections-combobox-web--custom-activator)
+[custom activator](/storybook/web/?path=/story/components-selections-combobox--custom-activator)
 story.
 
 **Child Render Function:** If neither a Chip nor a Button is sufficient for your
@@ -40,7 +40,7 @@ needs, you may instead provide a function as the child to `Combobox.Activator`.
 As arguments, the function will receive a method to open the Combobox (closing
 is handled internally), and accessibility attributes required for a Combobox.
 **You must implement these yourself**. See the
-[render function example](../?path=/story/components-selections-combobox-web--custom-activator)
+[render function example](/storybook/web/?path=/story/components-selections-combobox--custom-activator)
 for reference.
 
 The render function must return a single, valid JSX Element (it can of course
@@ -61,12 +61,12 @@ display the option.
 
 You can use the `prefix` option to render content on the left side of the
 provided `label`. An example of this behaviour can be found in the
-[Prefix Options](../?path=/story/components-selections-combobox-web--prefix-options)
+[Prefix Options](/storybook/web/?path=/story/components-selections-combobox--prefix-options)
 story.
 
 If you need more advanced control of the children inside each option, you can
 use the `customRender` prop to supply your own content. Check out the
-[Custom Render Options](../?path=/story/components-selections-combobox-web--custom-render-options)
+[Custom Render Options](/storybook/web/?path=/story/components-selections-combobox--custom-render-options)
 story for an example.
 
 ### Action
@@ -77,7 +77,7 @@ adding a new item to the list of options.
 By default, when an action is clicked, the Combobox will close. If you want the
 Combobox to remain open after an action is clicked, you can use the
 `keepOpenOnClick` prop. An example of this behaviour can be found in the
-[Keep Open on Click](../?path=/story/components-selections-combobox-web--keep-open-on-action-click)
+[Keep Open on Click](/storybook/web/?path=/story/components-selections-combobox--keep-open-on-click)
 story.
 
 ### Selection behavior
