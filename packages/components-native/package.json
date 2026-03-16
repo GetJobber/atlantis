@@ -29,11 +29,10 @@
   ],
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.build.tsbuildinfo",
-    "build": "npm run build:clean && npm run compile",
+    "build": "npm run clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
     "compile": "tsc -p tsconfig.build.json",
-    "build:clean": "rm -rf ./dist",
     "storybook": "storybook dev -p 6008 --disable-telemetry",
     "storybook:build": "storybook build --disable-telemetry"
   },
