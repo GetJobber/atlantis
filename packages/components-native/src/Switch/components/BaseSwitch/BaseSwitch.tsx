@@ -53,6 +53,8 @@ export function BaseSwitch({
 
   const { tokens } = useAtlantisTheme();
 
+  const isIOS26 = Platform.OS === "ios" && Platform.Version?.startsWith("26.");
+
   function getThumbColor() {
     if (Platform.OS === "android") {
       if (disabled) {
@@ -81,16 +83,18 @@ export function BaseSwitch({
       //iOS
       return {
         true: tokens["color-interactive"],
-        false: tokens["color-interactive--background"],
+        false: isIOS26
+          ? tokens["color-disabled"]
+          : tokens["color-interactive--background"],
       };
     }
   }
+
   // Temporary fix for iOS 26. Remove when we upgrade to RN 0.81.
   // https://github.com/facebook/react-native/pull/53389
-  const iOSBackgroundColor =
-    Platform.OS === "ios" && Platform.Version?.startsWith("26.")
-      ? undefined
-      : tokens["color-interactive--background"];
+  const iOSBackgroundColor = isIOS26
+    ? undefined
+    : tokens["color-interactive--background"];
 
   return (
     <Switch
