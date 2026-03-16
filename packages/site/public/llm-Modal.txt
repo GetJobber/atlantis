@@ -1,0 +1,720 @@
+# Modal
+
+# Modal
+
+Modals are overlays that allow users to view, edit, or show informations that
+doesn't require a page to be built. It also prevent users from interacting with
+the rest of the application until a specific action is taken.
+
+## Related components
+
+Use [SideDrawer](/components/SideDrawer) if you need to overlay the page's
+content and block user interaction with the page, while still maintaining
+visibilty of the page's primary contents.
+
+Use [ConfirmationModal](/components/ConfirmationModal) to allow users to confirm
+or cancel actions that they are performing.
+
+## Web Component Code
+
+```tsx
+Modal Dialog Popup Overlay Confirm Alert Web React import type { PropsWithChildren } from "react";
+import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  FloatingFocusManager,
+  FloatingNode,
+  FloatingOverlay,
+  FloatingPortal,
+} from "@floating-ui/react";
+import { useModalContext } from "./ModalContext.rebuilt";
+import type {
+  HeaderProps,
+  ModalActionsProps,
+  ModalContentProps as ModalContainerProps,
+} from "./Modal.types";
+import { useModalStyles } from "./useModalStyles";
+import { Heading } from "../Heading";
+import { ButtonDismiss } from "../ButtonDismiss";
+import { Button } from "../Button";
+import { AtlantisPortalContent } from "../AtlantisPortalContent";
+
+export function ModalHeader({ title, children }: HeaderProps) {
+  const { header, dismissButton } = useModalStyles();
+  const { dismissible, onRequestClose, modalLabelledBy } = useModalContext();
+
+  if (children) {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className={header} data-testid="ATL-Modal-Header" id={modalLabelledBy}>
+      <Heading level={2}>{title}</Heading>
+
+      {dismissible && (
+        <div className={dismissButton}>
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function ModalActions({
+  primary,
+  secondary,
+  tertiary,
+}: ModalActionsProps) {
+  const { actionBar, rightAction, leftAction } = useModalStyles();
+  const shouldShow =
+    primary != undefined || secondary != undefined || tertiary != undefined;
+
+  return (
+    <>
+      {shouldShow && (
+        <div className={actionBar} data-testid="ATL-Modal-Actions">
+          <div className={rightAction}>
+            {primary && <Button {...primary} />}
+            {secondary && (
+              <Button type="primary" variation="subtle" {...secondary} />
+            )}
+          </div>
+          {tertiary && (
+            <div className={leftAction}>
+              <Button type="secondary" variation="destructive" {...tertiary} />
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
+export function ModalActivator({ children }: PropsWithChildren) {
+  const { activatorRef } = useModalContext();
+
+  return (
+    <span ref={activatorRef} style={{ display: "contents" }}>
+      {children}
+    </span>
+  );
+}
+
+/**
+ * Background overlay for the modal. Used in the ModalContent.
+ */
+
+export function ModalOverlay() {
+  const { onRequestClose } = useModalContext();
+  const { overlayBackground } = useModalStyles();
+
+  return (
+    <motion.div
+      onClick={onRequestClose}
+      className={overlayBackground}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 0.8 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+    />
+  );
+}
+
+export function ModalContent({ children }: ModalContainerProps) {
+  const {
+    open,
+    floatingContext,
+    activatorRef,
+    floatingRefs,
+    size,
+    floatingNodeId,
+    modalLabelledBy,
+    getFloatingProps,
+  } = useModalContext();
+  const { modal, overlay } = useModalStyles(size);
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <FloatingNode id={floatingNodeId}>
+          <FloatingPortal>
+            <AtlantisPortalContent>
+              <FloatingOverlay className={overlay}>
+                <FloatingFocusManager
+                  context={floatingContext}
+                  returnFocus={activatorRef?.current ? activatorRef : true}
+                  initialFocus={floatingRefs?.floating}
+                >
+                  <div
+                    ref={floatingRefs?.setFloating}
+                    role="dialog"
+                    tabIndex={0}
+                    aria-labelledby={modalLabelledBy}
+                    {...getFloatingProps()}
+                  >
+                    <ModalOverlay />
+                    <motion.div
+                      data-floating-ui-focusable
+                      className={modal}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      {children}
+                    </motion.div>
+                  </div>
+                </FloatingFocusManager>
+              </FloatingOverlay>
+            </AtlantisPortalContent>
+          </FloatingPortal>
+        </FloatingNode>
+      )}
+    </AnimatePresence>
+  );
+}
+import React from "react";
+import ReactDOM from "react-dom";
+import classnames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import styles from "./Modal.module.css";
+import sizes from "./ModalSizes.module.css";
+import type { ModalLegacyProps } from "./Modal.types";
+import { Heading } from "../Heading";
+import type { ButtonProps } from "../Button";
+import { Button } from "../Button";
+import { ButtonDismiss } from "../ButtonDismiss";
+
+export function ModalLegacy({
+  open = false,
+  title,
+  size,
+  dismissible = true,
+  children,
+  primaryAction,
+  secondaryAction,
+  tertiaryAction,
+  onRequestClose,
+}: ModalLegacyProps) {
+  const modalClassName = classnames(styles.modal, size && sizes[size]);
+  useRefocusOnActivator(open);
+  const modalRef = useFocusTrap<HTMLDivElement>(open);
+  useOnKeyDown(handleRequestClose, "Escape");
+
+  const template = (
+    <AnimatePresence>
+      {open && (
+        <div
+          ref={modalRef}
+          role="dialog"
+          className={styles.container}
+          tabIndex={0}
+        >
+          <motion.div
+            key={styles.overlay}
+            className={styles.overlay}
+            onClick={onRequestClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.8 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.div
+            key={styles.modal}
+            className={modalClassName}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{
+              duration: 0.2,
+              ease: "easeInOut",
+            }}
+          >
+            {title != undefined && (
+              <Header
+                title={title}
+                dismissible={dismissible}
+                onRequestClose={onRequestClose}
+              />
+            )}
+            {children}
+
+            <Actions
+              primary={primaryAction}
+              secondary={secondaryAction}
+              tertiary={tertiaryAction}
+            />
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+
+  return globalThis?.document
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
+
+  function handleRequestClose() {
+    if (open && onRequestClose) {
+      onRequestClose();
+    }
+  }
+}
+
+interface HeaderProps {
+  readonly title: string;
+  readonly dismissible?: boolean;
+  onRequestClose?(): void;
+}
+
+function Header({ title, dismissible, onRequestClose }: HeaderProps) {
+  return (
+    <div className={styles.header} data-testid="modal-header">
+      <Heading level={2}>{title}</Heading>
+
+      {dismissible && (
+        <div className={styles.closeButton}>
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface ActionsProps {
+  readonly primary?: ButtonProps;
+  readonly secondary?: ButtonProps;
+  readonly tertiary?: ButtonProps;
+}
+
+function Actions({ primary, secondary, tertiary }: ActionsProps) {
+  const shouldShow =
+    primary != undefined || secondary != undefined || tertiary != undefined;
+
+  if (secondary != undefined) {
+    secondary = Object.assign(
+      { type: "primary", variation: "subtle" },
+      secondary,
+    );
+  }
+
+  if (tertiary != undefined) {
+    tertiary = Object.assign(
+      { type: "secondary", variation: "destructive" },
+      tertiary,
+    );
+  }
+
+  return (
+    <>
+      {shouldShow && (
+        <div className={styles.actionBar}>
+          <div className={styles.rightAction}>
+            {primary && <Button {...primary} />}
+            {secondary && <Button {...secondary} />}
+          </div>
+          {tertiary && (
+            <div className={styles.leftAction}>
+              <Button {...tertiary} />
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+import noop from "lodash/noop";
+import type { MutableRefObject } from "react";
+import React, { createContext, useContext } from "react";
+import type { FloatingContext } from "@floating-ui/react";
+import { FloatingTree } from "@floating-ui/react";
+import identity from "lodash/identity";
+import type sizes from "./ModalSizes.module.css";
+import { useModal } from "./useModal";
+import type { ModalContextType } from "./Modal.types";
+
+export const ModalContext = createContext<ModalContextType>({
+  open: false,
+  onRequestClose: noop,
+  activatorRef: { current: null },
+  floatingRefs: null,
+  floatingContext: {} as FloatingContext,
+  size: undefined,
+  floatingNodeId: undefined,
+  dismissible: true,
+  getFloatingProps: identity,
+});
+export interface ModalProviderProps {
+  readonly children: React.ReactNode;
+  readonly size?: keyof typeof sizes;
+  readonly open?: boolean;
+  readonly onRequestClose?: () => void;
+  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
+  readonly dismissible?: boolean;
+  readonly modalLabelledBy?: string;
+}
+
+export function ModalProvider({
+  children,
+  open = false,
+  size,
+  onRequestClose = noop,
+  activatorRef: refProp,
+  dismissible = true,
+  modalLabelledBy = "ATL-Modal-Header",
+}: ModalProviderProps) {
+  const {
+    floatingRefs,
+    floatingContext,
+    nodeId,
+    activatorRef,
+    parentId,
+    getFloatingProps,
+  } = useModal({
+    open,
+    activatorRef: refProp,
+    onRequestClose,
+  });
+
+  const content = (
+    <ModalContext.Provider
+      value={{
+        onRequestClose,
+        activatorRef,
+        floatingRefs,
+        floatingContext,
+        size,
+        open,
+        floatingNodeId: nodeId,
+        dismissible,
+        modalLabelledBy,
+        getFloatingProps,
+      }}
+    >
+      {children}
+    </ModalContext.Provider>
+  );
+
+  if (parentId) {
+    return content;
+  }
+
+  return <FloatingTree>{content}</FloatingTree>;
+}
+
+export function useModalContext() {
+  return useContext(ModalContext);
+}
+import React from "react";
+import { ModalLegacy } from "./Modal";
+import { ModalProvider } from "./ModalContext.rebuilt";
+import {
+  ModalActions,
+  ModalActivator,
+  ModalContent,
+  ModalHeader,
+} from "./Modal.rebuilt";
+import type { ModalLegacyProps } from "./Modal.types";
+
+export type { ModalLegacyProps as ModalProps } from "./Modal.types";
+
+function Modal(props: ModalLegacyProps) {
+  return <ModalLegacy {...props} />;
+}
+
+Modal.Header = ModalHeader;
+
+Modal.Actions = ModalActions;
+
+Modal.Activator = ModalActivator;
+Modal.Provider = ModalProvider;
+
+Modal.Content = ModalContent;
+
+export { useModalContext } from "./ModalContext.rebuilt";
+export { useModalStyles } from "./useModalStyles";
+
+export { Modal };
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `title` | `string` | ❌ | `false` | _No description_ |
+| `open` | `boolean` | ❌ | `[object Object]` | _No description_ |
+| `size` | `string | number | symbol` | ❌ | `_none_` | _No description_ |
+| `dismissible` | `boolean` | ❌ | `true` | _No description_ |
+| `primaryAction` | `{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }` | ❌ | `_none_` | _No description_ |
+| `secondaryAction` | `{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }` | ❌ | `_none_` | _No description_ |
+| `tertiaryAction` | `{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }` | ❌ | `_none_` | _No description_ |
+| `onRequestClose` | `() => void` | ❌ | `_none_` | _No description_ |
+| `version` | `1` | ❌ | `_none_` | _No description_ |
+
+
+## Categories
+
+- Overlays
+
+## Web Test Code
+
+```typescript
+Modal Dialog Popup Overlay Confirm Alert Web React Test Testing Jest import React from "react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Modal } from ".";
+import { Content } from "../Content";
+import { Text } from "../Text";
+
+describe("Composable Modal", () => {
+  it("should render the modal content", () => {
+    render(
+      <Modal.Provider open={true}>
+        <Modal.Content>
+          <Modal.Header title="Modal Title" />
+          <Content>
+            <Text>This is some extra content</Text>
+          </Content>
+          <Modal.Actions
+            primary={{ label: "Submit" }}
+            secondary={{ label: "Cancel" }}
+            tertiary={{ label: "Delete", variation: "destructive" }}
+          />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+    const header = screen.getByTestId("ATL-Modal-Header");
+    expect(header).toBeDefined();
+    expect(header).toHaveTextContent("Modal Title");
+    expect(screen.getByText("This is some extra content")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Submit" })).toHaveClass(
+      "primary",
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveClass(
+      "primary subtle",
+    );
+    expect(screen.getByRole("button", { name: "Delete" })).toHaveClass(
+      "secondary destructive",
+    );
+  });
+
+  it("should allow overriding of action buttons", () => {
+    render(
+      <Modal.Provider open={true}>
+        <Modal.Content>
+          <Modal.Header title="Modal Title" />
+          <Modal.Actions
+            primary={{
+              label: "Submit",
+              variation: "destructive",
+              type: "secondary",
+            }}
+            secondary={{
+              label: "Cancel",
+              variation: "work",
+              type: "tertiary",
+            }}
+            tertiary={{
+              label: "Delete",
+              variation: "destructive",
+              type: "secondary",
+            }}
+          />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+    expect(screen.getByRole("button", { name: "Submit" })).toHaveClass(
+      "secondary destructive",
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveClass(
+      "tertiary work",
+    );
+    expect(screen.getByRole("button", { name: "Delete" })).toHaveClass(
+      "secondary destructive",
+    );
+  });
+  it('modal contains aria role of "dialog"', async () => {
+    render(
+      <Modal.Provider open={true}>
+        <Modal.Content>
+          <Modal.Header title="Modal Title" />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+    expect(await screen.findByRole("dialog")).toBeInTheDocument();
+  });
+
+  it("calls onRequestClose when pressing the escape key", async () => {
+    const handleRequestClose = jest.fn();
+    render(
+      <Modal.Provider open={true} onRequestClose={handleRequestClose}>
+        <Modal.Content>
+          <Modal.Header title="Modal Title" />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+
+    await userEvent.keyboard("{Escape}");
+    expect(handleRequestClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("should render the modal header with custom content", () => {
+    render(
+      <Modal.Provider open={true} modalLabelledBy="custom-header">
+        <Modal.Content>
+          <Modal.Header>
+            <span id="custom-header">Custom Header Content</span>
+          </Modal.Header>
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+    expect(screen.getByRole("dialog")).toHaveAttribute(
+      "aria-labelledby",
+      "custom-header",
+    );
+    expect(screen.getByRole("dialog")).toHaveTextContent(
+      "Custom Header Content",
+    );
+  });
+});
+import React from "react";
+import { fireEvent, render } from "@testing-library/react";
+import { Modal } from ".";
+import styles from "./Modal.module.css";
+
+it('modal contains aria role of "dialog"', async () => {
+  const { findByRole } = render(<Modal open>Content</Modal>);
+  expect(await findByRole("dialog")).toBeInTheDocument();
+});
+
+it("modal shows the children and a close button", () => {
+  const title = "Dis be a title";
+  const content = "Dis be a content 🎉";
+  const handleClose = jest.fn();
+
+  const { getByLabelText, getByText, queryByTestId } = render(
+    <Modal title={title} open={true} onRequestClose={handleClose}>
+      {content}
+    </Modal>,
+  );
+  expect(getByText(title)).toBeTruthy();
+  expect(getByText(content)).toBeTruthy();
+  expect(queryByTestId("modal-header")).not.toBeNull();
+
+  fireEvent.click(getByLabelText("Close modal"));
+  expect(handleClose).toHaveBeenCalledTimes(1);
+});
+
+it("modal without a title doesn't show the header", () => {
+  const { queryByTestId } = render(<Modal open={true}>Content</Modal>);
+  expect(queryByTestId("modal-header")).toBeNull();
+});
+
+it("modal doesn't show up", () => {
+  const title = "Dis be a title";
+  const content = "Dis be a content 🎉";
+  const { queryByText } = render(<Modal title={title}>{content}</Modal>);
+  expect(queryByText(title)).toBeNull();
+  expect(queryByText(content)).toBeNull();
+});
+
+it("modal shows the action buttons", () => {
+  const handlePrimaryAction = jest.fn();
+  const handleSecondaryAction = jest.fn();
+  const handleTertiaryAction = jest.fn();
+  const { getByText } = render(
+    <Modal
+      title="Got some buttons?"
+      open={true}
+      primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+      secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
+      tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
+    >
+      Button me up!
+    </Modal>,
+  );
+
+  fireEvent.click(getByText("Submit"));
+  expect(handlePrimaryAction).toHaveBeenCalledTimes(1);
+
+  fireEvent.click(getByText("Cancel"));
+  expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
+
+  fireEvent.click(getByText("Delete"));
+  expect(handleTertiaryAction).toHaveBeenCalledTimes(1);
+});
+
+it("modal fires onRequestClose when pressing the escape key", () => {
+  const handleClose = jest.fn();
+
+  const { getByLabelText } = render(
+    <Modal title="Press escape!" open={true} onRequestClose={handleClose}>
+      No really. Press escape!
+    </Modal>,
+  );
+
+  fireEvent.keyDown(getByLabelText("Close modal"), { key: "Escape", code: 27 });
+  expect(handleClose).toHaveBeenCalledTimes(1);
+});
+
+it("modal gets focused once it opens", () => {
+  const title = "Dis be a title";
+  const content = "Dis be a content 🎉";
+  const handleClose = jest.fn();
+
+  const { baseElement } = render(
+    <>
+      <h1>Some Page</h1>
+      <Modal title={title} open={true} onRequestClose={handleClose}>
+        {content}
+      </Modal>
+      <p>There is some content here.</p>
+    </>,
+  );
+
+  const containerEl = baseElement.querySelector(`.${styles.container}`);
+  expect(containerEl).toHaveFocus();
+});
+
+it("modal shows with primary learning button", () => {
+  const { baseElement } = render(
+    <Modal
+      title="Teaching Modal"
+      open={true}
+      primaryAction={{
+        label: "I Would Like to Know More",
+        variation: "learning",
+      }}
+      secondaryAction={{
+        label: "Nevermind",
+      }}
+    >
+      Learn a lesson?
+    </Modal>,
+  );
+  const learningButton = baseElement.querySelector(".learning.primary");
+  expect(learningButton).toBeTruthy();
+  expect(learningButton).toHaveTextContent("I Would Like to Know More");
+});
+
+```
+
+## Component Path
+
+`/components/Modal`
+
+---
+
+_Generated on 2025-08-21T17:35:16.369Z_

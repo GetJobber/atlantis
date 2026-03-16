@@ -1,0 +1,54 @@
+# IconButton
+
+<Meta
+  title="Components/Actions/IconButton"
+  parameters={{
+    viewMode: "docs",
+  }}
+/>
+
+# Icon Button
+
+IconButtons are used to create pressable components (buttons) that render an
+Icon. IconButtons are used for navigation between different screens or
+performing core actions.
+
+Please read the [Icon](/components/Icon) documentation for more information
+regarding which icons to use.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=15033%3A12444"
+/>
+
+## Props
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `onPress` | `() => void` | ❌ | `_none_` | Press handler |
+| `name` | `IconNames` | ✅ | `_none_` | The icon to show. |
+| `accessibilityLabel` | `string` | ✅ | `_none_` | Accessibilty label for the component. It's also used for testing |
+| `color` | `"task" | "warning" | "icon" | "white" | "grey" | "greyBlue" | "greyBlueDark" | "greyBlueLighter" | "blue" | "lightBlue" | "green" | "yellow" | "red" | "navy" | "orange" | "interactive" | ... 33 more ... | "brandHighlight"` | ❌ | `_none_` | Determines the color of the icon. If not specified, some icons have a default system colour
+like quotes, jobs, and invoices.
+Others that don't have a system colour fall back to greyBlue. |
+| `customColor` | `string` | ❌ | `_none_` | Sets a custom color for the icon. Can be a rgb() or hex value. |
+| `badge` | `React.ReactNode` | ❌ | `_none_` | a component that would render over the icon
+e.g. the number of notifications over the activity feed icon |
+| `testID` | `string` | ❌ | `_none_` | Used to locate this button in tests |
+
+
+## Categories
+
+- Actions
+
+## Component Path
+
+`/components/IconButton`
+
+---
+
+_Generated on 2025-08-21T17:35:16.363Z_

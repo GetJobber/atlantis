@@ -1,0 +1,404 @@
+# List
+
+# List
+
+The `List` component renders a collection of items in a structured way. It
+provides a consistent way to display data with optional sections, custom
+rendering, and styling options.
+
+## Design & usage guidelines
+
+### Basic usage
+
+Use List to display a collection of related items in a structured format.
+
+```tsx
+const items = [
+  { id: 1, content: "First item" },
+  { id: 2, content: "Second item" },
+  { id: 3, content: "Third item" }
+];
+
+<List items={items} />
+```
+
+### With sections
+
+Group related items into sections for better organization:
+
+```tsx
+const itemsWithSections = [
+  {
+    section: "Active Items",
+    items: [
+      { id: 1, content: "Active item 1" },
+      { id: 2, content: "Active item 2" }
+    ]
+  },
+  {
+    section: "Completed Items", 
+    items: [
+      { id: 3, content: "Completed item 1" }
+    ]
+  }
+];
+
+<List items={itemsWithSections} />
+```
+
+### Custom rendering
+
+Customize how individual items are rendered:
+
+```tsx
+const customRenderItem = (item) => (
+  <div>
+    <strong>{item.title}</strong>
+    <p>{item.description}</p>
+  </div>
+);
+
+<List 
+  items={items}
+  customRenderItem={customRenderItem}
+/>
+```
+
+## Content guidelines
+
+### Item content
+- Keep item content concise and scannable
+- Use consistent formatting across all items
+- Consider the reading flow and visual hierarchy
+
+### Section headers
+- Use clear, descriptive section names
+- Keep section names short and actionable
+- Use sentence case for section headers
+
+## Related components
+
+- [DataList](/components/DataList) - For more complex data with key-value pairs
+- [DataTable](/components/DataTable) - For tabular data with sorting and filtering
+- [Menu](/components/Menu) - For navigation or action lists
+
+## Accessibility
+
+The List component includes:
+- Proper semantic HTML structure using `<ul>` and `<li>` elements
+- ARIA labels for screen readers
+- Keyboard navigation support
+- Focus management for interactive items
+
+## Web Component Code
+
+```tsx
+List Collection Display Web React import React from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { List } from "@jobber/components/List";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Button } from "@jobber/components/Button";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+
+const meta = {
+  title: "Components/Lists & Tables/List",
+  component: List,
+  parameters: {
+    previewTabs: { code: { hidden: false } },
+  },
+} satisfies Meta<typeof List>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+const basicItems = [
+  { id: 1, content: "First item" },
+  { id: 2, content: "Second item" },
+  { id: 3, content: "Third item" },
+  { id: 4, content: "Fourth item" }
+];
+
+export const Basic: Story = {
+  args: {
+    items: basicItems,
+  },
+};
+
+const itemsWithSections = [
+  {
+    section: "Active Tasks",
+    items: [
+      { id: 1, content: "Review design mockups" },
+      { id: 2, content: "Update documentation" },
+      { id: 3, content: "Test new features" }
+    ]
+  },
+  {
+    section: "Completed Tasks",
+    items: [
+      { id: 4, content: "Fix navigation bug" },
+      { id: 5, content: "Optimize performance" }
+    ]
+  }
+];
+
+export const WithSections: Story = {
+  args: {
+    items: itemsWithSections,
+  },
+};
+
+const customItems = [
+  { 
+    id: 1, 
+    title: "Project Alpha", 
+    description: "High priority project with tight deadline",
+    status: "critical"
+  },
+  { 
+    id: 2, 
+    title: "Project Beta", 
+    description: "Medium priority maintenance work",
+    status: "warning"
+  },
+  { 
+    id: 3, 
+    title: "Project Gamma", 
+    description: "Low priority feature enhancement",
+    status: "success"
+  }
+];
+
+const customRenderItem = (item: typeof customItems[0]) => (
+  <Content>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div>
+        <Text emphasis="strong">{item.title}</Text>
+        <Text>{item.description}</Text>
+      </div>
+      <StatusLabel 
+        label={item.status} 
+        status={item.status as "critical" | "warning" | "success"} 
+      />
+    </div>
+  </Content>
+);
+
+export const CustomRendering: Story = {
+  args: {
+    items: customItems,
+    customRenderItem,
+  },
+};
+
+const interactiveItems = [
+  { id: 1, content: "Click me", action: () => alert("Item 1 clicked!") },
+  { id: 2, content: "Or click me", action: () => alert("Item 2 clicked!") },
+  { id: 3, content: "Me too!", action: () => alert("Item 3 clicked!") }
+];
+
+const interactiveRenderItem = (item: typeof interactiveItems[0]) => (
+  <Button 
+    label={item.content} 
+    type="tertiary" 
+    onClick={item.action}
+    fullWidth
+  />
+);
+
+export const Interactive: Story = {
+  args: {
+    items: interactiveItems,
+    customRenderItem: interactiveRenderItem,
+  },
+};
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `ListItem[] \| ListSection[]` | Yes | - | Array of items to display, or array of sections containing items |
+| `customRenderItem` | `(item: ListItem) => ReactNode` | No | - | Custom function to render individual items |
+| `customItemStyles` | `string` | No | - | Custom CSS classes for item styling |
+| `customRenderSection` | `(section: string) => ReactNode` | No | - | Custom function to render section headers |
+| `customSectionStyles` | `string` | No | - | Custom CSS classes for section styling |
+| `labelledBy` | `string` | No | - | ID of element that labels this list for accessibility |
+
+### Types
+
+```typescript
+interface ListItem {
+  id: string | number;
+  content: ReactNode;
+  [key: string]: any; // Allow additional properties for custom rendering
+}
+
+interface ListSection {
+  section: string;
+  items: ListItem[];
+}
+
+interface ListProps {
+  items: ListItem[] | ListSection[];
+  customRenderItem?: (item: ListItem) => ReactNode;
+  customItemStyles?: string;
+  customRenderSection?: (section: string) => ReactNode;
+  customSectionStyles?: string;
+  labelledBy?: string;
+}
+```
+
+## Mobile Component Code
+
+```tsx
+List Collection Display Mobile React Native import React from "react";
+import { View, FlatList, SectionList } from "react-native";
+import { Text } from "@jobber/components-native/Text";
+import { Divider } from "@jobber/components-native/Divider";
+import type { ListProps, ListItem, ListSection } from "./types";
+import { styles } from "./List.styles";
+
+export function List({
+  items,
+  customRenderItem,
+  customItemStyles,
+  customRenderSection,
+  customSectionStyles,
+  ...props
+}: ListProps) {
+  const isSectionedList = items.length > 0 && 'section' in items[0];
+
+  const defaultRenderItem = ({ item }: { item: ListItem }) => (
+    <View style={[styles.item, customItemStyles]}>
+      <Text>{item.content}</Text>
+    </View>
+  );
+
+  const defaultRenderSection = ({ section }: { section: { title: string } }) => (
+    <View style={[styles.sectionHeader, customSectionStyles]}>
+      <Text emphasis="strong">{section.title}</Text>
+    </View>
+  );
+
+  if (isSectionedList) {
+    const sectionData = (items as ListSection[]).map(section => ({
+      title: section.section,
+      data: section.items
+    }));
+
+    return (
+      <SectionList
+        sections={sectionData}
+        renderItem={customRenderItem ? ({ item }) => customRenderItem(item) : defaultRenderItem}
+        renderSectionHeader={customRenderSection ? ({ section }) => customRenderSection(section.title) : defaultRenderSection}
+        keyExtractor={(item) => item.id.toString()}
+        ItemSeparatorComponent={() => <Divider />}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <FlatList
+      data={items as ListItem[]}
+      renderItem={customRenderItem ? ({ item }) => customRenderItem(item) : defaultRenderItem}
+      keyExtractor={(item) => item.id.toString()}
+      ItemSeparatorComponent={() => <Divider />}
+      {...props}
+    />
+  );
+}
+```
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `ListItem[] \| ListSection[]` | Yes | - | Array of items to display, or array of sections containing items |
+| `customRenderItem` | `(item: ListItem) => ReactNode` | No | - | Custom function to render individual items |
+| `customItemStyles` | `ViewStyle` | No | - | Custom styles for item containers |
+| `customRenderSection` | `(section: string) => ReactNode` | No | - | Custom function to render section headers |
+| `customSectionStyles` | `ViewStyle` | No | - | Custom styles for section headers |
+
+All other props are passed through to the underlying `FlatList` or `SectionList` component.
+
+## Platform Considerations
+
+### Web
+- Uses semantic HTML (`<ul>`, `<li>`) for accessibility
+- Supports CSS-based styling and theming
+- Keyboard navigation built-in
+- Focus management for interactive items
+
+### Mobile
+- Uses `FlatList` and `SectionList` for performance with large datasets
+- Touch-optimized interaction patterns
+- Platform-specific styling (iOS/Android)
+- Optimized scrolling and memory management
+
+## Best Practices
+
+1. **Performance**: For large lists (>100 items), consider using virtualization
+2. **Accessibility**: Always provide meaningful content and proper labeling
+3. **Consistency**: Use consistent item formatting across your application
+4. **Loading States**: Show loading indicators for dynamic content
+5. **Empty States**: Provide helpful messaging when lists are empty
+
+## Examples
+
+### Simple Todo List
+```tsx
+const todos = [
+  { id: 1, content: "Buy groceries", completed: false },
+  { id: 2, content: "Walk the dog", completed: true },
+  { id: 3, content: "Finish project", completed: false }
+];
+
+const renderTodo = (todo) => (
+  <div style={{ display: 'flex', alignItems: 'center' }}>
+    <input 
+      type="checkbox" 
+      checked={todo.completed}
+      onChange={() => toggleTodo(todo.id)}
+    />
+    <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+      {todo.content}
+    </span>
+  </div>
+);
+
+<List items={todos} customRenderItem={renderTodo} />
+```
+
+### Contact List with Sections
+```tsx
+const contacts = [
+  {
+    section: "A",
+    items: [
+      { id: 1, content: "Alice Johnson", phone: "555-0101" },
+      { id: 2, content: "Andrew Smith", phone: "555-0102" }
+    ]
+  },
+  {
+    section: "B", 
+    items: [
+      { id: 3, content: "Bob Wilson", phone: "555-0201" }
+    ]
+  }
+];
+
+const renderContact = (contact) => (
+  <div>
+    <Text emphasis="strong">{contact.content}</Text>
+    <Text>{contact.phone}</Text>
+  </div>
+);
+
+<List items={contacts} customRenderItem={renderContact} />
+```

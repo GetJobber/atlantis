@@ -1,0 +1,826 @@
+# Popover
+
+# Popover
+
+A Popover displays floating informative and actionable content positioned in
+relation to a target. The Popover can contain content, media, or other
+components.
+
+## Design & usage guidelines
+
+Some scenarios for Popover include the following:
+
+### Informational
+
+Introducing the user to a new experience, whether their first time using a
+product or to introduce a new or updated functionality in an existing
+experience, Popover can be an excellent choice to highlight a specific piece of
+the experience.
+
+If there is an "acknowledgement" CTA for the user to confirm that they
+understand the change, use a `learning` [Button](/components/Button).
+
+See
+[Popover/Informational](../?path=/story/components-overlays-popover-web--informational)
+
+### Functional
+
+<Banner type="warning" dismissible={false}>
+  A "functional" Popover hasn't been implemented in a componentized fashion yet.
+</Banner>
+
+Reveal a list of available actions to the user. For example, if the user clicks
+on an element and there are four potential actions they might take, Popover is a
+great way to present those actions. If you're looking to provide a menu of
+actions that comes complete with a trigger button, [Menu](/components/Menu) has
+that bundle ready to go.
+
+## Related components
+
+To add a menu button that presents multiple actions to the user, use
+[Menu](/components/Menu).
+
+To add a hint about a UI element's function in a permanent fashion (ie revealing
+a Button's label on hover), use [Tooltip](/components/Tooltip).
+
+To add an inline informational element that the user can dismiss, consider if
+[Banner](/components/Banner) is the right fit for your use case.
+
+## Content guidelines
+
+- Popover text content should be concise and clear. Try not to go over three
+  lines so the user can get back to what they were doing!
+- In "informational" usage, Popover may have a CTA that allows the user to
+  "acknowledge" and dismiss the Popover; this does not replace the need for the
+  dismiss button.
+
+## Accessibility
+
+Popover has a role of `dialog` as it is an element that the user will be "in
+dialogue" with, whether selecting an action, confirming acknowledgement, or
+dismissing the Popover.
+
+Depending on your use case, you may need to add focus management to your usage
+of Popover; for example, if selecting a Button opens a Popover, you will want to
+then set focus to the Popover, and if the user dismisses the Popover, return
+focus to the button that opened the Popover.
+
+If your element is effectively acting as an inline DOM element that the user
+would otherwise encounter when traversing the page, this focus management may
+not be necessary.
+
+## Web Component Code
+
+```tsx
+Popover Dropdown Popup Tooltip Float Dialog Info Web React import React from "react";
+import classnames from "classnames";
+import type { Side } from "@floating-ui/utils";
+import type {
+  PopoverArrowProps,
+  PopoverDismissButtonProps,
+  PopoverProps,
+} from "./Popover.types";
+import { PopoverProvider, usePopoverContext } from "./PopoverContext";
+import { usePopoverStyles } from "./usePopoverStyles";
+import { ButtonDismiss } from "../ButtonDismiss";
+
+export function Popover({
+  onRequestClose,
+  children,
+  attachTo,
+  open,
+  preferredPlacement = "auto",
+  UNSAFE_className,
+  UNSAFE_style,
+}: PopoverProps) {
+  return (
+    <Popover.Provider
+      attachTo={attachTo}
+      open={open}
+      preferredPlacement={preferredPlacement}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+    >
+      <Popover.DismissButton
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+        onClick={onRequestClose}
+      />
+      {children}
+      <Popover.Arrow
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      />
+    </Popover.Provider>
+  );
+}
+
+Popover.Provider = PopoverProvider;
+
+Popover.Arrow = function PopoverArrow({
+  UNSAFE_className,
+  UNSAFE_style,
+}: PopoverArrowProps) {
+  const { setArrowElement, floatingStyles, placement } = usePopoverContext();
+  const popoverStyles = usePopoverStyles();
+  const classes = classnames(popoverStyles.arrow, UNSAFE_className?.arrow);
+
+  // the arrow will get positioned opposite to the placement side
+  const staticSideMap: Record<Side, Side> = {
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+    left: "right",
+  } as const;
+
+  const staticSide = staticSideMap[placement as Side];
+
+  const arrowX = floatingStyles.arrow?.x;
+  const arrowY = floatingStyles.arrow?.y;
+
+  const arrowStyles: React.CSSProperties = {
+    position: "absolute",
+    // only left or top will be defined at a time
+    left: arrowX !== null && arrowX !== undefined ? `${arrowX}px` : "",
+    top: arrowY !== null && arrowY !== undefined ? `${arrowY}px` : "",
+    right: "",
+    bottom: "",
+    [staticSide]: "var(--popover--position--offset)",
+    width: "var(--base-unit)",
+    height: "var(--base-unit)",
+  };
+
+  return (
+    <div
+      ref={setArrowElement}
+      className={classes}
+      style={{ ...arrowStyles, ...UNSAFE_style?.arrow }}
+      data-testid="ATL-Popover-Arrow"
+    />
+  );
+};
+
+Popover.DismissButton = function PopoverDismissButton(
+  props: PopoverDismissButtonProps,
+) {
+  const { UNSAFE_className, UNSAFE_style, children, ...dismissButtonProps } =
+    props;
+
+  const popoverStyles = usePopoverStyles();
+  const classes = classnames(
+    popoverStyles.dismissButton,
+    UNSAFE_className?.dismissButtonContainer,
+  );
+
+  return (
+    <div
+      className={classes}
+      style={UNSAFE_style?.dismissButtonContainer ?? {}}
+      data-testid="ATL-Popover-Dismiss-Button-Container"
+    >
+      {children ?? (
+        <ButtonDismiss ariaLabel="Close dialog" {...dismissButtonProps} />
+      )}
+    </div>
+  );
+};
+import type { Placement } from "@floating-ui/react";
+import { FloatingPortal } from "@floating-ui/react";
+import type { CSSProperties } from "react";
+import React, { createContext, useContext } from "react";
+import classnames from "classnames";
+import type { PopoverProviderProps } from "./Popover.types";
+import { usePopover } from "./usePopover";
+import { usePopoverStyles } from "./usePopoverStyles";
+import { AtlantisPortalContent } from "../AtlantisPortalContent";
+
+interface PopoverContextProps {
+  setArrowElement: (element: HTMLElement | null) => void;
+  floatingStyles: {
+    float: CSSProperties;
+    arrow?: {
+      x?: number;
+      y?: number;
+    };
+  };
+  placement?: Placement;
+}
+
+const PopoverContext = createContext<PopoverContextProps>({
+  floatingStyles: { float: {} },
+  setArrowElement: () => {
+    // noop
+  },
+});
+
+export function usePopoverContext() {
+  return useContext(PopoverContext);
+}
+
+export function PopoverProvider({
+  children,
+  preferredPlacement = "auto",
+  attachTo,
+  open,
+  UNSAFE_className,
+  UNSAFE_style,
+}: PopoverProviderProps) {
+  const { setFloatingElement, setArrowElement, floatingStyles, placement } =
+    usePopover({
+      preferredPlacement,
+      attachTo,
+      open,
+    });
+
+  if (!open) return null;
+
+  return (
+    <PopoverContext.Provider
+      value={{
+        setArrowElement,
+        floatingStyles,
+        placement,
+      }}
+    >
+      <PopoverWrapper
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+        setFloatingElement={setFloatingElement}
+        placement={placement}
+      >
+        {children}
+      </PopoverWrapper>
+    </PopoverContext.Provider>
+  );
+}
+
+function PopoverWrapper({
+  children,
+  setFloatingElement,
+  UNSAFE_className,
+  UNSAFE_style,
+  placement,
+}: {
+  readonly children: React.ReactNode;
+  readonly setFloatingElement: (element: HTMLElement | null) => void;
+  readonly placement?: Placement;
+} & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
+  const popoverStyles = usePopoverStyles();
+  const { floatingStyles } = usePopoverContext();
+
+  const classes = classnames(
+    popoverStyles.container,
+    UNSAFE_className?.container,
+  );
+
+  const content = (
+    <AtlantisPortalContent>
+      <div
+        role="dialog"
+        data-elevation="elevated"
+        ref={setFloatingElement}
+        style={{ ...floatingStyles.float, ...UNSAFE_style?.container }}
+        className={classes}
+        data-popover-placement={placement}
+        data-testid="ATL-Popover-Container"
+      >
+        {children}
+      </div>
+    </AtlantisPortalContent>
+  );
+
+  return <FloatingPortal>{content}</FloatingPortal>;
+}
+import {
+  arrow,
+  autoPlacement,
+  autoUpdate,
+  flip,
+  limitShift,
+  offset,
+  shift,
+  useFloating,
+} from "@floating-ui/react";
+import { useMemo, useState } from "react";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import type { PopoverProps } from "./Popover.types";
+
+const POPOVER_OFFSET = 10;
+const POPOVER_SHIFT_PADDING = 8;
+const POPOVER_ARROW_PADDING = 6;
+
+export const usePopover = ({
+  preferredPlacement,
+  attachTo,
+  open,
+}: Pick<PopoverProps, "preferredPlacement" | "attachTo" | "open">) => {
+  const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
+
+  const modifiers = useMemo(() => {
+    const baseModifiers = [
+      offset(POPOVER_OFFSET),
+      shift({
+        mainAxis: true,
+        crossAxis: false,
+        padding: POPOVER_SHIFT_PADDING,
+        limiter: limitShift(),
+      }),
+    ];
+
+    const placementMiddleware =
+      preferredPlacement === "auto"
+        ? autoPlacement({
+            allowedPlacements: ["top", "bottom", "left", "right"],
+          })
+        : flip({
+            fallbackPlacements: ["top", "bottom", "left", "right"],
+          });
+
+    return [
+      ...baseModifiers,
+      placementMiddleware,
+      arrow({
+        element: arrowElement || null,
+        padding: POPOVER_ARROW_PADDING,
+      }),
+    ];
+  }, [arrowElement, preferredPlacement]);
+
+  const referenceElement = isHTMLElement(attachTo)
+    ? attachTo
+    : attachTo.current;
+
+  const { refs, floatingStyles, middlewareData, placement } = useFloating({
+    placement: preferredPlacement === "auto" ? undefined : preferredPlacement,
+    strategy: "absolute",
+    middleware: modifiers,
+    elements: {
+      reference: referenceElement || null,
+    },
+    // Only use this option when the floating element is conditionally rendered
+    // (which we are), not hidden with css. https://floating-ui.com/docs/autoUpdate
+    whileElementsMounted: autoUpdate,
+  });
+
+  useRefocusOnActivator(open);
+
+  return {
+    setFloatingElement: refs.setFloating,
+    setArrowElement,
+    floatingStyles: {
+      float: floatingStyles,
+      arrow: middlewareData.arrow,
+    },
+    placement,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isHTMLElement(el: any): el is Element {
+  return globalThis?.document && el instanceof Element;
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `attachTo` | `Element | RefObject<Element>` | ✅ | `_none_` | Element the Popover will attach to and point at. A `useRef` must be attached to an html element
+and passed as an attachTo prop in order for the Popover to function properly |
+| `children` | `ReactNode` | ✅ | `_none_` | Popover content. |
+| `open` | `boolean` | ✅ | `_none_` | Control Popover visibility. |
+| `onRequestClose` | `() => void` | ❌ | `_none_` | Callback executed when the user wants to close/dismiss the Popover |
+| `preferredPlacement` | `"top" | "bottom" | "left" | "right" | "auto"` | ❌ | `auto` | Describes the preferred placement of the Popover. |
+| `UNSAFE_className` | `{ container?: string; dismissButtonContainer?: string; arrow?: string; }` | ❌ | `_none_` | **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+| `UNSAFE_style` | `{ container?: CSSProperties; dismissButtonContainer?: CSSProperties; arrow?: CSSProperties; }` | ❌ | `_none_` | **Use at your own risk:** Custom style for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+
+
+## Categories
+
+- Overlays
+
+## Web Test Code
+
+```typescript
+Popover Dropdown Popup Tooltip Float Dialog Info Web React Test Testing Jest import React, { useRef } from "react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Popover, type PopoverProps } from ".";
+import { Button } from "../Button";
+
+const content = "Test Content";
+
+const PopoverTestComponent = (props: Omit<PopoverProps, "attachTo">) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <>
+      <div ref={divRef}></div>
+      <Popover {...props} attachTo={divRef}>
+        {props.children}
+      </Popover>
+    </>
+  );
+};
+
+const renderPopover = (props: Omit<PopoverProps, "attachTo">) => {
+  return render(
+    <PopoverTestComponent {...props}>{content}</PopoverTestComponent>,
+  );
+};
+
+describe("Non-composable Popover", () => {
+  it("should render a Popover with the content and dismiss button", async () => {
+    const handleClose = jest.fn();
+
+    renderPopover({
+      open: true,
+      onRequestClose: handleClose,
+      children: content,
+    });
+
+    expect(screen.queryByText(content)).toBeInstanceOf(HTMLElement);
+
+    await userEvent.click(screen.getByLabelText("Close dialog"));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("shouldn't render a popover when open is false", async () => {
+    renderPopover({ open: false, children: content });
+
+    expect(screen.queryByText(content)).toBeNull();
+  });
+
+  describe("preferredPlacement", () => {
+    it("should use bottom placement by default", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popover-placement", "bottom");
+    });
+
+    it("should use specified placement value", () => {
+      renderPopover({
+        open: true,
+        preferredPlacement: "top",
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popover-placement", "top");
+    });
+  });
+
+  describe("Accessibility", () => {
+    it("should have proper ARIA attributes when open", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("role", "dialog");
+    });
+
+    it("should have dismiss button with proper accessibility attributes", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const dismissButton = screen.getByLabelText("Close dialog");
+      expect(dismissButton).toBeInTheDocument();
+      expect(dismissButton).toHaveAttribute("aria-label", "Close dialog");
+    });
+
+    it("should be focusable and keyboard accessible", async () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const dismissButton = screen.getByLabelText("Close dialog");
+
+      await userEvent.tab();
+      expect(dismissButton).toHaveFocus();
+    });
+  });
+
+  describe("UNSAFE_ props", () => {
+    it("should apply the UNSAFE_className to the container", () => {
+      renderPopover({
+        open: true,
+        UNSAFE_className: { container: "custom-container-class" },
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveClass("custom-container-class");
+    });
+
+    it("should apply the UNSAFE_className to the dismiss button container", () => {
+      renderPopover({
+        open: true,
+        UNSAFE_className: {
+          dismissButtonContainer: "custom-dismiss-button-class",
+        },
+        children: content,
+      });
+
+      const dismissButtonContainer = screen.getByTestId(
+        "ATL-Popover-Dismiss-Button-Container",
+      );
+      expect(dismissButtonContainer).toHaveClass("custom-dismiss-button-class");
+    });
+
+    it("should apply the UNSAFE_className to the arrow", () => {
+      renderPopover({
+        open: true,
+        UNSAFE_className: { arrow: "custom-arrow-class" },
+        children: content,
+      });
+
+      const arrow = screen.getByTestId("ATL-Popover-Arrow");
+      expect(arrow).toHaveClass("custom-arrow-class");
+    });
+
+    it("should apply the UNSAFE_style to the container", () => {
+      renderPopover({
+        open: true,
+        UNSAFE_style: { container: { backgroundColor: "lightblue" } },
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(getComputedStyle(popover).backgroundColor).toBe("lightblue");
+    });
+
+    it("should apply the UNSAFE_style to the dismiss button container", () => {
+      renderPopover({
+        open: true,
+        UNSAFE_style: { dismissButtonContainer: { backgroundColor: "red" } },
+        children: content,
+      });
+
+      const dismissButtonContainer = screen.getByTestId(
+        "ATL-Popover-Dismiss-Button-Container",
+      );
+      expect(getComputedStyle(dismissButtonContainer).backgroundColor).toBe(
+        "red",
+      );
+    });
+
+    it("should apply the UNSAFE_style to the arrow", () => {
+      renderPopover({
+        open: true,
+        UNSAFE_style: { arrow: { backgroundColor: "green" } },
+        children: content,
+      });
+
+      const arrow = screen.getByTestId("ATL-Popover-Arrow");
+      expect(getComputedStyle(arrow).backgroundColor).toBe("green");
+    });
+  });
+});
+
+describe("Composable Popover", () => {
+  it("renders the popover content", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+    expect(screen.queryByText(content)).toBeVisible();
+  });
+
+  it("renders the arrow", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByTestId("ATL-Popover-Arrow")).toBeVisible();
+  });
+
+  it("renders the dismiss button and closes the popover when clicked", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    await userEvent.click(screen.getByLabelText("Close dialog"));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows rendering a custom dismiss button and closes the popover when clicked", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton>
+            <Button onClick={handleClose}>
+              <Button.Label>Close this</Button.Label>
+            </Button>
+          </Popover.DismissButton>
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    await userEvent.click(screen.getByText("Close this"));
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not render the popover when open is false", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={false}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByText(content)).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("ATL-Popover-Arrow")).not.toBeInTheDocument();
+  });
+
+  it("does not render the arrow when it's omitted", async () => {
+    const handleClose = jest.fn();
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          <Popover.DismissButton onClick={handleClose} />
+          {content}
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByTestId("ATL-Popover-Arrow")).not.toBeInTheDocument();
+  });
+
+  it("does not render the dismiss button when it's omitted", async () => {
+    const divRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <div ref={divRef}></div>
+        <Popover.Provider attachTo={divRef} open={true}>
+          {content}
+          <Popover.Arrow />
+        </Popover.Provider>
+      </>,
+    );
+
+    expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
+  });
+
+  describe("UNSAFE_ props", () => {
+    it("applies the UNSAFE_ props to the container", () => {
+      const handleClose = jest.fn();
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider
+            attachTo={divRef}
+            open={true}
+            UNSAFE_className={{
+              container: "custom-container-class",
+            }}
+            UNSAFE_style={{
+              container: { backgroundColor: "red" },
+            }}
+          >
+            <Popover.DismissButton onClick={handleClose} />
+            {content}
+            <Popover.Arrow />
+          </Popover.Provider>
+        </>,
+      );
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveClass("custom-container-class");
+      expect(getComputedStyle(popover).backgroundColor).toBe("red");
+    });
+
+    it("applies the UNSAFE_ props to the dismiss button", () => {
+      const handleClose = jest.fn();
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider attachTo={divRef} open={true}>
+            <Popover.DismissButton
+              onClick={handleClose}
+              UNSAFE_className={{
+                dismissButtonContainer: "custom-dismiss-button-class",
+              }}
+              UNSAFE_style={{
+                dismissButtonContainer: { backgroundColor: "blue" },
+              }}
+            />
+            {content}
+            <Popover.Arrow />
+          </Popover.Provider>
+        </>,
+      );
+
+      const dismissButtonContainer = screen.getByTestId(
+        "ATL-Popover-Dismiss-Button-Container",
+      );
+      expect(dismissButtonContainer).toHaveClass("custom-dismiss-button-class");
+      expect(getComputedStyle(dismissButtonContainer).backgroundColor).toBe(
+        "blue",
+      );
+    });
+
+    it("applies the UNSAFE_ props to the arrow", () => {
+      const handleClose = jest.fn();
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider attachTo={divRef} open={true}>
+            <Popover.DismissButton onClick={handleClose} />
+            {content}
+            <Popover.Arrow
+              UNSAFE_className={{
+                arrow: "custom-arrow-class",
+              }}
+              UNSAFE_style={{
+                arrow: { backgroundColor: "green" },
+              }}
+            />
+          </Popover.Provider>
+        </>,
+      );
+
+      const arrow = screen.getByTestId("ATL-Popover-Arrow");
+      expect(arrow).toHaveClass("custom-arrow-class");
+      expect(getComputedStyle(arrow).backgroundColor).toBe("green");
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Popover`
+
+---
+
+_Generated on 2025-08-21T17:35:16.370Z_
