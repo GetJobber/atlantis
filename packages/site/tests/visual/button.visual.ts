@@ -116,6 +116,16 @@ test.describe("Button Visual Tests", () => {
       });
     });
 
+    test("should capture icon-only button hover state", async ({ page }) => {
+      const button = page.getByRole("button", { name: "Settings" });
+      await button.first().scrollIntoViewIfNeeded();
+      await button.first().hover();
+      await page.waitForTimeout(200);
+      await expect(page).toHaveScreenshot("button-icon-only-hover.png", {
+        fullPage: true,
+      });
+    });
+
     test("should capture icon-only button focus state", async ({ page }) => {
       const button = page.getByRole("button", { name: "Settings" });
       await button.first().scrollIntoViewIfNeeded();
