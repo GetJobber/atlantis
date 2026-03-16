@@ -112,7 +112,7 @@ function getDatePickerClassNames(
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
     // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
-    //
+    // Force build
     // It uses react-onclickoutside package and declaring some elements to be
     // ignored via said class name
     // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
