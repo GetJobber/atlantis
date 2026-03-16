@@ -20,8 +20,9 @@
 
 .container {
   display: flex;
-  flex-direction: column;
   z-index: var(--elevation-modal);
+  box-sizing: border-box;
+  flex-direction: column;
   padding: var(--space-small);
   overflow: auto;
 }
@@ -48,6 +49,7 @@
   width: 100%;
   max-width: var(--modal--width);
   box-shadow: var(--modal--shadow);
+  box-sizing: border-box;
   margin: var(--modal--margin);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--modal--border-radius);
