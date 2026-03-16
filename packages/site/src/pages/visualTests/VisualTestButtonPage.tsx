@@ -230,6 +230,9 @@ export const VisualTestButtonPage = () => {
                 <Button type="primary" variation="work" loading>
                   <Button.Label>Loading</Button.Label>
                 </Button>
+                <Button type="secondary" variation="work" loading>
+                  <Button.Label>Loading</Button.Label>
+                </Button>
               </Cluster>
             </Grid.Cell>
           </Grid>
@@ -288,6 +291,10 @@ export const VisualTestButtonPage = () => {
               <Text variation="subdued">Composable</Text>
               <Cluster gap="base">
                 <Button type="primary" variation="work" loading>
+                  <Button.Icon name="add" />
+                  <Button.Label>Saving</Button.Label>
+                </Button>
+                <Button type="secondary" variation="work" loading>
                   <Button.Icon name="add" />
                   <Button.Label>Saving</Button.Label>
                 </Button>
