@@ -1,6 +1,6 @@
 import { AnimatedPresence, Button, Typography } from "@jobber/components";
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "@tanstack/react-router";
 import styles from "./NavMenu.module.css";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
@@ -95,9 +95,11 @@ function AnimatedPresenceDisclosure({
                 React.isValidElement(child),
               )
               .map(child =>
-                React.cloneElement(child, {
-                  selected: pathname === child.props.to,
-                }),
+                child.type === React.Fragment
+                  ? child
+                  : React.cloneElement(child, {
+                      selected: pathname === child.props.to,
+                    }),
               )}
           </ul>
         )}

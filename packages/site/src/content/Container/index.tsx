@@ -1,9 +1,10 @@
-import Content from "./Container.stories.mdx";
+import Content, { toc } from "./Container.stories.mdx";
 import Props from "./Container.props.json";
 import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<ContentBlock maxWidth="100%">

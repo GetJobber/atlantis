@@ -58,6 +58,13 @@ export const Rect = rect => {
   );
 };
 export const KeyboardAwareScrollView = props => props.children;
+export const KeyboardEvents = {
+  addListener: () => ({
+    remove: () => {
+      /* empty */
+    },
+  }),
+};
 export const useSafeAreaFrame = () => "";
 
 // The real Switch would be better here. Once we figure out the

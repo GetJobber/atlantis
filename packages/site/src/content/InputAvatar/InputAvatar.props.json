@@ -8,7 +8,7 @@
     "props": {
       "getUploadParams": {
         "defaultValue": null,
-        "description": "A callback that receives a file object and returns a `UploadParams` needed\nto upload the file.\n\nMore info is available at:\nhttps://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams",
+        "description": "A callback that receives a file object and returns a `UploadParams` needed\nto upload the file.\n\nMore info is available at:\nhttps://atlantis.getjobber.com/components/InputFile",
         "name": "getUploadParams",
         "parent": {
           "fileName": "../components/src/InputAvatar/InputAvatar.tsx",

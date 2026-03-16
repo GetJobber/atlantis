@@ -1,4 +1,4 @@
-import ProgressBarContent from "./ProgressBar.stories.mdx";
+import ProgressBarContent, { toc } from "./ProgressBar.stories.mdx";
 import Props from "./ProgressBar.props.json";
 import MobileProps from "./ProgressBar.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ProgressBarContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

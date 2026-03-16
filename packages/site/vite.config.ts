@@ -4,12 +4,61 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
+import { recmaInjectToc, remarkExtractToc } from "./scripts/mdx-extract-toc";
 
-export default defineConfig({
+const localStorybookPorts = {
+  "/storybook/web": 6007,
+  "/storybook/mobile": 6008,
+} as const;
+
+export default defineConfig(() => ({
   plugins: [
+    {
+      name: "local-storybook-redirect",
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          const requestUrl = req.url;
+          const requestHost = req.headers.host;
+
+          if (!requestUrl || !requestHost) return next();
+
+          const matchingPrefix = Object.keys(localStorybookPorts).find(
+            prefix => {
+              return (
+                requestUrl === prefix ||
+                requestUrl.startsWith(`${prefix}/`) ||
+                requestUrl.startsWith(`${prefix}?`)
+              );
+            },
+          );
+
+          if (!matchingPrefix) return next();
+
+          const sourceUrl = new URL(requestUrl, `http://${requestHost}`);
+          const rewrittenPath = sourceUrl.pathname.replace(matchingPrefix, "");
+          const targetUrl = new URL(
+            rewrittenPath || "/",
+            `http://${sourceUrl.hostname}:${
+              localStorybookPorts[
+                matchingPrefix as keyof typeof localStorybookPorts
+              ]
+            }`,
+          );
+
+          targetUrl.search = sourceUrl.search;
+
+          // Redirect to the Storybook dev server so its assets load from the same origin.
+          res.statusCode = 307;
+          res.setHeader("Location", targetUrl.toString());
+          res.end();
+        });
+      },
+    },
     react(),
     mdx({
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkExtractToc],
+      recmaPlugins: [recmaInjectToc],
+      providerImportSource: "@mdx-js/react",
       rehypePlugins: [
         [
           rehypeRewrite,
@@ -71,4 +120,4 @@ export default defineConfig({
   define: {
     "process.env": {},
   },
-});
+}));

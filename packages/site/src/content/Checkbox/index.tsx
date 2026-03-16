@@ -1,4 +1,4 @@
-import CheckboxContent from "./Checkbox.stories.mdx";
+import CheckboxContent, { toc } from "./Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import MobileProps from "./Checkbox.props-mobile.json";
 import RebuiltProps from "./CheckboxV2.props.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <CheckboxContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,

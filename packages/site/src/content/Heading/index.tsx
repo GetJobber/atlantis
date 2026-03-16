@@ -1,4 +1,4 @@
-import HeadingContent from "./Heading.stories.mdx";
+import HeadingContent, { toc } from "./Heading.stories.mdx";
 import Props from "./Heading.props.json";
 import MobileProps from "./Heading.props-mobile.json";
 import Notes from "./HeadingNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <HeadingContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

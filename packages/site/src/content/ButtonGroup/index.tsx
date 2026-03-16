@@ -1,10 +1,11 @@
-import Content from "./ButtonGroup.stories.mdx";
+import Content, { toc } from "./ButtonGroup.stories.mdx";
 import Props from "./ButtonGroup.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     mobileElement: `<ButtonGroup>

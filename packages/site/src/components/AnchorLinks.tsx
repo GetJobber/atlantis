@@ -1,5 +1,6 @@
 import { Box, Content, Typography } from "@jobber/components";
-import { MouseEvent, useEffect, useState } from "react";
+import { Link, useMatches, useParams } from "@tanstack/react-router";
+import type { TocItem } from "../types/content";
 
 interface AnchorLinksProps {
   /**
@@ -8,50 +9,27 @@ interface AnchorLinksProps {
   readonly header: string;
 
   /**
-   * A unique identifier for the component
+   * Pre-extracted TOC (e.g. from virtual:content-toc). When provided, used for
+   * sidebar links instead of querying the DOM.
    */
-  readonly id: string;
-
-  /**
-   * An additional action to perform along with scrolling to the selected anchor
-   */
-  readonly additionalOnClickAction?: () => void;
+  readonly toc?: TocItem[];
 }
 
-export function AnchorLinks({
-  header,
-  id,
-  additionalOnClickAction,
-}: AnchorLinksProps) {
-  const [hlinks, setHlinks] = useState<Element[] | null>(null);
+export function AnchorLinks({ header, toc: tocProp }: AnchorLinksProps) {
+  const matches = useMatches();
+  const params = useParams({ strict: false });
+  const currentRoute = matches[matches.length - 1];
+  // Fix for typescript issues. Want to clean this up when we use file based routing.
+  if (!currentRoute || currentRoute.routeId === "__root__") return null;
 
-  useEffect(() => {
-    const hdd = document.querySelectorAll("[data-heading-link]");
-
-    if (hdd.length > 0) {
-      setHlinks(Array.from(hdd));
-    }
-  }, [id]);
-
-  const click = (e: MouseEvent) => {
-    e.preventDefault();
-    const anchorId = e.currentTarget?.getAttribute("href")?.replace("#", "");
-
-    if (anchorId) {
-      additionalOnClickAction?.();
-      setTimeout(() => {
-        const element = document.getElementById(anchorId);
-
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    }
-  };
+  const newParams = { ...params };
+  delete newParams.tab;
+  // Remove the tab because the table of contents is not on a tab in the components route
+  const newPath = currentRoute.routeId.replace("/$tab", "");
 
   return (
     <>
-      {hlinks && hlinks.length > 0 && (
+      {tocProp && tocProp.length > 0 && (
         <Content>
           <Typography
             element={"h3"}
@@ -63,11 +41,16 @@ export function AnchorLinks({
             {header}
           </Typography>
           <Content spacing="small">
-            {hlinks?.map((link, index) => (
-              <Box key={index}>
-                <a onClick={click} href={`#${link.id}`}>
-                  {link.textContent}
-                </a>
+            {tocProp.map((link, index) => (
+              <Box key={link.id ?? index}>
+                <Link
+                  params={newParams}
+                  to={newPath}
+                  hash={`${link.id}`}
+                  hashScrollIntoView={{ behavior: "smooth" }}
+                >
+                  {link.label}
+                </Link>
               </Box>
             ))}
           </Content>

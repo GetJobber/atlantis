@@ -1,10 +1,11 @@
-import EmphasisContent from "./Emphasis.stories.mdx";
+import EmphasisContent, { toc } from "./Emphasis.stories.mdx";
 import Props from "./Emphasis.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <EmphasisContent />,
+  toc,
   props: Props,
   component: {
     element: `<Typography size="largest" element="span" fontWeight={"extraBold"}>

@@ -1,4 +1,4 @@
-import Content from "./Content.stories.mdx";
+import Content, { toc } from "./Content.stories.mdx";
 import Props from "./Content.props.json";
 import MobileProps from "./Content.props-mobile.json";
 import Notes from "./ContentNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
