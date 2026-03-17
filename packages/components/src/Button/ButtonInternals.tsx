@@ -24,12 +24,14 @@ export function ButtonContent({
   | "UNSAFE_className"
   | "UNSAFE_style"
 >) {
+  const iconSize = size === "large" ? "base" : size;
+
   return (
     <>
       {icon && !iconOnRight && (
         <ButtonIcon
           name={icon}
-          size={size}
+          size={iconSize}
           UNSAFE_className={UNSAFE_className?.buttonIcon}
           UNSAFE_style={UNSAFE_style?.buttonIcon}
         />
@@ -46,7 +48,7 @@ export function ButtonContent({
       {icon && iconOnRight && (
         <ButtonIcon
           name={icon}
-          size={size}
+          size={iconSize}
           UNSAFE_className={UNSAFE_className?.buttonIcon}
           UNSAFE_style={UNSAFE_style?.buttonIcon}
         />
@@ -75,8 +77,9 @@ export function ButtonIcon({
 >) {
   const { size: contextSize } = useButtonContext();
   const size = sizeProp || contextSize;
+  const iconSize = size === "large" ? "base" : size;
 
-  return <Icon {...props} size={size} />;
+  return <Icon {...props} size={iconSize} />;
 }
 
 export function ButtonLabel({
