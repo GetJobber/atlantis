@@ -117,14 +117,18 @@ export function ContentOverlay({
   const { handleSheetPositionChange } =
     useBottomSheetModalBackHandler(onCloseController);
 
-  useImperativeHandle(ref, () => ({
-    open: () => {
-      bottomSheetModalRef.current?.present();
-    },
-    close: () => {
-      bottomSheetModalRef.current?.dismiss();
-    },
-  }));
+  useImperativeHandle(
+    ref,
+    () => ({
+      open: () => {
+        bottomSheetModalRef.current?.present();
+      },
+      close: () => {
+        bottomSheetModalRef.current?.dismiss();
+      },
+    }),
+    [],
+  );
 
   const handleChange = (index: number, position: number) => {
     const previousIndex = previousIndexRef.current;
