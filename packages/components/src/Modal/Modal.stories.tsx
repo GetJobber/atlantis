@@ -260,6 +260,10 @@ const ModalWithProviderExampleTemplate = () => {
               <Icon name="help" color="blue" />
             </Tooltip>
           </Content>
+          <Modal.Actions
+            primary={{ label: "Submit", onClick: () => setModalOpen(false) }}
+            secondary={{ label: "Cancel", onClick: () => setModalOpen(false) }}
+          />
         </Modal.Content>
         <Modal.Activator>
           <InputText placeholder="Modal will return focus here" />
@@ -419,4 +423,60 @@ export const NestedExample: Story = {
   args: {
     title: "Outer Modal",
   },
+};
+
+const ModalBodyTemplate = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  return (
+    <>
+      <Modal.Provider
+        open={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+      >
+        <Modal.Content>
+          <Modal.Header title="Modal with Body" />
+          <Modal.Body>
+            <Content>
+              <Text>
+                This content is inside Modal.Body, which owns its own padding
+                and scroll behavior. The header and actions stay fixed while
+                this area scrolls.
+              </Text>
+              <InputText placeholder="First field" />
+              <InputText placeholder="Second field" />
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </Text>
+              <InputText placeholder="Third field" />
+              <Text>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </Text>
+              <InputText placeholder="Fourth field" />
+              <InputText placeholder="Fifth field" />
+              <Text>
+                More content to demonstrate scrolling within the Modal.Body
+                while the header and action bar remain fixed.
+              </Text>
+            </Content>
+          </Modal.Body>
+          <Modal.Actions
+            primary={{ label: "Save", onClick: () => setModalOpen(false) }}
+            secondary={{ label: "Cancel", onClick: () => setModalOpen(false) }}
+          />
+        </Modal.Content>
+      </Modal.Provider>
+      <Button label="Open Modal with Body" onClick={() => setModalOpen(true)} />
+    </>
+  );
+};
+
+export const WithBody: Story = {
+  render: ModalBodyTemplate,
 };

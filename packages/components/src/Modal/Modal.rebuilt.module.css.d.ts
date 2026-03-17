@@ -3,6 +3,8 @@ declare const styles: {
   readonly "overlayBackground": string;
   readonly "modal": string;
   readonly "modalBody": string;
+  readonly "modalBodyWithExplicitBody": string;
+  readonly "body": string;
   readonly "header": string;
   readonly "closeButton": string;
   readonly "actionBar": string;

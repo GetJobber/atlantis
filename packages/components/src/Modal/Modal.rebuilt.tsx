@@ -21,6 +21,10 @@ import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
+export function ModalBody({ children }: PropsWithChildren) {
+  return <div className={styles.body}>{children}</div>;
+}
+
 export function ModalHeader({ title, children }: HeaderProps) {
   const { header, dismissButton } = useModalStyles();
   const { dismissible, onRequestClose, modalLabelledBy } = useModalContext();
@@ -131,6 +135,14 @@ export function ModalContent({ children }: ModalContainerProps) {
   } = useModalContext();
   const { modal } = useModalStyles(size);
 
+  const hasExplicitBody = React.Children.toArray(children).some(
+    child => React.isValidElement(child) && child.type === ModalBody,
+  );
+
+  const wrapperClassName = hasExplicitBody
+    ? styles.modalBodyWithExplicitBody
+    : styles.modalBody;
+
   return (
     <AnimatePresence>
       {open && (
@@ -161,11 +173,10 @@ export function ModalContent({ children }: ModalContainerProps) {
                       "aria-modal": true,
                     })}
                     onPointerDownCapture={() => {
-                      // Interaction began inside dialog
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    <div className={styles.modalBody} tabIndex={-1}>
+                    <div className={wrapperClassName} tabIndex={-1}>
                       {children}
                     </div>
                   </motion.div>

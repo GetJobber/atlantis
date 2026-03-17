@@ -71,6 +71,26 @@
   --public-content--padding: 0;
 }
 
+/**
+ * When an explicit Modal.Body is present, the wrapper switches to a flex
+ * column so that only the Body scrolls while Header/Actions stay fixed.
+ */
+
+.modalBodyWithExplicitBody {
+  display: flex;
+  max-height: inherit;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.body {
+  min-height: 0;
+  padding: var(--modal--padding);
+  overflow-y: auto;
+  flex: 1 1 auto;
+  scrollbar-gutter: stable;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

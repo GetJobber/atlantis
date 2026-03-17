@@ -4,6 +4,7 @@ import { ModalProvider } from "./ModalContext.rebuilt";
 import {
   ModalActions,
   ModalActivator,
+  ModalBody,
   ModalContent,
   ModalHeader,
 } from "./Modal.rebuilt";
@@ -16,6 +17,8 @@ function Modal(props: ModalLegacyProps) {
 }
 
 Modal.Header = ModalHeader;
+
+Modal.Body = ModalBody;
 
 Modal.Actions = ModalActions;
 
