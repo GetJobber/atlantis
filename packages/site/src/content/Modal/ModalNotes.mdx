@@ -131,12 +131,45 @@ existing behavior).
 </Modal.Provider>
 ```
 
+#### Scroll behavior
+
+By default, when `Modal.Body` is present the body region scrolls independently
+while the Header and Actions stay pinned (`scrollBehavior="inner"`). This is the
+recommended behavior for most modals with dynamic or long content.
+
+If you need the entire modal to scroll as a single unit (matching the legacy
+behavior), set `scrollBehavior="outer"` on `Modal.Provider`. In this mode,
+`Modal.Body` still owns its padding but does not handle scroll independently.
+
+> **Note:** `scrollBehavior` is ignored when no `Modal.Body` is present. Without
+> it, the modal always uses outer scrolling.
+
+```tsx
+<Modal.Provider
+  open={showModal}
+  onRequestClose={() => setShowModal(false)}
+  scrollBehavior="outer"
+>
+  <Modal.Content>
+    <Modal.Header title="Outer Scrolling" />
+    <Modal.Body>
+      <Content>
+        <Text>This modal scrolls as a single unit.</Text>
+      </Content>
+    </Modal.Body>
+    <Modal.Actions primary={{ label: "Done", onClick: handleDone }} />
+  </Modal.Content>
+</Modal.Provider>
+```
+
 #### Full-width body content
 
 Set `spacing="none"` on `Modal.Provider` to remove the body's internal padding.
 This is useful when content needs to span edge-to-edge inside the modal, such as
 images, tables, or alternating background sections. Header and Actions retain
 their own padding regardless of this setting.
+
+> **Note:** `spacing` is ignored when no `Modal.Body` is present.
 
 ```tsx
 <Modal.Provider

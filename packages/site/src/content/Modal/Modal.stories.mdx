@@ -18,6 +18,14 @@ When using `Modal.Body`, only the body region scrolls — the `Modal.Header` and
 `Modal.Actions` remain fixed at the top and bottom of the modal. This is the
 recommended approach for modals with long or dynamic content.
 
+This behavior is controlled by the `scrollBehavior` prop on `Modal.Provider`:
+
+- **`"inner"`** (default) — only `Modal.Body` scrolls; Header and Actions stay
+  pinned
+- **`"outer"`** — the entire modal scrolls as a single unit (legacy behavior)
+
+The `scrollBehavior` prop is ignored when no `Modal.Body` is present.
+
 ## Related components
 
 Use [SideDrawer](/components/SideDrawer) if you need to overlay the page's

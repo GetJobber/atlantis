@@ -72,12 +72,29 @@ export interface ModalContextType {
   readonly startedInsideRef?: RefObject<boolean>;
 
   /**
-   * Controls the internal spacing of the modal body.
-   * - `"base"`: applies standard padding to Modal.Body to align with Header/Actions
-   * - `"none"`: removes padding from Modal.Body for full-width content
+   * Controls the internal padding of Modal.Body.
+   *
+   * - `"base"`: applies standard padding to align body content with Header/Actions
+   * - `"none"`: removes all padding from Modal.Body for full-width/edge-to-edge content
+   *
+   * Has no effect without a `Modal.Body` child.
    * @default "base"
    */
   readonly spacing?: "base" | "none";
+
+  /**
+   * Controls where overflow scrolling occurs when content exceeds the modal height.
+   *
+   * - `"inner"`: only Modal.Body scrolls; Header and Actions stay pinned at the
+   *   top and bottom of the modal
+   * - `"outer"`: the entire modal content area scrolls as a single unit, matching
+   *   the legacy behavior before Modal.Body existed
+   *
+   * This prop is ignored when no `Modal.Body` is present — without it, the modal
+   * always uses outer scrolling regardless of this value.
+   * @default "inner"
+   */
+  readonly scrollBehavior?: "inner" | "outer";
 }
 
 export interface ModalActionsProps {

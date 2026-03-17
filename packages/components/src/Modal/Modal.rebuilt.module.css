@@ -97,6 +97,10 @@
   flex: 1 1 auto;
 }
 
+.bodyStatic {
+  padding: var(--modal--padding);
+}
+
 .header {
   display: flex;
   justify-content: space-between;

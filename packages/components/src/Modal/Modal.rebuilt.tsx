@@ -22,8 +22,15 @@ import { Button } from "../Button";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 export function ModalBody({ children }: PropsWithChildren) {
-  const { spacing } = useModalContext();
-  const className = spacing === "none" ? styles.bodyNoSpacing : styles.body;
+  const { spacing, scrollBehavior } = useModalContext();
+
+  let className: string | undefined;
+
+  if (scrollBehavior === "inner") {
+    className = spacing === "none" ? styles.bodyNoSpacing : styles.body;
+  } else {
+    className = spacing === "none" ? undefined : styles.bodyStatic;
+  }
 
   return <div className={className}>{children}</div>;
 }
@@ -135,6 +142,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     ariaLabel,
     getFloatingProps,
     startedInsideRef,
+    scrollBehavior,
   } = useModalContext();
   const { modal } = useModalStyles(size);
 
@@ -142,7 +150,9 @@ export function ModalContent({ children }: ModalContainerProps) {
     child => React.isValidElement(child) && child.type === ModalBody,
   );
 
-  const wrapperClassName = hasExplicitBody
+  const useInnerScroll = hasExplicitBody && scrollBehavior === "inner";
+
+  const wrapperClassName = useInnerScroll
     ? styles.modalBodyWithExplicitBody
     : styles.modalBody;
 

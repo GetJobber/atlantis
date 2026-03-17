@@ -528,3 +528,86 @@ const ModalBodyFullWidthTemplate = () => {
 export const WithBodyFullWidth: Story = {
   render: ModalBodyFullWidthTemplate,
 };
+
+function ScrollComparisonBody() {
+  return (
+    <Content>
+      <Text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </Text>
+      <InputText placeholder="First field" />
+      <InputText placeholder="Second field" />
+      <Text>
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur.
+      </Text>
+      <InputText placeholder="Third field" />
+      <InputText placeholder="Fourth field" />
+      <Text>
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+        officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde
+        omnis iste natus error sit voluptatem.
+      </Text>
+      <InputText placeholder="Fifth field" />
+      <InputText placeholder="Sixth field" />
+    </Content>
+  );
+}
+
+const ScrollBehaviorComparisonTemplate = () => {
+  const [innerOpen, setInnerOpen] = useState(false);
+  const [outerOpen, setOuterOpen] = useState(false);
+
+  return (
+    <Flex template={["shrink", "shrink"]} gap="base">
+      <Button
+        label="Inner scroll (default)"
+        onClick={() => setInnerOpen(true)}
+      />
+      <Modal.Provider
+        open={innerOpen}
+        onRequestClose={() => setInnerOpen(false)}
+      >
+        <Modal.Content>
+          <Modal.Header title="Inner Scroll" />
+          <Modal.Body>
+            <ScrollComparisonBody />
+          </Modal.Body>
+          <Modal.Actions
+            primary={{ label: "Save", onClick: () => setInnerOpen(false) }}
+            secondary={{ label: "Cancel", onClick: () => setInnerOpen(false) }}
+          />
+        </Modal.Content>
+      </Modal.Provider>
+
+      <Button
+        label="Outer scroll"
+        onClick={() => setOuterOpen(true)}
+        type="secondary"
+      />
+      <Modal.Provider
+        open={outerOpen}
+        onRequestClose={() => setOuterOpen(false)}
+        scrollBehavior="outer"
+      >
+        <Modal.Content>
+          <Modal.Header title="Outer Scroll" />
+          <Modal.Body>
+            <ScrollComparisonBody />
+          </Modal.Body>
+          <Modal.Actions
+            primary={{ label: "Save", onClick: () => setOuterOpen(false) }}
+            secondary={{ label: "Cancel", onClick: () => setOuterOpen(false) }}
+          />
+        </Modal.Content>
+      </Modal.Provider>
+    </Flex>
+  );
+};
+
+export const ScrollBehaviorComparison: Story = {
+  render: ScrollBehaviorComparisonTemplate,
+};
