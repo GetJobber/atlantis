@@ -211,7 +211,6 @@ function InternalForm<T extends FieldValues, S>({
             keyboardShouldPersistTaps={"handled"}
             ref={scrollViewRef}
             bottomOffset={KEYBOARD_TOP_PADDING_AUTO_SCROLL}
-            extraKeyboardSpace={edgeToEdgeEnabled ? tokens["space-large"] : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
