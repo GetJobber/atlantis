@@ -103,6 +103,41 @@ function CustomModal() {
 }
 ```
 
+### Custom headers and dismiss buttons
+
+When you supply a custom `Modal.Header`, you replace the default header. That
+means the built-in dismiss button is no longer rendered.
+
+```tsx
+<Modal.Content>
+  <Modal.Header>
+    <h3>This is my custom header</h3>
+  </Modal.Header>
+  <Content>{/* Modal content */}</Content>
+</Modal.Content>
+```
+
+If you still want a dismiss button, add one yourself and wire it to
+`onRequestClose`:
+
+```tsx
+function CustomHeaderWithDismissHeader() {
+  const { header } = useModalStyles();
+  const { onRequestClose } = useModalContext();
+
+  return (
+    <div className={header}>
+      <Cluster justify="space-between" align="center">
+        <Heading level={2}>This is my custom header</Heading>
+        <ButtonDismiss ariaLabel="Close modal" onClick={onRequestClose} />
+      </Cluster>
+    </div>
+  );
+}
+```
+
+### Focus management
+
 Sometimes you may want to manually control where the modal returns focus to.
 This usually happens when a modal is triggered by an element that is removed
 from the DOM after the modal is opened. The base modal component generally
