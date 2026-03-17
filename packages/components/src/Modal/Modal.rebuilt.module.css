@@ -91,6 +91,12 @@
   scrollbar-gutter: stable;
 }
 
+.bodyNoSpacing {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

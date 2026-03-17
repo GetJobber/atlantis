@@ -70,6 +70,14 @@ export interface ModalContextType {
    * Used to disambiguate outsidePress after nested overlay closes.
    */
   readonly startedInsideRef?: RefObject<boolean>;
+
+  /**
+   * Controls the internal spacing of the modal body.
+   * - `"base"`: applies standard padding to Modal.Body to align with Header/Actions
+   * - `"none"`: removes padding from Modal.Body for full-width content
+   * @default "base"
+   */
+  readonly spacing?: "base" | "none";
 }
 
 export interface ModalActionsProps {

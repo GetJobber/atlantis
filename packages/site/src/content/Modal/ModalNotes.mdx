@@ -103,6 +103,63 @@ function CustomModal() {
 }
 ```
 
+### Modal.Body
+
+`Modal.Body` is the dedicated content area of the modal. It explicitly owns the
+padding and scroll behavior of the modal's body region.
+
+When `Modal.Body` is present, only the body area scrolls — `Modal.Header` and
+`Modal.Actions` stay fixed at the top and bottom. Without `Modal.Body`, the
+entire modal content scrolls as a single unit (backwards compatible with the
+existing behavior).
+
+```tsx
+<Modal.Provider open={showModal} onRequestClose={() => setShowModal(false)}>
+  <Modal.Content>
+    <Modal.Header title="Scrollable Form" />
+    <Modal.Body>
+      <Content>
+        <Text>Form content here...</Text>
+        <InputText placeholder="Name" />
+      </Content>
+    </Modal.Body>
+    <Modal.Actions
+      primary={{ label: "Save", onClick: handleSave }}
+      secondary={{ label: "Cancel", onClick: handleCancel }}
+    />
+  </Modal.Content>
+</Modal.Provider>
+```
+
+#### Full-width body content
+
+Set `spacing="none"` on `Modal.Provider` to remove the body's internal padding.
+This is useful when content needs to span edge-to-edge inside the modal, such as
+images, tables, or alternating background sections. Header and Actions retain
+their own padding regardless of this setting.
+
+```tsx
+<Modal.Provider
+  open={showModal}
+  onRequestClose={() => setShowModal(false)}
+  spacing="none"
+>
+  <Modal.Content>
+    <Modal.Header title="Full Width" />
+    <Modal.Body>
+      {/* Content goes edge-to-edge within the modal */}
+      <img src="banner.jpg" style={{ width: "100%" }} />
+      <Box padding="base">
+        <Text>Padded section within the full-width body</Text>
+      </Box>
+    </Modal.Body>
+    <Modal.Actions primary={{ label: "Done", onClick: handleDone }} />
+  </Modal.Content>
+</Modal.Provider>
+```
+
+### Modal.Activator
+
 Sometimes you may want to manually control where the modal returns focus to.
 This usually happens when a modal is triggered by an element that is removed
 from the DOM after the modal is opened. The base modal component generally

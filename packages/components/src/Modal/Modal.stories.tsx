@@ -480,3 +480,51 @@ const ModalBodyTemplate = () => {
 export const WithBody: Story = {
   render: ModalBodyTemplate,
 };
+
+const ModalBodyFullWidthTemplate = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  return (
+    <>
+      <Modal.Provider
+        open={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        spacing="none"
+      >
+        <Modal.Content>
+          <Modal.Header title="Full Width Content" />
+          <Modal.Body>
+            <Box padding="base" background="surface--background">
+              <Text>
+                This section spans the full width of the modal. Useful for
+                images, tables, or other content that should go edge-to-edge.
+              </Text>
+            </Box>
+            <Box padding="base">
+              <Content>
+                <Text>
+                  With spacing set to &quot;none&quot;, the Modal.Body removes
+                  its internal padding. Individual sections can manage their own
+                  spacing as needed using Box or Content.
+                </Text>
+                <InputText placeholder="An input inside a padded section" />
+              </Content>
+            </Box>
+          </Modal.Body>
+          <Modal.Actions
+            primary={{ label: "Done", onClick: () => setModalOpen(false) }}
+            secondary={{ label: "Cancel", onClick: () => setModalOpen(false) }}
+          />
+        </Modal.Content>
+      </Modal.Provider>
+      <Button
+        label="Open Full Width Modal"
+        onClick={() => setModalOpen(true)}
+      />
+    </>
+  );
+};
+
+export const WithBodyFullWidth: Story = {
+  render: ModalBodyFullWidthTemplate,
+};

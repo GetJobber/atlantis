@@ -22,7 +22,10 @@ import { Button } from "../Button";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 export function ModalBody({ children }: PropsWithChildren) {
-  return <div className={styles.body}>{children}</div>;
+  const { spacing } = useModalContext();
+  const className = spacing === "none" ? styles.bodyNoSpacing : styles.body;
+
+  return <div className={className}>{children}</div>;
 }
 
 export function ModalHeader({ title, children }: HeaderProps) {

@@ -29,6 +29,13 @@ export interface ModalProviderProps {
   readonly dismissible?: boolean;
   readonly modalLabelledBy?: string;
   readonly ariaLabel?: string;
+  /**
+   * Controls the internal spacing of the modal body.
+   * - `"base"`: applies standard padding to Modal.Body to align with Header/Actions
+   * - `"none"`: removes padding from Modal.Body for full-width content
+   * @default "base"
+   */
+  readonly spacing?: "base" | "none";
 }
 
 export function ModalProvider({
@@ -40,6 +47,7 @@ export function ModalProvider({
   dismissible = true,
   modalLabelledBy = MODAL_HEADER_ID,
   ariaLabel,
+  spacing = "base",
 }: ModalProviderProps) {
   const startedInsideRef = useRef<boolean>(true);
   const {
@@ -71,6 +79,7 @@ export function ModalProvider({
         ariaLabel,
         getFloatingProps,
         startedInsideRef,
+        spacing,
       }}
     >
       {children}
