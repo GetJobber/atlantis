@@ -500,16 +500,14 @@ const ModalBodyFullWidthTemplate = () => {
                 images, tables, or other content that should go edge-to-edge.
               </Text>
             </Box>
-            <Box padding="base">
-              <Content>
-                <Text>
-                  With spacing set to &quot;none&quot;, the Modal.Body removes
-                  its internal padding. Individual sections can manage their own
-                  spacing as needed using Box or Content.
-                </Text>
-                <InputText placeholder="An input inside a padded section" />
-              </Content>
-            </Box>
+            <Content>
+              <Text>
+                With spacing set to &quot;none&quot;, the Modal.Body removes its
+                internal padding. Individual sections can manage their own
+                spacing as needed using Box or Content.
+              </Text>
+              <InputText placeholder="An input inside a padded section" />
+            </Content>
           </Modal.Body>
           <Modal.Actions
             primary={{ label: "Done", onClick: () => setModalOpen(false) }}

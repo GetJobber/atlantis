@@ -83,6 +83,12 @@
   overflow: hidden;
 }
 
+.noSpacing {
+  --modal--padding-horizontal: 0;
+  --modal--padding-vertical: 0;
+  --modal--padding: 0;
+}
+
 .body {
   min-height: 0;
   padding: var(--modal--padding);
@@ -91,10 +97,8 @@
   scrollbar-gutter: stable;
 }
 
-.bodyNoSpacing {
-  min-height: 0;
-  overflow-y: auto;
-  flex: 1 1 auto;
+.noSpacing .body {
+  scrollbar-gutter: auto;
 }
 
 .bodyStatic {

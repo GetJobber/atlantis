@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react";
 import React from "react";
+import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FloatingFocusManager,
@@ -22,15 +23,9 @@ import { Button } from "../Button";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 export function ModalBody({ children }: PropsWithChildren) {
-  const { spacing, scrollBehavior } = useModalContext();
-
-  let className: string | undefined;
-
-  if (scrollBehavior === "inner") {
-    className = spacing === "none" ? styles.bodyNoSpacing : styles.body;
-  } else {
-    className = spacing === "none" ? undefined : styles.bodyStatic;
-  }
+  const { scrollBehavior } = useModalContext();
+  const className =
+    scrollBehavior === "inner" ? styles.body : styles.bodyStatic;
 
   return <div className={className}>{children}</div>;
 }
@@ -143,6 +138,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     getFloatingProps,
     startedInsideRef,
     scrollBehavior,
+    spacing,
   } = useModalContext();
   const { modal } = useModalStyles(size);
 
@@ -152,9 +148,10 @@ export function ModalContent({ children }: ModalContainerProps) {
 
   const useInnerScroll = hasExplicitBody && scrollBehavior === "inner";
 
-  const wrapperClassName = useInnerScroll
-    ? styles.modalBodyWithExplicitBody
-    : styles.modalBody;
+  const wrapperClassName = classnames(
+    useInnerScroll ? styles.modalBodyWithExplicitBody : styles.modalBody,
+    spacing === "none" && styles.noSpacing,
+  );
 
   return (
     <AnimatePresence>

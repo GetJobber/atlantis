@@ -5,8 +5,8 @@ declare const styles: {
   readonly "modalBody": string;
   readonly "modalBodyWithExplicitBody": string;
   readonly "body": string;
-  readonly "bodyNoSpacing": string;
   readonly "bodyStatic": string;
+  readonly "noSpacing": string;
   readonly "header": string;
   readonly "closeButton": string;
   readonly "actionBar": string;

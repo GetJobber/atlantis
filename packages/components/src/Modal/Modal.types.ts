@@ -72,12 +72,11 @@ export interface ModalContextType {
   readonly startedInsideRef?: RefObject<boolean>;
 
   /**
-   * Controls the internal padding of Modal.Body.
+   * Controls the internal padding of the modal's sections (Header, Body, and Actions).
    *
-   * - `"base"`: applies standard padding to align body content with Header/Actions
-   * - `"none"`: removes all padding from Modal.Body for full-width/edge-to-edge content
+   * - `"base"`: applies standard padding to all sections
+   * - `"none"`: removes all internal padding for fully custom/edge-to-edge layouts
    *
-   * Has no effect without a `Modal.Body` child.
    * @default "base"
    */
   readonly spacing?: "base" | "none";
