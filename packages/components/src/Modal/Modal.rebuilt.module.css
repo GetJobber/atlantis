@@ -90,18 +90,15 @@
 }
 
 .body {
+  --public-content--padding: 0;
   min-height: 0;
   padding: var(--modal--padding);
   overflow-y: auto;
   flex: 1 1 auto;
-  scrollbar-gutter: stable;
-}
-
-.noSpacing .body {
-  scrollbar-gutter: auto;
 }
 
 .bodyStatic {
+  --public-content--padding: 0;
   padding: var(--modal--padding);
 }
 
