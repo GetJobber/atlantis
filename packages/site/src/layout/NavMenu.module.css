@@ -1,5 +1,5 @@
 .navMenuContainer {
-  --hoverOffset: var(--space-smallest);
+  --hoverOffset: var(--space-small);
   --negativeHoverOffset: calc(-1 * var(--hoverOffset));
   --subItemInset: calc(var(--space-small) + var(--space-smaller));
   --navItemHeight: 40px;
@@ -59,7 +59,7 @@
   color: var(--color-text);
   outline: transparent;
   text-decoration: none;
-  padding: 0 var(--space-smallest);
+  padding: 0 var(--space-small);
 
   &:visited {
     color: var(--color-text);
