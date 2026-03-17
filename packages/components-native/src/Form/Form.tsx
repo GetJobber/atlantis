@@ -231,7 +231,14 @@ function InternalForm<T extends FieldValues, S>({
                 <>
                   <View style={styles.formContent}>{children}</View>
                   {saveButtonPosition === "inline" && (
-                    <View style={styles.fixedSaveButton}>
+                    <View
+                      style={[
+                        styles.fixedSaveButton,
+                        (edgeToEdgeEnabled || Platform.OS !== "android") && {
+                          marginBottom: paddingBottom,
+                        },
+                      ]}
+                    >
                       {renderStickySection ? (
                         renderStickySection(
                           handleSubmit(internalSubmit),
