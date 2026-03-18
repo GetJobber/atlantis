@@ -76,7 +76,56 @@ export const AutocompleteV2SectionedExample = () => {
   );
 };
 
-<Canvas>
+export const AutocompleteV2SectionedExampleCode = `
+export const AutocompleteV2SectionedExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const menu = [
+    {
+      type: "section",
+      label: "Indoor",
+      options: [
+        { label: "Drain Cleaning" },
+        { label: "Pipe Replacement" },
+        { label: "Sewer Line Repair" },
+        { label: "Window Cleaning" },
+      ],
+    },
+    {
+      type: "section",
+      label: "Outdoor",
+      options: [
+        { label: "Roof Inspection" },
+        { label: "Lawn Mowing" },
+        { label: "Hedge Trimming" },
+      ],
+    },
+    {
+      type: "section",
+      label: "Misc",
+      options: [
+        { label: "Assessment" },
+        { label: "Inspection" },
+        { label: "2nd Opinion" },
+      ],
+    },
+  ];
+
+  return (
+    <Autocomplete
+      version={2}
+      placeholder="Search"
+      value={value}
+      onChange={setValue}
+      inputValue={inputValue}
+      onInputChange={setInputValue}
+      menu={menu}
+    />
+  );
+};
+`;
+
+<Canvas code={AutocompleteV2SectionedExampleCode}>
   <AutocompleteV2SectionedExample />
 </Canvas>
 
@@ -124,7 +173,50 @@ export const AutocompleteV2HeaderFooterExample = () => {
   );
 };
 
-<Canvas>
+export const AutocompleteV2HeaderFooterExampleCode = `
+export const AutocompleteV2HeaderFooterExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={5}>Header/Footer</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={[
+          { type: "header", label: "Pinned header", shouldClose: false },
+          {
+            type: "options",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+              { label: "Window Cleaning" },
+              { label: "Roof Inspection" },
+              { label: "Lawn Mowing" },
+              { label: "Hedge Trimming" },
+            ],
+          },
+          {
+            type: "footer",
+            label: "Interactive footer",
+            onClick: () => {
+              alert("Clicked");
+            },
+          },
+        ]}
+      />
+    </Content>
+  );
+};
+`;
+
+<Canvas code={AutocompleteV2HeaderFooterExampleCode}>
   <AutocompleteV2HeaderFooterExample />
 </Canvas>
 
@@ -190,7 +282,70 @@ export const AutocompleteV2ActionsExample = () => {
   );
 };
 
-<Canvas>
+export const AutocompleteV2ActionsExampleCode = `
+export const AutocompleteV2ActionsExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [newService, setNewService] = useState("");
+
+  return (
+    <Content>
+      <Heading level={5}>Actions</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Options and actions"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        emptyStateMessage="No services found"
+        menu={[
+          {
+            type: "section",
+            label: "Indoor",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+              { label: "Window Cleaning" },
+            ],
+            actions: [
+              {
+                type: "action",
+                label: "New Indoor",
+                onClick: () => {
+                  alert("Adding indoor service");
+                },
+              },
+            ],
+          },
+          {
+            type: "section",
+            label: "Outdoor",
+            options: [
+              { label: "Roof Inspection" },
+              { label: "Lawn Mowing" },
+              { label: "Hedge Trimming" },
+            ],
+            actions: [
+              {
+                type: "action",
+                label: "New Outdoor",
+                onClick: () => {
+                  alert("Adding outdoor service");
+                },
+              },
+            ],
+          },
+        ]}
+      />
+    </Content>
+  );
+};
+`;
+
+<Canvas code={AutocompleteV2ActionsExampleCode}>
   <AutocompleteV2ActionsExample />
 </Canvas>
 
@@ -249,7 +404,58 @@ export const AutocompleteV2EmptyActionsExample = () => {
   );
 };
 
-<Canvas>
+export const AutocompleteV2EmptyActionsExampleCode = `
+export const AutocompleteV2EmptyActionsExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [newService, setNewService] = useState("");
+
+  return (
+    <Content>
+      <Heading level={5}>Empty actions</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Try a term with no matches"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        emptyStateMessage="No services found"
+        emptyActions={[
+          {
+            type: "action",
+            label: "Create service",
+            onClick: () => setOpen(true),
+          },
+        ]}
+        menu={[
+          {
+            type: "options",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+            ],
+          },
+        ]}
+      />
+      {open ? (
+        <Content>
+          <Heading level={5}>Create service</Heading>
+          <input
+            value={newService}
+            onChange={e => setNewService(e.target.value)}
+          />
+          <Button label="Create" onClick={() => setOpen(false)} />
+        </Content>
+      ) : null}
+    </Content>
+  );
+};
+`;
+
+<Canvas code={AutocompleteV2EmptyActionsExampleCode}>
   <AutocompleteV2EmptyActionsExample />
 </Canvas>
 
@@ -296,7 +502,46 @@ export const AutocompleteV2StayOpenExample = () => {
   );
 };
 
-<Canvas>
+export const AutocompleteV2StayOpenExampleCode = `
+export const AutocompleteV2StayOpenExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={5}>Stay Open Action</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={[
+          {
+            type: "options",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+            ],
+            actions: [
+              {
+                type: "action",
+                label: "Add Service (stays open)",
+                shouldClose: false,
+                onClick: () => alert("Add Service"),
+              },
+            ],
+          },
+        ]}
+      />
+    </Content>
+  );
+};
+`;
+
+<Canvas code={AutocompleteV2StayOpenExampleCode}>
   <AutocompleteV2StayOpenExample />
 </Canvas>
 
@@ -339,7 +584,37 @@ export const AutocompleteV2FreeFormExample = () => {
   );
 };
 
-<Canvas>
+export const AutocompleteV2FreeFormExampleCode = `
+export const AutocompleteV2FreeFormExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const options = [
+    { label: "Drain Cleaning" },
+    { label: "Pipe Replacement" },
+    { label: "Sewer Line Repair" },
+    { label: "Window Cleaning" },
+  ];
+
+  return (
+    <>
+      <p>Your selection is: {value?.label ?? ""}</p>
+      <Autocomplete
+        version={2}
+        placeholder="Type anything"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        allowFreeForm
+        createFreeFormValue={label => ({ label })}
+        menu={[{ type: "options", options }]}
+      />
+    </>
+  );
+};
+`;
+
+<Canvas code={AutocompleteV2FreeFormExampleCode}>
   <AutocompleteV2FreeFormExample />
 </Canvas>
 

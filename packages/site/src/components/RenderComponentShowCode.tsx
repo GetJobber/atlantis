@@ -8,25 +8,30 @@ import prism from "prismjs";
  * @param param0 {children:ReactNode}
  * @returns ReactNode
  */
-export const RenderComponentShowCode = ({ children }: PropsWithChildren) => {
+export const RenderComponentShowCode = ({
+  children,
+  code: providedCode,
+}: PropsWithChildren<{ readonly code?: string }>) => {
   const [codeVisible, setCodeVisible] = useState(false);
 
   const showCode = () => {
     setCodeVisible(!codeVisible);
   };
-  const code = Children.map(children, child => {
-    return reactElementToJSXString(child, {
-      displayName: e => {
-        if (e && typeof e === "object" && "type" in e) {
-          if (typeof e.type === "function") {
-            return (e.type.name || "Anonymous").replace(/[\d$]+/g, "");
+  const code =
+    providedCode ||
+    Children.map(children, child => {
+      return reactElementToJSXString(child, {
+        displayName: e => {
+          if (e && typeof e === "object" && "type" in e) {
+            if (typeof e.type === "function") {
+              return (e.type.name || "Anonymous").replace(/\$\d*$/g, "");
+            }
           }
-        }
 
-        return "Anonymous";
-      },
+          return "Anonymous";
+        },
+      });
     });
-  });
   useEffect(() => {
     prism.highlightAll();
   }, [code]);
