@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.mjs",
+    "watch": "rollup -c rollup.config.mjs --watch",
     "clean": "rm -rf dist tsconfig.*tsbuildinfo",
     "bootstrap": "npm run clean; npm run build"
   },
