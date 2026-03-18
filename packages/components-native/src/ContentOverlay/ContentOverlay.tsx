@@ -1,4 +1,11 @@
-import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   AccessibilityInfo,
   View,
@@ -26,6 +33,20 @@ import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
+
+/**
+ * Signals whether keyboard handling inside a ContentOverlay is delegated to
+ * a keyboard-aware scroll view (e.g. BottomSheetKeyboardAwareScrollView).
+ *
+ * When `true`, InputText skips registering with the bottom-sheet's internal
+ * keyboard state so that only the scroll view manages keyboard offset —
+ * preventing double-counted spacing.
+ */
+const ContentOverlayKeyboardContext = createContext(false);
+
+export function useIsKeyboardHandledByScrollView() {
+  return useContext(ContentOverlayKeyboardContext);
+}
 
 const LARGE_SCREEN_BREAKPOINT = 640;
 
@@ -267,31 +288,33 @@ export function ContentOverlay({
       topInset={topInset}
       onDismiss={() => onClose?.()}
     >
-      {scrollEnabled ? (
-        <BottomSheetKeyboardAwareScrollView
-          ref={scrollViewRef}
-          contentContainerStyle={{ paddingBottom: insets.bottom }}
-          keyboardShouldPersistTaps={
-            keyboardShouldPersistTaps ? "handled" : "never"
-          }
-          showsVerticalScrollIndicator={false}
-          onScroll={handleOnScroll}
-          stickyHeaderIndices={[0]}
-        >
-          {renderHeader()}
-          <View testID="ATL-Overlay-Children">{children}</View>
-        </BottomSheetKeyboardAwareScrollView>
-      ) : (
-        <BottomSheetView>
-          {renderHeader()}
-          <View
-            style={{ paddingBottom: insets.bottom }}
-            testID="ATL-Overlay-Children"
+      <ContentOverlayKeyboardContext.Provider value={scrollEnabled}>
+        {scrollEnabled ? (
+          <BottomSheetKeyboardAwareScrollView
+            ref={scrollViewRef}
+            contentContainerStyle={{ paddingBottom: insets.bottom }}
+            keyboardShouldPersistTaps={
+              keyboardShouldPersistTaps ? "handled" : "never"
+            }
+            showsVerticalScrollIndicator={false}
+            onScroll={handleOnScroll}
+            stickyHeaderIndices={[0]}
           >
-            {children}
-          </View>
-        </BottomSheetView>
-      )}
+            {renderHeader()}
+            <View testID="ATL-Overlay-Children">{children}</View>
+          </BottomSheetKeyboardAwareScrollView>
+        ) : (
+          <BottomSheetView>
+            {renderHeader()}
+            <View
+              style={{ paddingBottom: insets.bottom }}
+              testID="ATL-Overlay-Children"
+            >
+              {children}
+            </View>
+          </BottomSheetView>
+        )}
+      </ContentOverlayKeyboardContext.Provider>
     </BottomSheetModal>
   );
 }

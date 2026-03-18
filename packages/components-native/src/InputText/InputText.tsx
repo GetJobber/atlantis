@@ -23,6 +23,7 @@ import type { Clearable } from "@jobber/hooks";
 import { useShowClear } from "@jobber/hooks";
 import { useStyles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
+import { useIsKeyboardHandledByScrollView } from "../ContentOverlay";
 import { useFormController } from "../hooks";
 import type {
   InputFieldStyleOverride,
@@ -316,10 +317,19 @@ function InputTextInternal(
     disabled,
   });
 
-  // Bottom sheet keyboard handling - detect if we're inside a ContentOverlay
+  // When inside a scrollable ContentOverlay, keyboard offset is handled by
+  // KeyboardAwareScrollView. Registering with the bottom-sheet's keyboard
+  // state would cause double-counted spacing, so we skip it.
+  const isKeyboardHandledByScrollView = useIsKeyboardHandledByScrollView();
   const bottomSheetContext = useBottomSheetInternal(true);
-  const animatedKeyboardState = bottomSheetContext?.animatedKeyboardState;
-  const textInputNodesRef = bottomSheetContext?.textInputNodesRef;
+  const shouldHandleBottomSheetKeyboard =
+    bottomSheetContext !== null && !isKeyboardHandledByScrollView;
+  const animatedKeyboardState = shouldHandleBottomSheetKeyboard
+    ? bottomSheetContext.animatedKeyboardState
+    : undefined;
+  const textInputNodesRef = shouldHandleBottomSheetKeyboard
+    ? bottomSheetContext.textInputNodesRef
+    : undefined;
 
   // Android doesn't have an accessibility label like iOS does. By adding
   // it as a placeholder it readds it like a label. However we don't want to
