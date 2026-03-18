@@ -14,8 +14,6 @@ import { useTypographyStyles } from "../Typography";
 import { Text } from "../Text";
 import { ActivityIndicator } from "../ActivityIndicator";
 
-export type Clearable = "never" | "while-editing" | "always";
-
 export interface InputFieldStyleOverride {
   prefixLabel?: StyleProp<TextStyle>;
   suffixLabel?: StyleProp<TextStyle>;
