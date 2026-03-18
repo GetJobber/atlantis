@@ -74,14 +74,14 @@ test.describe("Modal Visual Tests", () => {
   });
 
   test.describe("sized modals", () => {
-    test("should test large modal", async ({ page }) => {
-      const largeModalButton = page.getByRole("button", {
-        name: "Open Large Modal",
+    test("should test small modal", async ({ page }) => {
+      const smallModalButton = page.getByRole("button", {
+        name: "Open Small Modal",
         exact: true,
       });
-      await largeModalButton.click();
+      await smallModalButton.click();
       await page.waitForTimeout(500);
-      await expect(page).toHaveScreenshot("8-large-modal-open.png", {
+      await expect(page).toHaveScreenshot("8-small-modal-open.png", {
         fullPage: true,
       });
 
@@ -91,9 +91,75 @@ test.describe("Modal Visual Tests", () => {
       });
       await cancelButton.click();
       await page.waitForTimeout(500);
-      await expect(page).toHaveScreenshot("9-large-modal-closed.png", {
+      await expect(page).toHaveScreenshot("9-small-modal-closed.png", {
         fullPage: true,
       });
+    });
+
+    test("should test large modal", async ({ page }) => {
+      const largeModalButton = page.getByRole("button", {
+        name: "Open Large Modal",
+        exact: true,
+      });
+      await largeModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("10-large-modal-open.png", {
+        fullPage: true,
+      });
+
+      const cancelButton = page.getByRole("button", {
+        name: "Cancel",
+        exact: true,
+      });
+      await cancelButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("11-large-modal-closed.png", {
+        fullPage: true,
+      });
+    });
+
+    test("should test full screen modal", async ({ page }) => {
+      const fullScreenModalButton = page.getByRole("button", {
+        name: "Open Full Screen Modal",
+        exact: true,
+      });
+      await fullScreenModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("12-full-screen-modal-open.png", {
+        fullPage: true,
+      });
+
+      const closeButton = page.getByRole("button", { name: "Close modal" });
+      await closeButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("13-full-screen-modal-closed.png", {
+        fullPage: true,
+      });
+    });
+
+    test("should test full screen composable modal", async ({ page }) => {
+      const fullScreenModalButton = page.getByRole("button", {
+        name: "Open Full Screen Modal (Composable)",
+        exact: true,
+      });
+      await fullScreenModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot(
+        "14-full-screen-composable-open.png",
+        {
+          fullPage: true,
+        },
+      );
+
+      const closeButton = page.getByRole("button", { name: "Close modal" });
+      await closeButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot(
+        "15-full-screen-composable-closed.png",
+        {
+          fullPage: true,
+        },
+      );
     });
   });
 
