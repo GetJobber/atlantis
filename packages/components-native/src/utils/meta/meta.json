@@ -1,6 +1,7 @@
 {
   "exportedComponents": [
     "ActionItem",
+    "ActionItemContainer",
     "ActionItemGroup",
     "ActionLabel",
     "ActivityIndicator",
@@ -21,6 +22,7 @@
     "Checkbox",
     "CheckboxGroup",
     "Chip",
+    "ClearAction",
     "Content",
     "ContentOverlay",
     "Disclosure",
@@ -58,6 +60,7 @@
     "Option",
     "ProgressBar",
     "Select",
+    "SelectPressable",
     "StatusLabel",
     "Switch",
     "Text",
