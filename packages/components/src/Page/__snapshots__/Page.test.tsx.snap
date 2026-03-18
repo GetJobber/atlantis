@@ -12,77 +12,82 @@ exports[`When actions are provided renders a Page with action buttons and a menu
         class="padded base"
       >
         <div
-          class="titleBar small medium large"
+          class="container"
+          style="--public-container-name: page-titlebar; --public-container-width: 100%;"
         >
-          <div>
-            <h1
-              class="base black jumbo heading"
-            >
-              Notifications
-            </h1>
-          </div>
           <div
-            class="actionGroup"
+            class="titleBar"
           >
-            <div
-              class="primaryAction"
-            >
-              <button
-                class="button base work primary fullWidth buttonChildren"
-                type="button"
+            <div>
+              <h1
+                class="base black jumbo heading"
               >
-                <span
-                  class="base semiBold base base"
-                >
-                  Send Food
-                </span>
-              </button>
+                Notifications
+              </h1>
             </div>
             <div
-              class="actionButton"
-            >
-              <button
-                class="button base work secondary fullWidth buttonChildren"
-                type="button"
-              >
-                <span
-                  class="base semiBold base base"
-                >
-                  Send Drink
-                </span>
-              </button>
-            </div>
-            <div
-              class="actionButton"
+              class="actionGroup"
             >
               <div
-                class="wrapper"
+                class="primaryAction"
               >
-                <div>
-                  <button
-                    aria-controls="«r1»"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    class="button base work secondary fullWidth buttonChildren"
-                    id="«r0»"
-                    type="button"
+                <button
+                  class="button base work primary fullWidth buttonChildren"
+                  type="button"
+                >
+                  <span
+                    class="base semiBold base base"
                   >
-                    <svg
-                      data-testid="more"
-                      style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    Send Food
+                  </span>
+                </button>
+              </div>
+              <div
+                class="actionButton"
+              >
+                <button
+                  class="button base work secondary fullWidth buttonChildren"
+                  type="button"
+                >
+                  <span
+                    class="base semiBold base base"
+                  >
+                    Send Drink
+                  </span>
+                </button>
+              </div>
+              <div
+                class="actionButton"
+              >
+                <div
+                  class="wrapper"
+                >
+                  <div>
+                    <button
+                      aria-controls="«r1»"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="button base work secondary fullWidth buttonChildren"
+                      id="«r0»"
+                      type="button"
                     >
-                      <path
-                        d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
-                      />
-                    </svg>
-                    <span
-                      class="base semiBold base base"
-                    >
-                      More Actions
-                    </span>
-                  </button>
+                      <svg
+                        data-testid="more"
+                        style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+                        />
+                      </svg>
+                      <span
+                        class="base semiBold base base"
+                      >
+                        More Actions
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,14 +121,19 @@ exports[`renders a Page 1`] = `
         class="padded base"
       >
         <div
-          class="titleBar small medium large"
+          class="container"
+          style="--public-container-name: page-titlebar; --public-container-width: 100%;"
         >
-          <div>
-            <h1
-              class="base black jumbo heading"
-            >
-              Notifications
-            </h1>
+          <div
+            class="titleBar"
+          >
+            <div>
+              <h1
+                class="base black jumbo heading"
+              >
+                Notifications
+              </h1>
+            </div>
           </div>
         </div>
         <p
