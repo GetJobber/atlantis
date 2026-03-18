@@ -29,7 +29,21 @@ export const ControlledExample = () => {
   );
 };
 
-<Canvas>
+export const ControlledExampleCode = `
+const ControlledExample = () => {
+  const [age, setAge] = useState("Veintisiete");
+  return (
+    <InputText
+      value={age}
+      onChange={setAge}
+      name="age"
+      placeholder="Age in words"
+    />
+  );
+};
+`;
+
+<Canvas code={ControlledExampleCode}>
   <ControlledExample />
 </Canvas>
 
