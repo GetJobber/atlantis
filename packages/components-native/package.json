@@ -28,12 +28,11 @@
     "./jestSetup.js"
   ],
   "scripts": {
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "build": "npm run build:clean && npm run compile",
+    "clean": "rm -rf dist/* tsconfig.build.tsbuildinfo",
+    "build": "npm run clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
     "compile": "tsc -p tsconfig.build.json",
-    "build:clean": "rm -rf ./dist",
     "storybook": "storybook dev -p 6008 --disable-telemetry",
     "storybook:build": "storybook build --disable-telemetry"
   },
@@ -54,6 +53,8 @@
   },
   "devDependencies": {
     "@gorhom/bottom-sheet": "^5.2.8",
+    "@jobber/design": "*",
+    "@jobber/hooks": "*",
     "@react-native-community/datetimepicker": "^8.4.5",
     "@react-native/babel-preset": "^0.82.1",
     "@storybook/addon-a11y": "9.1.19",
@@ -81,6 +82,7 @@
     "@babel/core": "^7.4.5",
     "@gorhom/bottom-sheet": "^5.2.8",
     "@jobber/design": "*",
+    "@jobber/hooks": "*",
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",

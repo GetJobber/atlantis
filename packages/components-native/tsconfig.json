@@ -32,6 +32,8 @@
     "node_modules",
     "dist/**/*",
     "tsconfig.eslint.json",
+    "tsconfig.build.json",
+    "tsconfig.json",
     "**/*.stories.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
