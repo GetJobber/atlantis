@@ -211,7 +211,6 @@ function InternalForm<T extends FieldValues, S>({
             keyboardShouldPersistTaps={"handled"}
             ref={scrollViewRef}
             bottomOffset={KEYBOARD_TOP_PADDING_AUTO_SCROLL}
-            extraKeyboardSpace={edgeToEdgeEnabled ? tokens["space-large"] : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
@@ -232,7 +231,14 @@ function InternalForm<T extends FieldValues, S>({
                 <>
                   <View style={styles.formContent}>{children}</View>
                   {saveButtonPosition === "inline" && (
-                    <View style={styles.fixedSaveButton}>
+                    <View
+                      style={[
+                        styles.fixedSaveButton,
+                        (edgeToEdgeEnabled || Platform.OS !== "android") && {
+                          marginBottom: paddingBottom,
+                        },
+                      ]}
+                    >
                       {renderStickySection ? (
                         renderStickySection(
                           handleSubmit(internalSubmit),
