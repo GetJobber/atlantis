@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.116.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.116.0...@jobber/components@6.116.1) (2026-03-18)
+
+
+### Bug Fixes
+
+* **components:** overlay SegmentedControl selected border on container border ([#2992](https://github.com/GetJobber/atlantis/issues/2992)) ([62bda36](https://github.com/GetJobber/atlantis/commit/62bda36d4a51ac44dece4b186016b4f395487335))
+
+
+
+
+
 # [6.116.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.115.3...@jobber/components@6.116.0) (2026-03-18)
 
 
