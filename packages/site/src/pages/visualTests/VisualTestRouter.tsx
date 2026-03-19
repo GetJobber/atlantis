@@ -63,12 +63,14 @@ import { VisualTestTypographyPage } from "./VisualTestTypographyPage";
 import { VisualTestTabsPage } from "./VisualTestTabsPage";
 import { VisualTestToastPage } from "./VisualTestToastPage";
 import { VisualTestBannerPage } from "./VisualTestBannerPage";
+import { VisualTestButtonPage } from "./VisualTestButtonPage";
 import { VisualTestThemePage } from "./VisualTestThemePage";
 
 const visualTestPages: Record<string, () => ReactElement> = {
   components: VisualTestComponentPage,
   layout: VisualTestLayoutPage,
   modal: VisualTestModalPage,
+  button: VisualTestButtonPage,
   datalist: VisualTestDataListPage,
   autocomplete: VisualTestAutocompletePage,
   "autocomplete-v2": VisualTestAutocompleteV2Page,

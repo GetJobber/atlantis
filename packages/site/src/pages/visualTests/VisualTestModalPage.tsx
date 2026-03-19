@@ -20,6 +20,10 @@ export const VisualTestModalPage = () => {
   const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [customModalOpen, setCustomModalOpen] = useState(false);
   const [largeModalOpen, setLargeModalOpen] = useState(false);
+  const [fullScreenModalOpen, setFullScreenModalOpen] = useState(false);
+  const [fullScreenComposableOpen, setFullScreenComposableOpen] =
+    useState(false);
+  const [smallModalOpen, setSmallModalOpen] = useState(false);
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [tabModalOpen, setTabModalOpen] = useState(false);
   const [narrowContentModalOpen, setNarrowContentModalOpen] = useState(false);
@@ -131,10 +135,44 @@ export const VisualTestModalPage = () => {
               <Text size="large">Modal Sizes</Text>
               <Cluster>
                 <Button
+                  label="Open Small Modal"
+                  onClick={() => setSmallModalOpen(true)}
+                />
+                <Button
                   label="Open Large Modal"
                   onClick={() => setLargeModalOpen(true)}
                 />
+                <Button
+                  label="Open Full Screen Modal"
+                  onClick={() => setFullScreenModalOpen(true)}
+                />
+                <Button
+                  label="Open Full Screen Modal (Composable)"
+                  onClick={() => setFullScreenComposableOpen(true)}
+                />
               </Cluster>
+
+              {/* Small Modal */}
+              <Modal
+                title="Small Modal"
+                open={smallModalOpen}
+                onRequestClose={() => setSmallModalOpen(false)}
+                primaryAction={{
+                  label: "Save",
+                  onClick: () => setSmallModalOpen(false),
+                }}
+                secondaryAction={{
+                  label: "Cancel",
+                  onClick: () => setSmallModalOpen(false),
+                }}
+                size="small"
+              >
+                <Box padding="large">
+                  <Text>
+                    This is a small modal for compact content and short tasks.
+                  </Text>
+                </Box>
+              </Modal>
 
               {/* Large Modal */}
               <Modal
@@ -176,6 +214,38 @@ export const VisualTestModalPage = () => {
                   </Stack>
                 </Box>
               </Modal>
+
+              {/* Full Screen Modal */}
+              <Modal
+                title="Full Screen Modal"
+                open={fullScreenModalOpen}
+                onRequestClose={() => setFullScreenModalOpen(false)}
+                size="fullScreen"
+              >
+                <Box padding="large">
+                  <Text>
+                    This is a full screen modal. Close it using the dismiss
+                    button or pressing the ESC key.
+                  </Text>
+                </Box>
+              </Modal>
+
+              {/* Full Screen Modal (Composable) */}
+              <Modal.Provider
+                open={fullScreenComposableOpen}
+                onRequestClose={() => setFullScreenComposableOpen(false)}
+                size="fullScreen"
+              >
+                <Modal.Content>
+                  <Modal.Header title="Full Screen Modal (Composable)" />
+                  <Box padding="large">
+                    <Text>
+                      This is a composable full screen modal. Close it using the
+                      dismiss button or pressing the ESC key.
+                    </Text>
+                  </Box>
+                </Modal.Content>
+              </Modal.Provider>
             </section>
 
             {/* Modal with Form */}
