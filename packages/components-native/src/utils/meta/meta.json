@@ -25,6 +25,7 @@
     "ClearAction",
     "Content",
     "ContentOverlay",
+    "ContentOverlayProvider",
     "Disclosure",
     "Divider",
     "EmptyState",

@@ -1,5 +1,4 @@
-import type { ReactNode } from "react";
-import type { Modalize } from "react-native-modalize";
+import type { ReactNode, Ref } from "react";
 
 export interface ContentOverlayProps {
   /**
@@ -68,29 +67,22 @@ export interface ContentOverlayProps {
   readonly onBeforeExit?: () => void;
 
   /**
-   * Define the behavior of the keyboard when having inputs inside the modal.
-   * @default padding
-   */
-  readonly keyboardAvoidingBehavior?: "height" | "padding" | "position";
-
-  /**
    * Boolean to show a disabled state
    * @default false
    */
   readonly loading?: boolean;
 
   /**
-   * Define keyboard's Android behavior like iOS's one.
-   * @default Platform.select({ ios: true, android: false })
+   * Ref to the content overlay component.
    */
-  readonly avoidKeyboardLikeIOS?: boolean;
+  readonly ref?: Ref<ContentOverlayRef>;
 }
 
 export type ModalBackgroundColor = "surface" | "background";
 
 export type ContentOverlayRef =
   | {
-      open?: Modalize["open"];
-      close?: Modalize["close"];
+      open?: () => void;
+      close?: () => void;
     }
   | undefined;

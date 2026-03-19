@@ -1,23 +1,15 @@
 import React, { useRef } from "react";
 import { View } from "react-native";
 import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
-import { Host } from "react-native-portalize";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import type { ContentOverlayRef } from "@jobber/components-native";
-import {
-  Button,
-  Content,
-  ContentOverlay,
-  Text,
-} from "@jobber/components-native";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { Button, Heading, Text } from "@jobber/components-native";
+import { ContentOverlay } from "./ContentOverlay";
+import type { ContentOverlayRef } from "./types";
 
 const meta = {
   title: "Components/Overlays/ContentOverlay",
   component: ContentOverlay,
-  parameters: {
-    viewport: { defaultViewport: "mobile1" },
-    showNativeOnWebDisclaimer: true,
-  },
 } satisfies Meta<typeof ContentOverlay>;
 export default meta;
 
@@ -30,36 +22,40 @@ interface ContentOverlayStoryArgs {
 
 type Story = StoryObj<ContentOverlayStoryArgs>;
 
-const BasicTemplate = (args: ContentOverlayStoryArgs) => {
+const BasicTemplate = () => {
   const contentOverlayRef = useRef<ContentOverlayRef>(null);
+
+  const openContentOverlay = () => {
+    contentOverlayRef.current?.open?.();
+  };
+
+  const closeContentOverlay = () => {
+    contentOverlayRef.current?.close?.();
+  };
 
   return (
     <SafeAreaProvider>
-      <Host>
-        <View
-          style={{
-            width: 300,
-          }}
-        >
-          <ContentOverlay
-            title={args.title}
-            onClose={args.onClose}
-            onOpen={args.onOpen}
-            fullScreen={args.fullScreen}
-            ref={contentOverlayRef}
-          >
-            <Content>
-              <Text>I am some text inside the ContentOverlay.</Text>
-            </Content>
-          </ContentOverlay>
-          <View>
-            <Button
-              label="Open Overlay"
-              onPress={() => contentOverlayRef.current?.open?.()}
-            />
-          </View>
+      <BottomSheetModalProvider>
+        <View style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <Heading>Basic ContentOverlay</Heading>
+          <Text>
+            Note that due to the differences between React Native Web and React
+            Native, this does not render 100% properly
+          </Text>
+          <Button label="Open Content Overlay" onPress={openContentOverlay} />
+          <Button label="Close Content Overlay" onPress={closeContentOverlay} />
         </View>
-      </Host>
+        <ContentOverlay
+          ref={contentOverlayRef}
+          title="Content Overlay Title"
+          onClose={() => console.log("closed content overlay")}
+          onOpen={() => console.log("opened content overlay")}
+        >
+          <View style={{ padding: 16 }}>
+            <Text>This is the content inside the overlay.</Text>
+          </View>
+        </ContentOverlay>
+      </BottomSheetModalProvider>
     </SafeAreaProvider>
   );
 };
