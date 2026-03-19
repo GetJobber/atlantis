@@ -18,6 +18,7 @@ import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
 import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
+import { StorybookSourceContext } from "../components/StorybookSourceContext";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -31,6 +32,7 @@ import {
   getAvailablePlatformTypes,
   getAvailableVersionsForPlatform,
   getComponentContent,
+  getComponentContentSourcePath,
   getComponentElement,
   getComponentLinks,
   getComponentNotes,
@@ -109,6 +111,9 @@ export const ComponentView = () => {
   const ComponentContent = PageMeta
     ? getComponentContent(PageMeta, type)
     : undefined;
+  const componentContentSourcePath = PageMeta
+    ? getComponentContentSourcePath(PageMeta, type)
+    : undefined;
 
   const code = PageMeta ? getComponentElement(PageMeta, type) : undefined;
 
@@ -133,9 +138,13 @@ export const ComponentView = () => {
               ),
             }}
           >
-            <Content spacing="large">
-              {ComponentContent && <ComponentContent />}
-            </Content>
+            <StorybookSourceContext.Provider
+              value={{ mdxPath: componentContentSourcePath }}
+            >
+              <Content spacing="large">
+                {ComponentContent && <ComponentContent />}
+              </Content>
+            </StorybookSourceContext.Provider>
           </MDXProvider>
         ),
       },

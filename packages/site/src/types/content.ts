@@ -50,11 +50,15 @@ export interface ComponentProps {
 export interface ContentExport {
   // Design content (shared across all types)
   content: (props?: unknown) => ReactElement;
+  contentSourcePath?: string;
 
   // Type-specific content
   webContent?: (props?: unknown) => ReactElement;
+  webContentSourcePath?: string;
   webSupportedContent?: (props?: unknown) => ReactElement;
+  webSupportedContentSourcePath?: string;
   mobileContent?: (props?: unknown) => ReactElement;
+  mobileContentSourcePath?: string;
 
   // Type-specific props
   props?: Array<ComponentProps>;

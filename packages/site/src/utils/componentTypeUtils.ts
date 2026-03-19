@@ -126,6 +126,22 @@ export function getComponentContent(
   }
 }
 
+export function getComponentContentSourcePath(
+  content: ContentExport,
+  type: ComponentType,
+) {
+  switch (type) {
+    case "web":
+      return content.webContentSourcePath || content.contentSourcePath;
+    case "webSupported":
+      return content.webSupportedContentSourcePath || content.contentSourcePath;
+    case "mobile":
+      return content.mobileContentSourcePath || content.contentSourcePath;
+    default:
+      return content.contentSourcePath;
+  }
+}
+
 /**
  * Get the notes component for a specific type (handles legacy and new structure)
  */

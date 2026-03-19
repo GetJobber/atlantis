@@ -11,8 +11,12 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AutocompleteContent />,
+  contentSourcePath:
+    "packages/site/src/content/Autocomplete/Autocomplete.stories.mdx",
   toc,
   webSupportedContent: () => <RebuiltContent />,
+  webSupportedContentSourcePath:
+    "packages/site/src/content/Autocomplete/AutocompleteV2.stories.mdx",
   props: Props,
   webSupportedProps: RebuiltProps,
   component: {

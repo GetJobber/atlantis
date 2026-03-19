@@ -10,6 +10,8 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  contentSourcePath:
+    "packages/site/src/content/InputText/InputText.stories.mdx",
   toc,
   props: Props,
   mobileProps: MobileProps,
