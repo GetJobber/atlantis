@@ -12,39 +12,50 @@ export default {
   mobileProps: MobileProps,
   component: {
     element: `<Menu
-      items={[
-        {
-          actions: [
-            {
-              label: "Edit",
-              icon: "edit",
-              onClick: function onClick() {
-                alert("✏️");
-              },
-            },
-          ],
-        },
-        {
-          header: "Send as...",
-          actions: [
-            {
-              label: "Text message",
-              icon: "sms",
-              onClick: function onClick() {
-                alert("📱");
-              },
-            },
-            {
-              label: "Email",
-              icon: "email",
-              onClick: function onClick() {
-                alert("📨");
-              },
-            },
-          ],
-        },
-      ]}
-    />`,
+      ariaLabel="More Actions"
+      trigger={
+        <Button
+          label="More Actions"
+          icon="more"
+          type="secondary"
+        />
+      }
+    >
+      <Menu.Section>
+        <Menu.Item
+          onClick={function onClick() {
+            alert("✏️");
+          }}
+          textValue="Edit"
+        >
+          <Menu.ItemLabel>Edit</Menu.ItemLabel>
+          <Menu.ItemIcon name="edit" />
+        </Menu.Item>
+      </Menu.Section>
+      <Menu.Section>
+        <Menu.Header>
+          <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+        </Menu.Header>
+        <Menu.Item
+          onClick={function onClick() {
+            alert("📱");
+          }}
+          textValue="Text message"
+        >
+          <Menu.ItemLabel>Text message</Menu.ItemLabel>
+          <Menu.ItemIcon name="sms" />
+        </Menu.Item>
+        <Menu.Item
+          onClick={function onClick() {
+            alert("📨");
+          }}
+          textValue="Email"
+        >
+          <Menu.ItemLabel>Email</Menu.ItemLabel>
+          <Menu.ItemIcon name="email" />
+        </Menu.Item>
+      </Menu.Section>
+    </Menu>`,
     mobileElement: `const [selected, setSelected] = useState(0);
 
   const menuOptions = [

@@ -1,5 +1,6 @@
+export { ACTION_LIST_OFFSET as MENU_OFFSET } from "../private/styledPrimitives/ActionList/constants";
+
 export const SMALL_SCREEN_BREAKPOINT = 490;
-export const MENU_OFFSET = 6;
 export const MENU_MAX_HEIGHT_PERCENTAGE = 72;
 export const Y_TRANSLATION_DESKTOP = 10;
 export const Y_TRANSLATION_MOBILE = 150;

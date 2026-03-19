@@ -6,6 +6,7 @@ export { Autocomplete } from "./Autocomplete";
 export * from "./Avatar";
 export * from "./Banner";
 export * from "./Box";
+export * from "./BottomSheet";
 export * from "./Button";
 export * from "./ButtonDismiss";
 export * from "./Card";

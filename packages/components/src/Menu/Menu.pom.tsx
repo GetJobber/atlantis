@@ -77,6 +77,10 @@ export async function activateFirstItemOnly(): Promise<void> {
 
 export async function waitForMenuToClose(menu?: HTMLElement): Promise<void> {
   if (menu) {
+    if (!document.body.contains(menu)) {
+      return;
+    }
+
     await waitForElementToBeRemoved(menu);
 
     return;

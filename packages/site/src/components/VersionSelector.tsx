@@ -25,23 +25,23 @@ export const VersionSelector = ({
 
   return (
     <Box direction="row" gap="small" alignItems="center">
-      <Menu>
-        <Menu.Trigger>
+      <Menu
+        ariaLabel="Version"
+        trigger={
           <Chip heading="Version" label={versionLabelMap[currentVersion]} />
-        </Menu.Trigger>
-        <Menu.Content>
-          {availableVersions.map(version => {
-            return (
-              <Menu.Item
-                key={version}
-                textValue={versionLabelMap[version]}
-                onClick={() => onVersionChange(version)}
-              >
-                <Menu.ItemLabel>{versionLabelMap[version]}</Menu.ItemLabel>
-              </Menu.Item>
-            );
-          })}
-        </Menu.Content>
+        }
+      >
+        {availableVersions.map(version => {
+          return (
+            <Menu.Item
+              key={version}
+              textValue={versionLabelMap[version]}
+              onClick={() => onVersionChange(version)}
+            >
+              <Menu.ItemLabel>{versionLabelMap[version]}</Menu.ItemLabel>
+            </Menu.Item>
+          );
+        })}
       </Menu>
     </Box>
   );

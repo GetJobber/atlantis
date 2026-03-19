@@ -84,4 +84,10 @@ export const guidesList = [
     sections: ["Building"],
     additionalMatches: ["Supported", "Beta", "Legacy", "Deprecated"],
   },
+  {
+    title: "Menu migration guide",
+    to: "/guides/menu-migration",
+    sections: ["Building"],
+    additionalMatches: ["Menu", "BottomSheet", "Base UI", "Legacy"],
+  },
 ];

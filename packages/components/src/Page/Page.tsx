@@ -343,11 +343,13 @@ function PageMenu({
 
   return (
     <div {...dataAttrs}>
-      <Menu>
-        <Menu.Trigger UNSAFE_style={{ display: "block" }}>
+      <Menu
+        ariaLabel={triggerLabel}
+        trigger={
           <Button icon="more" label={triggerLabel} type="secondary" fullWidth />
-        </Menu.Trigger>
-        <Menu.Content>{children}</Menu.Content>
+        }
+      >
+        {children}
       </Menu>
     </div>
   );
