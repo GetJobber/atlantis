@@ -77,9 +77,8 @@ export function ButtonIcon({
 >) {
   const { size: contextSize } = useButtonContext();
   const size = sizeProp || contextSize;
-  const iconSize = size === "large" ? "base" : size;
 
-  return <Icon {...props} size={iconSize} />;
+  return <Icon {...props} size={size} />;
 }
 
 export function ButtonLabel({
