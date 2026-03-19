@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
+import { Switch as BaseSwitch } from "@base-ui/react/switch";
 import styles from "./Switch.module.css";
 import { Icon } from "../Icon";
 
@@ -24,37 +25,30 @@ export function Switch({
   onChange,
 }: SwitchProps) {
   const [statefulValue, setValue] = useState(false);
-  const value = providedValue != undefined ? providedValue : statefulValue;
+  const isControlled = providedValue != undefined;
+  const value = isControlled ? providedValue : statefulValue;
 
-  const toggleSwitch = () => {
-    if (disabled) {
-      return;
-    }
-
-    const newValue = !value;
+  const handleCheckedChange = (newValue: boolean) => {
     onChange && onChange(newValue);
 
-    if (providedValue == undefined) {
+    if (!isControlled) {
       setValue(newValue);
     }
   };
 
-  const className = classnames(styles.track, styles.switch, {
-    [styles.isChecked]: value,
-    [styles.disabled]: disabled,
-  });
+  const className = classnames(styles.track, styles.switch);
 
   return (
     <>
-      <button
+      <BaseSwitch.Root
         id={name}
-        type="button"
-        role="switch"
-        aria-checked={value}
         aria-label={ariaLabel}
-        className={className}
-        onClick={toggleSwitch}
+        checked={isControlled ? value : undefined}
         disabled={disabled}
+        onCheckedChange={handleCheckedChange}
+        className={className}
+        nativeButton={true}
+        render={props => <button {...props} type="button" />}
       >
         <span className={styles.icon} aria-hidden="true">
           <Icon
@@ -63,8 +57,8 @@ export function Switch({
             {...getIconColor(value, disabled ?? false)}
           />
         </span>
-        <span className={styles.toggle} />
-      </button>
+        <BaseSwitch.Thumb className={styles.toggle} />
+      </BaseSwitch.Root>
       <input name={name} type="hidden" value={String(value)} />
     </>
   );
