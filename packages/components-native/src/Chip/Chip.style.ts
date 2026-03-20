@@ -10,9 +10,11 @@ export const useStyles = buildThemedStyles(tokens => {
       flexDirection: "row",
       height: chipHeight,
       justifyContent: "center",
+      paddingHorizontal: tokens["space-base"],
+    },
+    legacyLayout: {
       marginHorizontal: tokens["space-smaller"],
       marginTop: tokens["space-small"],
-      paddingHorizontal: tokens["space-base"],
     },
     iconLeft: {
       marginHorizontal: tokens["space-smallest"],

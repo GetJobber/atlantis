@@ -53,6 +53,28 @@ it("renders an inactive Chip with a surface backgroundColor", () => {
   });
 });
 
+it("keeps the existing default margins", () => {
+  const { getByTestId } = render(
+    <Chip label="Foo" onPress={jest.fn()} isActive={false} />,
+  );
+
+  expect(getByTestId("chipTest").props.style).toContainEqual({
+    marginHorizontal: tokens["space-smaller"],
+    marginTop: tokens["space-small"],
+  });
+});
+
+it("allows the parent layout to control chip margins", () => {
+  const { getByTestId } = render(
+    <Chip label="Foo" onPress={jest.fn()} isActive={false} layout="flush" />,
+  );
+
+  expect(getByTestId("chipTest").props.style).not.toContainEqual({
+    marginHorizontal: tokens["space-smaller"],
+    marginTop: tokens["space-small"],
+  });
+});
+
 it("renders an active Chip with icon", () => {
   const { getByTestId } = render(
     <Chip onPress={jest.fn()} icon="invoice" isActive />,

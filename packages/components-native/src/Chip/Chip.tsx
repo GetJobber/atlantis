@@ -9,6 +9,7 @@ import type { AtlantisThemeContextValue } from "../AtlantisThemeContext";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export type AccentType = "client" | "invoice" | "job" | "request" | "quote";
+export type ChipLayout = "legacy" | "flush";
 
 export interface ChipProps {
   /**
@@ -57,6 +58,14 @@ export interface ChipProps {
    * Background color to be used for Active chips
    */
   readonly accent?: AccentType;
+
+  /**
+   * Controls whether the chip keeps its legacy outer margins or lets the parent
+   * layout fully own spacing.
+   *
+   * @default "legacy"
+   */
+  readonly layout?: ChipLayout;
 }
 
 export function Chip({
@@ -69,6 +78,7 @@ export function Chip({
   accessibilityLabel,
   accessibilityRole = "radio",
   accent,
+  layout = "legacy",
 }: ChipProps) {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
@@ -86,6 +96,7 @@ export function Chip({
             ? tokens["color-surface"]
             : tokens["color-interactive--background"],
       },
+      layout === "legacy" && styles.legacyLayout,
       isActive && { backgroundColor: accentColor },
       getBorderStyle(inactiveBackgroundColor, tokens),
     ];
