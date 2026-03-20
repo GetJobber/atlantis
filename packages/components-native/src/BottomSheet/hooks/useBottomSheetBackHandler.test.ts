@@ -2,7 +2,7 @@ import { createRef } from "react";
 import type { RefObject } from "react";
 import { act, renderHook } from "@testing-library/react-native";
 import { BackHandler } from "react-native";
-import type BottomSheet from "@gorhom/bottom-sheet";
+import type { BottomSheetModal as BottomSheetModalType } from "@gorhom/bottom-sheet";
 import { useBottomSheetBackHandler } from "./useBottomSheetBackHandler";
 
 describe("useBottomSheetBackHandler", () => {
@@ -20,7 +20,7 @@ describe("useBottomSheetBackHandler", () => {
   });
 
   it("should register BackHandler listener when sheet becomes visible", async () => {
-    const bottomSheetRef = createRef<BottomSheet | null>();
+    const bottomSheetRef = createRef<BottomSheetModalType | null>();
     const { result } = renderHook(() =>
       useBottomSheetBackHandler(bottomSheetRef),
     );
@@ -36,12 +36,12 @@ describe("useBottomSheetBackHandler", () => {
   });
 
   it("should call close() when back button is pressed", async () => {
-    const mockClose = jest.fn();
+    const mockDismiss = jest.fn();
     const bottomSheetRef = {
       current: {
-        close: mockClose,
-      } as unknown as BottomSheet,
-    } as RefObject<BottomSheet | null>;
+        dismiss: mockDismiss,
+      } as unknown as BottomSheetModalType,
+    } as RefObject<BottomSheetModalType | null>;
 
     const { result } = renderHook(() =>
       useBottomSheetBackHandler(bottomSheetRef),
@@ -54,12 +54,12 @@ describe("useBottomSheetBackHandler", () => {
     const registeredCallback = mockAddEventListener.mock.calls[0][1];
     const returnValue = registeredCallback();
 
-    expect(mockClose).toHaveBeenCalled();
+    expect(mockDismiss).toHaveBeenCalled();
     expect(returnValue).toBe(true);
   });
 
   it("should remove listener when sheet is dismissed", async () => {
-    const bottomSheetRef = createRef<BottomSheet | null>();
+    const bottomSheetRef = createRef<BottomSheetModalType | null>();
     const { result } = renderHook(() =>
       useBottomSheetBackHandler(bottomSheetRef),
     );
@@ -76,7 +76,7 @@ describe("useBottomSheetBackHandler", () => {
   });
 
   it("should not register listener when index is negative", async () => {
-    const bottomSheetRef = createRef<BottomSheet | null>();
+    const bottomSheetRef = createRef<BottomSheetModalType | null>();
     const { result } = renderHook(() =>
       useBottomSheetBackHandler(bottomSheetRef),
     );

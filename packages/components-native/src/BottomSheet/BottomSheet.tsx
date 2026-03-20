@@ -2,11 +2,15 @@ import type { ReactNode } from "react";
 import React, { useCallback, useImperativeHandle, useRef } from "react";
 import { Keyboard, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import RNBottomSheet, {
+import {
   BottomSheetBackdrop,
+  BottomSheetModal,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import type { BottomSheetBackdropProps } from "@gorhom/bottom-sheet";
+import type {
+  BottomSheetBackdropProps,
+  BottomSheetModal as BottomSheetModalType,
+} from "@gorhom/bottom-sheet";
 import { tokens } from "@jobber/design";
 import { useStyles } from "./BottomSheet.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
@@ -67,21 +71,29 @@ export function BottomSheet({
   const { t } = useAtlantisI18n();
   const insets = useSafeAreaInsets();
   const previousIndexRef = useRef(-1);
-  const bottomSheetRef = useRef<RNBottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheetModalType>(null);
+  // There is a bug with "restore" behavior after keyboard is dismissed.
+  // https://github.com/gorhom/react-native-bottom-sheet/issues/2465
+  // providing a 100% snap point "fixes" it for now, but there is an approved PR to fix it
+  // that just needs to be merged and released: https://github.com/gorhom/react-native-bottom-sheet/pull/2511
   const { handleSheetPositionChange } =
     useBottomSheetBackHandler(bottomSheetRef);
 
-  useImperativeHandle(ref, () => ({
-    open: () => {
-      bottomSheetRef.current?.expand();
-    },
-    close: () => {
-      close();
-    },
-  }));
+  useImperativeHandle(
+    ref,
+    () => ({
+      open: () => {
+        bottomSheetRef.current?.present();
+      },
+      close: () => {
+        close();
+      },
+    }),
+    [],
+  );
 
   const close = useCallback(() => {
-    bottomSheetRef.current?.close();
+    bottomSheetRef.current?.dismiss();
   }, []);
 
   const handleChange = (index: number) => {
@@ -104,10 +116,9 @@ export function BottomSheet({
   };
 
   return (
-    <RNBottomSheet
+    <BottomSheetModal
       ref={bottomSheetRef}
-      index={-1}
-      backdropComponent={Backdrop}
+      backdropComponent={props => <Backdrop {...props} />}
       backgroundStyle={styles.background}
       enablePanDownToClose={true}
       onChange={handleChange}
@@ -126,7 +137,7 @@ export function BottomSheet({
           <Footer styles={styles} close={close} cancelLabel={t("cancel")} />
         )}
       </BottomSheetView>
-    </RNBottomSheet>
+    </BottomSheetModal>
   );
 }
 
