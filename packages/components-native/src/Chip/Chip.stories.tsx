@@ -29,6 +29,45 @@ export const Basic: Story = {
   },
 };
 
+const RowOfFiveTemplate = () => (
+  <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+    <Chip
+      label="Chip 1"
+      isActive={true}
+      onPress={() => alert("Chip 1")}
+      accessibilityLabel="Chip 1"
+    />
+    <Chip
+      label="Chip 2"
+      isActive={false}
+      onPress={() => alert("Chip 2")}
+      accessibilityLabel="Chip 2"
+    />
+    <Chip
+      label="Chip 3"
+      isActive={false}
+      onPress={() => alert("Chip 3")}
+      accessibilityLabel="Chip 3"
+    />
+    <Chip
+      label="Chip 4"
+      isActive={false}
+      onPress={() => alert("Chip 4")}
+      accessibilityLabel="Chip 4"
+    />
+    <Chip
+      label="Chip 5"
+      isActive={false}
+      onPress={() => alert("Chip 5")}
+      accessibilityLabel="Chip 5"
+    />
+  </View>
+);
+
+export const RowOfFive: Story = {
+  render: RowOfFiveTemplate,
+};
+
 const AccentTemplate = (args: Story["args"]) => (
   <View style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
     <Chip {...args} />
