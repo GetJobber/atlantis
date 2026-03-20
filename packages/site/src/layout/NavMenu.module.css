@@ -37,7 +37,7 @@
 }
 
 .navMenu li {
-  margin-bottom: var(--space-smaller);
+  margin-bottom: var(--space-small);
 }
 
 .navMenuItem {
@@ -60,6 +60,8 @@
   outline: transparent;
   text-decoration: none;
   padding: 0 var(--space-small);
+  margin-left: var(--negativeHoverOffset);
+  margin-right: var(--negativeHoverOffset);
 
   &:visited {
     color: var(--color-text);
@@ -89,7 +91,7 @@
   transition: all var(--timing-base) ease-out;
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
-  margin-bottom: var(--space-smaller);
+  margin-bottom: var(--space-small);
   padding-left: var(--hoverOffset);
   min-height: var(--navItemHeight);
   align-items: stretch;
