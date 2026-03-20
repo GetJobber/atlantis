@@ -32,6 +32,12 @@ export const ContentCard = ({
         navigate({ to });
         onClick?.();
       }}
+      UNSAFE_style={{
+        container: {
+          boxShadow: "none",
+          border: "1px solid var(--color-border)",
+        },
+      }}
     >
       {!component ? (
         <AtlantisThemeContextProvider dangerouslyOverrideTheme="light">
@@ -47,7 +53,11 @@ export const ContentCard = ({
               }
             >
               <img
-                style={{ width: "100%", mixBlendMode: "multiply" }}
+                style={{
+                  width: "100%",
+                  mixBlendMode: "multiply",
+                  border: "none",
+                }}
                 src={imageURL}
               />
             </div>
@@ -56,9 +66,15 @@ export const ContentCard = ({
       ) : (
         <ComponentWrapper>{component()}</ComponentWrapper>
       )}
-      <Content>
-        <Heading level={4}>{title}</Heading>
-      </Content>
+      <div
+        style={{
+          padding: "var(--space-base)",
+        }}
+      >
+        <Content>
+          <Heading level={4}>{title}</Heading>
+        </Content>
+      </div>
     </Card>
   );
 };

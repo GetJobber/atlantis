@@ -14,7 +14,7 @@ export const ContentLoader = () => {
   const location = useLocation();
 
   switch (true) {
-    case location.pathname.startsWith("/design"):
+    case location.pathname.startsWith("/tokens"):
       type = "design";
       break;
     case location.pathname.startsWith("/changelog"):
