@@ -46,7 +46,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"small\" | \"large\""
+          "name": "\"small\" | \"large\" | \"fullScreen\""
         }
       },
       "dismissible": {

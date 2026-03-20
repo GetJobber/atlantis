@@ -29,6 +29,10 @@ export function ModalLegacy({
   ariaLabel,
 }: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
+  const containerClassName = classnames(
+    styles.container,
+    size === "fullScreen" && styles.containerFullScreen,
+  );
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
@@ -39,7 +43,7 @@ export function ModalLegacy({
         <div
           ref={modalRef}
           role="dialog"
-          className={styles.container}
+          className={containerClassName}
           tabIndex={0}
           aria-modal="true"
           aria-labelledby={title ? MODAL_HEADER_ID : undefined}

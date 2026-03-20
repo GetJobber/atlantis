@@ -1,5 +1,8 @@
 :root {
   --modal--width: 600px;
+  --modal--max-height: calc(100dvh - 2 * var(--space-base));
+  --modal--margin: auto;
+  --modal--border-radius: var(--radius-base);
   --modal--padding-horizontal: var(--space-base);
   --modal--padding-vertical: var(--space-base);
   --modal--padding: var(--modal--padding-vertical)
@@ -37,11 +40,12 @@
   z-index: var(--elevation-modal);
   width: 100%;
   max-width: var(--modal--width);
-  max-height: calc(100dvh - 2 * var(--space-base));
+  max-height: var(--modal--max-height);
   box-shadow: var(--modal--shadow);
-  margin: auto;
+  box-sizing: border-box;
+  margin: var(--modal--margin);
   border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-base);
+  border-radius: var(--modal--border-radius);
   outline: none;
   overflow: hidden;
   background-color: var(--color-surface);
@@ -54,6 +58,7 @@
 
 .modalBody {
   max-height: inherit;
+  box-sizing: border-box;
   padding: var(--space-small);
   overflow-y: auto;
 }

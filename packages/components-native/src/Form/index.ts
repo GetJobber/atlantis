@@ -3,6 +3,7 @@ export { FormMessage } from "./components/FormMessage";
 export type {
   FormBannerErrors,
   FormBannerMessage,
+  FormUserErrors,
   FormErrors,
   FormRef,
   FormValues,

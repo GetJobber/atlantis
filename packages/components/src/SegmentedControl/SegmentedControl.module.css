@@ -54,26 +54,33 @@
   background-color: var(--color-interactive--background--subtle--hover);
 }
 
+/* Extends beyond the container's padding box by --border-base so the green
+   border overlays the grey container border. margin-left applies the horizontal
+   offset uniformly to all left positions. */
 .container span {
   position: absolute;
+  top: calc(-1 * var(--border-base));
   left: 0;
-  width: calc(100% / var(--segmentedControl--option-count));
-  height: 100%;
+  width: calc(
+    100% / var(--segmentedControl--option-count) + 2 * var(--border-base)
+  );
+  height: calc(100% + 2 * var(--border-base));
   box-sizing: border-box;
-  border: var(--border-base) solid var(--color-interactive);
+  margin-left: calc(-1 * var(--border-base));
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
   transition: var(--timing-slow) left ease-out;
 }
 
-/* Focus ring at z-index: 2 so hover backgrounds (z-index: 1) can't cover it.
-   Negative inset aligns with the span's outer edge so the green border stays
-   visible inside the focus ring. */
+/* Green border and focus ring live on ::after at z-index: 2 so hover
+   backgrounds on adjacent labels (z-index: 1) can't cover them. */
 .container span::after {
   content: "";
   position: absolute;
-  inset: calc(-1 * var(--border-base));
+  inset: 0;
   z-index: 2;
+  box-sizing: border-box;
+  border: var(--border-base) solid var(--color-interactive);
   border-radius: inherit;
   pointer-events: none;
 }

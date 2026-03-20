@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "container": string;
+  readonly "containerFullScreen": string;
   readonly "overlay": string;
   readonly "modal": string;
   readonly "header": string;
