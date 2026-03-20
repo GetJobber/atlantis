@@ -24,12 +24,14 @@ export function ButtonContent({
   | "UNSAFE_className"
   | "UNSAFE_style"
 >) {
+  const iconSize = size === "large" ? "base" : size;
+
   return (
     <>
       {icon && !iconOnRight && (
         <ButtonIcon
           name={icon}
-          size={size}
+          size={iconSize}
           UNSAFE_className={UNSAFE_className?.buttonIcon}
           UNSAFE_style={UNSAFE_style?.buttonIcon}
         />
@@ -46,7 +48,7 @@ export function ButtonContent({
       {icon && iconOnRight && (
         <ButtonIcon
           name={icon}
-          size={size}
+          size={iconSize}
           UNSAFE_className={UNSAFE_className?.buttonIcon}
           UNSAFE_style={UNSAFE_style?.buttonIcon}
         />
