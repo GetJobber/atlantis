@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check PR title
-        uses: GetJobber/action-semantic-pull-request@v5
+        uses: GetJobber/action-semantic-pull-request@v6
         id: check_pr_title
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
