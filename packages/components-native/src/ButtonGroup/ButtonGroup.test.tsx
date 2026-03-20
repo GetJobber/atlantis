@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
-import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import type { ButtonGroupProps } from "./ButtonGroup";
 import { ButtonGroup } from "./ButtonGroup";
 import { Button } from "../Button";
@@ -12,7 +12,7 @@ const mockOnOpen = jest.fn();
 
 function ButtonGroupForTest(props: ButtonGroupProps) {
   return (
-    <Host>
+    <BottomSheetModalProvider>
       <ButtonGroup
         bottomSheetHeading={props.bottomSheetHeading}
         showCancelInBottomSheet={props.showCancelInBottomSheet}
@@ -20,7 +20,7 @@ function ButtonGroupForTest(props: ButtonGroupProps) {
       >
         {props.children}
       </ButtonGroup>
-    </Host>
+    </BottomSheetModalProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react-native";
-import { Host } from "react-native-portalize";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ThumbnailList } from "./ThumbnailList";
 import type { File } from "../FormatFile/types";
 
@@ -46,13 +46,13 @@ const mockCreateThumbnail = jest.fn(async () => ({
 
 function setup(snapshot?: boolean) {
   return render(
-    <Host>
+    <BottomSheetModalProvider>
       <ThumbnailList
         files={snapshot ? snapshotFile : files}
         handleOpenFile={onOpenFile}
         createThumbnail={mockCreateThumbnail}
       />
-    </Host>,
+    </BottomSheetModalProvider>,
   );
 }
 

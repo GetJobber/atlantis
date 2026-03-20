@@ -1,8 +1,8 @@
 import React, { createRef } from "react";
 import type { RenderAPI } from "@testing-library/react-native";
 import { fireEvent, render } from "@testing-library/react-native";
-import { Host } from "react-native-portalize";
 import { act } from "react-test-renderer";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import type { BottomSheetOptionsSuffix } from "./FormatFileBottomSheet";
 import { FormatFileBottomSheet } from "./FormatFileBottomSheet";
 import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
@@ -20,14 +20,14 @@ const renderBottomSheet = (
   bottomSheetOptionsSuffix: BottomSheetOptionsSuffix,
 ) => {
   return render(
-    <Host>
+    <BottomSheetModalProvider>
       <FormatFileBottomSheet
         onPreviewPress={onPreview}
         onRemovePress={onRemove}
         bottomSheetRef={bottomSheetRef}
         bottomSheetOptionsSuffix={bottomSheetOptionsSuffix}
       />
-    </Host>,
+    </BottomSheetModalProvider>,
   );
 };
 

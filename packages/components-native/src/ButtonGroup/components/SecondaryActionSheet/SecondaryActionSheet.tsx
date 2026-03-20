@@ -1,7 +1,6 @@
 import type { RefObject } from "react";
 import React from "react";
 import { View } from "react-native";
-import { Portal } from "react-native-portalize";
 import type { ButtonGroupSecondaryActionProps } from "../../types";
 import { BottomSheetOption } from "../../../BottomSheet/components/BottomSheetOption";
 import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
@@ -25,34 +24,32 @@ export function SecondaryActionSheet({
   onCloseBottomSheet,
 }: SecondaryActionSheetProps) {
   return (
-    <Portal>
-      <BottomSheet
-        heading={heading}
-        showCancel={showCancel}
-        ref={secondaryActionsRef}
-        onOpen={onOpenBottomSheet}
-        onClose={onCloseBottomSheet}
-      >
-        <View>
-          {actions.map((action, index) => {
-            const { label, onPress, icon, iconColor, destructive } = action;
+    <BottomSheet
+      heading={heading}
+      showCancel={showCancel}
+      ref={secondaryActionsRef}
+      onOpen={onOpenBottomSheet}
+      onClose={onCloseBottomSheet}
+    >
+      <View>
+        {actions.map((action, index) => {
+          const { label, onPress, icon, iconColor, destructive } = action;
 
-            return (
-              <BottomSheetOption
-                destructive={destructive}
-                key={index}
-                text={label}
-                onPress={() => {
-                  secondaryActionsRef?.current?.close();
-                  onPress();
-                }}
-                icon={icon}
-                iconColor={iconColor}
-              />
-            );
-          })}
-        </View>
-      </BottomSheet>
-    </Portal>
+          return (
+            <BottomSheetOption
+              destructive={destructive}
+              key={index}
+              text={label}
+              onPress={() => {
+                secondaryActionsRef?.current?.close();
+                onPress();
+              }}
+              icon={icon}
+              iconColor={iconColor}
+            />
+          );
+        })}
+      </View>
+    </BottomSheet>
   );
 }
