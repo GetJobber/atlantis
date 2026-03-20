@@ -2,7 +2,7 @@ import React from "react";
 import type { RenderAPI } from "@testing-library/react-native";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert } from "react-native";
-import { Host } from "react-native-portalize";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import type { File } from ".";
 import { FormatFile } from ".";
 import {
@@ -42,7 +42,7 @@ const renderFormatFile = (
   showFileTypeIndicator?: boolean,
 ) => {
   return render(
-    <Host>
+    <BottomSheetModalProvider>
       <FormatFile
         file={file}
         accessibilityLabel="Custom Label"
@@ -54,7 +54,7 @@ const renderFormatFile = (
         onPreviewPress={mockOnPreview}
         createThumbnail={mockCreateThumbnail}
       />
-    </Host>,
+    </BottomSheetModalProvider>,
   );
 };
 

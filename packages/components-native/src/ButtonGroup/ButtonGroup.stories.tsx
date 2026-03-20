@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
-import { Host } from "react-native-portalize";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ButtonGroup } from "@jobber/components-native";
 
 const meta = {
@@ -30,8 +30,8 @@ type SecondaryActionStory = StoryObj<
 
 export const Basic: ButtonGroupStory = {
   render: args => (
-    <SafeAreaProvider>
-      <Host>
+    <BottomSheetModalProvider>
+      <SafeAreaProvider>
         <ButtonGroup {...args}>
           <ButtonGroup.PrimaryAction
             label={"Create"}
@@ -49,16 +49,16 @@ export const Basic: ButtonGroupStory = {
             onPress={() => console.log("delete")}
           />
         </ButtonGroup>
-      </Host>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </BottomSheetModalProvider>
   ),
   args: {},
 };
 
 export const Primary: PrimaryActionStory = {
   render: args => (
-    <SafeAreaProvider>
-      <Host>
+    <BottomSheetModalProvider>
+      <SafeAreaProvider>
         <ButtonGroup>
           <ButtonGroup.PrimaryAction {...args} />
           <ButtonGroup.SecondaryAction
@@ -72,8 +72,8 @@ export const Primary: PrimaryActionStory = {
             onPress={() => console.log("delete")}
           />
         </ButtonGroup>
-      </Host>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </BottomSheetModalProvider>
   ),
   args: {
     label: "Create",
@@ -84,8 +84,8 @@ export const Primary: PrimaryActionStory = {
 
 export const Secondary: SecondaryActionStory = {
   render: args => (
-    <SafeAreaProvider>
-      <Host>
+    <BottomSheetModalProvider>
+      <SafeAreaProvider>
         <ButtonGroup
           bottomSheetHeading="What would you like to do"
           showCancelInBottomSheet={true}
@@ -97,8 +97,8 @@ export const Secondary: SecondaryActionStory = {
           />
           <ButtonGroup.SecondaryAction {...args} />
         </ButtonGroup>
-      </Host>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </BottomSheetModalProvider>
   ),
   args: {
     label: "Create",

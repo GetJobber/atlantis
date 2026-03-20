@@ -1,6 +1,5 @@
 import type { RefObject } from "react";
 import React from "react";
-import { Portal } from "react-native-portalize";
 import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 import { BottomSheet } from "../../../BottomSheet/BottomSheet";
 import { BottomSheetOption } from "../../../BottomSheet/components/BottomSheetOption";
@@ -30,28 +29,26 @@ export const FormatFileBottomSheet = ({
   };
 
   return (
-    <Portal>
-      <BottomSheet ref={bottomSheetRef}>
-        {onPreviewPress ? (
-          <BottomSheetOption
-            icon={"eye"}
-            text={t("FormatFile.preview", {
-              item: bottomSheetOptionsSuffix || "",
-            })}
-            onPress={() => handlePress(onPreviewPress)}
-          />
-        ) : undefined}
-        {onRemovePress ? (
-          <BottomSheetOption
-            icon={"trash"}
-            destructive={true}
-            text={t("FormatFile.remove", {
-              item: bottomSheetOptionsSuffix || "",
-            })}
-            onPress={() => handlePress(onRemovePress)}
-          />
-        ) : undefined}
-      </BottomSheet>
-    </Portal>
+    <BottomSheet ref={bottomSheetRef}>
+      {onPreviewPress ? (
+        <BottomSheetOption
+          icon={"eye"}
+          text={t("FormatFile.preview", {
+            item: bottomSheetOptionsSuffix || "",
+          })}
+          onPress={() => handlePress(onPreviewPress)}
+        />
+      ) : undefined}
+      {onRemovePress ? (
+        <BottomSheetOption
+          icon={"trash"}
+          destructive={true}
+          text={t("FormatFile.remove", {
+            item: bottomSheetOptionsSuffix || "",
+          })}
+          onPress={() => handlePress(onRemovePress)}
+        />
+      ) : undefined}
+    </BottomSheet>
   );
 };

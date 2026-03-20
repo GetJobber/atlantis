@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Button, Heading, Text } from "@jobber/components-native";
 import { BottomSheet } from "./BottomSheet";
 import type { BottomSheetRef } from "./BottomSheet";
@@ -27,41 +28,43 @@ const BasicTemplate = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <View style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <Heading>Basic BottomSheet</Heading>
-        <Text>
-          Note that due to the differences between React Native Web and React
-          Native, this does not render 100% properly
-        </Text>
-        <Button label="Open Bottom Sheet" onPress={openBottomSheet} />
-        <Button label="Close Bottom Sheet" onPress={closeBottomSheet} />
-      </View>
-      <BottomSheet
-        ref={bottomSheetRef}
-        onClose={() => console.log("closed bottom sheet")}
-        onOpen={() => console.log("opened bottom sheet")}
-      >
-        <BottomSheetOption
-          icon="sendMessage"
-          iconColor="greyBlue"
-          text="Send message"
-          onPress={() => alert("send message")}
-        />
-        <BottomSheetOption
-          icon="phone"
-          iconColor="greyBlue"
-          text="Call a friend"
-          onPress={() => alert("Calling a friend")}
-        />
-        <BottomSheetOption
-          destructive={true}
-          icon="trash"
-          text="Remove"
-          onPress={() => alert("Removed")}
-        />
-      </BottomSheet>
-    </SafeAreaProvider>
+    <BottomSheetModalProvider>
+      <SafeAreaProvider>
+        <View style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <Heading>Basic BottomSheet</Heading>
+          <Text>
+            Note that due to the differences between React Native Web and React
+            Native, this does not render 100% properly
+          </Text>
+          <Button label="Open Bottom Sheet" onPress={openBottomSheet} />
+          <Button label="Close Bottom Sheet" onPress={closeBottomSheet} />
+        </View>
+        <BottomSheet
+          ref={bottomSheetRef}
+          onClose={() => console.log("closed bottom sheet")}
+          onOpen={() => console.log("opened bottom sheet")}
+        >
+          <BottomSheetOption
+            icon="sendMessage"
+            iconColor="greyBlue"
+            text="Send message"
+            onPress={() => alert("send message")}
+          />
+          <BottomSheetOption
+            icon="phone"
+            iconColor="greyBlue"
+            text="Call a friend"
+            onPress={() => alert("Calling a friend")}
+          />
+          <BottomSheetOption
+            destructive={true}
+            icon="trash"
+            text="Remove"
+            onPress={() => alert("Removed")}
+          />
+        </BottomSheet>
+      </SafeAreaProvider>
+    </BottomSheetModalProvider>
   );
 };
 
@@ -77,43 +80,45 @@ const HeaderFooterInputTextTemplate = () => {
   };
 
   return (
-    <SafeAreaProvider>
-      <View style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <Heading>Basic BottomSheet</Heading>
-        <Text>
-          Note that due to the differences between React Native Web and React
-          Native, this does not render 100% properly
-        </Text>
-        <Button label="Open Bottom Sheet" onPress={openBottomSheet} />
-        <Button label="Close Bottom Sheet" onPress={closeBottomSheet} />
-      </View>
-      <BottomSheet
-        ref={bottomSheetRef}
-        showCancel={true}
-        heading="BottomSheet Header"
-        onClose={() => console.log("closed bottom sheet")}
-        onOpen={() => console.log("opened bottom sheet")}
-      >
-        <BottomSheetOption
-          icon="sendMessage"
-          iconColor="greyBlue"
-          text="Send message"
-          onPress={() => alert("send message")}
-        />
-        <BottomSheetOption
-          icon="phone"
-          iconColor="greyBlue"
-          text="Call a friend"
-          onPress={() => alert("Calling a friend")}
-        />
-        <BottomSheetOption
-          destructive={true}
-          icon="trash"
-          text="Remove"
-          onPress={() => alert("Removed")}
-        />
-      </BottomSheet>
-    </SafeAreaProvider>
+    <BottomSheetModalProvider>
+      <SafeAreaProvider>
+        <View style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <Heading>Basic BottomSheet</Heading>
+          <Text>
+            Note that due to the differences between React Native Web and React
+            Native, this does not render 100% properly
+          </Text>
+          <Button label="Open Bottom Sheet" onPress={openBottomSheet} />
+          <Button label="Close Bottom Sheet" onPress={closeBottomSheet} />
+        </View>
+        <BottomSheet
+          ref={bottomSheetRef}
+          showCancel={true}
+          heading="BottomSheet Header"
+          onClose={() => console.log("closed bottom sheet")}
+          onOpen={() => console.log("opened bottom sheet")}
+        >
+          <BottomSheetOption
+            icon="sendMessage"
+            iconColor="greyBlue"
+            text="Send message"
+            onPress={() => alert("send message")}
+          />
+          <BottomSheetOption
+            icon="phone"
+            iconColor="greyBlue"
+            text="Call a friend"
+            onPress={() => alert("Calling a friend")}
+          />
+          <BottomSheetOption
+            destructive={true}
+            icon="trash"
+            text="Remove"
+            onPress={() => alert("Removed")}
+          />
+        </BottomSheet>
+      </SafeAreaProvider>
+    </BottomSheetModalProvider>
   );
 };
 

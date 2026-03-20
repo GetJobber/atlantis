@@ -1,6 +1,7 @@
 import React, { createRef } from "react";
 import { act, render, userEvent, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheet } from ".";
 import type { BottomSheetRef } from "./BottomSheet";
 import { waitForUntestableRender } from "../utils/test/wait";
@@ -22,18 +23,20 @@ function setup({
   loading?: boolean;
 }) {
   return render(
-    <BottomSheet
-      ref={ref}
-      heading={heading}
-      showCancel={showCancel}
-      loading={loading}
-      onClose={mockOnClose}
-      onOpen={mockOnOpen}
-    >
-      <View>
-        <Text>BottomSheet</Text>
-      </View>
-    </BottomSheet>,
+    <BottomSheetModalProvider>
+      <BottomSheet
+        ref={ref}
+        heading={heading}
+        showCancel={showCancel}
+        loading={loading}
+        onClose={mockOnClose}
+        onOpen={mockOnOpen}
+      >
+        <View>
+          <Text>BottomSheet</Text>
+        </View>
+      </BottomSheet>
+    </BottomSheetModalProvider>,
   );
 }
 

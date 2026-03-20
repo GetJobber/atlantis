@@ -1,7 +1,7 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
-import { Host } from "react-native-portalize";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { FormatFile } from "@jobber/components-native";
 
 const meta = {
@@ -16,8 +16,8 @@ export default meta;
 type Story = StoryObj<Partial<React.ComponentProps<typeof FormatFile>>>;
 
 const BasicTemplate = (args: Story["args"]) => (
-  <SafeAreaProvider>
-    <Host>
+  <BottomSheetModalProvider>
+    <SafeAreaProvider>
       <FormatFile
         file={
           args?.file ?? {
@@ -39,8 +39,8 @@ const BasicTemplate = (args: Story["args"]) => (
         showFileTypeIndicator={args?.showFileTypeIndicator}
         createThumbnail={args?.createThumbnail}
       />
-    </Host>
-  </SafeAreaProvider>
+    </SafeAreaProvider>
+  </BottomSheetModalProvider>
 );
 
 export const Image: Story = {
