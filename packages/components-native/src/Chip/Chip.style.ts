@@ -10,8 +10,6 @@ export const useStyles = buildThemedStyles(tokens => {
       flexDirection: "row",
       height: chipHeight,
       justifyContent: "center",
-      marginHorizontal: tokens["space-smaller"],
-      marginTop: tokens["space-small"],
       paddingHorizontal: tokens["space-base"],
     },
     iconLeft: {
