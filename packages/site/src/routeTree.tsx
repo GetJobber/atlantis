@@ -128,13 +128,13 @@ const contentNameRoute = createRoute({
 
 const designRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "design",
+  path: "tokens",
   component: DesignPage,
 });
 
 const designNameRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "design/$name",
+  path: "tokens/$name",
   component: ContentLoader,
 });
 

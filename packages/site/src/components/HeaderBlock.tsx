@@ -1,10 +1,4 @@
-import {
-  AtlantisThemeContextProvider,
-  Box,
-  Button,
-  Content,
-  Heading,
-} from "@jobber/components";
+import { Box, Button, Content, Heading, Text } from "@jobber/components";
 import { useNavigate } from "@tanstack/react-router";
 
 interface HeaderBlockProps {
@@ -28,30 +22,22 @@ export const HeaderBlock = ({
   body,
   ctaLabel,
   to,
-  imageURL = "/img_collage.jpg",
 }: HeaderBlockProps) => {
   const navigate = useNavigate();
 
   return (
-    <Box background="base-blue--900">
-      <header
-        style={{ backgroundImage: `url(${imageURL})` }}
-        className="headerBlock"
-      >
+    <Box background="surface--background--subtle">
+      <header className="headerBlock">
         <Content spacing="large">
           <div>
-            <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-              <Content spacing="large">
-                <Heading level={1}>{title}</Heading>
-                <Heading level={4} element={"p"}>
-                  {body}
-                </Heading>
-              </Content>
-            </AtlantisThemeContextProvider>
+            <Content spacing="large">
+              <Heading level={1}>{title}</Heading>
+              <Text size="large">{body}</Text>
+            </Content>
           </div>
           {to && ctaLabel && (
             <Button
-              type="secondary"
+              type="primary"
               size="large"
               label={ctaLabel}
               onClick={() => navigate({ to: to })}

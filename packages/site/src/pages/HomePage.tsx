@@ -5,8 +5,8 @@ export const HomePage = () => {
     <PageBlock
       structure={{
         header: {
-          title: "Home",
-          body: "Jobber's toolkit for building consumer-grade experiences",
+          title: "Atlantis Design System",
+          body: "Atlantis is Jobber's design system that enables us to build consumer-grade experiences",
           ctaLabel: "Get Started",
           to: "/welcome-guide",
           imageURL: "/img_collage.jpg",
@@ -17,13 +17,13 @@ export const HomePage = () => {
               title: "Components",
               to: "/components",
               imageURL: "/Components.png",
-              sections: ["Packages"],
+              sections: ["Quickstarts"],
             },
             {
-              title: "Design",
-              to: "/design",
+              title: "Tokens",
+              to: "/tokens",
               imageURL: "/Design.png",
-              sections: ["Packages"],
+              sections: ["Quickstarts"],
             },
             {
               title: "Content",
@@ -35,7 +35,7 @@ export const HomePage = () => {
               title: "Hooks",
               to: "/hooks",
               imageURL: "/Hooks.png",
-              sections: ["Packages"],
+              sections: ["Quickstarts"],
             },
             {
               title: "Guides",

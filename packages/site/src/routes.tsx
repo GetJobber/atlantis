@@ -69,8 +69,8 @@ export const routes: Array<AtlantisRoute> = [
     children: mapListToNavItems(contentList),
   },
   {
-    path: "/design",
-    handle: "Design",
+    path: "/tokens",
+    handle: "Tokens",
     children: mapListToNavItems(designList),
   },
   {
